@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+	<key>CLIENT_ID</key>
+	<string>45119442318-encih3r0bsalpns9i9d9sinn6ff3to4t.apps.googleusercontent.com</string>
+	<key>REVERSED_CLIENT_ID</key>
+	<string>com.googleusercontent.apps.45119442318-encih3r0bsalpns9i9d9sinn6ff3to4t</string>
+	<key>API_KEY</key>
+	<string>AIzaSyC3BKrbuZIckMwbQqHjT2baYDKH-9eWnxs</string>
+	<key>GCM_SENDER_ID</key>
+	<string>45119442318</string>
+	<key>PLIST_VERSION</key>
+	<string>1</string>
+	<key>BUNDLE_ID</key>
+	<string>com.flutterflow.newmee</string>
+	<key>PROJECT_ID</key>
+	<string>myfirstapp-72a20</string>
+	<key>STORAGE_BUCKET</key>
+	<string>myfirstapp-72a20.appspot.com</string>
+	<key>IS_ADS_ENABLED</key>
+	<false></false>
+	<key>IS_ANALYTICS_ENABLED</key>
+	<false></false>
+	<key>IS_APPINVITE_ENABLED</key>
+	<true></true>
+	<key>IS_GCM_ENABLED</key>
+	<true></true>
+	<key>IS_SIGNIN_ENABLED</key>
+	<true></true>
+	<key>GOOGLE_APP_ID</key>
+	<string>1:45119442318:ios:8d1b7cdde73918cb6068df</string>
+	<key>DATABASE_URL</key>
+	<string>https://myfirstapp-72a20-default-rtdb.firebaseio.com</string>
+</dict>
+</plist>

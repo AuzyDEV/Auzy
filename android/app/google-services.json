@@ -1,0 +1,47 @@
+{
+  "project_info": {
+    "project_number": "45119442318",
+    "firebase_url": "https://myfirstapp-72a20-default-rtdb.firebaseio.com",
+    "project_id": "myfirstapp-72a20",
+    "storage_bucket": "myfirstapp-72a20.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:45119442318:android:9d5f9ccedb7b30de6068df",
+        "android_client_info": {
+          "package_name": "com.flutterflow.newmee"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "45119442318-7uq7pnj4j98aah4q1lpbq76t514pcnn6.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyCF7-4-Ty_Biv9-d34GGfiFz_lSbE6Q0dE"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "45119442318-7uq7pnj4j98aah4q1lpbq76t514pcnn6.apps.googleusercontent.com",
+              "client_type": 3
+            },
+            {
+              "client_id": "45119442318-encih3r0bsalpns9i9d9sinn6ff3to4t.apps.googleusercontent.com",
+              "client_type": 2,
+              "ios_info": {
+                "bundle_id": "com.flutterflow.newmee"
+              }
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
