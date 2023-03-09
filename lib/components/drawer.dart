@@ -3,8 +3,17 @@ import 'package:flutter/material.dart';
 import 'package:new_mee/apis/User_api.dart';
 import 'package:new_mee/chat/chats_copy.dart';
 import 'package:new_mee/components/theme.dart';
+import 'package:new_mee/doctors/doctorsListing_widget.dart';
+import 'package:new_mee/drugs/addNewDrug_widget.dart';
+import 'package:new_mee/drugs/drugsList_widget.dart';
 import 'package:new_mee/files/filesList.dart';
 import 'package:new_mee/index.dart';
+import 'package:new_mee/mailing/annoucement.dart';
+import 'package:new_mee/mailing/contactus.dart';
+import 'package:new_mee/medecines/addMedecine_widget.dart';
+import 'package:new_mee/medecines/medecines.dart';
+import 'package:new_mee/posts/PostsManagement.dart';
+import 'package:new_mee/posts/postsForUsers_widget.dart';
 
 class Drawerr extends StatefulWidget {
   @override
@@ -12,8 +21,28 @@ class Drawerr extends StatefulWidget {
 }
 
 int selectedIndex = 0;
+String _futureStringValue;
+UserMan apiUser = UserMan();
 
 class _DrawerrState extends State<Drawerr> {
+  Future<String> _getCurrentUserRole() async {
+    return apiUser.GetCurrentUserRole();
+  }
+
+  // Function to get the value of Future<String>
+  void _getFutureStringValue() async {
+    String value = await _getCurrentUserRole();
+    setState(() {
+      _futureStringValue = value;
+    });
+  }
+
+  @override
+  void initState() {
+    super.initState();
+    _getFutureStringValue();
+  }
+
   @override
   Widget build(BuildContext context) {
     return Drawer(
@@ -122,22 +151,23 @@ class _DrawerrState extends State<Drawerr> {
                     ),
                   );
                 }),
-            _createDrawerItem(
-                icon: Icons.people_alt_outlined,
-                text: 'User Management',
-                isSelected: selectedIndex == 2,
-                onTap: () {
-                  setState(() {
-                    selectedIndex = 2;
-                  });
+            if (_futureStringValue == "admin")
+              _createDrawerItem(
+                  icon: Icons.people_alt_outlined,
+                  text: 'User Management',
+                  isSelected: selectedIndex == 2,
+                  onTap: () {
+                    setState(() {
+                      selectedIndex = 2;
+                    });
 
-                  Navigator.push(
-                    context,
-                    MaterialPageRoute(
-                      builder: (context) => UsersWidget(),
-                    ),
-                  );
-                }),
+                    Navigator.push(
+                      context,
+                      MaterialPageRoute(
+                        builder: (context) => UsersWidget(),
+                      ),
+                    );
+                  }),
             _createDrawerItem(
                 icon: Icons.message_outlined,
                 text: 'Messages',
@@ -169,26 +199,110 @@ class _DrawerrState extends State<Drawerr> {
                     ),
                   );
                 }),
+            if (_futureStringValue == "admin")
+              _createDrawerItem(
+                  icon: Icons.send_outlined,
+                  text: 'Announcement',
+                  isSelected: selectedIndex == 5,
+                  onTap: () {
+                    setState(() {
+                      selectedIndex = 5;
+                    });
+
+                    Navigator.push(
+                      context,
+                      MaterialPageRoute(
+                        builder: (context) => announcementWidget(),
+                      ),
+                    );
+                  }),
+            if (_futureStringValue == "admin")
+              _createDrawerItem(
+                  icon: Icons.co_present_outlined,
+                  text: 'Post Management',
+                  isSelected: selectedIndex == 6,
+                  onTap: () {
+                    setState(() {
+                      selectedIndex = 6;
+                    });
+
+                    Navigator.push(
+                      context,
+                      MaterialPageRoute(
+                        builder: (context) => PostsManagementWidget(),
+                      ),
+                    );
+                  }),
+            if (_futureStringValue == "user")
+              _createDrawerItem(
+                  icon: Icons.co_present_outlined,
+                  text: 'Posts',
+                  isSelected: selectedIndex == 6,
+                  onTap: () {
+                    setState(() {
+                      selectedIndex = 6;
+                    });
+
+                    Navigator.push(
+                      context,
+                      MaterialPageRoute(
+                        builder: (context) => postsForUsersWidget(),
+                      ),
+                    );
+                  }),
             _createDrawerItem(
-                icon: Icons.email_outlined,
-                text: 'Contact Us',
-                isSelected: selectedIndex == 5,
+                icon: Icons.medical_services_outlined,
+                text: 'Medecines',
+                isSelected: selectedIndex == 7,
                 onTap: () {
                   setState(() {
-                    selectedIndex = 5;
+                    selectedIndex = 7;
                   });
 
                   Navigator.push(
                     context,
                     MaterialPageRoute(
-                      builder: (context) => contactUsWidget(),
+                      builder: (context) => DrugsListWidget(),
                     ),
                   );
                 }),
             _createDrawerItem(
+                icon: Icons.person_search_outlined,
+                text: 'Doctors',
+                isSelected: selectedIndex == 8,
+                onTap: () {
+                  setState(() {
+                    selectedIndex = 8;
+                  });
+
+                  Navigator.push(
+                    context,
+                    MaterialPageRoute(
+                      builder: (context) => listsdocWidget(),
+                    ),
+                  );
+                }),
+            if (_futureStringValue == "user")
+              _createDrawerItem(
+                  icon: Icons.email_outlined,
+                  text: 'Contact Us',
+                  isSelected: selectedIndex == 9,
+                  onTap: () {
+                    setState(() {
+                      selectedIndex = 9;
+                    });
+
+                    Navigator.push(
+                      context,
+                      MaterialPageRoute(
+                        builder: (context) => contactUsWidget(),
+                      ),
+                    );
+                  }),
+            _createDrawerItem(
               icon: Icons.logout_outlined,
               text: 'Logout',
-              isSelected: selectedIndex == 6,
+              isSelected: selectedIndex == 10,
               onTap: () async {
                 UserMan api = UserMan();
                 bool response = await api.LogoutUser();
@@ -199,6 +313,9 @@ class _DrawerrState extends State<Drawerr> {
                       builder: (context) => SigninWidget(),
                     ),
                   );
+                setState(() {
+                  selectedIndex = 10;
+                });
               },
             ),
             Divider(),

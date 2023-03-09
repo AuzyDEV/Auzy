@@ -55,6 +55,7 @@ class _MenuWidgetState extends State<MenuWidget> {
         ),
         backgroundColor: Colors.white,
         drawer: Drawerr(),
+        //  bottomNavigationBar: buttomNavBar()
         body: SafeArea(
             child: GestureDetector(
                 onTap: () => FocusScope.of(context).unfocus(),

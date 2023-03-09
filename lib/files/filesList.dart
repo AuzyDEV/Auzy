@@ -5,24 +5,15 @@ import 'package:image_downloader_web/image_downloader_web.dart';
 import 'package:new_mee/apis/User_api.dart';
 import 'package:new_mee/components/appBar.dart';
 import 'package:new_mee/components/drawer.dart';
+import 'package:new_mee/files/addFileToDrive_widget.dart';
 import 'package:new_mee/files/filedetails.dart';
 import 'package:new_mee/home/home_widget.dart';
 import 'package:new_mee/models/File.dart';
-import 'package:new_mee/models/User.dart';
-import 'package:path_provider/path_provider.dart';
 import 'package:firebase_storage/firebase_storage.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter/widgets.dart';
 import 'package:new_mee/apis/fileMan.dart';
 import 'package:file_picker/file_picker.dart';
-import 'package:http/http.dart' as http;
-import 'dart:convert';
-import 'package:flutter/widgets.dart';
 import 'package:new_mee/components/theme.dart';
-import 'package:new_mee/components/widgets.dart';
-//import 'package:image_downloader/image_downloader.dart';
-import 'package:image_downloader/image_downloader.dart';
-//import 'package:syncfusion_flutter_pdfviewer/pdfviewer.dart';
 
 class FileWidget extends StatefulWidget {
   const FileWidget({Key key}) : super(key: key);
@@ -58,8 +49,14 @@ class _FileWidgetState extends State<FileWidget> {
       drawer: Drawerr(),
       floatingActionButton: FloatingActionButton(
         onPressed: () async {
+          await Navigator.push(
+            context,
+            MaterialPageRoute(
+              builder: (context) => addFileToDriveWidget(),
+            ),
+          );
           //print(uid);
-          final metadata = SettableMetadata(
+          /*final metadata = SettableMetadata(
             //contentType: 'image/jpg',
             customMetadata: {'uid': uid},
           );
@@ -95,7 +92,7 @@ class _FileWidgetState extends State<FileWidget> {
           } catch (e) {
             print(e);
           }
-
+*/
           /*    fileMan api = fileMan();
 
           var picked = await FilePicker.platform.pickFiles(
@@ -138,8 +135,6 @@ class _FileWidgetState extends State<FileWidget> {
               gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
                   crossAxisCount: 2, crossAxisSpacing: 7, mainAxisSpacing: 7),
               itemBuilder: (BuildContext context, int index) {
-                //print(snapshot.data.length);
-                // Generated code for this Container Widget...
                 return Container(
                   width: MediaQuery.of(context).size.width,
                   height: 300,
@@ -157,81 +152,51 @@ class _FileWidgetState extends State<FileWidget> {
                   child: Padding(
                     padding: EdgeInsetsDirectional.fromSTEB(4, 4, 4, 4),
                     child: Column(
-                      mainAxisSize: MainAxisSize.max,
-                      mainAxisAlignment: MainAxisAlignment.start,
-                      crossAxisAlignment: CrossAxisAlignment.start,
-                      children: [
-                        Expanded(
-                          child: ClipRRect(
-                            borderRadius: BorderRadius.circular(10),
-                            child: Image.network(
-                              snapshot.data[index].downloadURL,
-                              width: double.infinity,
-                              fit: BoxFit.cover,
+                        mainAxisSize: MainAxisSize.max,
+                        mainAxisAlignment: MainAxisAlignment.start,
+                        crossAxisAlignment: CrossAxisAlignment.start,
+                        children: [
+                          Expanded(
+                            child: ClipRRect(
+                              borderRadius: BorderRadius.circular(10),
+                              child: Image.network(
+                                snapshot.data[index].downloadURL,
+                                width: double.infinity,
+                                fit: BoxFit.cover,
+                              ),
                             ),
                           ),
-                        ),
-                        Padding(
-                          padding: EdgeInsetsDirectional.fromSTEB(8, 12, 0, 0),
-                          child: Text(
-                            snapshot.data[index].name,
-                            style: FlutterFlowTheme.of(context).bodyText2,
-                          ),
-                        ),
-                        Padding(
+                          Padding(
                             padding:
                                 EdgeInsetsDirectional.fromSTEB(8, 12, 0, 0),
-                            child: Row(
-                                //mainAxisAlignment: MainAxisAlignment.center,
-                                children: [
-                                  InkWell(
-                                    onTap: () async {
-                                      await Navigator.push(
-                                        context,
-                                        MaterialPageRoute(
-                                          builder: (context) =>
-                                              FileDetailsWidget(
-                                                  name:
-                                                      snapshot.data[index].name,
-                                                  downloadURL: snapshot
-                                                      .data[index].downloadURL),
-                                        ),
-                                      );
-                                    },
-                                    child: Container(
-                                      width: 40,
-                                      height: 30,
-                                      decoration: BoxDecoration(
-                                        color: Colors.blue[50],
-                                        borderRadius: BorderRadius.circular(8),
-                                        border: Border.all(
-                                          color: Colors.blue[50],
-                                          width: 0,
-                                        ),
-                                      ),
-                                      child: Padding(
-                                        padding: EdgeInsetsDirectional.fromSTEB(
-                                            4, 4, 4, 4),
-                                        child: Icon(
-                                          Icons.visibility,
-                                          color: Colors.blue,
-                                          size: 20,
-                                        ),
-                                      ),
-                                    ),
-                                  ),
-                                  Padding(
-                                    padding: EdgeInsetsDirectional.fromSTEB(
-                                        5, 0, 0, 0),
-                                    child: InkWell(
+                            child: Text(
+                              snapshot.data[index].name,
+                              style: FlutterFlowTheme.of(context).bodyText2,
+                            ),
+                          ),
+                          Padding(
+                              padding:
+                                  EdgeInsetsDirectional.fromSTEB(8, 12, 0, 0),
+                              child: Row(
+                                  //mainAxisAlignment: MainAxisAlignment.center,
+                                  children: [
+                                    InkWell(
                                       onTap: () async {
-                                        //print(snapshot.data[index].downloadURL);
-                                        fileMan api = fileMan();
-                                        api.donwloadFile(
-                                            snapshot.data[index].downloadURL);
+                                        await Navigator.push(
+                                          context,
+                                          MaterialPageRoute(
+                                            builder: (context) =>
+                                                FileDetailsWidget(
+                                                    name: snapshot
+                                                        .data[index].name,
+                                                    downloadURL: snapshot
+                                                        .data[index]
+                                                        .downloadURL),
+                                          ),
+                                        );
                                       },
                                       child: Container(
-                                        width: 40,
+                                        width: 35,
                                         height: 30,
                                         decoration: BoxDecoration(
                                           color: Colors.blue[50],
@@ -247,106 +212,312 @@ class _FileWidgetState extends State<FileWidget> {
                                               EdgeInsetsDirectional.fromSTEB(
                                                   4, 4, 4, 4),
                                           child: Icon(
-                                            Icons.download,
-                                            color: Colors.green,
+                                            Icons.visibility_outlined,
+                                            color: Colors.blue,
                                             size: 20,
                                           ),
                                         ),
                                       ),
                                     ),
-                                  ),
-                                  Padding(
+                                    Padding(
+                                      padding: EdgeInsetsDirectional.fromSTEB(
+                                          5, 0, 0, 0),
+                                      child: InkWell(
+                                        onTap: () async {
+                                          //print(snapshot.data[index].downloadURL);
+                                          fileMan api = fileMan();
+                                          api.donwloadFile(
+                                              snapshot.data[index].downloadURL);
+                                        },
+                                        child: Container(
+                                          width: 35,
+                                          height: 30,
+                                          decoration: BoxDecoration(
+                                            color: Colors.blue[50],
+                                            borderRadius:
+                                                BorderRadius.circular(8),
+                                            border: Border.all(
+                                              color: Colors.blue[50],
+                                              width: 0,
+                                            ),
+                                          ),
+                                          child: Padding(
+                                            padding:
+                                                EdgeInsetsDirectional.fromSTEB(
+                                                    4, 4, 4, 4),
+                                            child: Icon(
+                                              Icons.download_outlined,
+                                              color: Colors.green,
+                                              size: 20,
+                                            ),
+                                          ),
+                                        ),
+                                      ),
+                                    ),
+                                    Padding(
+                                      padding: EdgeInsetsDirectional.fromSTEB(
+                                          5, 0, 0, 0),
+                                      child: InkWell(
+                                        onTap: () async {
+                                          var confirmDialogResponse =
+                                              await showDialog<bool>(
+                                                    context: context,
+                                                    builder:
+                                                        (alertDialogContext) {
+                                                      fileMan api = fileMan();
+                                                      return AlertDialog(
+                                                        title:
+                                                            Text('Delete file'),
+                                                        content: Text(
+                                                            'Are you sure to delete this file ?'),
+                                                        actions: [
+                                                          TextButton(
+                                                            onPressed: () =>
+                                                                Navigator.pop(
+                                                                    alertDialogContext,
+                                                                    false),
+                                                            child:
+                                                                Text('Cancel'),
+                                                          ),
+                                                          TextButton(
+                                                            onPressed: () => {
+                                                              api.deleteFile(
+                                                                  snapshot
+                                                                      .data[
+                                                                          index]
+                                                                      .name),
+                                                              Navigator.push(
+                                                                context,
+                                                                MaterialPageRoute(
+                                                                  builder:
+                                                                      (context) =>
+                                                                          MenuWidget(),
+                                                                ),
+                                                              ),
+                                                              ScaffoldMessenger
+                                                                      .of(context)
+                                                                  .showSnackBar(
+                                                                SnackBar(
+                                                                    content:
+                                                                        Text(
+                                                                      'Successfully file deleted!',
+                                                                      style:
+                                                                          TextStyle(
+                                                                        color: Colors
+                                                                            .black,
+                                                                      ),
+                                                                    ),
+                                                                    duration: Duration(
+                                                                        milliseconds:
+                                                                            4000),
+                                                                    backgroundColor:
+                                                                        Colors
+                                                                            .red),
+                                                              ),
+                                                            },
+                                                            child:
+                                                                Text('Confirm'),
+                                                          ),
+                                                        ],
+                                                      );
+                                                    },
+                                                  ) ??
+                                                  false;
+                                        },
+                                        child: Container(
+                                          width: 35,
+                                          height: 30,
+                                          decoration: BoxDecoration(
+                                            color: Color.fromARGB(
+                                                255, 247, 221, 218),
+                                            borderRadius:
+                                                BorderRadius.circular(8),
+                                          ),
+                                          child: Padding(
+                                            padding:
+                                                EdgeInsetsDirectional.fromSTEB(
+                                                    4, 4, 4, 4),
+                                            child: Icon(
+                                              Icons.delete_outline,
+                                              color: Colors.red,
+                                              size: 20,
+                                            ),
+                                          ),
+                                        ),
+                                      ),
+                                    ),
+                                    Padding(
+                                      padding: EdgeInsetsDirectional.fromSTEB(
+                                          5, 0, 0, 0),
+                                      child: InkWell(
+                                        onTap: () async {
+                                          showDialog(
+                                              context: context,
+                                              builder: (BuildContext context) {
+                                                return AlertDialog(
+                                                  title: Text("URL"),
+                                                  content: SelectableText(
+                                                    "${snapshot.data[index].downloadURL}",
+                                                    style: TextStyle(
+                                                        color: Colors.blue),
+                                                    showCursor: true,
+                                                    cursorWidth: 5,
+                                                    cursorColor: Colors.green,
+                                                    cursorRadius:
+                                                        Radius.circular(5),
+                                                    toolbarOptions:
+                                                        ToolbarOptions(
+                                                            copy: true),
+                                                    scrollPhysics:
+                                                        ClampingScrollPhysics(),
+                                                  ),
+                                                  actions: [
+                                                    FlatButton(
+                                                      child: Text("Ok"),
+                                                      onPressed: () {
+                                                        Navigator.of(context)
+                                                            .pop();
+                                                      },
+                                                    )
+                                                  ],
+                                                );
+                                              });
+                                        },
+                                        child: Container(
+                                          width: 35,
+                                          height: 30,
+                                          decoration: BoxDecoration(
+                                            color: Colors.amber[50],
+                                            borderRadius:
+                                                BorderRadius.circular(8),
+                                            border: Border.all(
+                                              color: Colors.amber[50],
+                                              width: 0,
+                                            ),
+                                          ),
+                                          child: Padding(
+                                            padding:
+                                                EdgeInsetsDirectional.fromSTEB(
+                                                    4, 4, 4, 4),
+                                            child: Icon(
+                                              Icons.link_outlined,
+                                              color: Colors.amber,
+                                              size: 20,
+                                            ),
+                                          ),
+                                        ),
+                                      ),
+                                    ),
+
+                                    /*  Padding(
                                     padding: EdgeInsetsDirectional.fromSTEB(
                                         5, 0, 0, 0),
                                     child: InkWell(
                                       onTap: () async {
-                                        var confirmDialogResponse =
-                                            await showDialog<bool>(
-                                                  context: context,
-                                                  builder:
-                                                      (alertDialogContext) {
-                                                    fileMan api = fileMan();
-                                                    return AlertDialog(
-                                                      title:
-                                                          Text('Delete file'),
-                                                      content: Text(
-                                                          'Are you sure to delete this file ?'),
-                                                      actions: [
-                                                        TextButton(
-                                                          onPressed: () =>
-                                                              Navigator.pop(
-                                                                  alertDialogContext,
-                                                                  false),
-                                                          child: Text('Cancel'),
-                                                        ),
-                                                        TextButton(
-                                                          onPressed: () => {
-                                                            api.deleteFile(
-                                                                snapshot
-                                                                    .data[index]
-                                                                    .name),
-                                                            Navigator.push(
-                                                              context,
-                                                              MaterialPageRoute(
-                                                                builder:
-                                                                    (context) =>
-                                                                        MenuWidget(),
-                                                              ),
-                                                            ),
-                                                            ScaffoldMessenger
-                                                                    .of(context)
-                                                                .showSnackBar(
-                                                              SnackBar(
-                                                                  content: Text(
-                                                                    'Successfully file deleted!',
-                                                                    style:
-                                                                        TextStyle(
-                                                                      color: Colors
-                                                                          .black,
-                                                                    ),
-                                                                  ),
-                                                                  duration: Duration(
-                                                                      milliseconds:
-                                                                          4000),
-                                                                  backgroundColor:
-                                                                      Colors
-                                                                          .red),
-                                                            ),
-                                                          },
-                                                          child:
-                                                              Text('Confirm'),
-                                                        ),
-                                                      ],
-                                                    );
-                                                  },
-                                                ) ??
-                                                false;
+                                        //print(snapshot.data[index].downloadURL);
+                                        fileMan api = fileMan();
+                                        api.donwloadFile(
+                                            snapshot.data[index].downloadURL);
                                       },
                                       child: Container(
-                                        width: 40,
-                                        height: 30,
+                                        width: 20,
+                                        height: 20,
                                         decoration: BoxDecoration(
-                                          color: Color.fromARGB(
-                                              255, 247, 221, 218),
+                                          color: Colors.amber[50],
                                           borderRadius:
                                               BorderRadius.circular(8),
+                                          border: Border.all(
+                                            color:
+                                                Color.fromARGB(255, 50, 55, 58),
+                                            width: 0,
+                                          ),
                                         ),
                                         child: Padding(
                                           padding:
                                               EdgeInsetsDirectional.fromSTEB(
                                                   4, 4, 4, 4),
                                           child: Icon(
-                                            Icons.delete,
-                                            color: Colors.red,
-                                            size: 20,
+                                            Icons.link,
+                                            color: Colors.amber,
+                                            size: 10,
                                           ),
                                         ),
                                       ),
                                     ),
                                   ),
-                                ])),
-                      ],
-                    ),
+                               */
+                                  ])),
+                          /*  Padding(
+                              padding:
+                                  EdgeInsetsDirectional.fromSTEB(8, 12, 0, 0),
+                              child: Row(
+                                //mainAxisAlignment: MainAxisAlignment.center,
+                                children: [
+                                  Padding(
+                                    padding: EdgeInsetsDirectional.fromSTEB(
+                                        5, 0, 0, 0),
+                                    child: InkWell(
+                                      onTap: () async {
+                                        showDialog(
+                                            context: context,
+                                            builder: (BuildContext context) {
+                                              return AlertDialog(
+                                                title: Text("URL"),
+                                                content: SelectableText(
+                                                  "${snapshot.data[index].downloadURL}",
+                                                  style: TextStyle(
+                                                      color: Colors.blue),
+                                                  showCursor: true,
+                                                  cursorWidth: 5,
+                                                  cursorColor: Colors.green,
+                                                  cursorRadius:
+                                                      Radius.circular(5),
+                                                  toolbarOptions:
+                                                      ToolbarOptions(
+                                                          copy: true),
+                                                  scrollPhysics:
+                                                      ClampingScrollPhysics(),
+                                                ),
+                                                actions: [
+                                                  FlatButton(
+                                                    child: Text("Ok"),
+                                                    onPressed: () {
+                                                      Navigator.of(context)
+                                                          .pop();
+                                                    },
+                                                  )
+                                                ],
+                                              );
+                                            });
+                                      },
+                                      child: Container(
+                                        width: 30,
+                                        height: 20,
+                                        decoration: BoxDecoration(
+                                          color: Colors.amber[50],
+                                          borderRadius:
+                                              BorderRadius.circular(8),
+                                          border: Border.all(
+                                            color: Colors.amber[50],
+                                            width: 0,
+                                          ),
+                                        ),
+                                        child: Padding(
+                                          padding:
+                                              EdgeInsetsDirectional.fromSTEB(
+                                                  4, 4, 4, 4),
+                                          child: Icon(
+                                            Icons.link,
+                                            color: Colors.amber,
+                                            size: 18,
+                                          ),
+                                        ),
+                                      ),
+                                    ),
+                                  ),
+                                ],
+                              )),*/
+                        ]),
                   ),
                 );
               },

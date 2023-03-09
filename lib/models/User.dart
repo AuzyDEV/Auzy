@@ -8,7 +8,7 @@ class User {
   String email;
   String password;
   String displayName;
-  String photoURL;
+  String photoURL, ipadress, role;
   bool disabled;
   User(
       {this.id,
@@ -16,7 +16,9 @@ class User {
       this.password,
       this.displayName,
       this.photoURL,
-      this.disabled});
+      this.disabled,
+      this.ipadress,
+      this.role});
   factory User.fromMap(Map<String, dynamic> json) {
     return User(
       id: (json["uid"] ?? ''),
@@ -31,6 +33,17 @@ class User {
       password: (json["password"] ?? ''),
       displayName: (json["displayName"] ?? ''),
       photoURL: (json["photoURL"] ?? ''),
+    );
+  }
+  factory User.fromMapy(Map<String, dynamic> json) {
+    return User(
+      id: (json["uid"] ?? ''),
+      email: (json["email"] ?? ''),
+      password: (json["password"] ?? ''),
+      displayName: (json["displayName"] ?? ''),
+      photoURL: (json["photoURL"] ?? ''),
+      ipadress: (json["ipadress"] ?? ''),
+      role: (json["role"] ?? ''),
     );
   }
   factory User.fromMappp(Map<String, dynamic> json) {

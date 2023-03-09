@@ -8,6 +8,7 @@ import 'package:new_mee/components/widgets.dart';
 import 'package:new_mee/components/internationalization.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:google_fonts/google_fonts.dart';
+import 'package:new_mee/splash_screen/introduction_animation_screen.dart';
 import 'index.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'firebase_options.dart';
@@ -65,7 +66,7 @@ class _MyAppState extends State<MyApp> {
       theme: ThemeData(brightness: Brightness.light),
       darkTheme: ThemeData(brightness: Brightness.dark),
       themeMode: _themeMode,
-      home: CreateAccountWidget(),
+      home: IntroductionAnimationScreen(),
     );
   }
 }
@@ -92,7 +93,7 @@ class _NavBarPageState extends State<NavBarPage> {
   @override
   Widget build(BuildContext context) {
     final tabs = {
-      'Menu': CreateAccountWidget(),
+      'Menu': IntroductionAnimationScreen(),
     };
     final currentIndex = tabs.keys.toList().indexOf(_currentPage);
     return Scaffold(

@@ -2,6 +2,7 @@ import 'dart:developer';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:new_mee/apis/User_api.dart';
 import 'package:new_mee/home/home_widget.dart';
+import 'package:new_mee/home/welcome_widget.dart';
 import 'package:new_mee/index.dart';
 import 'package:new_mee/components/theme.dart';
 import 'package:new_mee/components/util.dart';
@@ -326,7 +327,7 @@ class _SigninWidgetWidgetState extends State<SigninWidget> {
                                                 context,
                                                 MaterialPageRoute(
                                                   builder: (context) =>
-                                                      MenuWidget(),
+                                                      welcomeWidget(),
                                                 ),
                                               )
                                             : showDialog(

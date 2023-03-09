@@ -21,6 +21,11 @@ class File {
       downloadURL: (json["downloadURL"] ?? ''),
     );
   }
+  factory File.fromMaq(Map<String, dynamic> json) {
+    return File(
+      downloadURL: (json["downloadURL"] ?? ''),
+    );
+  }
   factory File.fromMapp(Map<String, dynamic> json) {
     return File(
       name: (json["name"] ?? ''),

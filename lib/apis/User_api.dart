@@ -15,6 +15,7 @@ import 'package:dart_ipify/dart_ipify.dart';
 class UserMan {
   final FirebaseAuth _auth = FirebaseAuth.instance;
   static List<User> Userslist;
+  static String role;
 
   Future<String> signupUser(String email, String password, String displayName,
       String photoURL) async {
@@ -178,6 +179,28 @@ class UserMan {
       if (response1.statusCode == 200) {
         final data1 = jsonDecode(response1.body);
         return User.fromMapp(data1[0]);
+      } else {
+        throw Exception("Failed to get infos");
+      }
+    } else {
+      throw Exception("Failed to load infos");
+    }
+  }
+
+  Future<String> GetCurrentUserRole() async {
+    final response =
+        await http.get(Uri.parse('http://127.0.0.1:3000/api/currentuser'));
+    if (response.statusCode == 200) {
+      final data = jsonDecode(response.body);
+      String uid = data[0]['uid'];
+      //return User.fromMapp(data[0]);
+      final response1 =
+          await http.get(Uri.parse('http://127.0.0.1:3000/api/userole/${uid}'));
+      if (response1.statusCode == 200) {
+        final data1 = jsonDecode(response1.body);
+        //print(data1[0]);
+        role = data1[0];
+        return data1[0];
       } else {
         throw Exception("Failed to get infos");
       }
@@ -441,6 +464,32 @@ class UserMan {
     }
   }
 
+  Future<String> GetIdCurrentUser() async {
+    final response =
+        await http.get(Uri.parse('http://127.0.0.1:3000/api/currentuser'));
+    if (response.statusCode == 200) {
+      final data = jsonDecode(response.body);
+      String uid = data[0]['uid'];
+
+      return uid;
+    } else {
+      throw Exception("Failed to load infos");
+    }
+  }
+  Future<List<User>> getAllUsersRole() async {
+    final response = await http.get(
+        Uri.parse('http://localhost:3000/api/usersrole'));
+    if (response.statusCode == 200) {
+      final parsed = jsonDecode(response.body);
+      //print(parsed["posts"]);
+      //print(parsed);
+      var data = parsed["users"];
+      //print(data);
+      return data.map<User>((json) => User.fromMapy(json)).toList();
+    } else {
+      throw Exception("Failed to get saved post's list");
+    }
+  }
 /*************************************************************************************************************************/
   /* Future<bool> updatepass(String id, String password) async {
     final response = await http.patch(
