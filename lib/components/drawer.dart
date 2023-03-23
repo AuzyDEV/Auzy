@@ -1,19 +1,14 @@
-import 'dart:js';
 import 'package:flutter/material.dart';
 import 'package:new_mee/apis/User_api.dart';
 import 'package:new_mee/chat/chats_copy.dart';
 import 'package:new_mee/components/theme.dart';
-import 'package:new_mee/doctors/doctorsListing_widget.dart';
-import 'package:new_mee/drugs/addNewDrug_widget.dart';
+import 'package:new_mee/doctors/specialities_widget.dart';
 import 'package:new_mee/drugs/drugsList_widget.dart';
 import 'package:new_mee/files/filesList.dart';
+import 'package:new_mee/home/welcome_widget.dart';
 import 'package:new_mee/index.dart';
 import 'package:new_mee/mailing/annoucement.dart';
-import 'package:new_mee/mailing/contactus.dart';
-import 'package:new_mee/medecines/addMedecine_widget.dart';
-import 'package:new_mee/medecines/medecines.dart';
-import 'package:new_mee/posts/PostsManagement.dart';
-import 'package:new_mee/posts/postsForUsers_widget.dart';
+import 'package:new_mee/models/User.dart';
 
 class Drawerr extends StatefulWidget {
   @override
@@ -23,6 +18,8 @@ class Drawerr extends StatefulWidget {
 int selectedIndex = 0;
 String _futureStringValue;
 UserMan apiUser = UserMan();
+Future<User> _futureUser;
+UserMan api = UserMan();
 
 class _DrawerrState extends State<Drawerr> {
   Future<String> _getCurrentUserRole() async {
@@ -40,6 +37,7 @@ class _DrawerrState extends State<Drawerr> {
   @override
   void initState() {
     super.initState();
+    _futureUser = api.GetCurrentUser();
     _getFutureStringValue();
   }
 
@@ -81,8 +79,133 @@ class _DrawerrState extends State<Drawerr> {
                 ],
               ),
             ),*/
-            Padding(
-              padding: EdgeInsetsDirectional.fromSTEB(25, 140, 0, 0),
+            Row(
+              mainAxisSize: MainAxisSize.max,
+              children: [
+                Expanded(
+                  child: Container(
+                    height: 130,
+                    decoration: BoxDecoration(
+                      gradient: LinearGradient(
+                        begin: Alignment.topCenter,
+                        end: Alignment.bottomCenter,
+                        colors: [
+                          Color.fromARGB(68, 154, 199, 235),
+                          Color.fromARGB(110, 197, 167, 246),
+                        ],
+                      ),
+                      borderRadius: BorderRadius.circular(8),
+                    ),
+                    child: Column(
+                      mainAxisSize: MainAxisSize.max,
+                      children: [
+                        Padding(
+                          padding:
+                              EdgeInsetsDirectional.fromSTEB(16, 35, 16, 0),
+                          child: FutureBuilder<User>(
+                              future: _futureUser,
+                              builder: (context, snapshot) {
+                                if (snapshot.hasData) {
+                                  return Row(
+                                    mainAxisSize: MainAxisSize.max,
+                                    mainAxisAlignment: MainAxisAlignment.start,
+                                    crossAxisAlignment:
+                                        CrossAxisAlignment.center,
+                                    children: [
+                                      Column(
+                                        mainAxisSize: MainAxisSize.max,
+                                        children: [
+                                          Align(
+                                              alignment:
+                                                  AlignmentDirectional(0, 0),
+                                              child: Card(
+                                                clipBehavior:
+                                                    Clip.antiAliasWithSaveLayer,
+                                                color:
+                                                    FlutterFlowTheme.of(context)
+                                                        .primaryColor,
+                                                shape: RoundedRectangleBorder(
+                                                  borderRadius:
+                                                      BorderRadius.circular(50),
+                                                ),
+                                                child: Padding(
+                                                  padding: EdgeInsetsDirectional
+                                                      .fromSTEB(1, 1, 1, 1),
+                                                  child: Container(
+                                                    width: 50,
+                                                    height: 50,
+                                                    clipBehavior:
+                                                        Clip.antiAlias,
+                                                    decoration: BoxDecoration(
+                                                      shape: BoxShape.circle,
+                                                    ),
+                                                    child: Image.network(
+                                                      '${snapshot.data.photoURL}',
+                                                      fit: BoxFit.cover,
+                                                    ),
+                                                  ),
+                                                ),
+                                              )),
+                                        ],
+                                      ),
+                                      Padding(
+                                        padding: EdgeInsetsDirectional.fromSTEB(
+                                            10, 0, 0, 0),
+                                        child: Column(
+                                          mainAxisSize: MainAxisSize.max,
+                                          crossAxisAlignment:
+                                              CrossAxisAlignment.start,
+                                          children: [
+                                            Text(
+                                              '${snapshot.data.displayName}',
+                                              style: FlutterFlowTheme.of(
+                                                      context)
+                                                  .title1
+                                                  .override(
+                                                    fontFamily: 'Lexend Deca',
+                                                    color: Colors.black,
+                                                    fontSize: 18,
+                                                    fontWeight: FontWeight.bold,
+                                                  ),
+                                            ),
+                                            Padding(
+                                              padding: EdgeInsetsDirectional
+                                                  .fromSTEB(0, 5, 0, 0),
+                                              child: Text(
+                                                '${snapshot.data.email}',
+                                                style: FlutterFlowTheme.of(
+                                                        context)
+                                                    .title1
+                                                    .override(
+                                                      fontFamily: 'Lexend Deca',
+                                                      color: Color(0xAA9457FB),
+                                                      fontSize: 14,
+                                                      fontWeight:
+                                                          FontWeight.w800,
+                                                    ),
+                                              ),
+                                            ),
+                                          ],
+                                        ),
+                                      ),
+                                    ],
+                                  );
+                                } else if (snapshot.hasError) {
+                                  return Text("${snapshot.error}");
+                                }
+
+                                return Center(
+                                    child: const CircularProgressIndicator());
+                              }),
+                        )
+                      ],
+                    ),
+                  ),
+                ),
+              ],
+            ),
+            /* Padding(
+              padding: EdgeInsetsDirectional.fromSTEB(25, 100, 0, 0),
               child: Row(
                 mainAxisSize: MainAxisSize.max,
                 children: [
@@ -104,7 +227,7 @@ class _DrawerrState extends State<Drawerr> {
                 mainAxisSize: MainAxisSize.max,
                 children: [
                   Text(
-                    'To Our Flutter Application',
+                    'to Auzy Mental Health',
                     style: FlutterFlowTheme.of(context).title3.override(
                           fontFamily: 'Roboto',
                           color: Color(0xFF090F13),
@@ -118,7 +241,7 @@ class _DrawerrState extends State<Drawerr> {
             Divider(
               height: 40,
               indent: 1,
-            ),
+            ),*/
             _createDrawerItem(
                 icon: Icons.home_outlined,
                 text: 'Home',
@@ -131,7 +254,7 @@ class _DrawerrState extends State<Drawerr> {
                   Navigator.push(
                     context,
                     MaterialPageRoute(
-                      builder: (context) => MenuWidget(),
+                      builder: (context) => welcomeWidget(),
                     ),
                   );
                 }),
@@ -168,37 +291,22 @@ class _DrawerrState extends State<Drawerr> {
                       ),
                     );
                   }),
-            _createDrawerItem(
-                icon: Icons.message_outlined,
-                text: 'Messages',
-                isSelected: selectedIndex == 3,
-                onTap: () {
-                  setState(() {
-                    selectedIndex = 3;
-                  });
-
-                  Navigator.push(
-                    context,
-                    MaterialPageRoute(
-                      builder: (context) => chatcopyWidget(),
-                    ),
-                  );
-                }),
-            _createDrawerItem(
-                icon: Icons.image_outlined,
-                text: 'File Management',
-                isSelected: selectedIndex == 4,
-                onTap: () {
-                  setState(() {
-                    selectedIndex = 4;
-                  });
-                  Navigator.push(
-                    context,
-                    MaterialPageRoute(
-                      builder: (context) => FileWidget(),
-                    ),
-                  );
-                }),
+            if (_futureStringValue == "admin")
+              _createDrawerItem(
+                  icon: Icons.image_outlined,
+                  text: 'Drive',
+                  isSelected: selectedIndex == 4,
+                  onTap: () {
+                    setState(() {
+                      selectedIndex = 4;
+                    });
+                    Navigator.push(
+                      context,
+                      MaterialPageRoute(
+                        builder: (context) => FileWidget(),
+                      ),
+                    );
+                  }),
             if (_futureStringValue == "admin")
               _createDrawerItem(
                   icon: Icons.send_outlined,
@@ -278,7 +386,23 @@ class _DrawerrState extends State<Drawerr> {
                   Navigator.push(
                     context,
                     MaterialPageRoute(
-                      builder: (context) => listsdocWidget(),
+                      builder: (context) => SpecialitiesWidget(),
+                    ),
+                  );
+                }),
+            _createDrawerItem(
+                icon: Icons.message_outlined,
+                text: 'Messages',
+                isSelected: selectedIndex == 3,
+                onTap: () {
+                  setState(() {
+                    selectedIndex = 3;
+                  });
+
+                  Navigator.push(
+                    context,
+                    MaterialPageRoute(
+                      builder: (context) => chatcopyWidget(),
                     ),
                   );
                 }),
@@ -338,9 +462,7 @@ Widget _createDrawerItem(
           children: <Widget>[
             Icon(
               icon,
-              color: isSelected
-                  ? Color.fromARGB(255, 214, 116, 36)
-                  : Color(0xFF616A6B),
+              color: isSelected ? Color(0xFF9457FB) : Color(0xFF616A6B),
               size: 24,
             ),
             Padding(
@@ -350,9 +472,7 @@ Widget _createDrawerItem(
                 style: TextStyle(
                     fontWeight: FontWeight.bold,
                     fontFamily: 'Roboto',
-                    color: isSelected
-                        ? Color.fromARGB(255, 214, 116, 36)
-                        : Color(0xFF616A6B)),
+                    color: isSelected ? Color(0xFF9457FB) : Color(0xFF616A6B)),
               ),
             )
           ],

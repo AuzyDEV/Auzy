@@ -74,9 +74,21 @@ class FirstView extends StatelessWidget {
             children: [
               SlideTransition(
                 position: _FirstAnimation,
-                child: Text(
-                  "First view",
-                  style: TextStyle(fontSize: 26.0, fontWeight: FontWeight.bold),
+                child: Text.rich(
+                  TextSpan(
+                    text: 'Children are absolute ',
+                    style:
+                        TextStyle(fontSize: 20.0, fontWeight: FontWeight.bold),
+                    children: <TextSpan>[
+                      TextSpan(
+                        text: 'priority',
+                        style: TextStyle(
+                          color: Color(0xFF9457FB),
+                          fontWeight: FontWeight.w700,
+                        ),
+                      ),
+                    ],
+                  ),
                 ),
               ),
               SlideTransition(
@@ -85,7 +97,7 @@ class FirstView extends StatelessWidget {
                   padding:
                       EdgeInsets.only(left: 64, right: 64, top: 16, bottom: 16),
                   child: Text(
-                    "Lorem ipsum dolor sit amet,consectetur adipiscing elit,sed do eiusmod tempor incididunt ut labore",
+                    "Our main objective is that every child gets the right to become an active member in society and to enjoy all decent means of existence. We work to ensure orientation and coordination and an early intervention process for children with NDD.",
                     textAlign: TextAlign.center,
                   ),
                 ),

@@ -1,5 +1,4 @@
 import 'dart:io' as io;
-import 'dart:html' as html;
 import 'dart:typed_data';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/services.dart';
@@ -7,7 +6,6 @@ import 'package:http/http.dart' as http;
 import 'dart:convert';
 import 'dart:async';
 import 'package:firebase_auth/firebase_auth.dart';
-import 'package:image_downloader/image_downloader.dart';
 import 'package:image_downloader_web/image_downloader_web.dart';
 import 'package:new_mee/models/File.dart';
 

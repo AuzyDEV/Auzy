@@ -71,7 +71,7 @@ class _updateImagePostWidgetState extends State<updateImagePostWidget> {
                               mainAxisAlignment: MainAxisAlignment.center,
                               children: [
                                 Text(fileName),
-                                RaisedButton(
+                                ElevatedButton(
                                   onPressed: (() {
                                     InputElement inputElement =
                                         FileUploadInputElement();
@@ -136,7 +136,7 @@ class _updateImagePostWidgetState extends State<updateImagePostWidget> {
                                                 content: Text(
                                                     "post\'s image was updated successfully"),
                                                 actions: [
-                                                  FlatButton(
+                                                  ElevatedButton(
                                                     child: Text("Ok"),
                                                     onPressed: () async {
                                                       await Navigator.push(

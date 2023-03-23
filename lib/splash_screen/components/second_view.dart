@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:animations/animations.dart';
 
 class SecondView extends StatelessWidget {
   final AnimationController animationController;
@@ -96,10 +95,25 @@ class SecondView extends StatelessWidget {
                 position: _relaxFirstHalfAnimation,
                 child: SlideTransition(
                   position: _relaxSecondHalfAnimation,
-                  child: Text(
-                    "Second view",
-                    style:
-                        TextStyle(fontSize: 26.0, fontWeight: FontWeight.bold),
+                  child: Text.rich(
+                    TextSpan(
+                      text: 'Informed ',
+                      style: TextStyle(
+                          fontSize: 20.0, fontWeight: FontWeight.bold),
+                      children: <TextSpan>[
+                        TextSpan(
+                          text: 'parents ',
+                          style: TextStyle(
+                            color: Color(0xFF9457FB),
+                            fontWeight: FontWeight.w700,
+                          ),
+                        ),
+                        TextSpan(
+                            text: 'and families',
+                            style: TextStyle(
+                                fontSize: 20.0, fontWeight: FontWeight.bold)),
+                      ],
+                    ),
                   ),
                 ),
               ),
@@ -107,7 +121,7 @@ class SecondView extends StatelessWidget {
                 padding:
                     EdgeInsets.only(left: 64, right: 64, bottom: 16, top: 16),
                 child: Text(
-                  "Lorem ipsum dolor sit amet,consectetur adipiscing elit,sed do eiusmod tempor incididunt ut labore",
+                  "This space is dedicated to people with autism and with NDD and their families in order to inform them about screening, diagnosis, leisure activities, but also to guide them in their administrative procedures and with the professionals who would support them.",
                   textAlign: TextAlign.center,
                 ),
               ),

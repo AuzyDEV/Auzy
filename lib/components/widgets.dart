@@ -103,7 +103,7 @@ class _FFButtonWidgetState extends State<FFButtonWidget> {
       return Container(
         height: widget.options.height,
         width: widget.options.width,
-        child: RaisedButton.icon(
+        child: ElevatedButton.icon(
           icon: Padding(
             padding: widget.options.iconPadding ?? EdgeInsets.zero,
             child: widget.icon ??
@@ -116,18 +116,20 @@ class _FFButtonWidgetState extends State<FFButtonWidget> {
           ),
           label: textWidget,
           onPressed: onPressed,
-          shape: RoundedRectangleBorder(
-            borderRadius: BorderRadius.circular(widget.options.borderRadius),
-            side: widget.options.borderSide ?? BorderSide.none,
+          style: ButtonStyle(
+            shape: MaterialStateProperty.all<RoundedRectangleBorder>(
+              RoundedRectangleBorder(
+                borderRadius:
+                    BorderRadius.circular(widget.options.borderRadius),
+                side: widget.options.borderSide ?? BorderSide.none,
+              ),
+            ),
+            backgroundColor:
+                MaterialStateProperty.all<Color>(widget.options.color),
+            foregroundColor: MaterialStateProperty.all<Color>(
+              widget.options.textStyle.color,
+            ),
           ),
-          color: widget.options.color,
-          colorBrightness:
-              ThemeData.estimateBrightnessForColor(widget.options.color),
-          textColor: widget.options.textStyle.color,
-          disabledColor: widget.options.disabledColor,
-          disabledTextColor: widget.options.disabledTextColor,
-          elevation: widget.options.elevation,
-          splashColor: widget.options.splashColor,
         ),
       );
     }
@@ -135,21 +137,25 @@ class _FFButtonWidgetState extends State<FFButtonWidget> {
     return Container(
       height: widget.options.height,
       width: widget.options.width,
-      child: RaisedButton(
+      child: ElevatedButton(
         onPressed: onPressed,
-        shape: RoundedRectangleBorder(
-          borderRadius:
-              BorderRadius.circular(widget.options.borderRadius ?? 28),
-          side: widget.options.borderSide ?? BorderSide.none,
+        style: ButtonStyle(
+          shape: MaterialStateProperty.all<RoundedRectangleBorder>(
+            RoundedRectangleBorder(
+              borderRadius: BorderRadius.circular(28),
+              side: BorderSide.none,
+            ),
+          ),
+          backgroundColor:
+              MaterialStateProperty.all<Color>(widget.options.color),
+          foregroundColor: MaterialStateProperty.all<Color>(
+            widget.options.textStyle.color,
+          ),
+          padding:
+              MaterialStateProperty.all<EdgeInsets>(widget.options.padding),
+          elevation:
+              MaterialStateProperty.all<double>(widget.options.elevation),
         ),
-        textColor: widget.options.textStyle.color,
-        color: widget.options.color,
-        colorBrightness:
-            ThemeData.estimateBrightnessForColor(widget.options.color),
-        disabledColor: widget.options.disabledColor,
-        disabledTextColor: widget.options.disabledTextColor,
-        padding: widget.options.padding,
-        elevation: widget.options.elevation,
         child: textWidget,
       ),
     );

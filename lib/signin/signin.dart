@@ -1,17 +1,10 @@
-import 'dart:developer';
-import 'package:firebase_auth/firebase_auth.dart';
 import 'package:new_mee/apis/User_api.dart';
-import 'package:new_mee/home/home_widget.dart';
 import 'package:new_mee/home/welcome_widget.dart';
 import 'package:new_mee/index.dart';
 import 'package:new_mee/components/theme.dart';
-import 'package:new_mee/components/util.dart';
 import 'package:new_mee/components/widgets.dart';
-import 'package:social_login_buttons/social_login_buttons.dart';
+import 'package:new_mee/splash_screen/introduction_animation_screen.dart';
 import 'package:flutter/material.dart';
-import 'package:google_fonts/google_fonts.dart';
-import 'package:google_sign_in/google_sign_in.dart';
-import 'package:firebase_core/firebase_core.dart';
 
 class SigninWidget extends StatefulWidget {
   const SigninWidget({Key key}) : super(key: key);
@@ -48,7 +41,7 @@ class _SigninWidgetWidgetState extends State<SigninWidget> {
           mainAxisAlignment: MainAxisAlignment.spaceEvenly,
           children: [
             Padding(
-              padding: EdgeInsetsDirectional.fromSTEB(16, 0, 16, 0),
+              padding: EdgeInsetsDirectional.fromSTEB(16, 20, 16, 25),
               child: Row(
                 mainAxisSize: MainAxisSize.max,
                 mainAxisAlignment: MainAxisAlignment.start,
@@ -58,13 +51,13 @@ class _SigninWidgetWidgetState extends State<SigninWidget> {
                       await Navigator.push(
                         context,
                         MaterialPageRoute(
-                          builder: (context) => CreateAccountWidget(),
+                          builder: (context) => IntroductionAnimationScreen(),
                         ),
                       );
                     },
                     child: Icon(
-                      Icons.arrow_back,
-                      color: Colors.black,
+                      Icons.arrow_back_ios_new,
+                      color: Color(0xff132137),
                       size: 24,
                     ),
                   ),
@@ -72,17 +65,30 @@ class _SigninWidgetWidgetState extends State<SigninWidget> {
               ),
             ),
             Padding(
-              padding: EdgeInsetsDirectional.fromSTEB(16, 0, 16, 0),
+              padding: EdgeInsetsDirectional.fromSTEB(16, 0, 16, 20),
               child: Column(
                 mainAxisSize: MainAxisSize.max,
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
                   Text(
-                    'Signin',
+                    'Sign In',
                     style: FlutterFlowTheme.of(context).bodyText1.override(
                           fontFamily: 'Open Sans',
                           fontSize: 30,
                         ),
+                  ),
+                  /* Text(
+                    'To Auzy',
+                    style: FlutterFlowTheme.of(context).bodyText1.override(
+                          fontFamily: 'Open Sans',
+                          fontSize: 30,
+                        ),
+                  ),*/
+                  Divider(
+                    thickness: 3,
+                    indent: 5,
+                    endIndent: 250,
+                    color: Color(0xFF9457FB),
                   ),
                 ],
               ),
@@ -125,46 +131,51 @@ class _SigninWidgetWidgetState extends State<SigninWidget> {
                                 EdgeInsetsDirectional.fromSTEB(0, 10, 0, 0),
                             child: TextFormField(
                               controller: emailAddressController,
+                              cursorColor: Color(0xFF9457FB),
                               validator: (value) => value.isEmpty
-                                  ? 'Enter your email'
+                                  ? 'Field is required'
                                   : (emailReg.hasMatch(value)
                                       ? null
                                       : 'Enter a Valid email'),
                               obscureText: false,
                               decoration: InputDecoration(
-                                labelStyle: FlutterFlowTheme.of(context)
-                                    .bodyText2
-                                    .override(
-                                      fontFamily: 'Roboto',
-                                      color: Color(0xFF9DA3A9),
-                                    ),
-                                hintText: 'Enter your email...',
-                                hintStyle: FlutterFlowTheme.of(context)
+                                errorStyle: FlutterFlowTheme.of(context)
                                     .bodyText1
                                     .override(
                                       fontFamily: 'Roboto',
-                                      color: Color(0xFF9DA3A9),
-                                      fontSize: 14,
+                                      color: Colors.red,
                                       fontWeight: FontWeight.normal,
                                     ),
+                                focusedErrorBorder: OutlineInputBorder(
+                                  borderSide: BorderSide(
+                                    color: Colors.red,
+                                    width: 1,
+                                  ),
+                                  borderRadius: BorderRadius.circular(8),
+                                ),
+                                errorBorder: OutlineInputBorder(
+                                  borderSide: BorderSide(
+                                    color: Colors.red,
+                                    width: 1,
+                                  ),
+                                  borderRadius: BorderRadius.circular(8),
+                                ),
                                 enabledBorder: OutlineInputBorder(
                                   borderSide: BorderSide(
-                                    color: Color(0xFF9DA3A9),
+                                    color: Color(0x988B97A2),
                                     width: 1,
                                   ),
                                   borderRadius: BorderRadius.circular(8),
                                 ),
                                 focusedBorder: OutlineInputBorder(
                                   borderSide: BorderSide(
-                                    color: Color(0xFF9DA3A9),
+                                    color: Color(0x988B97A2),
                                     width: 1,
                                   ),
                                   borderRadius: BorderRadius.circular(8),
                                 ),
-                                filled: true,
-                                fillColor: Colors.white,
                                 contentPadding: EdgeInsetsDirectional.fromSTEB(
-                                    20, 16, 20, 16),
+                                    12, 0, 12, 0),
                               ),
                               style: FlutterFlowTheme.of(context)
                                   .bodyText1
@@ -200,61 +211,52 @@ class _SigninWidgetWidgetState extends State<SigninWidget> {
                                 EdgeInsetsDirectional.fromSTEB(0, 10, 0, 0),
                             child: TextFormField(
                               controller: passwordController,
+                              cursorColor: Color(0xFF9457FB),
                               validator: (value) {
                                 if (value == null || value.isEmpty) {
-                                  return 'Please enter your password';
+                                  return 'Field is required';
                                 }
                                 return null;
                               },
                               obscureText: !passwordVisibility,
                               decoration: InputDecoration(
-                                labelStyle: FlutterFlowTheme.of(context)
-                                    .bodyText2
-                                    .override(
-                                      fontFamily: 'Roboto',
-                                      color: Color(0xFF9DA3A9),
-                                    ),
-                                hintText: 'Enter your password...',
-                                hintStyle: FlutterFlowTheme.of(context)
+                                errorStyle: FlutterFlowTheme.of(context)
                                     .bodyText1
                                     .override(
                                       fontFamily: 'Roboto',
-                                      color: Color(0xFF9DA3A9),
-                                      fontSize: 14,
+                                      color: Colors.red,
                                       fontWeight: FontWeight.normal,
                                     ),
+                                focusedErrorBorder: OutlineInputBorder(
+                                  borderSide: BorderSide(
+                                    color: Colors.red,
+                                    width: 1,
+                                  ),
+                                  borderRadius: BorderRadius.circular(8),
+                                ),
+                                errorBorder: OutlineInputBorder(
+                                  borderSide: BorderSide(
+                                    color: Colors.red,
+                                    width: 1,
+                                  ),
+                                  borderRadius: BorderRadius.circular(8),
+                                ),
                                 enabledBorder: OutlineInputBorder(
                                   borderSide: BorderSide(
-                                    color: Color(0xFF9DA3A9),
+                                    color: Color(0x988B97A2),
                                     width: 1,
                                   ),
                                   borderRadius: BorderRadius.circular(8),
                                 ),
                                 focusedBorder: OutlineInputBorder(
                                   borderSide: BorderSide(
-                                    color: Color(0xFF9DA3A9),
+                                    color: Color(0x988B97A2),
                                     width: 1,
                                   ),
                                   borderRadius: BorderRadius.circular(8),
                                 ),
-                                filled: true,
-                                fillColor: Colors.white,
                                 contentPadding: EdgeInsetsDirectional.fromSTEB(
-                                    20, 16, 20, 16),
-                                suffixIcon: InkWell(
-                                  onTap: () => setState(
-                                    () => passwordVisibility =
-                                        !passwordVisibility,
-                                  ),
-                                  focusNode: FocusNode(skipTraversal: true),
-                                  child: Icon(
-                                    passwordVisibility
-                                        ? Icons.visibility_outlined
-                                        : Icons.visibility_off_outlined,
-                                    color: Color(0xFF9DA3A9),
-                                    size: 20,
-                                  ),
-                                ),
+                                    12, 0, 12, 0),
                               ),
                               style: FlutterFlowTheme.of(context)
                                   .bodyText1
@@ -338,7 +340,7 @@ class _SigninWidgetWidgetState extends State<SigninWidget> {
                                                     title: Text("Error"),
                                                     content: Text("$response "),
                                                     actions: [
-                                                      FlatButton(
+                                                      ElevatedButton(
                                                         child: Text("Ok"),
                                                         onPressed: () {
                                                           Navigator.of(context)
@@ -388,7 +390,7 @@ class _SigninWidgetWidgetState extends State<SigninWidget> {
                                 padding:
                                     EdgeInsetsDirectional.fromSTEB(0, 12, 0, 0),
                                 child: Text(
-                                  'Or use a social account to login',
+                                  'Or connect with',
                                   style: FlutterFlowTheme.of(context)
                                       .bodyText1
                                       .override(
@@ -516,7 +518,52 @@ class _SigninWidgetWidgetState extends State<SigninWidget> {
                               ),
                             ],
                           ),
-                        )
+                        ),
+                        Padding(
+                          padding:
+                              EdgeInsetsDirectional.fromSTEB(20, 12, 20, 12),
+                          child: Row(
+                            mainAxisSize: MainAxisSize.max,
+                            mainAxisAlignment: MainAxisAlignment.center,
+                            children: [
+                              Text(
+                                "Don't have an account? ",
+                                style: FlutterFlowTheme.of(context)
+                                    .bodyText1
+                                    .override(
+                                      fontFamily: 'Roboto',
+                                      color: FlutterFlowTheme.of(context)
+                                          .secondaryText,
+                                      fontSize: 14,
+                                      fontWeight: FontWeight.w500,
+                                    ),
+                              ),
+                              GestureDetector(
+                                onTap: () {
+                                  Navigator.push(
+                                    context,
+                                    MaterialPageRoute(
+                                      builder: (context) =>
+                                          CreateAccountWidget(),
+                                    ),
+                                  );
+                                },
+                                child: Text(
+                                  "Sign Up",
+                                  style: FlutterFlowTheme.of(context)
+                                      .bodyText1
+                                      .override(
+                                        fontFamily: 'Roboto',
+                                        fontSize: 14,
+                                        fontWeight: FontWeight.w500,
+                                        color: Color(0xFF9457FB),
+                                        decoration: TextDecoration.underline,
+                                      ),
+                                ),
+                              ),
+                            ],
+                          ),
+                        ),
                       ],
                     ),
                   ],

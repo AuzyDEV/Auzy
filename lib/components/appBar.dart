@@ -1,10 +1,5 @@
-import 'package:badges/badges.dart';
-import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:new_mee/components/theme.dart';
-import 'package:new_mee/components/util.dart';
-import '../index.dart';
 import 'package:flutter/material.dart';
-import 'package:animated_horizontal_calendar/animated_horizontal_calendar.dart';
 
 class appbar extends StatefulWidget {
   final String text;
@@ -21,6 +16,15 @@ class _appbarState extends State<appbar> {
     return AppBar(
       backgroundColor: Color(0xff132137),
       automaticallyImplyLeading: true,
+      leading: IconButton(
+        icon: Icon(
+          Icons.sort_outlined,
+          size: 30,
+        ),
+        onPressed: () {
+          Scaffold.of(context).openDrawer();
+        },
+      ),
       title: Text(
         widget.text,
         style: FlutterFlowTheme.of(context).bodyText1.override(

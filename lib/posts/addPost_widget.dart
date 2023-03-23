@@ -1,23 +1,17 @@
 import 'dart:html';
 import 'dart:typed_data';
 
-import 'package:file_picker/file_picker.dart';
 import 'package:firebase_storage/firebase_storage.dart';
-import 'package:intl_phone_number_input/intl_phone_number_input.dart';
 import 'package:new_mee/apis/User_api.dart';
-import 'package:new_mee/apis/mailingMan.dart';
 import 'package:new_mee/apis/postMan.dart';
 import 'package:new_mee/components/appBar.dart';
 import 'package:new_mee/components/drawer.dart';
 import 'package:new_mee/index.dart';
 import 'package:new_mee/models/User.dart';
-import 'package:new_mee/components/icon_button.dart';
 import 'package:new_mee/components/theme.dart';
-import 'package:new_mee/components/util.dart';
 import 'package:new_mee/components/widgets.dart';
 import 'package:flutter/material.dart';
-import 'package:google_fonts/google_fonts.dart';
-import 'package:flutter_quill/flutter_quill.dart' as quill;
+//import 'package:flutter_quill/flutter_quill.dart' as quill;
 
 class addNewPostWidget extends StatefulWidget {
   const addNewPostWidget({Key key}) : super(key: key);
@@ -29,7 +23,7 @@ class addNewPostWidget extends StatefulWidget {
 class _addNewPostWidgetState extends State<addNewPostWidget> {
   TextEditingController titleController;
   TextEditingController TextController;
-  quill.QuillController _controller;
+  // quill.QuillController _controller;
   final scaffoldKey = GlobalKey<ScaffoldState>();
   final formKey = GlobalKey<FormState>();
   UserMan apiUser = UserMan();
@@ -61,7 +55,7 @@ class _addNewPostWidgetState extends State<addNewPostWidget> {
   @override
   void initState() {
     super.initState();
-    _controller = quill.QuillController.basic();
+    // _controller = quill.QuillController.basic();
     _futureUser = apiUser.GetCurrentUser();
     titleController = TextEditingController();
     TextController = TextEditingController();
@@ -132,25 +126,41 @@ class _addNewPostWidgetState extends State<addNewPostWidget> {
                                             16, 10, 16, 0),
                                         child: TextFormField(
                                           controller: titleController,
+                                          cursorColor: Color(0xFF9457FB),
                                           validator: (value) => value.isEmpty
-                                              ? 'Enter post\'s title'
+                                              ? 'Field is required'
                                               : null,
                                           obscureText: false,
                                           decoration: InputDecoration(
-                                            hintText: 'Enter post\'s title...',
-                                            hintStyle:
+                                            errorStyle:
                                                 FlutterFlowTheme.of(context)
                                                     .bodyText1
                                                     .override(
                                                       fontFamily: 'Roboto',
-                                                      color: Color(0xFF9DA3A9),
-                                                      fontSize: 14,
+                                                      color: Colors.red,
                                                       fontWeight:
                                                           FontWeight.normal,
                                                     ),
+                                            focusedErrorBorder:
+                                                OutlineInputBorder(
+                                              borderSide: BorderSide(
+                                                color: Colors.red,
+                                                width: 1,
+                                              ),
+                                              borderRadius:
+                                                  BorderRadius.circular(8),
+                                            ),
+                                            errorBorder: OutlineInputBorder(
+                                              borderSide: BorderSide(
+                                                color: Colors.red,
+                                                width: 1,
+                                              ),
+                                              borderRadius:
+                                                  BorderRadius.circular(8),
+                                            ),
                                             enabledBorder: OutlineInputBorder(
                                               borderSide: BorderSide(
-                                                color: Color(0xFF9DA3A9),
+                                                color: Color(0x988B97A2),
                                                 width: 1,
                                               ),
                                               borderRadius:
@@ -158,17 +168,15 @@ class _addNewPostWidgetState extends State<addNewPostWidget> {
                                             ),
                                             focusedBorder: OutlineInputBorder(
                                               borderSide: BorderSide(
-                                                color: Color(0xFF9DA3A9),
+                                                color: Color(0x988B97A2),
                                                 width: 1,
                                               ),
                                               borderRadius:
                                                   BorderRadius.circular(8),
                                             ),
-                                            filled: true,
-                                            fillColor: Colors.white,
                                             contentPadding:
                                                 EdgeInsetsDirectional.fromSTEB(
-                                                    20, 16, 20, 16),
+                                                    12, 0, 12, 0),
                                           ),
                                           style: FlutterFlowTheme.of(context)
                                               .bodyText1
@@ -205,7 +213,7 @@ class _addNewPostWidgetState extends State<addNewPostWidget> {
                                     ],
                                   ),
                                 ),
-                                Padding(
+                                /* Padding(
                                   padding: EdgeInsetsDirectional.fromSTEB(
                                       16, 20, 16, 0),
                                   child: Column(
@@ -222,15 +230,15 @@ class _addNewPostWidgetState extends State<addNewPostWidget> {
                                       ),
                                     ],
                                   ),
-                                ),
+                                ),*/
                                 Column(
                                   mainAxisAlignment: MainAxisAlignment.center,
                                   children: [
                                     Text(fileName),
-                                    RaisedButton(
+                                    ElevatedButton(
                                       onPressed: (() {
-                                        print((_controller.document.toDelta())
-                                            .toJson());
+                                        /*  print((_controller.document.toDelta())
+                                            .toJson());*/
                                         InputElement inputElement =
                                             FileUploadInputElement();
                                         inputElement.click();
@@ -269,7 +277,7 @@ class _addNewPostWidgetState extends State<addNewPostWidget> {
                                               padding: EdgeInsetsDirectional
                                                   .fromSTEB(0, 0, 0, 0),
                                               child: FFButtonWidget(
-                                                onPressed: () async {
+                                                /*onPressed: () async {
                                                   var contenu = _controller
                                                       .document
                                                       .toDelta()
@@ -312,7 +320,7 @@ class _addNewPostWidgetState extends State<addNewPostWidget> {
                                                             content: Text(
                                                                 "Post was added successfully"),
                                                             actions: [
-                                                              FlatButton(
+                                                              ElevatedButton(
                                                                 child:
                                                                     Text("Ok"),
                                                                 onPressed:
@@ -332,7 +340,7 @@ class _addNewPostWidgetState extends State<addNewPostWidget> {
                                                           );
                                                         });
                                                   }
-                                                },
+                                                },*/
                                                 text: 'send',
                                                 options: FFButtonOptions(
                                                   height: 45,
@@ -377,7 +385,10 @@ class _addNewPostWidgetState extends State<addNewPostWidget> {
                   }
 
                   // By default, show a loading spinner.
-                  return Center(child: const CircularProgressIndicator());
+                  return Center(
+                      child: const CircularProgressIndicator(
+                    color: Color(0xFF9457FB),
+                  ));
                 })));
   }
 }

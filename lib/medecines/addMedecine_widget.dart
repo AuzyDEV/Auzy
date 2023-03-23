@@ -2,20 +2,14 @@ import 'dart:html';
 import 'dart:typed_data';
 
 import 'package:firebase_storage/firebase_storage.dart';
-import 'package:intl_phone_number_input/intl_phone_number_input.dart';
-import 'package:new_mee/apis/User_api.dart';
-import 'package:new_mee/apis/mailingMan.dart';
 import 'package:new_mee/apis/medecineMan.dart';
 import 'package:new_mee/components/appBar.dart';
 import 'package:new_mee/components/drawer.dart';
 import 'package:new_mee/index.dart';
-import 'package:new_mee/models/User.dart';
-import 'package:new_mee/components/icon_button.dart';
 import 'package:new_mee/components/theme.dart';
 import 'package:new_mee/components/util.dart';
 import 'package:new_mee/components/widgets.dart';
 import 'package:flutter/material.dart';
-import 'package:google_fonts/google_fonts.dart';
 
 class addMedecineWidget extends StatefulWidget {
   const addMedecineWidget({Key key}) : super(key: key);
@@ -451,7 +445,7 @@ class _addMedecineWidgetState extends State<addMedecineWidget> {
                               mainAxisAlignment: MainAxisAlignment.center,
                               children: [
                                 Text(fileName),
-                                RaisedButton(
+                                ElevatedButton(
                                   onPressed: (() {
                                     InputElement inputElement =
                                         FileUploadInputElement();
@@ -517,7 +511,7 @@ class _addMedecineWidgetState extends State<addMedecineWidget> {
                                                 content: Text(
                                                     "medecine was added successfully"),
                                                 actions: [
-                                                  FlatButton(
+                                                  ElevatedButton(
                                                     child: Text("Ok"),
                                                     onPressed: () async {
                                                       await Navigator.push(

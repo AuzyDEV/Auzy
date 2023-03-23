@@ -1,29 +1,11 @@
-import 'package:auto_size_text/auto_size_text.dart';
-import 'package:intl_phone_number_input/intl_phone_number_input.dart';
 import 'package:new_mee/apis/DrugsMan.dart';
-import 'package:new_mee/apis/User_api.dart';
-import 'package:new_mee/apis/mailingMan.dart';
-import 'package:new_mee/apis/medecineMan.dart';
-import 'package:new_mee/apis/postMan.dart';
-import 'package:new_mee/apis/savedPostMan.dart';
 import 'package:new_mee/components/appBar.dart';
 import 'package:new_mee/components/drawer.dart';
 import 'package:new_mee/drugs/addNewDrug_widget.dart';
 import 'package:new_mee/drugs/drugDetails_widget.dart';
-import 'package:new_mee/index.dart';
-import 'package:new_mee/medecines/addMedecine_widget.dart';
-import 'package:new_mee/medecines/Detailsmedecine.dart';
 import 'package:new_mee/models/Medecine.dart';
-import 'package:new_mee/models/Post.dart';
-import 'package:new_mee/models/User.dart';
-import 'package:new_mee/components/icon_button.dart';
 import 'package:new_mee/components/theme.dart';
-import 'package:new_mee/components/util.dart';
-import 'package:new_mee/components/widgets.dart';
 import 'package:flutter/material.dart';
-import 'package:google_fonts/google_fonts.dart';
-import 'package:new_mee/models/savedPost.dart';
-import 'package:new_mee/posts/savedPosts_widget.dart';
 
 class DrugsListWidget extends StatefulWidget {
   const DrugsListWidget({Key key}) : super(key: key);
@@ -75,7 +57,7 @@ class _DrugsListWidgetState extends State<DrugsListWidget> {
       backgroundColor: Colors.white,
       appBar: PreferredSize(
         preferredSize: const Size.fromHeight(60),
-        child: appbar(text: 'Drugs'),
+        child: appbar(text: 'Medecines'),
       ),
       floatingActionButton: _futureRoleValue == "admin"
           ? FloatingActionButton(
@@ -123,8 +105,7 @@ class _DrugsListWidgetState extends State<DrugsListWidget> {
                             children: [
                               Icon(
                                 Icons.search,
-                                color:
-                                    FlutterFlowTheme.of(context).tertiaryColor,
+                                color: Color(0xFF9457FB),
                                 size: 24,
                               ),
                               Expanded(
@@ -200,129 +181,150 @@ class _DrugsListWidgetState extends State<DrugsListWidget> {
                                         .contains(searchString)))
                                 ? Padding(
                                     padding: EdgeInsetsDirectional.fromSTEB(
-                                        16, 10, 16, 8),
+                                        16, 5, 16, 5),
                                     child: Container(
                                       width: double.infinity,
                                       decoration: BoxDecoration(
-                                        color: FlutterFlowTheme.of(context)
-                                            .secondaryBackground,
-                                        boxShadow: [
-                                          BoxShadow(
-                                            blurRadius: 3,
-                                            color: Color(0x411D2429),
-                                            offset: Offset(0, 1),
-                                          )
-                                        ],
+                                        color: Colors.grey[50],
                                         borderRadius: BorderRadius.circular(8),
                                       ),
                                       child: Padding(
-                                        padding: EdgeInsetsDirectional.fromSTEB(
-                                            8, 8, 8, 8),
-                                        child: Row(
-                                          mainAxisSize: MainAxisSize.max,
-                                          children: [
-                                            Padding(
-                                              padding: EdgeInsetsDirectional
-                                                  .fromSTEB(0, 1, 1, 1),
-                                              child: ClipRRect(
-                                                borderRadius:
-                                                    BorderRadius.circular(6),
-                                                child: Image.network(
-                                                  '${snapshot.data[index].files[0].downloadURL}',
-                                                  width: 80,
-                                                  height: 80,
-                                                  fit: BoxFit.cover,
+                                          padding:
+                                              EdgeInsetsDirectional.fromSTEB(
+                                                  8, 8, 8, 8),
+                                          child: Row(
+                                            mainAxisSize: MainAxisSize.max,
+                                            children: [
+                                              Padding(
+                                                padding: EdgeInsetsDirectional
+                                                    .fromSTEB(4, 4, 4, 4),
+                                                child: ClipRRect(
+                                                  borderRadius:
+                                                      BorderRadius.circular(12),
+                                                  child: Image.network(
+                                                    '${snapshot.data[index].files[0].downloadURL}',
+                                                    width: 80,
+                                                    height: 100,
+                                                    fit: BoxFit.cover,
+                                                  ),
                                                 ),
                                               ),
-                                            ),
-                                            Expanded(
-                                              child: Padding(
-                                                padding: EdgeInsetsDirectional
-                                                    .fromSTEB(8, 8, 4, 0),
+                                              Expanded(
                                                 child: Column(
                                                   mainAxisSize:
                                                       MainAxisSize.max,
-                                                  mainAxisAlignment:
-                                                      MainAxisAlignment.center,
                                                   crossAxisAlignment:
                                                       CrossAxisAlignment.start,
                                                   children: [
-                                                    Text(
-                                                      '${snapshot.data[index].name}',
-                                                      style:
-                                                          FlutterFlowTheme.of(
-                                                                  context)
-                                                              .title3,
+                                                    Padding(
+                                                      padding:
+                                                          EdgeInsetsDirectional
+                                                              .fromSTEB(
+                                                                  0, 12, 16, 0),
+                                                      child: Row(
+                                                        mainAxisSize:
+                                                            MainAxisSize.max,
+                                                        mainAxisAlignment:
+                                                            MainAxisAlignment
+                                                                .end,
+                                                        children: [
+                                                          InkWell(
+                                                            onTap: (() async {
+                                                              await Navigator
+                                                                  .push(
+                                                                context,
+                                                                MaterialPageRoute(
+                                                                    builder: (context) => drugDetailsWidget(
+                                                                        id: snapshot
+                                                                            .data[index]
+                                                                            .id)),
+                                                              );
+                                                            }),
+                                                            child: Icon(
+                                                              Icons
+                                                                  .keyboard_arrow_right_outlined,
+                                                              color:
+                                                                  Colors.black,
+                                                              size: 24,
+                                                            ),
+                                                          ),
+                                                        ],
+                                                      ),
                                                     ),
                                                     Padding(
                                                       padding:
                                                           EdgeInsetsDirectional
                                                               .fromSTEB(
-                                                                  0, 4, 8, 0),
-                                                      child: AutoSizeText(
-                                                        '${snapshot.data[index].type}',
-                                                        textAlign:
-                                                            TextAlign.start,
-                                                        style:
-                                                            FlutterFlowTheme.of(
-                                                                    context)
+                                                                  8, 0, 16, 0),
+                                                      child: Row(
+                                                        mainAxisSize:
+                                                            MainAxisSize.max,
+                                                        mainAxisAlignment:
+                                                            MainAxisAlignment
+                                                                .spaceBetween,
+                                                        children: [
+                                                          Text(
+                                                            '${snapshot.data[index].name}',
+                                                            style: FlutterFlowTheme
+                                                                    .of(context)
+                                                                .title3,
+                                                          ),
+                                                        ],
+                                                      ),
+                                                    ),
+                                                    Padding(
+                                                      padding:
+                                                          EdgeInsetsDirectional
+                                                              .fromSTEB(
+                                                                  8, 0, 16, 0),
+                                                      child: Row(
+                                                        mainAxisSize:
+                                                            MainAxisSize.max,
+                                                        mainAxisAlignment:
+                                                            MainAxisAlignment
+                                                                .spaceBetween,
+                                                        children: [
+                                                          Text(
+                                                            '${snapshot.data[index].type}',
+                                                            style: FlutterFlowTheme
+                                                                    .of(context)
                                                                 .bodyText2,
+                                                          ),
+                                                        ],
+                                                      ),
+                                                    ),
+                                                    Padding(
+                                                      padding:
+                                                          EdgeInsetsDirectional
+                                                              .fromSTEB(
+                                                                  8, 0, 16, 12),
+                                                      child: Row(
+                                                        mainAxisSize:
+                                                            MainAxisSize.max,
+                                                        mainAxisAlignment:
+                                                            MainAxisAlignment
+                                                                .end,
+                                                        children: [
+                                                          Text(
+                                                            '\$${snapshot.data[index].price}',
+                                                            style: FlutterFlowTheme
+                                                                    .of(context)
+                                                                .subtitle1
+                                                                .override(
+                                                                  fontFamily:
+                                                                      'Roboto',
+                                                                  color: Color(
+                                                                      0xFF9457FB),
+                                                                ),
+                                                          ),
+                                                        ],
                                                       ),
                                                     ),
                                                   ],
                                                 ),
                                               ),
-                                            ),
-                                            Column(
-                                              mainAxisSize: MainAxisSize.max,
-                                              mainAxisAlignment:
-                                                  MainAxisAlignment
-                                                      .spaceBetween,
-                                              crossAxisAlignment:
-                                                  CrossAxisAlignment.end,
-                                              children: [
-                                                Padding(
-                                                  padding: EdgeInsetsDirectional
-                                                      .fromSTEB(0, 4, 0, 0),
-                                                  child: InkWell(
-                                                    onTap: (() async {
-                                                      await Navigator.push(
-                                                        context,
-                                                        MaterialPageRoute(
-                                                            builder: (context) =>
-                                                                drugDetailsWidget(
-                                                                    id: snapshot
-                                                                        .data[
-                                                                            index]
-                                                                        .id)),
-                                                      );
-                                                    }),
-                                                    child: Icon(
-                                                      Icons
-                                                          .chevron_right_rounded,
-                                                      color: Color(0xFF57636C),
-                                                      size: 24,
-                                                    ),
-                                                  ),
-                                                ),
-                                                Padding(
-                                                  padding: EdgeInsetsDirectional
-                                                      .fromSTEB(0, 12, 4, 8),
-                                                  child: Text(
-                                                      '\$ ${snapshot.data[index].price}',
-                                                      textAlign: TextAlign.end,
-                                                      style: TextStyle(
-                                                          color: FlutterFlowTheme
-                                                                  .of(context)
-                                                              .tertiaryColor,
-                                                          fontWeight:
-                                                              FontWeight.bold)),
-                                                ),
-                                              ],
-                                            ),
-                                          ],
-                                        ),
-                                      ),
+                                            ],
+                                          )),
                                     ),
                                   )
                                 : Container());
@@ -337,9 +339,10 @@ class _DrugsListWidgetState extends State<DrugsListWidget> {
                                     ));
                       }
                       return Center(
-                        child: const CircularProgressIndicator(),
+                        child: const CircularProgressIndicator(
+                            color: Color(0xFF9457FB)),
                       );
-                    }))
+                    })),
           ],
         ),
       ),

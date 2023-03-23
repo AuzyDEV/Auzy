@@ -4,10 +4,8 @@ import 'package:new_mee/components/drawer.dart';
 import 'package:new_mee/index.dart';
 import 'package:new_mee/models/User.dart';
 import 'package:new_mee/components/theme.dart';
-import 'package:new_mee/components/util.dart';
 import 'package:new_mee/components/widgets.dart';
 import 'package:flutter/material.dart';
-import 'package:google_fonts/google_fonts.dart';
 
 class MyprofilWidget extends StatefulWidget {
   final String id;
@@ -71,23 +69,78 @@ class _MyprofilWidgetState extends State<MyprofilWidget> {
                                       Expanded(
                                         child: Stack(
                                           children: [
-                                            Align(
-                                              child: Padding(
-                                                padding: EdgeInsetsDirectional
-                                                    .fromSTEB(0, 30, 0, 0),
-                                                child: Container(
-                                                  width: 80,
-                                                  height: 80,
-                                                  clipBehavior: Clip.antiAlias,
-                                                  decoration: BoxDecoration(
-                                                    shape: BoxShape.circle,
-                                                  ),
-                                                  child: Image.network(
-                                                    '${snapshot.data.photoURL}',
-                                                    fit: BoxFit.cover,
+                                            Row(
+                                              mainAxisSize: MainAxisSize.max,
+                                              mainAxisAlignment:
+                                                  MainAxisAlignment.center,
+                                              children: [
+                                                Padding(
+                                                  padding: EdgeInsetsDirectional
+                                                      .fromSTEB(0, 20, 0, 5),
+                                                  child: Container(
+                                                    width: 100,
+                                                    height: 100,
+                                                    decoration: BoxDecoration(
+                                                      color: Color(0xF8AA6CF9),
+                                                      shape: BoxShape.circle,
+                                                    ),
+                                                    child: Stack(
+                                                      children: [
+                                                        Padding(
+                                                          padding:
+                                                              EdgeInsetsDirectional
+                                                                  .fromSTEB(3,
+                                                                      3, 3, 3),
+                                                          child: ClipRRect(
+                                                            borderRadius:
+                                                                BorderRadius
+                                                                    .circular(
+                                                                        60),
+                                                            child:
+                                                                Image.network(
+                                                              '${snapshot.data.photoURL}',
+                                                              width: 100,
+                                                              height: 100,
+                                                              fit: BoxFit.cover,
+                                                            ),
+                                                          ),
+                                                        ),
+                                                        Align(
+                                                          alignment:
+                                                              AlignmentDirectional(
+                                                                  0.96, 0.98),
+                                                          child: Material(
+                                                            color: Colors
+                                                                .transparent,
+                                                            elevation: 1,
+                                                        
+                                                            child: Container(
+                                                              width: 30,
+                                                              height: 30,
+                                                              decoration:
+                                                                  BoxDecoration(
+                                                                color: FlutterFlowTheme.of(
+                                                                        context)
+                                                                    .secondaryBackground,
+                                                                shape: BoxShape
+                                                                    .circle,
+                                                              ),
+                                                              child: Icon(
+                                                                Icons
+                                                                    .edit_outlined,
+                                                                color: FlutterFlowTheme.of(
+                                                                        context)
+                                                                    .secondaryText,
+                                                                size: 16,
+                                                              ),
+                                                            ),
+                                                          ),
+                                                        ),
+                                                      ],
+                                                    ),
                                                   ),
                                                 ),
-                                              ),
+                                              ],
                                             ),
                                             Center(
                                               child: Row(
@@ -123,13 +176,11 @@ class _MyprofilWidgetState extends State<MyprofilWidget> {
                                                     child: Text(
                                                       '${snapshot.data.email}',
                                                       style: TextStyle(
-                                                          fontWeight:
-                                                              FontWeight.bold,
-                                                          color: Color.fromARGB(
-                                                              255,
-                                                              214,
-                                                              116,
-                                                              36)),
+                                                        fontWeight:
+                                                            FontWeight.bold,
+                                                        color:
+                                                            Color(0xFF9457FB),
+                                                      ),
                                                     ),
                                                   ),
                                                 ],
@@ -158,7 +209,7 @@ class _MyprofilWidgetState extends State<MyprofilWidget> {
                         children: [
                           Padding(
                             padding:
-                                EdgeInsetsDirectional.fromSTEB(24, 0, 12, 0),
+                                EdgeInsetsDirectional.fromSTEB(16, 0, 16, 0),
                             child: Text(
                               'Account Settings',
                               style: FlutterFlowTheme.of(context).bodyText1,
@@ -220,9 +271,7 @@ class _MyprofilWidgetState extends State<MyprofilWidget> {
                                                   child: Icon(
                                                     Icons
                                                         .account_circle_outlined,
-                                                    color: FlutterFlowTheme.of(
-                                                            context)
-                                                        .primaryText,
+                                                    color: Color(0xff95A1AC),
                                                     size: 24,
                                                   ),
                                                 ),
@@ -230,7 +279,7 @@ class _MyprofilWidgetState extends State<MyprofilWidget> {
                                                   padding: EdgeInsetsDirectional
                                                       .fromSTEB(12, 0, 0, 0),
                                                   child: Text(
-                                                    'Edit Profil',
+                                                    'Account Details',
                                                     style: FlutterFlowTheme.of(
                                                             context)
                                                         .bodyText2,
@@ -292,11 +341,8 @@ class _MyprofilWidgetState extends State<MyprofilWidget> {
                                                             .fromSTEB(
                                                                 8, 0, 0, 0),
                                                     child: Icon(
-                                                      Icons.password_outlined,
-                                                      color:
-                                                          FlutterFlowTheme.of(
-                                                                  context)
-                                                              .primaryText,
+                                                      Icons.lock_outlined,
+                                                      color: Color(0xff95A1AC),
                                                       size: 24,
                                                     ),
                                                   ),
@@ -334,52 +380,242 @@ class _MyprofilWidgetState extends State<MyprofilWidget> {
                                   child: Padding(
                                     padding: EdgeInsetsDirectional.fromSTEB(
                                         16, 12, 16, 0),
-                                    child: Container(
-                                      decoration: BoxDecoration(
-                                        color: FlutterFlowTheme.of(context)
-                                            .secondaryBackground,
-                                        borderRadius: BorderRadius.circular(12),
-                                        border: Border.all(
+                                    child: InkWell(
+                                      onTap: () async {
+                                        var confirmDialogResponse =
+                                            await showDialog<bool>(
+                                                  context: context,
+                                                  builder:
+                                                      (alertDialogContext) {
+                                                    return AlertDialog(
+                                                      title:
+                                                          Text('block account'),
+                                                      content: Text(
+                                                          'you will be blocked permanently, you can only restore your account after a request to the admin'),
+                                                      actions: [
+                                                        ElevatedButton(
+                                                          onPressed: () =>
+                                                              Navigator.pop(
+                                                                  alertDialogContext,
+                                                                  false),
+                                                          child: Text('Cancel'),
+                                                        ),
+                                                        ElevatedButton(
+                                                          onPressed: () => {
+                                                            api.BlockCurrentUser(),
+                                                            Navigator.push(
+                                                              context,
+                                                              MaterialPageRoute(
+                                                                builder:
+                                                                    (context) =>
+                                                                        SigninWidget(),
+                                                              ),
+                                                            ),
+                                                            ScaffoldMessenger
+                                                                    .of(context)
+                                                                .showSnackBar(
+                                                              SnackBar(
+                                                                  content: Text(
+                                                                    'Successfully account blocked!',
+                                                                    style:
+                                                                        TextStyle(
+                                                                      color: Colors
+                                                                          .black,
+                                                                    ),
+                                                                  ),
+                                                                  duration: Duration(
+                                                                      milliseconds:
+                                                                          4000),
+                                                                  backgroundColor:
+                                                                      Colors
+                                                                          .red),
+                                                            ),
+                                                          },
+                                                          child:
+                                                              Text('Confirm'),
+                                                        ),
+                                                      ],
+                                                    );
+                                                  },
+                                                ) ??
+                                                false;
+                                      },
+                                      child: Container(
+                                        decoration: BoxDecoration(
                                           color: FlutterFlowTheme.of(context)
-                                              .lineColor,
-                                          width: 2,
+                                              .secondaryBackground,
+                                          borderRadius:
+                                              BorderRadius.circular(12),
+                                          border: Border.all(
+                                            color: FlutterFlowTheme.of(context)
+                                                .lineColor,
+                                            width: 2,
+                                          ),
+                                        ),
+                                        child: Row(
+                                          mainAxisSize: MainAxisSize.max,
+                                          children: [
+                                            Padding(
+                                              padding: EdgeInsetsDirectional
+                                                  .fromSTEB(8, 12, 8, 12),
+                                              child: Row(
+                                                mainAxisSize: MainAxisSize.max,
+                                                children: [
+                                                  Padding(
+                                                    padding:
+                                                        EdgeInsetsDirectional
+                                                            .fromSTEB(
+                                                                8, 0, 0, 0),
+                                                    child: Icon(
+                                                      Icons.block_flipped,
+                                                      color: Color(0xff95A1AC),
+                                                      size: 24,
+                                                    ),
+                                                  ),
+                                                  Padding(
+                                                    padding:
+                                                        EdgeInsetsDirectional
+                                                            .fromSTEB(
+                                                                12, 0, 0, 0),
+                                                    child: Text(
+                                                      'Deactivate my account',
+                                                      style:
+                                                          FlutterFlowTheme.of(
+                                                                  context)
+                                                              .bodyText2,
+                                                    ),
+                                                  ),
+                                                ],
+                                              ),
+                                            )
+                                          ],
                                         ),
                                       ),
-                                      child: Row(
-                                        mainAxisSize: MainAxisSize.max,
-                                        children: [
-                                          Padding(
-                                            padding:
-                                                EdgeInsetsDirectional.fromSTEB(
-                                                    8, 12, 8, 12),
-                                            child: Row(
-                                              mainAxisSize: MainAxisSize.max,
-                                              children: [
-                                                Padding(
-                                                  padding: EdgeInsetsDirectional
-                                                      .fromSTEB(8, 0, 0, 0),
-                                                  child: Icon(
-                                                    Icons.settings_outlined,
-                                                    color: FlutterFlowTheme.of(
-                                                            context)
-                                                        .primaryText,
-                                                    size: 24,
+                                    ),
+                                  ),
+                                ),
+                              ],
+                            ),
+                          ),
+                          Padding(
+                            padding: EdgeInsetsDirectional.fromSTEB(0, 1, 0, 0),
+                            child: Row(
+                              mainAxisSize: MainAxisSize.max,
+                              children: [
+                                Expanded(
+                                  child: Padding(
+                                    padding: EdgeInsetsDirectional.fromSTEB(
+                                        16, 12, 16, 0),
+                                    child: InkWell(
+                                      onTap: () async {
+                                        var confirmDialogResponse =
+                                            await showDialog<bool>(
+                                                  context: context,
+                                                  builder:
+                                                      (alertDialogContext) {
+                                                    return AlertDialog(
+                                                      title: Text(
+                                                          'Delete account'),
+                                                      content: Text(
+                                                          'Are you sure to delete your account?'),
+                                                      actions: [
+                                                        ElevatedButton(
+                                                          onPressed: () =>
+                                                              Navigator.pop(
+                                                                  alertDialogContext,
+                                                                  false),
+                                                          child: Text('Cancel'),
+                                                        ),
+                                                        ElevatedButton(
+                                                          onPressed: () => {
+                                                            api.DeleteCurrentUser(),
+                                                            Navigator.push(
+                                                              context,
+                                                              MaterialPageRoute(
+                                                                builder:
+                                                                    (context) =>
+                                                                        SigninWidget(),
+                                                              ),
+                                                            ),
+                                                            ScaffoldMessenger
+                                                                    .of(context)
+                                                                .showSnackBar(
+                                                              SnackBar(
+                                                                  content: Text(
+                                                                    'Successfully account deleted!',
+                                                                    style:
+                                                                        TextStyle(
+                                                                      color: Colors
+                                                                          .black,
+                                                                    ),
+                                                                  ),
+                                                                  duration: Duration(
+                                                                      milliseconds:
+                                                                          4000),
+                                                                  backgroundColor:
+                                                                      Colors
+                                                                          .red),
+                                                            ),
+                                                          },
+                                                          child:
+                                                              Text('Confirm'),
+                                                        ),
+                                                      ],
+                                                    );
+                                                  },
+                                                ) ??
+                                                false;
+                                      },
+                                      child: Container(
+                                        decoration: BoxDecoration(
+                                          color: FlutterFlowTheme.of(context)
+                                              .secondaryBackground,
+                                          borderRadius:
+                                              BorderRadius.circular(12),
+                                          border: Border.all(
+                                            color: FlutterFlowTheme.of(context)
+                                                .lineColor,
+                                            width: 2,
+                                          ),
+                                        ),
+                                        child: Row(
+                                          mainAxisSize: MainAxisSize.max,
+                                          children: [
+                                            Padding(
+                                              padding: EdgeInsetsDirectional
+                                                  .fromSTEB(8, 12, 8, 12),
+                                              child: Row(
+                                                mainAxisSize: MainAxisSize.max,
+                                                children: [
+                                                  Padding(
+                                                    padding:
+                                                        EdgeInsetsDirectional
+                                                            .fromSTEB(
+                                                                8, 0, 0, 0),
+                                                    child: Icon(
+                                                      Icons.delete_outlined,
+                                                      color: Color(0xff95A1AC),
+                                                      size: 24,
+                                                    ),
                                                   ),
-                                                ),
-                                                Padding(
-                                                  padding: EdgeInsetsDirectional
-                                                      .fromSTEB(12, 0, 0, 0),
-                                                  child: Text(
-                                                    'Settings',
-                                                    style: FlutterFlowTheme.of(
-                                                            context)
-                                                        .bodyText2,
+                                                  Padding(
+                                                    padding:
+                                                        EdgeInsetsDirectional
+                                                            .fromSTEB(
+                                                                12, 0, 0, 0),
+                                                    child: Text(
+                                                      'Delete my account',
+                                                      style:
+                                                          FlutterFlowTheme.of(
+                                                                  context)
+                                                              .bodyText2,
+                                                    ),
                                                   ),
-                                                ),
-                                              ],
-                                            ),
-                                          )
-                                        ],
+                                                ],
+                                              ),
+                                            )
+                                          ],
+                                        ),
                                       ),
                                     ),
                                   ),
@@ -389,7 +625,8 @@ class _MyprofilWidgetState extends State<MyprofilWidget> {
                           ),
                         ],
                       ),
-                      Padding(
+
+                      /* Padding(
                           padding: EdgeInsetsDirectional.fromSTEB(0, 20, 0, 0),
                           child: Row(
                               mainAxisSize: MainAxisSize.max,
@@ -563,6 +800,7 @@ class _MyprofilWidgetState extends State<MyprofilWidget> {
                                   ),
                                 ),
                               ])),
+                     */
                       Padding(
                         padding: EdgeInsetsDirectional.fromSTEB(0, 10, 0, 0),
                         child: Row(
@@ -591,7 +829,7 @@ class _MyprofilWidgetState extends State<MyprofilWidget> {
                                     .bodyText2
                                     .override(
                                       fontFamily: 'Lexend Deca',
-                                      color: Color.fromARGB(255, 214, 116, 36),
+                                      color: Color(0xFF9457FB),
                                       fontSize: 14,
                                       fontWeight: FontWeight.normal,
                                     ),
@@ -612,7 +850,10 @@ class _MyprofilWidgetState extends State<MyprofilWidget> {
                 }
 
                 // By default, show a loading spinner.
-                return Center(child: const CircularProgressIndicator());
+                return Center(
+                    child: const CircularProgressIndicator(
+                  color: Color(0xFF9457FB),
+                ));
               })),
     );
   }

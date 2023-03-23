@@ -78,9 +78,20 @@ class ThirdView extends StatelessWidget {
           child: Column(
             mainAxisAlignment: MainAxisAlignment.center,
             children: [
-              Text(
-                "Third View",
-                style: TextStyle(fontSize: 26.0, fontWeight: FontWeight.bold),
+              Text.rich(
+                TextSpan(
+                  text: 'Easier access to the ',
+                  style: TextStyle(fontSize: 20.0, fontWeight: FontWeight.bold),
+                  children: <TextSpan>[
+                    TextSpan(
+                      text: 'tools',
+                      style: TextStyle(
+                        color: Color(0xFF9457FB),
+                        fontWeight: FontWeight.w700,
+                      ),
+                    ),
+                  ],
+                ),
               ),
               SlideTransition(
                 position: _moodFirstHalfAnimation,
@@ -90,7 +101,7 @@ class ThirdView extends StatelessWidget {
                     padding: EdgeInsets.only(
                         left: 64, right: 64, top: 16, bottom: 16),
                     child: Text(
-                      "Lorem ipsum dolor sit amet,consectetur adipiscing elit,sed do eiusmod tempor incididunt ut labore",
+                      "Auzy allows better coordination between the various interveners working with children with NDD by simplifying the process of sharing clinical data, management of appointments, screening exams, psychometric evaluations and remote monitoring.",
                       textAlign: TextAlign.center,
                     ),
                   ),

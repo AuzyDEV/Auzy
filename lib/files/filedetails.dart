@@ -1,14 +1,8 @@
-import 'package:new_mee/apis/User_api.dart';
 import 'package:new_mee/apis/fileMan.dart';
 import 'package:new_mee/components/appBar.dart';
-import 'package:new_mee/index.dart';
 import 'package:new_mee/models/File.dart';
-import 'package:new_mee/models/User.dart';
 import 'package:new_mee/components/theme.dart';
-import 'package:new_mee/components/util.dart';
-import 'package:new_mee/components/widgets.dart';
 import 'package:flutter/material.dart';
-import 'package:google_fonts/google_fonts.dart';
 
 class FileDetailsWidget extends StatefulWidget {
   final String name, downloadURL;

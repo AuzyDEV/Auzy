@@ -54,7 +54,7 @@ class _addDoctorWidgetState extends State<addDoctorWidget> {
         backgroundColor: Colors.white,
         appBar: PreferredSize(
           preferredSize: const Size.fromHeight(60),
-          child: appbar(text: 'Add new doctor'),
+          child: appbar(text: 'New doctor'),
         ),
         drawer: Drawerr(),
         body: SingleChildScrollView(
@@ -100,38 +100,48 @@ class _addDoctorWidgetState extends State<addDoctorWidget> {
                                 EdgeInsetsDirectional.fromSTEB(16, 10, 16, 0),
                             child: TextFormField(
                               controller: firstNameController,
-                              validator: (value) => value.isEmpty
-                                  ? 'Enter doctor\'s firstname '
-                                  : null,
+                              validator: (value) =>
+                                  value.isEmpty ? 'Filed is required' : null,
                               obscureText: false,
+                              cursorColor: Color(0xFF9457FB),
                               decoration: InputDecoration(
-                                hintText: 'Enter first name...',
-                                hintStyle: FlutterFlowTheme.of(context)
+                                errorStyle: FlutterFlowTheme.of(context)
                                     .bodyText1
                                     .override(
                                       fontFamily: 'Roboto',
-                                      color: Color(0xFF9DA3A9),
-                                      fontSize: 14,
+                                      color: Colors.red,
                                       fontWeight: FontWeight.normal,
                                     ),
+                                focusedErrorBorder: OutlineInputBorder(
+                                  borderSide: BorderSide(
+                                    color: Colors.red,
+                                    width: 1,
+                                  ),
+                                  borderRadius: BorderRadius.circular(8),
+                                ),
+                                errorBorder: OutlineInputBorder(
+                                  borderSide: BorderSide(
+                                    color: Colors.red,
+                                    width: 1,
+                                  ),
+                                  borderRadius: BorderRadius.circular(8),
+                                ),
                                 enabledBorder: OutlineInputBorder(
                                   borderSide: BorderSide(
-                                    color: Color(0xFF9DA3A9),
+                                    color: Color(0x988B97A2),
                                     width: 1,
                                   ),
                                   borderRadius: BorderRadius.circular(8),
                                 ),
                                 focusedBorder: OutlineInputBorder(
                                   borderSide: BorderSide(
-                                    color: Color(0xFF9DA3A9),
+                                    color: Color(0x988B97A2),
                                     width: 1,
                                   ),
                                   borderRadius: BorderRadius.circular(8),
                                 ),
-                                filled: true,
-                                fillColor: Colors.white,
                                 contentPadding: EdgeInsetsDirectional.fromSTEB(
-                                    20, 16, 20, 16),
+                                    12, 0, 12, 0),
                               ),
                               style: FlutterFlowTheme.of(context)
                                   .bodyText1
@@ -167,38 +177,48 @@ class _addDoctorWidgetState extends State<addDoctorWidget> {
                                 EdgeInsetsDirectional.fromSTEB(16, 10, 16, 0),
                             child: TextFormField(
                               controller: lastNameController,
-                              validator: (value) => value.isEmpty
-                                  ? 'Enter doctor\'s lastname '
-                                  : null,
+                              validator: (value) =>
+                                  value.isEmpty ? 'Field is required' : null,
                               obscureText: false,
+                              cursorColor: Color(0xFF9457FB),
                               decoration: InputDecoration(
-                                hintText: 'Enter lastname...',
-                                hintStyle: FlutterFlowTheme.of(context)
+                                errorStyle: FlutterFlowTheme.of(context)
                                     .bodyText1
                                     .override(
                                       fontFamily: 'Roboto',
-                                      color: Color(0xFF9DA3A9),
-                                      fontSize: 14,
+                                      color: Colors.red,
                                       fontWeight: FontWeight.normal,
                                     ),
+                                focusedErrorBorder: OutlineInputBorder(
+                                  borderSide: BorderSide(
+                                    color: Colors.red,
+                                    width: 1,
+                                  ),
+                                  borderRadius: BorderRadius.circular(8),
+                                ),
+                                errorBorder: OutlineInputBorder(
+                                  borderSide: BorderSide(
+                                    color: Colors.red,
+                                    width: 1,
+                                  ),
+                                  borderRadius: BorderRadius.circular(8),
+                                ),
                                 enabledBorder: OutlineInputBorder(
                                   borderSide: BorderSide(
-                                    color: Color(0xFF9DA3A9),
+                                    color: Color(0x988B97A2),
                                     width: 1,
                                   ),
                                   borderRadius: BorderRadius.circular(8),
                                 ),
                                 focusedBorder: OutlineInputBorder(
                                   borderSide: BorderSide(
-                                    color: Color(0xFF9DA3A9),
+                                    color: Color(0x988B97A2),
                                     width: 1,
                                   ),
                                   borderRadius: BorderRadius.circular(8),
                                 ),
-                                filled: true,
-                                fillColor: Colors.white,
                                 contentPadding: EdgeInsetsDirectional.fromSTEB(
-                                    20, 16, 20, 16),
+                                    12, 0, 12, 0),
                               ),
                               style: FlutterFlowTheme.of(context)
                                   .bodyText1
@@ -236,59 +256,90 @@ class _addDoctorWidgetState extends State<addDoctorWidget> {
                                   mainAxisSize: MainAxisSize.max,
                                   children: [
                                     Expanded(
-                                      child: Container(
-                                        height: 52,
-                                        child: DropdownButtonFormField<String>(
-                                          items: [
-                                            DropdownMenuItem<String>(
-                                              value: "Ophtalmologist",
-                                              child: Text(
-                                                "Ophtalmologist",
-                                              ),
-                                            ),
-                                            DropdownMenuItem<String>(
-                                              value: "Cardiologist",
-                                              child: Text(
-                                                "Cardiologist",
-                                              ),
-                                            ),
-                                          ],
-                                          onChanged: (val) {
-                                            setState(() {
-                                              dropDownValue = val;
-                                              _dropdownError = null;
-                                            });
-                                            _dropdownError == null
-                                                ? SizedBox.shrink()
-                                                : Text(
-                                                    _dropdownError ?? "",
-                                                    style: TextStyle(
-                                                        color: Colors.red),
-                                                  );
-                                          },
-                                          validator: (value) => value == null
-                                              ? 'Please enter type'
-                                              : null,
-                                          decoration: InputDecoration(
-                                            enabledBorder: OutlineInputBorder(
-                                              borderSide: BorderSide(
-                                                  color: Colors.grey),
-                                              borderRadius:
-                                                  BorderRadius.circular(8),
-                                            ),
-                                            focusedBorder: OutlineInputBorder(
-                                              borderSide: BorderSide(
-                                                  color: Colors.grey),
+                                      child: DropdownButtonFormField<String>(
+                                        items: [
+                                          DropdownMenuItem<String>(
+                                            value: "Ophtalmologist",
+                                            child: Text(
+                                              "Ophtalmologist",
                                             ),
                                           ),
-                                          elevation: 2,
-                                          style: TextStyle(
-                                              color: Colors.black,
-                                              fontSize: 16),
-                                          isDense: true,
-                                          iconSize: 18.0,
-                                          iconEnabledColor: Colors.grey,
+                                          DropdownMenuItem<String>(
+                                            value: "Cardiologist",
+                                            child: Text(
+                                              "Cardiologist",
+                                            ),
+                                          ),
+                                        ],
+                                        onChanged: (val) {
+                                          setState(() {
+                                            dropDownValue = val;
+                                            _dropdownError = null;
+                                          });
+                                          _dropdownError == null
+                                              ? SizedBox.shrink()
+                                              : Text(
+                                                  _dropdownError ?? "",
+                                                  style: TextStyle(
+                                                      color: Colors.red),
+                                                );
+                                        },
+                                        validator: (value) => value == null
+                                            ? 'Field is required'
+                                            : null,
+                                        decoration: InputDecoration(
+                                          errorStyle:
+                                              FlutterFlowTheme.of(context)
+                                                  .bodyText1
+                                                  .override(
+                                                    fontFamily: 'Roboto',
+                                                    color: Colors.red,
+                                                    fontWeight:
+                                                        FontWeight.normal,
+                                                  ),
+                                          focusedErrorBorder:
+                                              OutlineInputBorder(
+                                            borderSide: BorderSide(
+                                              color: Colors.red,
+                                              width: 1,
+                                            ),
+                                            borderRadius:
+                                                BorderRadius.circular(8),
+                                          ),
+                                          errorBorder: OutlineInputBorder(
+                                            borderSide: BorderSide(
+                                              color: Colors.red,
+                                              width: 1,
+                                            ),
+                                            borderRadius:
+                                                BorderRadius.circular(8),
+                                          ),
+                                          enabledBorder: OutlineInputBorder(
+                                            borderSide: BorderSide(
+                                              color: Color(0x988B97A2),
+                                              width: 1,
+                                            ),
+                                            borderRadius:
+                                                BorderRadius.circular(8),
+                                          ),
+                                          focusedBorder: OutlineInputBorder(
+                                            borderSide: BorderSide(
+                                              color: Color(0x988B97A2),
+                                              width: 1,
+                                            ),
+                                            borderRadius:
+                                                BorderRadius.circular(8),
+                                          ),
+                                          contentPadding:
+                                              EdgeInsetsDirectional.fromSTEB(
+                                                  12, 0, 12, 0),
                                         ),
+                                        elevation: 2,
+                                        style: TextStyle(
+                                            color: Colors.black, fontSize: 16),
+                                        isDense: true,
+                                        iconSize: 18.0,
+                                        iconEnabledColor: Colors.grey,
                                       ),
                                     ),
                                   ])),
@@ -319,38 +370,48 @@ class _addDoctorWidgetState extends State<addDoctorWidget> {
                             child: TextFormField(
                               maxLines: 2,
                               controller: addressController,
-                              validator: (value) => value.isEmpty
-                                  ? 'Enter doctor\'s address'
-                                  : null,
+                              cursorColor: Color(0xFF9457FB),
+                              validator: (value) =>
+                                  value.isEmpty ? 'Field is required' : null,
                               obscureText: false,
                               decoration: InputDecoration(
-                                hintText: 'Enter address...',
-                                hintStyle: FlutterFlowTheme.of(context)
+                                errorStyle: FlutterFlowTheme.of(context)
                                     .bodyText1
                                     .override(
                                       fontFamily: 'Roboto',
-                                      color: Color(0xFF9DA3A9),
-                                      fontSize: 14,
+                                      color: Colors.red,
                                       fontWeight: FontWeight.normal,
                                     ),
+                                focusedErrorBorder: OutlineInputBorder(
+                                  borderSide: BorderSide(
+                                    color: Colors.red,
+                                    width: 1,
+                                  ),
+                                  borderRadius: BorderRadius.circular(8),
+                                ),
+                                errorBorder: OutlineInputBorder(
+                                  borderSide: BorderSide(
+                                    color: Colors.red,
+                                    width: 1,
+                                  ),
+                                  borderRadius: BorderRadius.circular(8),
+                                ),
                                 enabledBorder: OutlineInputBorder(
                                   borderSide: BorderSide(
-                                    color: Color(0xFF9DA3A9),
+                                    color: Color(0x988B97A2),
                                     width: 1,
                                   ),
                                   borderRadius: BorderRadius.circular(8),
                                 ),
                                 focusedBorder: OutlineInputBorder(
                                   borderSide: BorderSide(
-                                    color: Color(0xFF9DA3A9),
+                                    color: Color(0x988B97A2),
                                     width: 1,
                                   ),
                                   borderRadius: BorderRadius.circular(8),
                                 ),
-                                filled: true,
-                                fillColor: Colors.white,
                                 contentPadding: EdgeInsetsDirectional.fromSTEB(
-                                    20, 16, 20, 16),
+                                    12, 0, 12, 0),
                               ),
                               style: FlutterFlowTheme.of(context)
                                   .bodyText1
@@ -386,40 +447,51 @@ class _addDoctorWidgetState extends State<addDoctorWidget> {
                                 EdgeInsetsDirectional.fromSTEB(16, 10, 16, 0),
                             child: TextFormField(
                               controller: emailController,
+                              cursorColor: Color(0xFF9457FB),
                               validator: (value) => value.isEmpty
-                                  ? 'Enter doctor\'s email'
+                                  ? 'Field is required'
                                   : (emailReForInput.hasMatch(value)
                                       ? null
                                       : 'Enter valid Email '),
                               obscureText: false,
                               decoration: InputDecoration(
-                                hintText: 'Enter email...',
-                                hintStyle: FlutterFlowTheme.of(context)
+                                errorStyle: FlutterFlowTheme.of(context)
                                     .bodyText1
                                     .override(
                                       fontFamily: 'Roboto',
-                                      color: Color(0xFF9DA3A9),
-                                      fontSize: 14,
+                                      color: Colors.red,
                                       fontWeight: FontWeight.normal,
                                     ),
+                                focusedErrorBorder: OutlineInputBorder(
+                                  borderSide: BorderSide(
+                                    color: Colors.red,
+                                    width: 1,
+                                  ),
+                                  borderRadius: BorderRadius.circular(8),
+                                ),
+                                errorBorder: OutlineInputBorder(
+                                  borderSide: BorderSide(
+                                    color: Colors.red,
+                                    width: 1,
+                                  ),
+                                  borderRadius: BorderRadius.circular(8),
+                                ),
                                 enabledBorder: OutlineInputBorder(
                                   borderSide: BorderSide(
-                                    color: Color(0xFF9DA3A9),
+                                    color: Color(0x988B97A2),
                                     width: 1,
                                   ),
                                   borderRadius: BorderRadius.circular(8),
                                 ),
                                 focusedBorder: OutlineInputBorder(
                                   borderSide: BorderSide(
-                                    color: Color(0xFF9DA3A9),
+                                    color: Color(0x988B97A2),
                                     width: 1,
                                   ),
                                   borderRadius: BorderRadius.circular(8),
                                 ),
-                                filled: true,
-                                fillColor: Colors.white,
                                 contentPadding: EdgeInsetsDirectional.fromSTEB(
-                                    20, 16, 20, 16),
+                                    12, 0, 12, 0),
                               ),
                               style: FlutterFlowTheme.of(context)
                                   .bodyText1
@@ -455,38 +527,47 @@ class _addDoctorWidgetState extends State<addDoctorWidget> {
                                 EdgeInsetsDirectional.fromSTEB(16, 10, 16, 0),
                             child: TextFormField(
                               controller: phoneNumberController,
-                              validator: (value) => value.isEmpty
-                                  ? 'Enter doctor\'s phone '
-                                  : null,
+                              validator: (value) =>
+                                  value.isEmpty ? 'Field is required' : null,
                               obscureText: false,
                               decoration: InputDecoration(
-                                hintText: 'Enter phone number...',
-                                hintStyle: FlutterFlowTheme.of(context)
+                                errorStyle: FlutterFlowTheme.of(context)
                                     .bodyText1
                                     .override(
                                       fontFamily: 'Roboto',
-                                      color: Color(0xFF9DA3A9),
-                                      fontSize: 14,
+                                      color: Colors.red,
                                       fontWeight: FontWeight.normal,
                                     ),
+                                focusedErrorBorder: OutlineInputBorder(
+                                  borderSide: BorderSide(
+                                    color: Colors.red,
+                                    width: 1,
+                                  ),
+                                  borderRadius: BorderRadius.circular(8),
+                                ),
+                                errorBorder: OutlineInputBorder(
+                                  borderSide: BorderSide(
+                                    color: Colors.red,
+                                    width: 1,
+                                  ),
+                                  borderRadius: BorderRadius.circular(8),
+                                ),
                                 enabledBorder: OutlineInputBorder(
                                   borderSide: BorderSide(
-                                    color: Color(0xFF9DA3A9),
+                                    color: Color(0x988B97A2),
                                     width: 1,
                                   ),
                                   borderRadius: BorderRadius.circular(8),
                                 ),
                                 focusedBorder: OutlineInputBorder(
                                   borderSide: BorderSide(
-                                    color: Color(0xFF9DA3A9),
+                                    color: Color(0x988B97A2),
                                     width: 1,
                                   ),
                                   borderRadius: BorderRadius.circular(8),
                                 ),
-                                filled: true,
-                                fillColor: Colors.white,
                                 contentPadding: EdgeInsetsDirectional.fromSTEB(
-                                    20, 16, 20, 16),
+                                    12, 0, 12, 0),
                               ),
                               style: FlutterFlowTheme.of(context)
                                   .bodyText1
@@ -524,7 +605,7 @@ class _addDoctorWidgetState extends State<addDoctorWidget> {
                               mainAxisAlignment: MainAxisAlignment.center,
                               children: [
                                 Text(fileName),
-                                RaisedButton(
+                                ElevatedButton(
                                   onPressed: (() {
                                     InputElement inputElement =
                                         FileUploadInputElement();
@@ -590,7 +671,7 @@ class _addDoctorWidgetState extends State<addDoctorWidget> {
                                                 content: Text(
                                                     "Drug was added successfully"),
                                                 actions: [
-                                                  FlatButton(
+                                                  ElevatedButton(
                                                     child: Text("Ok"),
                                                     onPressed: () async {
                                                       await Navigator.push(

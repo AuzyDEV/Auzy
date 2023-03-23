@@ -1,10 +1,8 @@
 import 'dart:convert';
 import 'package:http/http.dart' as http;
-import 'dart:convert';
 import 'dart:async';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:new_mee/models/Doctor.dart';
-import 'package:new_mee/models/Medecine.dart';
 
 class DBDoctorMan {
   final FirebaseAuth _auth = FirebaseAuth.instance;
@@ -54,10 +52,25 @@ class DBDoctorMan {
     }
   }
 
+  Future<List<Doctor>> getAllDoctorsWithSpeciality(String speciality) async {
+    String collectionName = "doctors";
+    final response = await http.get(Uri.parse(
+        'http://127.0.0.1:3000/api/DataB/${collectionName}/${speciality}'));
+    if (response.statusCode == 200) {
+      final parsed = jsonDecode(response.body);
+      //print(parsed["posts"]);
+      final data = parsed["listCollections"];
+      return data.map<Doctor>((json) => Doctor.fromMap(json)).toList();
+    } else {
+      throw Exception("Failed to get post's list");
+    }
+  }
+
   Future<Doctor> getDoctorDetails(String id) async {
     String collectionName = "doctors";
     final response = await http
         .get(Uri.parse('http://127.0.0.1:3000/api/DB/${collectionName}/${id}'));
+
     if (response.statusCode == 200) {
       final data = jsonDecode(response.body);
       return Doctor.fromMaq(data);

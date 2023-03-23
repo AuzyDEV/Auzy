@@ -1,15 +1,10 @@
-import 'dart:html';
-import 'dart:typed_data';
 import 'package:new_mee/apis/DrugsMan.dart';
-import 'package:new_mee/apis/medecineMan.dart';
 import 'package:new_mee/components/appBar.dart';
 import 'package:new_mee/components/drawer.dart';
 import 'package:new_mee/index.dart';
 import 'package:new_mee/components/theme.dart';
-import 'package:new_mee/components/util.dart';
 import 'package:new_mee/components/widgets.dart';
 import 'package:flutter/material.dart';
-import 'package:google_fonts/google_fonts.dart';
 
 class updateDrugWidget extends StatefulWidget {
   final String id, name, desciption, type;
@@ -100,37 +95,39 @@ class _updateDrugWidgetState extends State<updateDrugWidget> {
                                 EdgeInsetsDirectional.fromSTEB(16, 10, 16, 0),
                             child: TextFormField(
                               controller: nameController,
+                              cursorColor: Color(0xFF9457FB),
                               validator: (value) =>
-                                  value.isEmpty ? 'Enter medecine name ' : null,
+                                  value.isEmpty ? 'Field is required' : null,
                               obscureText: false,
                               decoration: InputDecoration(
-                                hintText: 'Enter medecine name...',
-                                hintStyle: FlutterFlowTheme.of(context)
+                                errorBorder: OutlineInputBorder(
+                                  borderSide: BorderSide(
+                                    color: Colors.red,
+                                    width: 1,
+                                  ),
+                                  borderRadius: BorderRadius.circular(8),
+                                ),
+                                errorStyle: FlutterFlowTheme.of(context)
                                     .bodyText1
                                     .override(
                                       fontFamily: 'Roboto',
-                                      color: Color(0xFF9DA3A9),
-                                      fontSize: 14,
+                                      color: Colors.red,
                                       fontWeight: FontWeight.normal,
                                     ),
-                                enabledBorder: OutlineInputBorder(
+                                focusedErrorBorder: OutlineInputBorder(
                                   borderSide: BorderSide(
-                                    color: Color(0xFF9DA3A9),
+                                    color: Colors.red,
                                     width: 1,
                                   ),
+                                  borderRadius: BorderRadius.circular(8),
+                                ),
+                                enabledBorder: OutlineInputBorder(
+                                  borderSide: BorderSide(color: Colors.grey),
                                   borderRadius: BorderRadius.circular(8),
                                 ),
                                 focusedBorder: OutlineInputBorder(
-                                  borderSide: BorderSide(
-                                    color: Color(0xFF9DA3A9),
-                                    width: 1,
-                                  ),
-                                  borderRadius: BorderRadius.circular(8),
+                                  borderSide: BorderSide(color: Colors.grey),
                                 ),
-                                filled: true,
-                                fillColor: Colors.white,
-                                contentPadding: EdgeInsetsDirectional.fromSTEB(
-                                    20, 16, 20, 16),
                               ),
                               style: FlutterFlowTheme.of(context)
                                   .bodyText1
@@ -168,59 +165,82 @@ class _updateDrugWidgetState extends State<updateDrugWidget> {
                                   mainAxisSize: MainAxisSize.max,
                                   children: [
                                     Expanded(
-                                      child: Container(
-                                        height: 52,
-                                        child: DropdownButtonFormField<String>(
-                                          items: [
-                                            DropdownMenuItem<String>(
-                                              value: "Liquid",
-                                              child: Text(
-                                                "Liquid",
-                                              ),
-                                            ),
-                                            DropdownMenuItem<String>(
-                                              value: "Tablet",
-                                              child: Text(
-                                                "Tablet",
-                                              ),
-                                            ),
-                                          ],
-                                          onChanged: (val) {
-                                            setState(() {
-                                              dropDownValue = val;
-                                              _dropdownError = null;
-                                            });
-                                            _dropdownError == null
-                                                ? SizedBox.shrink()
-                                                : Text(
-                                                    _dropdownError ?? "",
-                                                    style: TextStyle(
-                                                        color: Colors.red),
-                                                  );
-                                          },
-                                          validator: (value) => value == null
-                                              ? 'Please enter type'
-                                              : null,
-                                          decoration: InputDecoration(
-                                            enabledBorder: OutlineInputBorder(
-                                              borderSide: BorderSide(
-                                                  color: Colors.grey),
-                                              borderRadius:
-                                                  BorderRadius.circular(8),
-                                            ),
-                                            focusedBorder: OutlineInputBorder(
-                                              borderSide: BorderSide(
-                                                  color: Colors.grey),
+                                      child: DropdownButtonFormField<String>(
+                                        items: [
+                                          DropdownMenuItem<String>(
+                                            value: "Liquid",
+                                            child: Text(
+                                              "Liquid",
                                             ),
                                           ),
-                                          elevation: 2,
-                                          style: TextStyle(
-                                              color: Colors.black,
-                                              fontSize: 16),
-                                          isDense: true,
-                                          iconSize: 18.0,
-                                          iconEnabledColor: Colors.grey,
+                                          DropdownMenuItem<String>(
+                                            value: "Tablet",
+                                            child: Text(
+                                              "Tablet",
+                                            ),
+                                          ),
+                                        ],
+                                        value: widget.type,
+                                        onChanged: (val) {
+                                          setState(() {
+                                            dropDownValue = val;
+                                            _dropdownError = null;
+                                          });
+                                          _dropdownError == null
+                                              ? SizedBox.shrink()
+                                              : Text(
+                                                  _dropdownError ?? "",
+                                                  style: TextStyle(
+                                                      color: Colors.red),
+                                                );
+                                        },
+                                        validator: (value) => value == null
+                                            ? 'Field is required'
+                                            : null,
+                                        decoration: InputDecoration(
+                                          errorBorder: OutlineInputBorder(
+                                            borderSide: BorderSide(
+                                              color: Colors.red,
+                                              width: 1,
+                                            ),
+                                            borderRadius:
+                                                BorderRadius.circular(8),
+                                          ),
+                                          errorStyle:
+                                              FlutterFlowTheme.of(context)
+                                                  .bodyText1
+                                                  .override(
+                                                    fontFamily: 'Roboto',
+                                                    color: Colors.red,
+                                                    fontWeight:
+                                                        FontWeight.normal,
+                                                  ),
+                                          focusedErrorBorder:
+                                              OutlineInputBorder(
+                                            borderSide: BorderSide(
+                                              color: Colors.red,
+                                              width: 1,
+                                            ),
+                                            borderRadius:
+                                                BorderRadius.circular(8),
+                                          ),
+                                          enabledBorder: OutlineInputBorder(
+                                            borderSide:
+                                                BorderSide(color: Colors.grey),
+                                            borderRadius:
+                                                BorderRadius.circular(8),
+                                          ),
+                                          focusedBorder: OutlineInputBorder(
+                                            borderSide:
+                                                BorderSide(color: Colors.grey),
+                                          ),
                                         ),
+                                        elevation: 2,
+                                        style: TextStyle(
+                                            color: Colors.black, fontSize: 16),
+                                        isDense: true,
+                                        iconSize: 18.0,
+                                        iconEnabledColor: Colors.grey,
                                       ),
                                     ),
                                   ])),
@@ -250,39 +270,40 @@ class _updateDrugWidgetState extends State<updateDrugWidget> {
                                 EdgeInsetsDirectional.fromSTEB(16, 10, 16, 0),
                             child: TextFormField(
                               controller: desciptionController,
+                              cursorColor: Color(0xFF9457FB),
                               maxLines: 8,
-                              validator: (value) => value.isEmpty
-                                  ? 'Enter your desciption'
-                                  : null,
+                              validator: (value) =>
+                                  value.isEmpty ? 'Field is required' : null,
                               obscureText: false,
                               decoration: InputDecoration(
-                                hintText: 'Enter your desciption...',
-                                hintStyle: FlutterFlowTheme.of(context)
+                                errorBorder: OutlineInputBorder(
+                                  borderSide: BorderSide(
+                                    color: Colors.red,
+                                    width: 1,
+                                  ),
+                                  borderRadius: BorderRadius.circular(8),
+                                ),
+                                errorStyle: FlutterFlowTheme.of(context)
                                     .bodyText1
                                     .override(
                                       fontFamily: 'Roboto',
-                                      color: Color(0xFF9DA3A9),
-                                      fontSize: 14,
+                                      color: Colors.red,
                                       fontWeight: FontWeight.normal,
                                     ),
-                                enabledBorder: OutlineInputBorder(
+                                focusedErrorBorder: OutlineInputBorder(
                                   borderSide: BorderSide(
-                                    color: Color(0xFF9DA3A9),
+                                    color: Colors.red,
                                     width: 1,
                                   ),
+                                  borderRadius: BorderRadius.circular(8),
+                                ),
+                                enabledBorder: OutlineInputBorder(
+                                  borderSide: BorderSide(color: Colors.grey),
                                   borderRadius: BorderRadius.circular(8),
                                 ),
                                 focusedBorder: OutlineInputBorder(
-                                  borderSide: BorderSide(
-                                    color: Color(0xFF9DA3A9),
-                                    width: 1,
-                                  ),
-                                  borderRadius: BorderRadius.circular(8),
+                                  borderSide: BorderSide(color: Colors.grey),
                                 ),
-                                filled: true,
-                                fillColor: Colors.white,
-                                contentPadding: EdgeInsetsDirectional.fromSTEB(
-                                    20, 16, 20, 16),
                               ),
                               style: FlutterFlowTheme.of(context)
                                   .bodyText1
@@ -326,7 +347,7 @@ class _updateDrugWidgetState extends State<updateDrugWidget> {
                                                     content: Text(
                                                         "medecine was added successfully"),
                                                     actions: [
-                                                      FlatButton(
+                                                      ElevatedButton(
                                                         child: Text("Ok"),
                                                         onPressed: () async {
                                                           await Navigator.push(
@@ -350,7 +371,7 @@ class _updateDrugWidgetState extends State<updateDrugWidget> {
                                                     content: Text(
                                                         "Error when updating medecine"),
                                                     actions: [
-                                                      FlatButton(
+                                                      ElevatedButton(
                                                         child: Text("Ok"),
                                                         onPressed: () async {
                                                           await Navigator.push(

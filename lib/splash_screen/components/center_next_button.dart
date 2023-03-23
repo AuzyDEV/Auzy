@@ -102,14 +102,14 @@ class CenterNextButton extends StatelessWidget {
                                     MainAxisAlignment.spaceBetween,
                                 children: [
                                   Text(
-                                    'Sign Up',
+                                    'Sign In',
                                     style: TextStyle(
                                       color: Colors.white,
                                       fontSize: 18,
                                       fontWeight: FontWeight.w500,
                                     ),
                                   ),
-                                  Icon(Icons.arrow_forward_rounded,
+                                  Icon(Icons.arrow_forward_ios_outlined,
                                       color: Colors.white),
                                 ],
                               ),

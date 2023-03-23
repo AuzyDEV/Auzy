@@ -1,37 +1,15 @@
-import 'package:auto_size_text/auto_size_text.dart';
-import 'package:font_awesome_flutter/font_awesome_flutter.dart';
-import 'package:intl_phone_number_input/intl_phone_number_input.dart';
-import 'package:new_mee/apis/DrugsMan.dart';
-import 'package:new_mee/apis/User_api.dart';
 import 'package:new_mee/apis/doctorsMan.dart';
-import 'package:new_mee/apis/mailingMan.dart';
-import 'package:new_mee/apis/medecineMan.dart';
-import 'package:new_mee/apis/postMan.dart';
-import 'package:new_mee/apis/savedPostMan.dart';
 import 'package:new_mee/components/appBar.dart';
 import 'package:new_mee/components/drawer.dart';
 import 'package:new_mee/doctors/addDoctor_widget.dart';
 import 'package:new_mee/doctors/doctorProfil_widget.dart';
-import 'package:new_mee/drugs/addNewDrug_widget.dart';
-import 'package:new_mee/drugs/drugDetails_widget.dart';
-import 'package:new_mee/index.dart';
-import 'package:new_mee/medecines/addMedecine_widget.dart';
-import 'package:new_mee/medecines/Detailsmedecine.dart';
 import 'package:new_mee/models/Doctor.dart';
-import 'package:new_mee/models/Medecine.dart';
-import 'package:new_mee/models/Post.dart';
-import 'package:new_mee/models/User.dart';
-import 'package:new_mee/components/icon_button.dart';
 import 'package:new_mee/components/theme.dart';
-import 'package:new_mee/components/util.dart';
-import 'package:new_mee/components/widgets.dart';
 import 'package:flutter/material.dart';
-import 'package:google_fonts/google_fonts.dart';
-import 'package:new_mee/models/savedPost.dart';
-import 'package:new_mee/posts/savedPosts_widget.dart';
 
 class listsdocWidget extends StatefulWidget {
-  const listsdocWidget({Key key}) : super(key: key);
+  final String speciality;
+  const listsdocWidget({Key key, this.speciality}) : super(key: key);
 
   @override
   _listsdocWidgetState createState() => _listsdocWidgetState();
@@ -64,8 +42,9 @@ class _listsdocWidgetState extends State<listsdocWidget> {
   void initState() {
     super.initState();
     _getFutureRoleValue();
-    futureDoctor = apiDBDoctor.getAllDoctors();
+    futureDoctor = apiDBDoctor.getAllDoctorsWithSpeciality(widget.speciality);
     SearchtextController = TextEditingController();
+    print(widget.speciality);
   }
 
   @override
@@ -128,8 +107,7 @@ class _listsdocWidgetState extends State<listsdocWidget> {
                             children: [
                               Icon(
                                 Icons.search,
-                                color:
-                                    FlutterFlowTheme.of(context).tertiaryColor,
+                                color: Color(0xFF9457FB),
                                 size: 24,
                               ),
                               Expanded(
@@ -217,8 +195,8 @@ class _listsdocWidgetState extends State<listsdocWidget> {
                                                   child: Card(
                                                     clipBehavior: Clip
                                                         .antiAliasWithSaveLayer,
-                                                    color: Colors.grey[50],
-                                                    elevation: 3,
+                                                    color: Colors.white,
+                                                    elevation: 1,
                                                     shape:
                                                         RoundedRectangleBorder(
                                                       borderRadius:
@@ -268,7 +246,7 @@ class _listsdocWidgetState extends State<listsdocWidget> {
                                                                                 width: 60,
                                                                                 height: 60,
                                                                                 decoration: BoxDecoration(
-                                                                                  color: Colors.cyan,
+                                                                                  color: FlutterFlowTheme.of(context).primaryColor,
                                                                                   shape: BoxShape.circle,
                                                                                 ),
                                                                                 child: Padding(
@@ -469,13 +447,15 @@ class _listsdocWidgetState extends State<listsdocWidget> {
                                                                           MainAxisSize
                                                                               .max,
                                                                       children: [
-                                                                        FaIcon(
-                                                                          FontAwesomeIcons
-                                                                              .mapPin,
-                                                                          color:
-                                                                              Colors.red,
-                                                                          size:
-                                                                              18,
+                                                                        Image
+                                                                            .asset(
+                                                                          'assets/images/2702604.png',
+                                                                          width:
+                                                                              20,
+                                                                          height:
+                                                                              20,
+                                                                          fit: BoxFit
+                                                                              .cover,
                                                                         ),
                                                                         Padding(
                                                                           padding: EdgeInsetsDirectional.fromSTEB(
@@ -488,9 +468,9 @@ class _listsdocWidgetState extends State<listsdocWidget> {
                                                                             '${snapshot.data[index].Adress}',
                                                                             style: FlutterFlowTheme.of(context).bodyText1.override(
                                                                                   fontFamily: 'Roboto',
-                                                                                  color: Colors.black,
+                                                                                  color: Color(0xFF8B97A2),
                                                                                   fontSize: 14,
-                                                                                  fontWeight: FontWeight.normal,
+                                                                                  fontWeight: FontWeight.w500,
                                                                                 ),
                                                                           ),
                                                                         ),
@@ -500,7 +480,7 @@ class _listsdocWidgetState extends State<listsdocWidget> {
                                                                   Padding(
                                                                     padding: EdgeInsetsDirectional
                                                                         .fromSTEB(
-                                                                            12,
+                                                                            8,
                                                                             0,
                                                                             0,
                                                                             5),
@@ -519,7 +499,7 @@ class _listsdocWidgetState extends State<listsdocWidget> {
                                                                         ),
                                                                         Padding(
                                                                           padding: EdgeInsetsDirectional.fromSTEB(
-                                                                              5,
+                                                                              3,
                                                                               0,
                                                                               0,
                                                                               0),
@@ -551,16 +531,20 @@ class _listsdocWidgetState extends State<listsdocWidget> {
                                           )
                                         : Container());
                       } else if (snapshot.hasError) {
-                        return Text('${snapshot.error}',
-                            textAlign: TextAlign.center,
-                            style:
-                                FlutterFlowTheme.of(context).bodyText2.override(
+                        return Padding(
+                            padding:
+                                EdgeInsetsDirectional.fromSTEB(0, 80, 0, 0),
+                            child: Text('No doctors',
+                                textAlign: TextAlign.center,
+                                style: FlutterFlowTheme.of(context)
+                                    .bodyText2
+                                    .override(
                                       fontFamily: 'Roboto',
                                       fontSize: 17,
                                       fontWeight: FontWeight.bold,
-                                    ));
+                                    )));
                       }
-                      return const CircularProgressIndicator();
+                      return const CircularProgressIndicator(color: Color(0xFF9457FB),);
                     }))
           ],
         ),

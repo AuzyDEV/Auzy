@@ -1,15 +1,9 @@
-import 'package:lottie/lottie.dart';
 import 'package:new_mee/apis/User_api.dart';
 import 'package:new_mee/chat/chat_page.dart';
 import 'package:new_mee/components/appBar.dart';
-import 'package:new_mee/components/chat_body_widget.dart';
-import 'package:new_mee/components/chat_header_widget.dart';
 import 'package:new_mee/components/drawer.dart';
 import 'package:new_mee/components/theme.dart';
-import 'package:new_mee/components/widgets.dart';
-import 'package:new_mee/index.dart';
 import 'package:new_mee/models/User.dart';
-import 'package:shared_preferences/shared_preferences.dart';
 import 'package:flutter/material.dart';
 
 class chatcopyWidget extends StatefulWidget {

@@ -1,27 +1,15 @@
 import 'dart:convert';
 
-import 'package:get/get.dart';
-import 'package:intl_phone_number_input/intl_phone_number_input.dart';
 import 'package:new_mee/apis/User_api.dart';
-import 'package:new_mee/apis/mailingMan.dart';
 import 'package:new_mee/apis/postMan.dart';
 import 'package:new_mee/apis/savedPostMan.dart';
 import 'package:new_mee/apis/sharedPostMan.dart';
 import 'package:new_mee/components/appBar.dart';
 import 'package:new_mee/components/drawer.dart';
-import 'package:new_mee/index.dart';
 import 'package:new_mee/models/Post.dart';
-import 'package:new_mee/models/User.dart';
-import 'package:new_mee/components/icon_button.dart';
 import 'package:new_mee/components/theme.dart';
-import 'package:new_mee/components/util.dart';
-import 'package:new_mee/components/widgets.dart';
 import 'package:flutter/material.dart';
-import 'package:google_fonts/google_fonts.dart';
-import 'package:new_mee/models/savedPost.dart';
 import 'package:new_mee/models/sharedPost.dart';
-import 'package:new_mee/posts/savedPosts_widget.dart';
-import 'package:new_mee/users/UsersListForSharePost_widget.dart';
 
 class sharedPostsByUserWidget extends StatefulWidget {
   const sharedPostsByUserWidget({Key key}) : super(key: key);

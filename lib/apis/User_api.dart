@@ -1,16 +1,11 @@
-import 'dart:html';
 import 'package:google_sign_in/google_sign_in.dart';
 import 'package:http/http.dart' as http;
 import 'dart:convert';
 import 'dart:async';
-import 'package:new_mee/models/User.dart';
-import 'package:shared_preferences/shared_preferences.dart';
-import 'package:google_sign_in/google_sign_in.dart';
-import 'package:firebase_auth/firebase_auth.dart';
-import 'package:flutter_facebook_auth/flutter_facebook_auth.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter_facebook_auth/flutter_facebook_auth.dart';
 import 'package:dart_ipify/dart_ipify.dart';
+import 'package:new_mee/models/User.dart';
 
 class UserMan {
   final FirebaseAuth _auth = FirebaseAuth.instance;
@@ -102,7 +97,6 @@ class UserMan {
     if (response.statusCode == 200) {
       // List<dynamic> body = jsonDecode(response.body);
       List body = jsonDecode(response.body);
-      print(body);
       for (int i = 0; i < body.length; i++) {
         Userslist.add(new User.fromMappp(body[i]));
       }
@@ -476,9 +470,10 @@ class UserMan {
       throw Exception("Failed to load infos");
     }
   }
+
   Future<List<User>> getAllUsersRole() async {
-    final response = await http.get(
-        Uri.parse('http://localhost:3000/api/usersrole'));
+    final response =
+        await http.get(Uri.parse('http://localhost:3000/api/usersrole'));
     if (response.statusCode == 200) {
       final parsed = jsonDecode(response.body);
       //print(parsed["posts"]);

@@ -1,12 +1,12 @@
 import 'package:new_mee/apis/User_api.dart';
 import 'package:new_mee/components/appBar.dart';
+import 'package:new_mee/components/drawer.dart';
 import 'package:new_mee/index.dart';
 import 'package:new_mee/models/User.dart';
 import 'package:new_mee/components/theme.dart';
-import 'package:new_mee/components/util.dart';
 import 'package:new_mee/components/widgets.dart';
 import 'package:flutter/material.dart';
-import 'package:google_fonts/google_fonts.dart';
+import 'package:string_validator/string_validator.dart';
 
 class editprofilWidget extends StatefulWidget {
   final String id, name, email, photourl;
@@ -59,6 +59,7 @@ class _editprofilWidgetState extends State<editprofilWidget> {
         preferredSize: const Size.fromHeight(60),
         child: appbar(text: 'Edit profil'),
       ),
+      drawer: Drawerr(),
       body: SingleChildScrollView(
           child: FutureBuilder<User>(
               future: _futureUser,
@@ -108,25 +109,54 @@ class _editprofilWidgetState extends State<editprofilWidget> {
                                           16, 10, 16, 0),
                                       child: TextFormField(
                                         controller: fullnameController,
-                                        validator: (value) => value.isEmpty
-                                            ? 'Enter your full name'
-                                            : null,
+                                        cursorColor: Color(0xFF9457FB),
+                                        keyboardType: TextInputType.text,
+                                        autovalidateMode:
+                                            AutovalidateMode.onUserInteraction,
+                                        validator: (value) {
+                                          if (value == null || value.isEmpty) {
+                                            return 'Field is required';
+                                          }
+                                          if (!isAlpha(
+                                              value.replaceAll(' ', ''))) {
+                                            return 'Requires only characters';
+                                          }
+                                          if (value.length < 3) {
+                                            return 'Requires at least 3 characters.';
+                                          }
+                                          return null;
+                                        },
                                         obscureText: false,
                                         decoration: InputDecoration(
-                                          hintText: 'Enter your full name...',
-                                          hintStyle:
+                                          errorStyle:
                                               FlutterFlowTheme.of(context)
                                                   .bodyText1
                                                   .override(
                                                     fontFamily: 'Roboto',
-                                                    color: Color(0xFF9DA3A9),
-                                                    fontSize: 14,
+                                                    color: Colors.red,
                                                     fontWeight:
                                                         FontWeight.normal,
                                                   ),
+                                          focusedErrorBorder:
+                                              OutlineInputBorder(
+                                            borderSide: BorderSide(
+                                              color: Colors.red,
+                                              width: 1,
+                                            ),
+                                            borderRadius:
+                                                BorderRadius.circular(8),
+                                          ),
+                                          errorBorder: OutlineInputBorder(
+                                            borderSide: BorderSide(
+                                              color: Colors.red,
+                                              width: 1,
+                                            ),
+                                            borderRadius:
+                                                BorderRadius.circular(8),
+                                          ),
                                           enabledBorder: OutlineInputBorder(
                                             borderSide: BorderSide(
-                                              color: Color(0xFF9DA3A9),
+                                              color: Color(0x988B97A2),
                                               width: 1,
                                             ),
                                             borderRadius:
@@ -134,17 +164,15 @@ class _editprofilWidgetState extends State<editprofilWidget> {
                                           ),
                                           focusedBorder: OutlineInputBorder(
                                             borderSide: BorderSide(
-                                              color: Color(0xFF9DA3A9),
+                                              color: Color(0x988B97A2),
                                               width: 1,
                                             ),
                                             borderRadius:
                                                 BorderRadius.circular(8),
                                           ),
-                                          filled: true,
-                                          fillColor: Colors.white,
                                           contentPadding:
                                               EdgeInsetsDirectional.fromSTEB(
-                                                  20, 16, 20, 16),
+                                                  12, 0, 12, 0),
                                         ),
                                         style: FlutterFlowTheme.of(context)
                                             .bodyText1
@@ -181,25 +209,43 @@ class _editprofilWidgetState extends State<editprofilWidget> {
                                           16, 10, 16, 0),
                                       child: TextFormField(
                                         controller: photourlController,
+                                        cursorColor: Color(0xFF9457FB),
+                                        autovalidateMode:
+                                            AutovalidateMode.onUserInteraction,
                                         validator: (value) => value.isEmpty
-                                            ? 'Enter your photo url'
+                                            ? 'Filed is required'
                                             : null,
                                         obscureText: false,
                                         decoration: InputDecoration(
-                                          hintText: 'Enter your photo url...',
-                                          hintStyle:
+                                          errorStyle:
                                               FlutterFlowTheme.of(context)
                                                   .bodyText1
                                                   .override(
                                                     fontFamily: 'Roboto',
-                                                    color: Color(0xFF9DA3A9),
-                                                    fontSize: 14,
+                                                    color: Colors.red,
                                                     fontWeight:
                                                         FontWeight.normal,
                                                   ),
+                                          focusedErrorBorder:
+                                              OutlineInputBorder(
+                                            borderSide: BorderSide(
+                                              color: Colors.red,
+                                              width: 1,
+                                            ),
+                                            borderRadius:
+                                                BorderRadius.circular(8),
+                                          ),
+                                          errorBorder: OutlineInputBorder(
+                                            borderSide: BorderSide(
+                                              color: Colors.red,
+                                              width: 1,
+                                            ),
+                                            borderRadius:
+                                                BorderRadius.circular(8),
+                                          ),
                                           enabledBorder: OutlineInputBorder(
                                             borderSide: BorderSide(
-                                              color: Color(0xFF9DA3A9),
+                                              color: Color(0x988B97A2),
                                               width: 1,
                                             ),
                                             borderRadius:
@@ -207,17 +253,15 @@ class _editprofilWidgetState extends State<editprofilWidget> {
                                           ),
                                           focusedBorder: OutlineInputBorder(
                                             borderSide: BorderSide(
-                                              color: Color(0xFF9DA3A9),
+                                              color: Color(0x988B97A2),
                                               width: 1,
                                             ),
                                             borderRadius:
                                                 BorderRadius.circular(8),
                                           ),
-                                          filled: true,
-                                          fillColor: Colors.white,
                                           contentPadding:
                                               EdgeInsetsDirectional.fromSTEB(
-                                                  20, 16, 20, 16),
+                                                  12, 0, 12, 0),
                                         ),
                                         style: FlutterFlowTheme.of(context)
                                             .bodyText1
@@ -254,27 +298,43 @@ class _editprofilWidgetState extends State<editprofilWidget> {
                                           16, 10, 16, 0),
                                       child: TextFormField(
                                         controller: emailAddressController,
+                                        cursorColor: Color(0xFF9457FB),
                                         validator: (value) => value.isEmpty
-                                            ? 'Enter your email'
+                                            ? 'Field is required'
                                             : (emailReg.hasMatch(value)
                                                 ? null
                                                 : 'Enter a Valid email'),
                                         obscureText: false,
                                         decoration: InputDecoration(
-                                          hintText: 'Enter your email...',
-                                          hintStyle:
+                                          errorStyle:
                                               FlutterFlowTheme.of(context)
                                                   .bodyText1
                                                   .override(
                                                     fontFamily: 'Roboto',
-                                                    color: Color(0xFF9DA3A9),
-                                                    fontSize: 14,
+                                                    color: Colors.red,
                                                     fontWeight:
                                                         FontWeight.normal,
                                                   ),
+                                          focusedErrorBorder:
+                                              OutlineInputBorder(
+                                            borderSide: BorderSide(
+                                              color: Colors.red,
+                                              width: 1,
+                                            ),
+                                            borderRadius:
+                                                BorderRadius.circular(8),
+                                          ),
+                                          errorBorder: OutlineInputBorder(
+                                            borderSide: BorderSide(
+                                              color: Colors.red,
+                                              width: 1,
+                                            ),
+                                            borderRadius:
+                                                BorderRadius.circular(8),
+                                          ),
                                           enabledBorder: OutlineInputBorder(
                                             borderSide: BorderSide(
-                                              color: Color(0xFF9DA3A9),
+                                              color: Color(0x988B97A2),
                                               width: 1,
                                             ),
                                             borderRadius:
@@ -282,17 +342,15 @@ class _editprofilWidgetState extends State<editprofilWidget> {
                                           ),
                                           focusedBorder: OutlineInputBorder(
                                             borderSide: BorderSide(
-                                              color: Color(0xFF9DA3A9),
+                                              color: Color(0x988B97A2),
                                               width: 1,
                                             ),
                                             borderRadius:
                                                 BorderRadius.circular(8),
                                           ),
-                                          filled: true,
-                                          fillColor: Colors.white,
                                           contentPadding:
                                               EdgeInsetsDirectional.fromSTEB(
-                                                  20, 16, 20, 16),
+                                                  12, 0, 12, 0),
                                         ),
                                         style: FlutterFlowTheme.of(context)
                                             .bodyText1
@@ -342,7 +400,7 @@ class _editprofilWidgetState extends State<editprofilWidget> {
                                                               content: Text(
                                                                   "updating infos completed successfully!"),
                                                               actions: [
-                                                                FlatButton(
+                                                                ElevatedButton(
                                                                   child: Text(
                                                                       "ok"),
                                                                   onPressed:
@@ -371,7 +429,7 @@ class _editprofilWidgetState extends State<editprofilWidget> {
                                                               content: Text(
                                                                   "$response"),
                                                               actions: [
-                                                                FlatButton(
+                                                                ElevatedButton(
                                                                   child: Text(
                                                                       "Ok"),
                                                                   onPressed:
@@ -423,7 +481,10 @@ class _editprofilWidgetState extends State<editprofilWidget> {
                 }
 
                 // By default, show a loading spinner.
-                return Center(child: const CircularProgressIndicator());
+                return Center(
+                    child: const CircularProgressIndicator(
+                  color: Color(0xFF9457FB),
+                ));
               })),
     );
   }

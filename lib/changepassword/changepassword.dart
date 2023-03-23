@@ -2,12 +2,9 @@ import 'package:new_mee/apis/User_api.dart';
 import 'package:new_mee/components/appBar.dart';
 import 'package:new_mee/index.dart';
 import 'package:new_mee/models/User.dart';
-import 'package:new_mee/components/icon_button.dart';
 import 'package:new_mee/components/theme.dart';
-import 'package:new_mee/components/util.dart';
 import 'package:new_mee/components/widgets.dart';
 import 'package:flutter/material.dart';
-import 'package:google_fonts/google_fonts.dart';
 
 class changePasswordWidget extends StatefulWidget {
   const changePasswordWidget({Key key}) : super(key: key);
@@ -99,26 +96,41 @@ class _changePasswordWidgetState extends State<changePasswordWidget> {
                                         controller: passwordController,
                                         validator: (value) {
                                           if (value == null || value.isEmpty) {
-                                            return 'Please enter your password';
+                                            return 'Field is required';
                                           }
                                           return null;
                                         },
                                         obscureText: !passwordVisibility,
                                         decoration: InputDecoration(
-                                          hintText: 'Enter your password...',
-                                          hintStyle:
+                                          errorStyle:
                                               FlutterFlowTheme.of(context)
                                                   .bodyText1
                                                   .override(
                                                     fontFamily: 'Roboto',
-                                                    color: Color(0xFF9DA3A9),
-                                                    fontSize: 14,
+                                                    color: Colors.red,
                                                     fontWeight:
                                                         FontWeight.normal,
                                                   ),
+                                          focusedErrorBorder:
+                                              OutlineInputBorder(
+                                            borderSide: BorderSide(
+                                              color: Colors.red,
+                                              width: 1,
+                                            ),
+                                            borderRadius:
+                                                BorderRadius.circular(8),
+                                          ),
+                                          errorBorder: OutlineInputBorder(
+                                            borderSide: BorderSide(
+                                              color: Colors.red,
+                                              width: 1,
+                                            ),
+                                            borderRadius:
+                                                BorderRadius.circular(8),
+                                          ),
                                           enabledBorder: OutlineInputBorder(
                                             borderSide: BorderSide(
-                                              color: Color(0xFF9DA3A9),
+                                              color: Color(0x988B97A2),
                                               width: 1,
                                             ),
                                             borderRadius:
@@ -126,33 +138,15 @@ class _changePasswordWidgetState extends State<changePasswordWidget> {
                                           ),
                                           focusedBorder: OutlineInputBorder(
                                             borderSide: BorderSide(
-                                              color: Color(0xFF9DA3A9),
+                                              color: Color(0x988B97A2),
                                               width: 1,
                                             ),
                                             borderRadius:
                                                 BorderRadius.circular(8),
                                           ),
-                                          filled: true,
-                                          fillColor: Colors.white,
                                           contentPadding:
                                               EdgeInsetsDirectional.fromSTEB(
-                                                  20, 16, 20, 16),
-                                          suffixIcon: InkWell(
-                                            onTap: () => setState(
-                                              () => passwordVisibility =
-                                                  !passwordVisibility,
-                                            ),
-                                            focusNode:
-                                                FocusNode(skipTraversal: true),
-                                            child: Icon(
-                                              passwordVisibility
-                                                  ? Icons.visibility_outlined
-                                                  : Icons
-                                                      .visibility_off_outlined,
-                                              color: Color(0xFF9DA3A9),
-                                              size: 20,
-                                            ),
-                                          ),
+                                                  12, 0, 12, 0),
                                         ),
                                         style: FlutterFlowTheme.of(context)
                                             .bodyText1
@@ -197,17 +191,42 @@ class _changePasswordWidgetState extends State<changePasswordWidget> {
                                       child: TextFormField(
                                         controller: passwordController1,
                                         validator: (value) => value.isEmpty
-                                            ? 'Enter Your new password'
+                                            ? 'Field is required'
                                             : (value != passwordController.text
                                                 ? 'Please confirm your password'
                                                 : null),
                                         obscureText: !passwordVisibility1,
                                         decoration: InputDecoration(
-                                          hintText: 'Confirm your password',
+                                          errorStyle:
+                                              FlutterFlowTheme.of(context)
+                                                  .bodyText1
+                                                  .override(
+                                                    fontFamily: 'Roboto',
+                                                    color: Colors.red,
+                                                    fontWeight:
+                                                        FontWeight.normal,
+                                                  ),
+                                          focusedErrorBorder:
+                                              OutlineInputBorder(
+                                            borderSide: BorderSide(
+                                              color: Colors.red,
+                                              width: 1,
+                                            ),
+                                            borderRadius:
+                                                BorderRadius.circular(8),
+                                          ),
+                                          errorBorder: OutlineInputBorder(
+                                            borderSide: BorderSide(
+                                              color: Colors.red,
+                                              width: 1,
+                                            ),
+                                            borderRadius:
+                                                BorderRadius.circular(8),
+                                          ),
                                           enabledBorder: OutlineInputBorder(
                                             borderSide: BorderSide(
                                               color: Color(0x988B97A2),
-                                              width: 2,
+                                              width: 1,
                                             ),
                                             borderRadius:
                                                 BorderRadius.circular(8),
@@ -215,7 +234,7 @@ class _changePasswordWidgetState extends State<changePasswordWidget> {
                                           focusedBorder: OutlineInputBorder(
                                             borderSide: BorderSide(
                                               color: Color(0x988B97A2),
-                                              width: 2,
+                                              width: 1,
                                             ),
                                             borderRadius:
                                                 BorderRadius.circular(8),
@@ -223,24 +242,6 @@ class _changePasswordWidgetState extends State<changePasswordWidget> {
                                           contentPadding:
                                               EdgeInsetsDirectional.fromSTEB(
                                                   12, 0, 12, 0),
-                                          suffixIcon: InkWell(
-                                            onTap: () => setState(
-                                              () => passwordVisibility1 =
-                                                  !passwordVisibility1,
-                                            ),
-                                            focusNode:
-                                                FocusNode(skipTraversal: true),
-                                            child: Icon(
-                                              passwordVisibility1
-                                                  ? Icons.visibility_outlined
-                                                  : Icons
-                                                      .visibility_off_outlined,
-                                              color:
-                                                  FlutterFlowTheme.of(context)
-                                                      .secondaryText,
-                                              size: 22,
-                                            ),
-                                          ),
                                         ),
                                         style: FlutterFlowTheme.of(context)
                                             .bodyText1
@@ -286,7 +287,7 @@ class _changePasswordWidgetState extends State<changePasswordWidget> {
                                                               content: Text(
                                                                   "updating infos completed successfully!"),
                                                               actions: [
-                                                                FlatButton(
+                                                                FloatingActionButton(
                                                                   child: Text(
                                                                       "ok"),
                                                                   onPressed:
@@ -315,7 +316,7 @@ class _changePasswordWidgetState extends State<changePasswordWidget> {
                                                               content: Text(
                                                                   "$response"),
                                                               actions: [
-                                                                FlatButton(
+                                                                FloatingActionButton(
                                                                   child: Text(
                                                                       "Ok"),
                                                                   onPressed:

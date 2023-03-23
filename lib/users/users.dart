@@ -1,17 +1,10 @@
 import 'package:new_mee/apis/User_api.dart';
 import 'package:new_mee/components/appBar.dart';
 import 'package:new_mee/components/drawer.dart';
-import 'package:new_mee/home/home_widget.dart';
 import 'package:new_mee/index.dart';
-import 'package:new_mee/models/User.dart';
-import 'package:shared_preferences/shared_preferences.dart';
 import 'package:new_mee/components/theme.dart';
-import 'package:new_mee/components/util.dart';
 import 'package:new_mee/components/widgets.dart';
-import 'package:new_mee/main.dart';
 import 'package:flutter/material.dart';
-import 'package:font_awesome_flutter/font_awesome_flutter.dart';
-import 'package:google_fonts/google_fonts.dart';
 
 class UsersWidget extends StatefulWidget {
   const UsersWidget({Key key}) : super(key: key);
@@ -76,7 +69,10 @@ class _UsersWidgetState extends State<UsersWidget>
               children: [
                 Card(
                   child: ListTile(
-                    leading: const Icon(Icons.search),
+                    leading: const Icon(
+                      Icons.search,
+                      color: Color(0xFF9457FB),
+                    ),
                     title: TextField(
                         controller: searchController,
                         decoration: const InputDecoration(
@@ -131,12 +127,12 @@ class _UsersWidgetState extends State<UsersWidget>
                                             content: Text(
                                                 'Are you sure to delete this user ?'),
                                             actions: [
-                                              TextButton(
+                                              ElevatedButton(
                                                 onPressed: () => Navigator.pop(
                                                     alertDialogContext, false),
                                                 child: Text('Cancel'),
                                               ),
-                                              TextButton(
+                                              ElevatedButton(
                                                 onPressed: () => {
                                                   api.deleteAllUsers(),
                                                   Navigator.push(
@@ -172,16 +168,16 @@ class _UsersWidgetState extends State<UsersWidget>
                                 text: 'Delete all users',
                                 options: FFButtonOptions(
                                   height: 45,
-                                  color: Colors.grey[100],
+                                  color: Colors.white,
                                   textStyle: FlutterFlowTheme.of(context)
                                       .subtitle2
                                       .override(
                                         fontFamily: 'Roboto',
-                                        color: Color(0xff132137),
+                                        color: Color(0xFF9457FB),
                                         fontWeight: FontWeight.normal,
                                       ),
                                   borderSide: BorderSide(
-                                    color: Colors.grey,
+                                    color: Color(0xFF9457FB),
                                     width: 1,
                                   ),
                                 ),
@@ -292,12 +288,12 @@ class _UsersWidgetState extends State<UsersWidget>
                                             content: Text(
                                                 'Are you sure to delete this user ?'),
                                             actions: [
-                                              TextButton(
+                                              ElevatedButton(
                                                 onPressed: () => Navigator.pop(
                                                     alertDialogContext, false),
                                                 child: Text('Cancel'),
                                               ),
-                                              TextButton(
+                                              ElevatedButton(
                                                 onPressed: () => {
                                                   api.deleteUser(
                                                       e.id.toString()),
@@ -403,14 +399,14 @@ class _UsersWidgetState extends State<UsersWidget>
                                                   content: Text(
                                                       'Are you sure to block this user ?'),
                                                   actions: [
-                                                    TextButton(
+                                                    ElevatedButton(
                                                       onPressed: () =>
                                                           Navigator.pop(
                                                               alertDialogContext,
                                                               false),
                                                       child: Text('Cancel'),
                                                     ),
-                                                    TextButton(
+                                                    ElevatedButton(
                                                       onPressed: () => {
                                                         api.BlockUser(
                                                             e.id.toString()),
@@ -485,14 +481,14 @@ class _UsersWidgetState extends State<UsersWidget>
                                                   content: Text(
                                                       'Are you sure to restore this user ?'),
                                                   actions: [
-                                                    TextButton(
+                                                    ElevatedButton(
                                                       onPressed: () =>
                                                           Navigator.pop(
                                                               alertDialogContext,
                                                               false),
                                                       child: Text('Cancel'),
                                                     ),
-                                                    TextButton(
+                                                    ElevatedButton(
                                                       onPressed: () => {
                                                         api.RestoreUser(
                                                             e.id.toString()),

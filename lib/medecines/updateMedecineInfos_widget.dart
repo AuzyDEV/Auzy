@@ -1,21 +1,12 @@
-import 'dart:html';
-import 'dart:typed_data';
 
-import 'package:firebase_storage/firebase_storage.dart';
-import 'package:intl_phone_number_input/intl_phone_number_input.dart';
-import 'package:new_mee/apis/User_api.dart';
-import 'package:new_mee/apis/mailingMan.dart';
 import 'package:new_mee/apis/medecineMan.dart';
 import 'package:new_mee/components/appBar.dart';
 import 'package:new_mee/components/drawer.dart';
 import 'package:new_mee/index.dart';
-import 'package:new_mee/models/User.dart';
-import 'package:new_mee/components/icon_button.dart';
 import 'package:new_mee/components/theme.dart';
 import 'package:new_mee/components/util.dart';
 import 'package:new_mee/components/widgets.dart';
 import 'package:flutter/material.dart';
-import 'package:google_fonts/google_fonts.dart';
 
 class updateMedecineWidget extends StatefulWidget {
   final String id, name, desciption, productionDate, expDate, type;
@@ -490,7 +481,7 @@ class _updateMedecineWidgetState extends State<updateMedecineWidget> {
                                                     content: Text(
                                                         "medecine was added successfully"),
                                                     actions: [
-                                                      FlatButton(
+                                                      ElevatedButton(
                                                         child: Text("Ok"),
                                                         onPressed: () async {
                                                           await Navigator.push(
@@ -514,7 +505,7 @@ class _updateMedecineWidgetState extends State<updateMedecineWidget> {
                                                     content: Text(
                                                         "Error when updating medecine"),
                                                     actions: [
-                                                      FlatButton(
+                                                      ElevatedButton(
                                                         child: Text("Ok"),
                                                         onPressed: () async {
                                                           await Navigator.push(

@@ -1,9 +1,7 @@
 import 'package:flutter/material.dart';
-import 'package:flutter/services.dart';
 import 'package:new_mee/apis/firebase_api.dart';
-import 'package:emoji_picker_flutter/emoji_picker_flutter.dart';
-import 'package:flutter/foundation.dart' as foundation;
-import 'package:emoji_chooser/emoji_chooser.dart';
+//import 'package:emoji_picker_flutter/emoji_picker_flutter.dart';
+//import 'package:emoji_chooser/emoji_chooser.dart';
 
 class NewMessageWidget extends StatefulWidget {
   final String idUser;
@@ -21,7 +19,7 @@ class _NewMessageWidgetState extends State<NewMessageWidget> {
   final _controller = TextEditingController();
   String message = '';
   bool isShowSticker;
-  EmojiData _emojiData;
+  // EmojiData _emojiData;
   void sendMessage() async {
     FocusScope.of(context).unfocus();
     await FirebaseApi.uploadMessage(widget.idUser, message);
@@ -62,7 +60,7 @@ class _NewMessageWidgetState extends State<NewMessageWidget> {
                       builder: (BuildContext subcontext) {
                         return Container(
                           height: 266,
-                          child: EmojiChooser(
+                          /*child: EmojiChooser(
                             onSelected: (emoji) {
                               print(emoji.toString());
                               Navigator.of(subcontext).pop(emoji);
@@ -73,7 +71,7 @@ class _NewMessageWidgetState extends State<NewMessageWidget> {
                                 print(_emojiData.char);
                               });
                             },
-                          ),
+                          ),*/
                         );
                       },
                     );
@@ -133,7 +131,7 @@ class _NewMessageWidgetState extends State<NewMessageWidget> {
         /*(isShowSticker ? buildSticker() : Container()),*/
       ]);
 }
-
+/*
 Widget buildSticker() {
   return EmojiPicker(
       config: Config(
@@ -165,4 +163,4 @@ Widget buildSticker() {
     categoryIcons: const CategoryIcons(),
     buttonMode: ButtonMode.MATERIAL,
   ));
-}
+}*/

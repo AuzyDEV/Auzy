@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:new_mee/components/theme.dart';
 
 class SplashView extends StatefulWidget {
   final AnimationController animationController;
@@ -27,25 +28,83 @@ class _SplashViewState extends State<SplashView> {
       child: SingleChildScrollView(
         child: Column(
           children: [
-            SizedBox(
-              width: MediaQuery.of(context).size.width,
-              /* child: Image.asset(
-                '../assets/introduction_animation/introduction_image.png',
-                fit: BoxFit.cover,
-              ),*/
-            ),
             Padding(
-              padding: EdgeInsets.only(top: 250.0, bottom: 8.0),
+              padding: EdgeInsets.only(top: 80.0, bottom: 15.0),
               child: Text(
                 "Welcome !",
                 style: TextStyle(fontSize: 25.0, fontWeight: FontWeight.bold),
               ),
             ),
             Padding(
-              padding: EdgeInsets.only(left: 64, right: 64),
-              child: Text(
-                "Lorem ipsum dolor sit amet,consectetur adipiscing elit,sed do eiusmod tempor incididunt ut labore",
-                textAlign: TextAlign.center,
+              padding: EdgeInsetsDirectional.fromSTEB(0, 0, 0, 12),
+              child: Column(
+                mainAxisSize: MainAxisSize.max,
+                mainAxisAlignment: MainAxisAlignment.center,
+                children: [
+                  ClipRRect(
+                    borderRadius: BorderRadius.circular(12),
+                    child: Image.asset(
+                      '../assets/introduction_animation/final-home.png',
+                      width: 350,
+                      height: 300,
+                      fit: BoxFit.contain,
+                    ),
+                  ),
+                  Padding(
+                    padding: EdgeInsetsDirectional.fromSTEB(24, 25, 24, 0),
+                    child: Row(
+                      mainAxisAlignment: MainAxisAlignment.center,
+                      children: [
+                        Center(
+                          child: Text.rich(
+                            TextSpan(
+                              text: 'Helping ',
+                              style: FlutterFlowTheme.of(context)
+                                  .bodyText1
+                                  .override(
+                                      fontFamily: 'Open Sans',
+                                      color: Color(0xFF9457FB),
+                                      fontSize: 21,
+                                      fontWeight: FontWeight.bold),
+                              children: <TextSpan>[
+                                TextSpan(
+                                  text: 'children with',
+                                  style: FlutterFlowTheme.of(context)
+                                      .bodyText1
+                                      .override(
+                                          fontFamily: 'Open Sans',
+                                          color: Color(0xFF101213),
+                                          fontSize: 18,
+                                          fontWeight: FontWeight.bold),
+                                ),
+                              ],
+                            ),
+                          ),
+                        ),
+                      ],
+                    ),
+                  ),
+                  Padding(
+                    padding: EdgeInsetsDirectional.fromSTEB(24, 8, 24, 0),
+                    child: Row(
+                      mainAxisAlignment: MainAxisAlignment.center,
+                      children: [
+                        Center(
+                          child: Text(
+                            'neurodevelopmental disorders.',
+                            style: FlutterFlowTheme.of(context)
+                                .bodyText1
+                                .override(
+                                    fontFamily: 'Open Sans',
+                                    color: Color(0xFF101213),
+                                    fontSize: 18,
+                                    fontWeight: FontWeight.bold),
+                          ),
+                        ),
+                      ],
+                    ),
+                  ),
+                ],
               ),
             ),
             SizedBox(

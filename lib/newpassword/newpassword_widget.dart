@@ -1,15 +1,5 @@
 import 'package:firebase_messaging/firebase_messaging.dart';
-import 'package:new_mee/apis/User_api.dart';
-import 'package:new_mee/home/home_widget.dart';
-import 'package:new_mee/index.dart';
-import 'package:new_mee/apis/User_api.dart';
-import '../components/theme.dart';
-import '../components/util.dart';
-import '../components/widgets.dart';
-import 'package:badges/badges.dart';
 import 'package:flutter/material.dart';
-import 'package:font_awesome_flutter/font_awesome_flutter.dart';
-import 'package:google_fonts/google_fonts.dart';
 
 class Application extends StatefulWidget {
   @override

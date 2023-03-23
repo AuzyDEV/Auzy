@@ -1,22 +1,7 @@
-import 'package:flutter_svg/svg.dart';
-import 'package:new_mee/apis/User_api.dart';
-import 'package:new_mee/components/appBar.dart';
 import 'package:new_mee/components/drawer.dart';
+import 'package:new_mee/doctors/doctorsListing_widget.dart';
 import 'package:new_mee/index.dart';
-import 'package:new_mee/mailing/annoucement.dart';
-import 'package:new_mee/models/User.dart';
-import 'package:shared_preferences/shared_preferences.dart';
-import 'package:new_mee/components/theme.dart';
-import 'package:new_mee/components/util.dart';
-import 'package:new_mee/components/widgets.dart';
-import 'package:new_mee/main.dart';
 import 'package:flutter/material.dart';
-import 'package:font_awesome_flutter/font_awesome_flutter.dart';
-import 'package:google_fonts/google_fonts.dart';
-import 'package:emoji_picker_flutter/emoji_picker_flutter.dart';
-import 'package:flutter/foundation.dart' as foundation;
-import 'package:emoji_chooser/emoji_chooser.dart';
-import 'package:syncfusion_flutter_pdfviewer/pdfviewer.dart';
 
 class welcomeWidget extends StatefulWidget {
   const welcomeWidget({Key key}) : super(key: key);
@@ -48,12 +33,14 @@ class _welcomeWidgetState extends State<welcomeWidget> {
   final List<Widget> _pagesUser = [
     MenuWidget(),
     postsForUsersWidget(),
-    MyprofilWidget(),
+    listsdocWidget(),
+    MyprofilWidget()
   ];
   final List<Widget> _pagesAdmin = [
     MenuWidget(),
     PostsManagementWidget(),
-    MyprofilWidget(),
+    listsdocWidget(),
+    MyprofilWidget()
   ];
   int _currentIndex = 0;
   @override
@@ -64,6 +51,7 @@ class _welcomeWidgetState extends State<welcomeWidget> {
           : _pagesUser[_currentIndex],
       bottomNavigationBar: BottomNavigationBar(
         fixedColor: Color(0xff132137),
+        unselectedItemColor: Colors.grey,
         currentIndex: _currentIndex,
         onTap: (index) => setState(() => _currentIndex = index),
         items: [
@@ -74,9 +62,19 @@ class _welcomeWidgetState extends State<welcomeWidget> {
             label: 'Home',
           ),
           BottomNavigationBarItem(
-              icon: Icon(Icons.favorite_sharp), label: 'Posts'),
+              icon: Icon(
+                Icons.favorite_sharp,
+              ),
+              label: 'Posts'),
           BottomNavigationBarItem(
-            icon: Icon(Icons.person_sharp),
+              icon: Icon(
+                Icons.person_search,
+              ),
+              label: 'Doctors'),
+          BottomNavigationBarItem(
+            icon: Icon(
+              Icons.person_sharp,
+            ),
             label: "Profile",
           ),
         ],

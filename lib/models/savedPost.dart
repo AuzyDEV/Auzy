@@ -2,7 +2,6 @@ import 'dart:convert';
 
 import 'package:new_mee/models/File.dart';
 
-import '../components/util.dart';
 
 List<savedPost> savedPostFromJson(String str) =>
     List<savedPost>.from(json.decode(str).map((x) => savedPost.fromMap(x)));

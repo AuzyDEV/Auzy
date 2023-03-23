@@ -1,7 +1,5 @@
 import 'dart:math';
-import 'dart:ui';
 
-import 'package:flutter/animation.dart';
 import 'package:flutter/material.dart';
 
 enum AnimationTrigger {
@@ -11,7 +9,7 @@ enum AnimationTrigger {
 
 class AnimationState {
   AnimationState({
-    this.offset = const Offset(0, 0),
+    this.offset = Offset.zero,
     this.opacity = 1,
     this.scale = 1,
   });

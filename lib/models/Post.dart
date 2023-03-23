@@ -73,7 +73,7 @@ class Post {
     return Post(
       title: (json["data"]["title"] ?? ''),
       contenu: (json["data"]["contenu"] ?? ''),
-      date: DateFormat('dd MMM yyyy HH:mm:ss')
+      date: DateFormat('dd MMM yyyy HH:mm')
           .format(DateTime.fromMillisecondsSinceEpoch(
               (json["data"]["date"]["seconds"] * 1000 +
                   json["data"]["date"]["nanoseconds"] ~/ 1000000)))

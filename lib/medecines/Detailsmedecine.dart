@@ -249,7 +249,7 @@ class _medecineDetailsWidgetState extends State<medecineDetailsWidget> {
                                                           content: Text(
                                                               'Are you sure to delete this medecine?'),
                                                           actions: [
-                                                            TextButton(
+                                                            ElevatedButton(
                                                               onPressed: () =>
                                                                   Navigator.pop(
                                                                       alertDialogContext,
@@ -257,7 +257,7 @@ class _medecineDetailsWidgetState extends State<medecineDetailsWidget> {
                                                               child: Text(
                                                                   'Cancel'),
                                                             ),
-                                                            TextButton(
+                                                            ElevatedButton(
                                                               onPressed: () => {
                                                                 apimed
                                                                     .deleteMedecine(

@@ -2,7 +2,6 @@ import 'dart:convert';
 
 import 'package:new_mee/models/File.dart';
 
-import '../components/util.dart';
 
 List<Medecine> MedecineFromJson(String str) =>
     List<Medecine>.from(json.decode(str).map((x) => Medecine.fromMap(x)));

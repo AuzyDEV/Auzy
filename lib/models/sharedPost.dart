@@ -1,8 +1,6 @@
 import 'dart:convert';
 
-import 'package:new_mee/models/File.dart';
 
-import '../components/util.dart';
 
 List<sharedPost> sharedPostFromJson(String str) =>
     List<sharedPost>.from(json.decode(str).map((x) => sharedPost.fromMap(x)));

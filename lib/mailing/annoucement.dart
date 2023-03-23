@@ -1,16 +1,11 @@
 import 'package:intl_phone_number_input/intl_phone_number_input.dart';
-import 'package:new_mee/apis/User_api.dart';
 import 'package:new_mee/apis/mailingMan.dart';
 import 'package:new_mee/components/appBar.dart';
 import 'package:new_mee/components/drawer.dart';
 import 'package:new_mee/index.dart';
-import 'package:new_mee/models/User.dart';
-import 'package:new_mee/components/icon_button.dart';
 import 'package:new_mee/components/theme.dart';
-import 'package:new_mee/components/util.dart';
 import 'package:new_mee/components/widgets.dart';
 import 'package:flutter/material.dart';
-import 'package:google_fonts/google_fonts.dart';
 
 class announcementWidget extends StatefulWidget {
   const announcementWidget({Key key}) : super(key: key);
@@ -54,7 +49,7 @@ class _announcementWidgetState extends State<announcementWidget> {
         backgroundColor: Colors.white,
         appBar: PreferredSize(
           preferredSize: const Size.fromHeight(60),
-          child: appbar(text: 'Contact us'),
+          child: appbar(text: 'Annoucement'),
         ),
         drawer: Drawerr(),
         body: Column(
@@ -100,10 +95,46 @@ class _announcementWidgetState extends State<announcementWidget> {
                             child: TextFormField(
                               controller: messageController,
                               maxLines: 8,
+                              cursorColor: Color(0xFF9457FB),
                               validator: (value) =>
-                                  value.isEmpty ? 'Enter your message' : null,
+                                  value.isEmpty ? 'Field is required' : null,
                               obscureText: false,
                               decoration: InputDecoration(
+                                errorStyle: FlutterFlowTheme.of(context)
+                                    .bodyText1
+                                    .override(
+                                      fontFamily: 'Roboto',
+                                      color: Colors.red,
+                                      fontWeight: FontWeight.normal,
+                                    ),
+                                focusedErrorBorder: OutlineInputBorder(
+                                  borderSide: BorderSide(
+                                    color: Colors.red,
+                                    width: 1,
+                                  ),
+                                  borderRadius: BorderRadius.circular(8),
+                                ),
+                                errorBorder: OutlineInputBorder(
+                                  borderSide: BorderSide(
+                                    color: Colors.red,
+                                    width: 1,
+                                  ),
+                                  borderRadius: BorderRadius.circular(8),
+                                ),
+                                enabledBorder: OutlineInputBorder(
+                                  borderSide: BorderSide(
+                                    color: Color(0x988B97A2),
+                                    width: 1,
+                                  ),
+                                  borderRadius: BorderRadius.circular(8),
+                                ),
+                                focusedBorder: OutlineInputBorder(
+                                  borderSide: BorderSide(
+                                    color: Color(0x988B97A2),
+                                    width: 1,
+                                  ),
+                                  borderRadius: BorderRadius.circular(8),
+                                ),
                                 hintText: 'Enter your message...',
                                 hintStyle: FlutterFlowTheme.of(context)
                                     .bodyText1
@@ -113,20 +144,6 @@ class _announcementWidgetState extends State<announcementWidget> {
                                       fontSize: 14,
                                       fontWeight: FontWeight.normal,
                                     ),
-                                enabledBorder: OutlineInputBorder(
-                                  borderSide: BorderSide(
-                                    color: Color(0xFF9DA3A9),
-                                    width: 1,
-                                  ),
-                                  borderRadius: BorderRadius.circular(8),
-                                ),
-                                focusedBorder: OutlineInputBorder(
-                                  borderSide: BorderSide(
-                                    color: Color(0xFF9DA3A9),
-                                    width: 1,
-                                  ),
-                                  borderRadius: BorderRadius.circular(8),
-                                ),
                                 filled: true,
                                 fillColor: Colors.white,
                                 contentPadding: EdgeInsetsDirectional.fromSTEB(
@@ -165,13 +182,13 @@ class _announcementWidgetState extends State<announcementWidget> {
                                             ? showDialog(
                                                 context: context,
                                                 builder:
-                                                  (BuildContext context) {
+                                                    (BuildContext context) {
                                                   return AlertDialog(
                                                     title: Text("Succes!"),
                                                     content: Text(
                                                         "Email was sent successfully"),
                                                     actions: [
-                                                      FlatButton(
+                                                      ElevatedButton(
                                                         child: Text("Ok"),
                                                         onPressed: () async {
                                                           await Navigator.push(
@@ -194,7 +211,7 @@ class _announcementWidgetState extends State<announcementWidget> {
                                                     title: Text("Error"),
                                                     content: Text("$response"),
                                                     actions: [
-                                                      FlatButton(
+                                                      ElevatedButton(
                                                         child: Text("Ok"),
                                                         onPressed: () {
                                                           Navigator.of(context)

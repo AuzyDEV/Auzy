@@ -1,16 +1,11 @@
-import 'package:lottie/lottie.dart';
 import 'package:new_mee/apis/User_api.dart';
 import 'package:new_mee/apis/sharedPostMan.dart';
-import 'package:new_mee/chat/chat_page.dart';
 import 'package:new_mee/components/appBar.dart';
-import 'package:new_mee/components/chat_body_widget.dart';
-import 'package:new_mee/components/chat_header_widget.dart';
 import 'package:new_mee/components/drawer.dart';
 import 'package:new_mee/components/theme.dart';
 import 'package:new_mee/components/widgets.dart';
 import 'package:new_mee/index.dart';
 import 'package:new_mee/models/User.dart';
-import 'package:shared_preferences/shared_preferences.dart';
 import 'package:flutter/material.dart';
 
 class UsersListForPostsWidget extends StatefulWidget {
@@ -58,7 +53,7 @@ class _UsersListForPostsWidgetState extends State<UsersListForPostsWidget> {
       backgroundColor: Colors.white,
       appBar: PreferredSize(
         preferredSize: const Size.fromHeight(60),
-        child: appbar(text: 'Messages'),
+        child: appbar(text: 'Users'),
       ),
       drawer: Drawerr(),
       body: SafeArea(
@@ -104,9 +99,7 @@ class _UsersListForPostsWidgetState extends State<UsersListForPostsWidget> {
                                             children: [
                                               Icon(
                                                 Icons.search,
-                                                color:
-                                                    FlutterFlowTheme.of(context)
-                                                        .tertiaryColor,
+                                                color: Color(0xFF9457FB),
                                                 size: 24,
                                               ),
                                               Expanded(
@@ -197,9 +190,6 @@ class _UsersListForPostsWidgetState extends State<UsersListForPostsWidget> {
                                         children: [
                                           Expanded(
                                             child: Container(
-                                              height: MediaQuery.of(context)
-                                                  .size
-                                                  .height,
                                               padding: EdgeInsets.all(10),
                                               decoration: BoxDecoration(
                                                 color: Colors.white,
@@ -248,8 +238,11 @@ class _UsersListForPostsWidgetState extends State<UsersListForPostsWidget> {
                                                                           Clip
                                                                               .antiAliasWithSaveLayer,
                                                                       color: selectedCard1 == index
-                                                                          ? Colors.red[
-                                                                              200]
+                                                                          ? Color.fromARGB(
+                                                                              57,
+                                                                              197,
+                                                                              167,
+                                                                              246)
                                                                           : Colors
                                                                               .white,
                                                                       elevation:
@@ -259,24 +252,82 @@ class _UsersListForPostsWidgetState extends State<UsersListForPostsWidget> {
                                                                         borderRadius:
                                                                             BorderRadius.circular(8),
                                                                       ),
-                                                                      child: Container(
-                                                                          color: selectedCard1 == index ? Colors.red[200] : Colors.white,
-                                                                          height: 60,
-                                                                          child: Padding(
-                                                                            padding: EdgeInsetsDirectional.fromSTEB(
-                                                                                0,
-                                                                                5,
-                                                                                0,
-                                                                                5),
-                                                                            child:
-                                                                                ListTile(
-                                                                              leading: CircleAvatar(
-                                                                                radius: 25,
-                                                                                backgroundImage: NetworkImage(users[index].photoURL),
+                                                                      child:
+                                                                          Container(
+                                                                        width: double
+                                                                            .infinity,
+                                                                        height:
+                                                                            70,
+                                                                        decoration:
+                                                                            BoxDecoration(
+                                                                          color: selectedCard1 == index
+                                                                              ? Color.fromARGB(57, 197, 167, 246)
+                                                                              : Colors.white,
+                                                                          boxShadow: [
+                                                                            BoxShadow(
+                                                                              blurRadius: 4,
+                                                                              color: Color(0x32000000),
+                                                                              offset: Offset(0, 2),
+                                                                            )
+                                                                          ],
+                                                                          borderRadius:
+                                                                              BorderRadius.circular(8),
+                                                                        ),
+                                                                        child:
+                                                                            Padding(
+                                                                          padding: EdgeInsetsDirectional.fromSTEB(
+                                                                              10,
+                                                                              0,
+                                                                              10,
+                                                                              0),
+                                                                          child:
+                                                                              Row(
+                                                                            mainAxisSize:
+                                                                                MainAxisSize.max,
+                                                                            mainAxisAlignment:
+                                                                                MainAxisAlignment.spaceBetween,
+                                                                            children: [
+                                                                              ClipRRect(
+                                                                                borderRadius: BorderRadius.circular(26),
+                                                                                child: Image.network(
+                                                                                  "${users[index].photoURL}",
+                                                                                  width: 45,
+                                                                                  height: 45,
+                                                                                  fit: BoxFit.cover,
+                                                                                ),
                                                                               ),
-                                                                              title: Text(users[index].displayName),
-                                                                            ),
-                                                                          ))))
+                                                                              Expanded(
+                                                                                child: Padding(
+                                                                                  padding: EdgeInsetsDirectional.fromSTEB(12, 0, 0, 0),
+                                                                                  child: Column(
+                                                                                    mainAxisSize: MainAxisSize.max,
+                                                                                    mainAxisAlignment: MainAxisAlignment.center,
+                                                                                    crossAxisAlignment: CrossAxisAlignment.start,
+                                                                                    children: [
+                                                                                      Text(
+                                                                                        "${users[index].displayName}",
+                                                                                        style: FlutterFlowTheme.of(context).bodyText1.override(fontFamily: 'Roboto', fontSize: 18, fontWeight: FontWeight.w500),
+                                                                                      ),
+                                                                                      Padding(
+                                                                                        padding: EdgeInsetsDirectional.fromSTEB(0, 5, 0, 0),
+                                                                                        child: Row(
+                                                                                          mainAxisSize: MainAxisSize.max,
+                                                                                          children: [
+                                                                                            Text(
+                                                                                              '${users[index].email}',
+                                                                                              style: FlutterFlowTheme.of(context).bodyText2.override(fontFamily: 'Roboto', fontSize: 12, fontWeight: FontWeight.normal),
+                                                                                            ),
+                                                                                          ],
+                                                                                        ),
+                                                                                      ),
+                                                                                    ],
+                                                                                  ),
+                                                                                ),
+                                                                              ),
+                                                                            ],
+                                                                          ),
+                                                                        ),
+                                                                      )))
                                                               : Container();
                                                         },
                                                         separatorBuilder:
@@ -304,7 +355,10 @@ class _UsersListForPostsWidgetState extends State<UsersListForPostsWidget> {
                                                       children: [
                                                         Center(
                                                           child:
-                                                              const CircularProgressIndicator(),
+                                                              const CircularProgressIndicator(
+                                                            color: Color(
+                                                                0xFF9457FB),
+                                                          ),
                                                         )
                                                       ],
                                                     );
@@ -323,7 +377,6 @@ class _UsersListForPostsWidgetState extends State<UsersListForPostsWidget> {
                                                     16, 0, 16, 0),
                                             child: FFButtonWidget(
                                               onPressed: () async {
-                                                
                                                 bool response =
                                                     await sharedpostapi
                                                         .SharePost(
@@ -350,7 +403,7 @@ class _UsersListForPostsWidgetState extends State<UsersListForPostsWidget> {
                                                             content: Text(
                                                                 "post shared!"),
                                                             actions: [
-                                                              FlatButton(
+                                                              ElevatedButton(
                                                                 child:
                                                                     Text("ok"),
                                                                 onPressed:
@@ -379,7 +432,7 @@ class _UsersListForPostsWidgetState extends State<UsersListForPostsWidget> {
                                                             content: Text(
                                                                 "You have already share this post with this user"),
                                                             actions: [
-                                                              FlatButton(
+                                                              ElevatedButton(
                                                                 child:
                                                                     Text("Ok"),
                                                                 onPressed: () {
@@ -427,8 +480,10 @@ class _UsersListForPostsWidgetState extends State<UsersListForPostsWidget> {
                         return Text("${snapshot1.error}");
                       }
 
-                      // By default, show a loading spinner.
-                      return Center(child: const CircularProgressIndicator());
+                      return Center(
+                          child: const CircularProgressIndicator(
+                        color: Color(0xFF9457FB),
+                      ));
                     }),
               )
             ],

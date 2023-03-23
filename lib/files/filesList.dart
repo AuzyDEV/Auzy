@@ -1,7 +1,3 @@
-import 'dart:io' as io;
-import 'dart:typed_data';
-import 'package:flutter/services.dart';
-import 'package:image_downloader_web/image_downloader_web.dart';
 import 'package:new_mee/apis/User_api.dart';
 import 'package:new_mee/components/appBar.dart';
 import 'package:new_mee/components/drawer.dart';
@@ -9,10 +5,8 @@ import 'package:new_mee/files/addFileToDrive_widget.dart';
 import 'package:new_mee/files/filedetails.dart';
 import 'package:new_mee/home/home_widget.dart';
 import 'package:new_mee/models/File.dart';
-import 'package:firebase_storage/firebase_storage.dart';
 import 'package:flutter/material.dart';
 import 'package:new_mee/apis/fileMan.dart';
-import 'package:file_picker/file_picker.dart';
 import 'package:new_mee/components/theme.dart';
 
 class FileWidget extends StatefulWidget {
@@ -271,7 +265,7 @@ class _FileWidgetState extends State<FileWidget> {
                                                         content: Text(
                                                             'Are you sure to delete this file ?'),
                                                         actions: [
-                                                          TextButton(
+                                                          ElevatedButton(
                                                             onPressed: () =>
                                                                 Navigator.pop(
                                                                     alertDialogContext,
@@ -279,7 +273,7 @@ class _FileWidgetState extends State<FileWidget> {
                                                             child:
                                                                 Text('Cancel'),
                                                           ),
-                                                          TextButton(
+                                                          ElevatedButton(
                                                             onPressed: () => {
                                                               api.deleteFile(
                                                                   snapshot
@@ -372,7 +366,7 @@ class _FileWidgetState extends State<FileWidget> {
                                                         ClampingScrollPhysics(),
                                                   ),
                                                   actions: [
-                                                    FlatButton(
+                                                    ElevatedButton(
                                                       child: Text("Ok"),
                                                       onPressed: () {
                                                         Navigator.of(context)

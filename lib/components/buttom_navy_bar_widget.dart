@@ -1,8 +1,5 @@
-import 'dart:js';
 import 'package:flutter/material.dart';
 import 'package:bottom_navy_bar/bottom_navy_bar.dart';
-import 'package:new_mee/home/home_widget.dart';
-import 'package:new_mee/index.dart';
 
 class buttomNavBar extends StatefulWidget {
   @override

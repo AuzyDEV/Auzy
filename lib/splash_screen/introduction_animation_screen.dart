@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:new_mee/createAccount/createAccount.dart';
+import 'package:new_mee/index.dart';
 import 'package:new_mee/splash_screen/components/second_view.dart';
 import 'package:new_mee/splash_screen/components/center_next_button.dart';
 import 'package:new_mee/splash_screen/components/mood_diary_vew.dart';
@@ -38,8 +38,8 @@ class _IntroductionAnimationScreenState
   Widget build(BuildContext context) {
     print(_animationController?.value);
     return Scaffold(
-      backgroundColor: Colors.orange[50],
-      body: ClipRect(
+        body: Container(
+      child: ClipRect(
         child: Stack(
           children: [
             SplashView(
@@ -69,7 +69,17 @@ class _IntroductionAnimationScreenState
           ],
         ),
       ),
-    );
+      decoration: BoxDecoration(
+        gradient: LinearGradient(
+          begin: Alignment.topCenter,
+          end: Alignment.bottomCenter,
+          colors: [
+            Color.fromARGB(68, 154, 199, 235),
+            Color.fromARGB(110, 197, 167, 246),
+          ],
+        ),
+      ),
+    ));
   }
 
   void _onSkipClick() {
@@ -114,7 +124,7 @@ class _IntroductionAnimationScreenState
     Navigator.push(
       context,
       MaterialPageRoute(
-        builder: (context) => CreateAccountWidget(),
+        builder: (context) => SigninWidget(),
       ),
     );
   }

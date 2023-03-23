@@ -70,17 +70,30 @@ class WelcomeView extends StatelessWidget {
                 ),
               ),
               SlideTransition(
-                position: _welcomeFirstHalfAnimation,
-                child: Text(
-                  "Welcome",
-                  style: TextStyle(fontSize: 25.0, fontWeight: FontWeight.bold),
-                ),
-              ),
+                  position: _welcomeFirstHalfAnimation,
+                  child: Center(
+                    child: Text.rich(
+                      TextSpan(
+                        text: 'Welcome to ',
+                        style: TextStyle(
+                            fontSize: 30.0, fontWeight: FontWeight.bold),
+                        children: <TextSpan>[
+                          TextSpan(
+                            text: 'Auzy',
+                            style: TextStyle(
+                              color: Color(0xFF9457FB),
+                              fontWeight: FontWeight.w700,
+                            ),
+                          ),
+                        ],
+                      ),
+                    ),
+                  )),
               Padding(
                 padding:
                     EdgeInsets.only(left: 64, right: 64, top: 16, bottom: 16),
                 child: Text(
-                  "Stay organised and live stress-free with you-do app",
+                  " Better child mental health",
                   textAlign: TextAlign.center,
                 ),
               ),

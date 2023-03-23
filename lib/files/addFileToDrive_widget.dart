@@ -1,10 +1,7 @@
 import 'dart:html';
 import 'dart:typed_data';
-import 'package:file_picker/file_picker.dart';
 import 'package:firebase_storage/firebase_storage.dart';
 import 'package:new_mee/apis/User_api.dart';
-import 'package:new_mee/apis/fileMan.dart';
-import 'package:new_mee/apis/medecineMan.dart';
 import 'package:new_mee/components/appBar.dart';
 import 'package:new_mee/components/drawer.dart';
 import 'package:new_mee/index.dart';
@@ -79,7 +76,7 @@ class _addFileToDriveWidgetState extends State<addFileToDriveWidget> {
                               mainAxisAlignment: MainAxisAlignment.center,
                               children: [
                                 Text(fileName),
-                                RaisedButton(
+                                ElevatedButton(
                                   onPressed: (() {
                                     InputElement inputElement =
                                         FileUploadInputElement();
@@ -142,7 +139,7 @@ class _addFileToDriveWidgetState extends State<addFileToDriveWidget> {
                                                 content: Text(
                                                     "post\'s image was updated successfully"),
                                                 actions: [
-                                                  FlatButton(
+                                                  ElevatedButton(
                                                     child: Text("Ok"),
                                                     onPressed: () async {
                                                       await Navigator.push(

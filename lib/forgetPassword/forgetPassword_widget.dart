@@ -1,10 +1,7 @@
 import 'package:new_mee/apis/User_api.dart';
-import 'package:new_mee/index.dart';
 import '../components/theme.dart';
-import '../components/util.dart';
 import '../components/widgets.dart';
 import 'package:flutter/material.dart';
-import 'package:google_fonts/google_fonts.dart';
 
 class ForgetpasswordWidget extends StatefulWidget {
   const ForgetpasswordWidget({Key key}) : super(key: key);
@@ -40,7 +37,7 @@ class _ForgetpasswordWidgetState extends State<ForgetpasswordWidget> {
             mainAxisAlignment: MainAxisAlignment.start,
             children: [
               Padding(
-                padding: EdgeInsetsDirectional.fromSTEB(16, 80, 16, 25),
+                padding: EdgeInsetsDirectional.fromSTEB(16, 40, 16, 25),
                 child: Row(
                   mainAxisSize: MainAxisSize.max,
                   mainAxisAlignment: MainAxisAlignment.start,
@@ -50,8 +47,8 @@ class _ForgetpasswordWidgetState extends State<ForgetpasswordWidget> {
                         Navigator.pop(context);
                       },
                       child: Icon(
-                        Icons.arrow_back,
-                        color: Color(0xFF101213),
+                        Icons.arrow_back_ios_new_outlined,
+                        color: Color(0xff132137),
                         size: 24,
                       ),
                     ),
@@ -64,18 +61,34 @@ class _ForgetpasswordWidgetState extends State<ForgetpasswordWidget> {
                   mainAxisSize: MainAxisSize.max,
                   children: [
                     Padding(
-                      padding: EdgeInsetsDirectional.fromSTEB(0, 25, 0, 0),
+                      padding: EdgeInsetsDirectional.fromSTEB(0, 25, 0, 8),
                       child: Column(
                         mainAxisSize: MainAxisSize.max,
                         crossAxisAlignment: CrossAxisAlignment.start,
                         children: [
-                          Text(
-                            'Reset Password',
-                            style:
-                                FlutterFlowTheme.of(context).bodyText1.override(
-                                      fontFamily: 'Open Sans',
-                                      fontSize: 30,
-                                    ),
+                          Text.rich(
+                            TextSpan(
+                              text: 'Reset ',
+                              style: FlutterFlowTheme.of(context)
+                                  .bodyText1
+                                  .override(
+                                    fontFamily: 'Open Sans',
+                                    color: Color(0xFF9457FB),
+                                    fontSize: 30,
+                                  ),
+                              children: <TextSpan>[
+                                TextSpan(
+                                  text: 'password',
+                                  style: FlutterFlowTheme.of(context)
+                                      .bodyText1
+                                      .override(
+                                        fontFamily: 'Open Sans',
+                                        color: Color(0xFF101213),
+                                        fontSize: 30,
+                                      ),
+                                ),
+                              ],
+                            ),
                           ),
                           Text(
                             'Enter the email associated with your account',
@@ -121,44 +134,50 @@ class _ForgetpasswordWidgetState extends State<ForgetpasswordWidget> {
                       padding: EdgeInsetsDirectional.fromSTEB(16, 10, 16, 0),
                       child: TextFormField(
                         controller: emailAddressController,
+                        cursorColor: Color(0xFF9457FB),
                         validator: (value) => value.isEmpty
-                            ? 'Enter your email'
+                            ? 'Field is required'
                             : (emailReg.hasMatch(value)
                                 ? null
                                 : 'Enter a Valid email'),
                         obscureText: false,
                         decoration: InputDecoration(
-                          labelStyle:
-                              FlutterFlowTheme.of(context).bodyText2.override(
-                                    fontFamily: 'Roboto',
-                                    color: Color(0xFF9DA3A9),
-                                  ),
-                          hintText: 'Enter your email...',
-                          hintStyle:
+                          errorStyle:
                               FlutterFlowTheme.of(context).bodyText1.override(
                                     fontFamily: 'Roboto',
-                                    color: Color(0xFF9DA3A9),
-                                    fontSize: 14,
+                                    color: Colors.red,
                                     fontWeight: FontWeight.normal,
                                   ),
+                          focusedErrorBorder: OutlineInputBorder(
+                            borderSide: BorderSide(
+                              color: Colors.red,
+                              width: 1,
+                            ),
+                            borderRadius: BorderRadius.circular(8),
+                          ),
+                          errorBorder: OutlineInputBorder(
+                            borderSide: BorderSide(
+                              color: Colors.red,
+                              width: 1,
+                            ),
+                            borderRadius: BorderRadius.circular(8),
+                          ),
                           enabledBorder: OutlineInputBorder(
                             borderSide: BorderSide(
-                              color: Color(0xFF9DA3A9),
+                              color: Color(0x988B97A2),
                               width: 1,
                             ),
                             borderRadius: BorderRadius.circular(8),
                           ),
                           focusedBorder: OutlineInputBorder(
                             borderSide: BorderSide(
-                              color: Color(0xFF9DA3A9),
+                              color: Color(0x988B97A2),
                               width: 1,
                             ),
                             borderRadius: BorderRadius.circular(8),
                           ),
-                          filled: true,
-                          fillColor: Colors.white,
                           contentPadding:
-                              EdgeInsetsDirectional.fromSTEB(20, 16, 20, 16),
+                              EdgeInsetsDirectional.fromSTEB(12, 0, 12, 0),
                         ),
                         style: FlutterFlowTheme.of(context).bodyText1.override(
                             fontFamily: 'Roboto',
@@ -187,7 +206,7 @@ class _ForgetpasswordWidgetState extends State<ForgetpasswordWidget> {
                                               title: Text("Succes"),
                                               content: Text("$response"),
                                               actions: [
-                                                FlatButton(
+                                                ElevatedButton(
                                                   child: Text("Ok"),
                                                   onPressed: () {
                                                     Navigator.of(context).pop();
@@ -203,7 +222,7 @@ class _ForgetpasswordWidgetState extends State<ForgetpasswordWidget> {
                                               title: Text("Error"),
                                               content: Text("$response"),
                                               actions: [
-                                                FlatButton(
+                                                ElevatedButton(
                                                   child: Text("Ok"),
                                                   onPressed: () {
                                                     Navigator.of(context).pop();
@@ -221,7 +240,7 @@ class _ForgetpasswordWidgetState extends State<ForgetpasswordWidget> {
                                           content: Text(
                                               "3 requests! We have blocked requests to unusual activity. Try again later."),
                                           actions: [
-                                            FlatButton(
+                                            ElevatedButton(
                                               child: Text("Ok"),
                                               onPressed: () {
                                                 Navigator.of(context).pop();

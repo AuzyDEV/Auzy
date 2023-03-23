@@ -1,16 +1,13 @@
 import 'dart:convert';
 
-import 'package:new_mee/apis/User_api.dart';
 import 'package:new_mee/apis/postMan.dart';
 import 'package:new_mee/components/appBar.dart';
 import 'package:new_mee/index.dart';
 import 'package:new_mee/models/User.dart';
 import 'package:new_mee/components/theme.dart';
-import 'package:new_mee/components/util.dart';
 import 'package:new_mee/components/widgets.dart';
 import 'package:flutter/material.dart';
-import 'package:google_fonts/google_fonts.dart';
-import 'package:flutter_quill/flutter_quill.dart' as quill;
+//import 'package:flutter_quill/flutter_quill.dart' as quill;
 
 class editPostDetailsWidget extends StatefulWidget {
   final String id, title, contenu;
@@ -33,9 +30,9 @@ class _editPostDetailsWidgetState extends State<editPostDetailsWidget> {
   final scaffoldKey = GlobalKey<ScaffoldState>();
   final formKey = GlobalKey<FormState>();
   PostMan apiPost = PostMan();
-  quill.QuillController _controller;
+  //quill.QuillController _controller;
   Future<User> _futureUser;
-  quill.Delta deltaFromJson(String json) {
+  /* quill.Delta deltaFromJson(String json) {
     final List<dynamic> data = jsonDecode(json);
     final quill.Delta delta = quill.Delta();
     for (final item in data) {
@@ -50,11 +47,11 @@ class _editPostDetailsWidgetState extends State<editPostDetailsWidget> {
     }
     return delta;
   }
-
+*/
   @override
   void initState() {
     super.initState();
-    _controller = quill.QuillController.basic();
+    //_controller = quill.QuillController.basic();
     titleController = TextEditingController();
     titleController.text = widget.title.toString();
     contenuController = TextEditingController();
@@ -121,37 +118,48 @@ class _editPostDetailsWidgetState extends State<editPostDetailsWidget> {
                               EdgeInsetsDirectional.fromSTEB(16, 10, 16, 0),
                           child: TextFormField(
                             controller: titleController,
+                            cursorColor: Color(0xFF9457FB),
                             validator: (value) =>
-                                value.isEmpty ? 'Enter post\'s title' : null,
+                                value.isEmpty ? 'Field is required' : null,
                             obscureText: false,
                             decoration: InputDecoration(
-                              hintText: 'Enter post\'s title...',
-                              hintStyle: FlutterFlowTheme.of(context)
+                              errorStyle: FlutterFlowTheme.of(context)
                                   .bodyText1
                                   .override(
                                     fontFamily: 'Roboto',
-                                    color: Color(0xFF9DA3A9),
-                                    fontSize: 14,
+                                    color: Colors.red,
                                     fontWeight: FontWeight.normal,
                                   ),
+                              focusedErrorBorder: OutlineInputBorder(
+                                borderSide: BorderSide(
+                                  color: Colors.red,
+                                  width: 1,
+                                ),
+                                borderRadius: BorderRadius.circular(8),
+                              ),
+                              errorBorder: OutlineInputBorder(
+                                borderSide: BorderSide(
+                                  color: Colors.red,
+                                  width: 1,
+                                ),
+                                borderRadius: BorderRadius.circular(8),
+                              ),
                               enabledBorder: OutlineInputBorder(
                                 borderSide: BorderSide(
-                                  color: Color(0xFF9DA3A9),
+                                  color: Color(0x988B97A2),
                                   width: 1,
                                 ),
                                 borderRadius: BorderRadius.circular(8),
                               ),
                               focusedBorder: OutlineInputBorder(
                                 borderSide: BorderSide(
-                                  color: Color(0xFF9DA3A9),
+                                  color: Color(0x988B97A2),
                                   width: 1,
                                 ),
                                 borderRadius: BorderRadius.circular(8),
                               ),
-                              filled: true,
-                              fillColor: Colors.white,
-                              contentPadding: EdgeInsetsDirectional.fromSTEB(
-                                  20, 16, 20, 16),
+                              contentPadding:
+                                  EdgeInsetsDirectional.fromSTEB(12, 0, 12, 0),
                             ),
                             style: FlutterFlowTheme.of(context)
                                 .bodyText1
@@ -187,7 +195,7 @@ class _editPostDetailsWidgetState extends State<editPostDetailsWidget> {
                               EdgeInsetsDirectional.fromSTEB(16, 20, 16, 0),
                           child: Column(
                             children: [
-                              quill.QuillToolbar.basic(controller: _controller),
+                              /* quill.QuillToolbar.basic(controller: _controller),
                               Container(
                                 height: 200,
                                 child: quill.QuillEditor.basic(
@@ -202,7 +210,7 @@ class _editPostDetailsWidgetState extends State<editPostDetailsWidget> {
 
                                   readOnly: false, // true for view only mode
                                 ),
-                              ),
+                              ),*/
                             ],
                           ),
                         ),
@@ -222,7 +230,7 @@ class _editPostDetailsWidgetState extends State<editPostDetailsWidget> {
                                     EdgeInsetsDirectional.fromSTEB(0, 0, 0, 0),
                                 child: FFButtonWidget(
                                   onPressed: () async {
-                                    if (formKey.currentState.validate()) {
+                                    /*  if (formKey.currentState.validate()) {
                                       var contenu = _controller.document
                                           .toDelta()
                                           .toJson();
@@ -241,7 +249,7 @@ class _editPostDetailsWidgetState extends State<editPostDetailsWidget> {
                                                   content: Text(
                                                       "updating infos completed successfully!"),
                                                   actions: [
-                                                    FlatButton(
+                                                    ElevatedButton(
                                                       child: Text("ok"),
                                                       onPressed: () async {
                                                         await Navigator.push(
@@ -263,7 +271,7 @@ class _editPostDetailsWidgetState extends State<editPostDetailsWidget> {
                                                   title: Text("Error"),
                                                   content: Text("$response"),
                                                   actions: [
-                                                    FlatButton(
+                                                    ElevatedButton(
                                                       child: Text("Ok"),
                                                       onPressed: () {
                                                         Navigator.of(context)
@@ -273,7 +281,7 @@ class _editPostDetailsWidgetState extends State<editPostDetailsWidget> {
                                                   ],
                                                 );
                                               });
-                                    }
+                                    }*/
                                   },
                                   text: 'submit',
                                   options: FFButtonOptions(

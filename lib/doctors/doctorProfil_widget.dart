@@ -68,7 +68,8 @@ class _DoctorprofileWidgetState extends State<DoctorprofileWidget> {
                                     width: 80,
                                     height: 80,
                                     decoration: BoxDecoration(
-                                      color: Colors.cyan,
+                                      color: FlutterFlowTheme.of(context)
+                                          .primaryColor,
                                       shape: BoxShape.circle,
                                     ),
                                     child: Padding(
@@ -218,7 +219,7 @@ class _DoctorprofileWidgetState extends State<DoctorprofileWidget> {
                               mainAxisAlignment: MainAxisAlignment.spaceBetween,
                               children: [
                                 Text(
-                                  'Location',
+                                  'Communication',
                                   style: FlutterFlowTheme.of(context)
                                       .subtitle2
                                       .override(
@@ -264,7 +265,7 @@ class _DoctorprofileWidgetState extends State<DoctorprofileWidget> {
                                         CrossAxisAlignment.start,
                                     children: [
                                       Text(
-                                        '${snapshot.data.Adress}',
+                                        'Localisation',
                                         style: FlutterFlowTheme.of(context)
                                             .bodyText1
                                             .override(
@@ -276,7 +277,7 @@ class _DoctorprofileWidgetState extends State<DoctorprofileWidget> {
                                             ),
                                       ),
                                       Text(
-                                        '3016 rue  paris ',
+                                        '${snapshot.data.Adress}',
                                         style: FlutterFlowTheme.of(context)
                                             .bodyText1
                                             .override(
@@ -289,27 +290,6 @@ class _DoctorprofileWidgetState extends State<DoctorprofileWidget> {
                                       ),
                                     ],
                                   ),
-                                ),
-                              ],
-                            ),
-                          ),
-                          Padding(
-                            padding:
-                                EdgeInsetsDirectional.fromSTEB(16, 25, 16, 0),
-                            child: Row(
-                              mainAxisSize: MainAxisSize.max,
-                              mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                              children: [
-                                Text(
-                                  'Communication',
-                                  style: FlutterFlowTheme.of(context)
-                                      .subtitle2
-                                      .override(
-                                        fontFamily: 'Roboto',
-                                        color: Color(0xFF0F1113),
-                                        fontSize: 14,
-                                        fontWeight: FontWeight.w500,
-                                      ),
                                 ),
                               ],
                             ),
@@ -768,8 +748,10 @@ class _DoctorprofileWidgetState extends State<DoctorprofileWidget> {
                       return Text("${snapshot.error}");
                     }
 
-                    // By default, show a loading spinner.
-                    return Center(child: const CircularProgressIndicator());
+                    return Center(
+                        child: const CircularProgressIndicator(
+                      color: Color(0xFF9457FB),
+                    ));
                   })),
         ),
       ),

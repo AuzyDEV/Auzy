@@ -4,19 +4,11 @@ import 'package:new_mee/apis/User_api.dart';
 import 'package:new_mee/apis/postMan.dart';
 import 'package:new_mee/components/appBar.dart';
 import 'package:new_mee/components/drawer.dart';
-import 'package:new_mee/home/home_widget.dart';
 import 'package:new_mee/index.dart';
 
-import 'package:new_mee/models/User.dart';
 import 'package:new_mee/posts/postDetails.dart';
-import 'package:shared_preferences/shared_preferences.dart';
 import 'package:new_mee/components/theme.dart';
-import 'package:new_mee/components/util.dart';
-import 'package:new_mee/components/widgets.dart';
-import 'package:new_mee/main.dart';
 import 'package:flutter/material.dart';
-import 'package:font_awesome_flutter/font_awesome_flutter.dart';
-import 'package:google_fonts/google_fonts.dart';
 
 class PostsManagementWidget extends StatefulWidget {
   const PostsManagementWidget({Key key}) : super(key: key);
@@ -149,7 +141,10 @@ class _PostsManagementWidgetState extends State<PostsManagementWidget>
               children: [
                 Card(
                   child: ListTile(
-                    leading: const Icon(Icons.search),
+                    leading: const Icon(
+                      Icons.search,
+                      color: Color(0xFF9457FB),
+                    ),
                     title: TextField(
                         controller: searchController,
                         decoration: const InputDecoration(
@@ -166,7 +161,9 @@ class _PostsManagementWidgetState extends State<PostsManagementWidget>
                           });
                         }),
                     trailing: IconButton(
-                      icon: const Icon(Icons.cancel),
+                      icon: const Icon(
+                        Icons.cancel,
+                      ),
                       onPressed: () {
                         setState(() {
                           searchController.clear();
@@ -204,12 +201,12 @@ class _PostsManagementWidgetState extends State<PostsManagementWidget>
                                             content: Text(
                                                 'Are you sure to delete this user ?'),
                                             actions: [
-                                              TextButton(
+                                              ElevatedButton(
                                                 onPressed: () => Navigator.pop(
                                                     alertDialogContext, false),
                                                 child: Text('Cancel'),
                                               ),
-                                              TextButton(
+                                              ElevatedButton(
                                                 onPressed: () => {
                                                   api.deleteAllUsers(),
                                                   Navigator.push(
@@ -370,12 +367,12 @@ class _PostsManagementWidgetState extends State<PostsManagementWidget>
                                             content: Text(
                                                 'Are you sure to delete this post ?'),
                                             actions: [
-                                              TextButton(
+                                              ElevatedButton(
                                                 onPressed: () => Navigator.pop(
                                                     alertDialogContext, false),
                                                 child: Text('Cancel'),
                                               ),
-                                              TextButton(
+                                              ElevatedButton(
                                                 onPressed: () => {
                                                   api.deletePost(
                                                       e.id.toString()),
@@ -481,14 +478,14 @@ class _PostsManagementWidgetState extends State<PostsManagementWidget>
                                                   content: Text(
                                                       'Are you sure to hide this post ?'),
                                                   actions: [
-                                                    TextButton(
+                                                    ElevatedButton(
                                                       onPressed: () =>
                                                           Navigator.pop(
                                                               alertDialogContext,
                                                               false),
                                                       child: Text('Cancel'),
                                                     ),
-                                                    TextButton(
+                                                    ElevatedButton(
                                                       onPressed: () => {
                                                         api.HidePost(
                                                             e.id.toString()),
@@ -563,14 +560,14 @@ class _PostsManagementWidgetState extends State<PostsManagementWidget>
                                                   content: Text(
                                                       'Are you sure to restore this post ?'),
                                                   actions: [
-                                                    TextButton(
+                                                    ElevatedButton(
                                                       onPressed: () =>
                                                           Navigator.pop(
                                                               alertDialogContext,
                                                               false),
                                                       child: Text('Cancel'),
                                                     ),
-                                                    TextButton(
+                                                    ElevatedButton(
                                                       onPressed: () => {
                                                         api.RestorePost(
                                                             e.id.toString()),

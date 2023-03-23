@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:new_mee/apis/User_api.dart';
 import 'package:new_mee/models/User.dart';
-import '../apis/firebase_api.dart';
 import '../components/chat_body_widget.dart';
 import '../components/chat_header_widget.dart';
 

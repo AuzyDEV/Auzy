@@ -1,13 +1,12 @@
 import 'package:new_mee/apis/User_api.dart';
 import 'package:new_mee/components/appBar.dart';
+import 'package:new_mee/components/drawer.dart';
 import 'package:new_mee/index.dart';
 import 'package:new_mee/models/User.dart';
-import 'package:new_mee/components/icon_button.dart';
 import 'package:new_mee/components/theme.dart';
-import 'package:new_mee/components/util.dart';
 import 'package:new_mee/components/widgets.dart';
 import 'package:flutter/material.dart';
-import 'package:google_fonts/google_fonts.dart';
+import 'package:string_validator/string_validator.dart';
 
 class addUserWidget extends StatefulWidget {
   const addUserWidget({Key key}) : super(key: key);
@@ -55,6 +54,7 @@ class _addUserWidgetState extends State<addUserWidget> {
           preferredSize: const Size.fromHeight(60),
           child: appbar(text: 'Add user'),
         ),
+        drawer: Drawerr(),
         body: Column(
           mainAxisSize: MainAxisSize.max,
           children: [
@@ -97,37 +97,61 @@ class _addUserWidgetState extends State<addUserWidget> {
                                 EdgeInsetsDirectional.fromSTEB(16, 10, 16, 0),
                             child: TextFormField(
                               controller: fullnameController,
-                              validator: (value) =>
-                                  value.isEmpty ? 'Enter your full name' : null,
+                              cursorColor: Color(0xFF9457FB),
+                              keyboardType: TextInputType.text,
+                              autovalidateMode:
+                                  AutovalidateMode.onUserInteraction,
+                              validator: (value) {
+                                if (value == null || value.isEmpty) {
+                                  return 'Field is required';
+                                }
+                                if (!isAlpha(value.replaceAll(' ', ''))) {
+                                  return 'Requires only characters';
+                                }
+                                if (value.length < 3) {
+                                  return 'Requires at least 3 characters.';
+                                }
+                                return null;
+                              },
                               obscureText: false,
                               decoration: InputDecoration(
-                                hintText: 'Enter your full name...',
-                                hintStyle: FlutterFlowTheme.of(context)
+                                errorStyle: FlutterFlowTheme.of(context)
                                     .bodyText1
                                     .override(
                                       fontFamily: 'Roboto',
-                                      color: Color(0xFF9DA3A9),
-                                      fontSize: 14,
+                                      color: Colors.red,
                                       fontWeight: FontWeight.normal,
                                     ),
+                                focusedErrorBorder: OutlineInputBorder(
+                                  borderSide: BorderSide(
+                                    color: Colors.red,
+                                    width: 1,
+                                  ),
+                                  borderRadius: BorderRadius.circular(8),
+                                ),
+                                errorBorder: OutlineInputBorder(
+                                  borderSide: BorderSide(
+                                    color: Colors.red,
+                                    width: 1,
+                                  ),
+                                  borderRadius: BorderRadius.circular(8),
+                                ),
                                 enabledBorder: OutlineInputBorder(
                                   borderSide: BorderSide(
-                                    color: Color(0xFF9DA3A9),
+                                    color: Color(0x988B97A2),
                                     width: 1,
                                   ),
                                   borderRadius: BorderRadius.circular(8),
                                 ),
                                 focusedBorder: OutlineInputBorder(
                                   borderSide: BorderSide(
-                                    color: Color(0xFF9DA3A9),
+                                    color: Color(0x988B97A2),
                                     width: 1,
                                   ),
                                   borderRadius: BorderRadius.circular(8),
                                 ),
-                                filled: true,
-                                fillColor: Colors.white,
                                 contentPadding: EdgeInsetsDirectional.fromSTEB(
-                                    20, 16, 20, 16),
+                                    12, 0, 12, 0),
                               ),
                               style: FlutterFlowTheme.of(context)
                                   .bodyText1
@@ -161,46 +185,69 @@ class _addUserWidgetState extends State<addUserWidget> {
                           Padding(
                             padding:
                                 EdgeInsetsDirectional.fromSTEB(16, 10, 16, 0),
-                            child: TextFormField(
-                              controller: photourlController,
-                              validator: (value) =>
-                                  value.isEmpty ? 'Enter your photo url' : null,
-                              obscureText: false,
-                              decoration: InputDecoration(
-                                hintText: 'Enter your photo url...',
-                                hintStyle: FlutterFlowTheme.of(context)
-                                    .bodyText1
-                                    .override(
-                                      fontFamily: 'Roboto',
-                                      color: Color(0xFF9DA3A9),
-                                      fontSize: 14,
-                                      fontWeight: FontWeight.normal,
+                            child: Row(
+                              mainAxisSize: MainAxisSize.max,
+                              children: [
+                                Expanded(
+                                  child: TextFormField(
+                                    cursorColor: Color(0xFF9457FB),
+                                    autovalidateMode:
+                                        AutovalidateMode.onUserInteraction,
+                                    validator: (value) => value.isEmpty
+                                        ? 'Filed is required'
+                                        : null,
+                                    controller: photourlController,
+                                    obscureText: false,
+                                    decoration: InputDecoration(
+                                      errorStyle: FlutterFlowTheme.of(context)
+                                          .bodyText1
+                                          .override(
+                                            fontFamily: 'Roboto',
+                                            color: Colors.red,
+                                            fontWeight: FontWeight.normal,
+                                          ),
+                                      focusedErrorBorder: OutlineInputBorder(
+                                        borderSide: BorderSide(
+                                          color: Colors.red,
+                                          width: 1,
+                                        ),
+                                        borderRadius: BorderRadius.circular(8),
+                                      ),
+                                      errorBorder: OutlineInputBorder(
+                                        borderSide: BorderSide(
+                                          color: Colors.red,
+                                          width: 1,
+                                        ),
+                                        borderRadius: BorderRadius.circular(8),
+                                      ),
+                                      enabledBorder: OutlineInputBorder(
+                                        borderSide: BorderSide(
+                                          color: Color(0x988B97A2),
+                                          width: 1,
+                                        ),
+                                        borderRadius: BorderRadius.circular(8),
+                                      ),
+                                      focusedBorder: OutlineInputBorder(
+                                        borderSide: BorderSide(
+                                          color: Color(0x988B97A2),
+                                          width: 1,
+                                        ),
+                                        borderRadius: BorderRadius.circular(8),
+                                      ),
+                                      contentPadding:
+                                          EdgeInsetsDirectional.fromSTEB(
+                                              12, 0, 12, 0),
                                     ),
-                                enabledBorder: OutlineInputBorder(
-                                  borderSide: BorderSide(
-                                    color: Color(0xFF9DA3A9),
-                                    width: 1,
+                                    style: FlutterFlowTheme.of(context)
+                                        .bodyText1
+                                        .override(
+                                          fontFamily: 'Roboto',
+                                          color: Colors.black,
+                                          fontWeight: FontWeight.normal,
+                                        ),
                                   ),
-                                  borderRadius: BorderRadius.circular(8),
                                 ),
-                                focusedBorder: OutlineInputBorder(
-                                  borderSide: BorderSide(
-                                    color: Color(0xFF9DA3A9),
-                                    width: 1,
-                                  ),
-                                  borderRadius: BorderRadius.circular(8),
-                                ),
-                                filled: true,
-                                fillColor: Colors.white,
-                                contentPadding: EdgeInsetsDirectional.fromSTEB(
-                                    20, 16, 20, 16),
-                              ),
-                              style: FlutterFlowTheme.of(context)
-                                  .bodyText1
-                                  .override(
-                                      fontFamily: 'Roboto',
-                                      color: Colors.black,
-                                      fontWeight: FontWeight.normal),
+                              ],
                             ),
                           ),
                           Padding(
@@ -229,40 +276,51 @@ class _addUserWidgetState extends State<addUserWidget> {
                                 EdgeInsetsDirectional.fromSTEB(16, 10, 16, 0),
                             child: TextFormField(
                               controller: emailAddressController,
+                              cursorColor: Color(0xFF9457FB),
                               validator: (value) => value.isEmpty
-                                  ? 'Enter user email'
+                                  ? 'Field is required'
                                   : (emailReg.hasMatch(value)
                                       ? null
                                       : 'Enter a Valid email'),
                               obscureText: false,
                               decoration: InputDecoration(
-                                hintText: 'Enter user email...',
-                                hintStyle: FlutterFlowTheme.of(context)
+                                errorStyle: FlutterFlowTheme.of(context)
                                     .bodyText1
                                     .override(
                                       fontFamily: 'Roboto',
-                                      color: Color(0xFF9DA3A9),
-                                      fontSize: 14,
+                                      color: Colors.red,
                                       fontWeight: FontWeight.normal,
                                     ),
+                                focusedErrorBorder: OutlineInputBorder(
+                                  borderSide: BorderSide(
+                                    color: Colors.red,
+                                    width: 1,
+                                  ),
+                                  borderRadius: BorderRadius.circular(8),
+                                ),
+                                errorBorder: OutlineInputBorder(
+                                  borderSide: BorderSide(
+                                    color: Colors.red,
+                                    width: 1,
+                                  ),
+                                  borderRadius: BorderRadius.circular(8),
+                                ),
                                 enabledBorder: OutlineInputBorder(
                                   borderSide: BorderSide(
-                                    color: Color(0xFF9DA3A9),
+                                    color: Color(0x988B97A2),
                                     width: 1,
                                   ),
                                   borderRadius: BorderRadius.circular(8),
                                 ),
                                 focusedBorder: OutlineInputBorder(
                                   borderSide: BorderSide(
-                                    color: Color(0xFF9DA3A9),
+                                    color: Color(0x988B97A2),
                                     width: 1,
                                   ),
                                   borderRadius: BorderRadius.circular(8),
                                 ),
-                                filled: true,
-                                fillColor: Colors.white,
                                 contentPadding: EdgeInsetsDirectional.fromSTEB(
-                                    20, 16, 20, 16),
+                                    12, 0, 12, 0),
                               ),
                               style: FlutterFlowTheme.of(context)
                                   .bodyText1
@@ -298,55 +356,55 @@ class _addUserWidgetState extends State<addUserWidget> {
                                 EdgeInsetsDirectional.fromSTEB(16, 10, 16, 0),
                             child: TextFormField(
                               controller: passwordController,
+                              cursorColor: Color(0xFF9457FB),
                               validator: (value) {
                                 if (value == null || value.isEmpty) {
-                                  return 'Please enter user password';
+                                  return 'Field is required';
+                                }
+                                if (value.length < 6) {
+                                  return 'Requires at least 6 characters.';
                                 }
                                 return null;
                               },
                               obscureText: !passwordVisibility,
                               decoration: InputDecoration(
-                                hintText: 'Enter user password...',
-                                hintStyle: FlutterFlowTheme.of(context)
+                                errorStyle: FlutterFlowTheme.of(context)
                                     .bodyText1
                                     .override(
                                       fontFamily: 'Roboto',
-                                      color: Color(0xFF9DA3A9),
-                                      fontSize: 14,
+                                      color: Colors.red,
                                       fontWeight: FontWeight.normal,
                                     ),
+                                focusedErrorBorder: OutlineInputBorder(
+                                  borderSide: BorderSide(
+                                    color: Colors.red,
+                                    width: 1,
+                                  ),
+                                  borderRadius: BorderRadius.circular(8),
+                                ),
+                                errorBorder: OutlineInputBorder(
+                                  borderSide: BorderSide(
+                                    color: Colors.red,
+                                    width: 1,
+                                  ),
+                                  borderRadius: BorderRadius.circular(8),
+                                ),
                                 enabledBorder: OutlineInputBorder(
                                   borderSide: BorderSide(
-                                    color: Color(0xFF9DA3A9),
+                                    color: Color(0x988B97A2),
                                     width: 1,
                                   ),
                                   borderRadius: BorderRadius.circular(8),
                                 ),
                                 focusedBorder: OutlineInputBorder(
                                   borderSide: BorderSide(
-                                    color: Color(0xFF9DA3A9),
+                                    color: Color(0x988B97A2),
                                     width: 1,
                                   ),
                                   borderRadius: BorderRadius.circular(8),
                                 ),
-                                filled: true,
-                                fillColor: Colors.white,
                                 contentPadding: EdgeInsetsDirectional.fromSTEB(
-                                    20, 16, 20, 16),
-                                suffixIcon: InkWell(
-                                  onTap: () => setState(
-                                    () => passwordVisibility =
-                                        !passwordVisibility,
-                                  ),
-                                  focusNode: FocusNode(skipTraversal: true),
-                                  child: Icon(
-                                    passwordVisibility
-                                        ? Icons.visibility_outlined
-                                        : Icons.visibility_off_outlined,
-                                    color: Color(0xFF9DA3A9),
-                                    size: 20,
-                                  ),
-                                ),
+                                    12, 0, 12, 0),
                               ),
                               style: FlutterFlowTheme.of(context)
                                   .bodyText1
@@ -388,13 +446,18 @@ class _addUserWidgetState extends State<addUserWidget> {
                                                   return AlertDialog(
                                                     title: Text("Succes!"),
                                                     content: Text(
-                                                        "Registration completed successfully! please check user email for verification"),
+                                                        "Registration completed successfully! please check your email to verify your email adress"),
                                                     actions: [
-                                                      FlatButton(
+                                                      ElevatedButton(
                                                         child: Text("ok"),
-                                                        onPressed: () {
-                                                          Navigator.of(context)
-                                                              .pop();
+                                                        onPressed: () async {
+                                                          await Navigator.push(
+                                                            context,
+                                                            MaterialPageRoute(
+                                                              builder: (context) =>
+                                                                  SigninWidget(),
+                                                            ),
+                                                          );
                                                         },
                                                       )
                                                     ],
@@ -408,7 +471,7 @@ class _addUserWidgetState extends State<addUserWidget> {
                                                     title: Text("Error"),
                                                     content: Text("$response"),
                                                     actions: [
-                                                      FlatButton(
+                                                      ElevatedButton(
                                                         child: Text("Ok"),
                                                         onPressed: () {
                                                           Navigator.of(context)
@@ -420,7 +483,7 @@ class _addUserWidgetState extends State<addUserWidget> {
                                                 });
                                       }
                                     },
-                                    text: 'submit',
+                                    text: 'create',
                                     options: FFButtonOptions(
                                       height: 45,
                                       color: Color(0xff132137),
@@ -441,12 +504,6 @@ class _addUserWidgetState extends State<addUserWidget> {
                                 ),
                               ),
                             ])),
-                        Divider(
-                          thickness: 1,
-                          indent: 50,
-                          endIndent: 50,
-                          color: Colors.grey[300],
-                        ),
                       ],
                     ),
                   ],

@@ -1,7 +1,6 @@
 import 'dart:async';
 
 import 'package:flutter/material.dart';
-import 'package:new_mee/apis/User_api.dart';
 import 'package:new_mee/apis/firebase_api.dart';
 import 'package:new_mee/apis/messagesMan.dart';
 import 'package:new_mee/components/message_widget.dart';
