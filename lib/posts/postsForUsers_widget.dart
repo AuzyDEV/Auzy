@@ -17,6 +17,7 @@ import 'package:new_mee/models/sharedPost.dart';
 import 'package:new_mee/posts/postDetails.dart';
 import 'package:new_mee/posts/savedPosts_widget.dart';
 import 'package:new_mee/users/UsersListForSharePost_widget.dart';
+import 'package:flutter_html/flutter_html.dart';
 
 class postsForUsersWidget extends StatefulWidget {
   const postsForUsersWidget({Key key}) : super(key: key);
@@ -36,6 +37,8 @@ class _postsForUsersWidgetState extends State<postsForUsersWidget> {
   Future<List<savedPost>> futureSavedPost;
   SavedPostMan apiSavedPost = SavedPostMan();
   sharedPostMan sharedpostapi = sharedPostMan();
+  String htmlText =
+      '<h1>text content initial, if<font face="Times New Roman"> any<i>&nbsp;hh&nbsp; </i><u style="font-style: italic;">hs c haifa</u><span style="font-weight: normal;"> <font color="#bf1313">haifa&nbsp;</font></span></font></h1>';
 
   int number;
   Future<String> _getCurrentUserId() async {
@@ -364,6 +367,8 @@ class _postsForUsersWidgetState extends State<postsForUsersWidget> {
                                                                                 0),
                                                                             child:
                                                                                 getTextSpanFromRichTextJson(snapshot.data[index].contenu),
+
+                                                                            // Html(data: htmlText),
                                                                           ),
                                                                           Row(
                                                                               mainAxisAlignment: MainAxisAlignment.start,
@@ -908,7 +913,10 @@ class _postsForUsersWidgetState extends State<postsForUsersWidget> {
                                                       }
                                                       return Center(
                                                         child:
-                                                            const CircularProgressIndicator(  color: Color(0xFF9457FB),),
+                                                            const CircularProgressIndicator(
+                                                          color:
+                                                              Color(0xFF9457FB),
+                                                        ),
                                                       );
                                                     }))),
                                       ],

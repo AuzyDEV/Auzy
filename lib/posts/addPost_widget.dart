@@ -1,6 +1,6 @@
 import 'dart:html';
 import 'dart:typed_data';
-
+//import 'package:flutter_summernote/flutter_summernote.dart';
 import 'package:firebase_storage/firebase_storage.dart';
 import 'package:new_mee/apis/User_api.dart';
 import 'package:new_mee/apis/postMan.dart';
@@ -12,6 +12,7 @@ import 'package:new_mee/components/theme.dart';
 import 'package:new_mee/components/widgets.dart';
 import 'package:flutter/material.dart';
 //import 'package:flutter_quill/flutter_quill.dart' as quill;
+import 'package:html_editor_enhanced/html_editor.dart';
 
 class addNewPostWidget extends StatefulWidget {
   const addNewPostWidget({Key key}) : super(key: key);
@@ -32,6 +33,7 @@ class _addNewPostWidgetState extends State<addNewPostWidget> {
   File _selectedFile;
   String fileName = "No file selected";
   Uint8List fileContents;
+  HtmlEditorController controller = HtmlEditorController();
   void _pickFile() {
     InputElement inputElement = FileUploadInputElement();
     inputElement.click();
@@ -213,6 +215,20 @@ class _addNewPostWidgetState extends State<addNewPostWidget> {
                                     ],
                                   ),
                                 ),
+                                Padding(
+                                    padding: EdgeInsetsDirectional.fromSTEB(
+                                        16, 20, 16, 0),
+                                    child: Column(children: [
+                                      HtmlEditor(
+                                        controller: controller, //required
+                                        htmlEditorOptions: HtmlEditorOptions(
+                                          hint: "Your text here...",
+                                          initialText:
+                                              "text content initial, if any",
+                                        ),
+                                      ),
+                                    ])),
+
                                 /* Padding(
                                   padding: EdgeInsetsDirectional.fromSTEB(
                                       16, 20, 16, 0),
@@ -277,6 +293,11 @@ class _addNewPostWidgetState extends State<addNewPostWidget> {
                                               padding: EdgeInsetsDirectional
                                                   .fromSTEB(0, 0, 0, 0),
                                               child: FFButtonWidget(
+                                                onPressed: () async {
+                                                  String text = await controller
+                                                      .getText();
+                                                  print(text);
+                                                },
                                                 /*onPressed: () async {
                                                   var contenu = _controller
                                                       .document

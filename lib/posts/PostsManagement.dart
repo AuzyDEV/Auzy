@@ -9,6 +9,7 @@ import 'package:new_mee/index.dart';
 import 'package:new_mee/posts/postDetails.dart';
 import 'package:new_mee/components/theme.dart';
 import 'package:flutter/material.dart';
+import 'package:new_mee/posts/summernote_widget.dart';
 
 class PostsManagementWidget extends StatefulWidget {
   const PostsManagementWidget({Key key}) : super(key: key);

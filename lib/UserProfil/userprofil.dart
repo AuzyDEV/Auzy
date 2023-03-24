@@ -338,8 +338,7 @@ class _ProfillWidgetState extends State<ProfillWidget> {
                                                   .bodyText2
                                                   .override(
                                                     fontFamily: 'Lexend Deca',
-                                                    color: Color.fromARGB(
-                                                        255, 214, 116, 36),
+                                                    color: Color(0xFF9457FB),
                                                     fontSize: 14,
                                                     fontWeight:
                                                         FontWeight.normal,

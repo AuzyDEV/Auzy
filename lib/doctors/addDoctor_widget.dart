@@ -259,15 +259,87 @@ class _addDoctorWidgetState extends State<addDoctorWidget> {
                                       child: DropdownButtonFormField<String>(
                                         items: [
                                           DropdownMenuItem<String>(
+                                            value: "Neurologist",
+                                            child: Text(
+                                              "Neurologist",
+                                            ),
+                                          ),
+                                          DropdownMenuItem<String>(
+                                            value: "Psychiatrist",
+                                            child: Text(
+                                              "Psychiatrist",
+                                            ),
+                                          ),
+                                          DropdownMenuItem<String>(
+                                            value: "Familyphysician",
+                                            child: Text(
+                                              "Familyphysician",
+                                            ),
+                                          ),
+                                          DropdownMenuItem<String>(
+                                            value: "Pediatrician",
+                                            child: Text(
+                                              "Pediatrician",
+                                            ),
+                                          ),
+                                          DropdownMenuItem<String>(
+                                            value: "Childpsychiatrist",
+                                            child: Text(
+                                              "Childpsychiatrist",
+                                            ),
+                                          ),
+                                          DropdownMenuItem<String>(
+                                            value: "Occupationaltherapist",
+                                            child: Text(
+                                              "Occupationaltherapist",
+                                            ),
+                                          ),
+                                          DropdownMenuItem<String>(
                                             value: "Ophtalmologist",
                                             child: Text(
                                               "Ophtalmologist",
                                             ),
                                           ),
                                           DropdownMenuItem<String>(
-                                            value: "Cardiologist",
+                                            value: "Orthopdist",
                                             child: Text(
-                                              "Cardiologist",
+                                              "Orthopdist",
+                                            ),
+                                          ),
+                                          DropdownMenuItem<String>(
+                                            value: "Physicaltherapist",
+                                            child: Text(
+                                              "Physicaltherapist",
+                                            ),
+                                          ),
+                                          DropdownMenuItem<String>(
+                                            value: "Otorhinolaryngologist",
+                                            child: Text(
+                                              "Otorhinolaryngologist",
+                                            ),
+                                          ),
+                                          DropdownMenuItem<String>(
+                                            value: "Psychotherapist",
+                                            child: Text(
+                                              "Psychotherapist",
+                                            ),
+                                          ),
+                                          DropdownMenuItem<String>(
+                                            value: "Psychomotortherapist",
+                                            child: Text(
+                                              "Psychomotortherapist",
+                                            ),
+                                          ),
+                                          DropdownMenuItem<String>(
+                                            value: "Psychologist",
+                                            child: Text(
+                                              "Psychologist",
+                                            ),
+                                          ),
+                                          DropdownMenuItem<String>(
+                                            value: "speechandlanguagetherapist",
+                                            child: Text(
+                                              "speechandlanguagetherapist",
                                             ),
                                           ),
                                         ],
