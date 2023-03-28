@@ -1,8 +1,8 @@
 import 'package:new_mee/apis/User_api.dart';
 import 'package:new_mee/chat/chat_page.dart';
-import 'package:new_mee/components/appBar.dart';
-import 'package:new_mee/components/drawer.dart';
-import 'package:new_mee/components/theme.dart';
+import 'package:new_mee/common_widgets/appBar.dart';
+import 'package:new_mee/common_widgets/drawer.dart';
+import 'package:new_mee/themes/theme.dart';
 import 'package:new_mee/models/User.dart';
 import 'package:flutter/material.dart';
 
@@ -73,7 +73,7 @@ class _chatcopyWidgetState extends State<chatcopyWidget> {
                                   children: [
                                     Icon(
                                       Icons.search,
-                                      color: FlutterFlowTheme.of(context)
+                                      color: FlutterAppTheme.of(context)
                                           .tertiaryColor,
                                       size: 24,
                                     ),
@@ -115,7 +115,7 @@ class _chatcopyWidgetState extends State<chatcopyWidget> {
                                               ),
                                             ),
                                           ),
-                                          style: FlutterFlowTheme.of(context)
+                                          style: FlutterAppTheme.of(context)
                                               .bodyText1
                                               .override(
                                                 fontFamily: 'Roboto',

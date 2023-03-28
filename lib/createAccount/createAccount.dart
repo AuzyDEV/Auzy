@@ -1,7 +1,8 @@
 import 'package:new_mee/apis/User_api.dart';
+import 'package:new_mee/common_widgets/Button_widget.dart';
 import 'package:new_mee/index.dart';
-import 'package:new_mee/components/theme.dart';
-import 'package:new_mee/components/widgets.dart';
+import 'package:new_mee/themes/theme.dart';
+import 'package:new_mee/common_widgets/widgets.dart';
 import 'package:flutter/material.dart';
 import 'package:string_validator/string_validator.dart';
 
@@ -71,14 +72,14 @@ class _CreateAccountWidgetState extends State<CreateAccountWidget> {
                 children: [
                   Text(
                     'Create',
-                    style: FlutterFlowTheme.of(context).bodyText1.override(
+                    style: FlutterAppTheme.of(context).bodyText1.override(
                           fontFamily: 'Open Sans',
                           fontSize: 30,
                         ),
                   ),
                   Text(
                     'Account',
-                    style: FlutterFlowTheme.of(context).bodyText1.override(
+                    style: FlutterAppTheme.of(context).bodyText1.override(
                           fontFamily: 'Open Sans',
                           fontSize: 30,
                         ),
@@ -114,7 +115,7 @@ class _CreateAccountWidgetState extends State<CreateAccountWidget> {
                               children: [
                                 Text(
                                   'Full Name*',
-                                  style: FlutterFlowTheme.of(context)
+                                  style: FlutterAppTheme.of(context)
                                       .bodyText2
                                       .override(
                                         fontFamily: 'Roboto',
@@ -149,7 +150,7 @@ class _CreateAccountWidgetState extends State<CreateAccountWidget> {
                               },
                               obscureText: false,
                               decoration: InputDecoration(
-                                errorStyle: FlutterFlowTheme.of(context)
+                                errorStyle: FlutterAppTheme.of(context)
                                     .bodyText1
                                     .override(
                                       fontFamily: 'Roboto',
@@ -187,7 +188,7 @@ class _CreateAccountWidgetState extends State<CreateAccountWidget> {
                                 contentPadding: EdgeInsetsDirectional.fromSTEB(
                                     12, 0, 12, 0),
                               ),
-                              style: FlutterFlowTheme.of(context)
+                              style: FlutterAppTheme.of(context)
                                   .bodyText1
                                   .override(
                                       fontFamily: 'Roboto',
@@ -204,7 +205,7 @@ class _CreateAccountWidgetState extends State<CreateAccountWidget> {
                               children: [
                                 Text(
                                   'Photo url*',
-                                  style: FlutterFlowTheme.of(context)
+                                  style: FlutterAppTheme.of(context)
                                       .bodyText2
                                       .override(
                                         fontFamily: 'Roboto',
@@ -233,7 +234,7 @@ class _CreateAccountWidgetState extends State<CreateAccountWidget> {
                                     controller: photourlController,
                                     obscureText: false,
                                     decoration: InputDecoration(
-                                      errorStyle: FlutterFlowTheme.of(context)
+                                      errorStyle: FlutterAppTheme.of(context)
                                           .bodyText1
                                           .override(
                                             fontFamily: 'Roboto',
@@ -272,7 +273,7 @@ class _CreateAccountWidgetState extends State<CreateAccountWidget> {
                                           EdgeInsetsDirectional.fromSTEB(
                                               12, 0, 12, 0),
                                     ),
-                                    style: FlutterFlowTheme.of(context)
+                                    style: FlutterAppTheme.of(context)
                                         .bodyText1
                                         .override(
                                           fontFamily: 'Roboto',
@@ -293,7 +294,7 @@ class _CreateAccountWidgetState extends State<CreateAccountWidget> {
                               children: [
                                 Text(
                                   'Email*',
-                                  style: FlutterFlowTheme.of(context)
+                                  style: FlutterAppTheme.of(context)
                                       .bodyText2
                                       .override(
                                         fontFamily: 'Roboto',
@@ -318,7 +319,7 @@ class _CreateAccountWidgetState extends State<CreateAccountWidget> {
                                       : 'Enter a Valid email'),
                               obscureText: false,
                               decoration: InputDecoration(
-                                errorStyle: FlutterFlowTheme.of(context)
+                                errorStyle: FlutterAppTheme.of(context)
                                     .bodyText1
                                     .override(
                                       fontFamily: 'Roboto',
@@ -356,7 +357,7 @@ class _CreateAccountWidgetState extends State<CreateAccountWidget> {
                                 contentPadding: EdgeInsetsDirectional.fromSTEB(
                                     12, 0, 12, 0),
                               ),
-                              style: FlutterFlowTheme.of(context)
+                              style: FlutterAppTheme.of(context)
                                   .bodyText1
                                   .override(
                                       fontFamily: 'Roboto',
@@ -373,7 +374,7 @@ class _CreateAccountWidgetState extends State<CreateAccountWidget> {
                               children: [
                                 Text(
                                   'Password*',
-                                  style: FlutterFlowTheme.of(context)
+                                  style: FlutterAppTheme.of(context)
                                       .bodyText2
                                       .override(
                                         fontFamily: 'Roboto',
@@ -402,7 +403,7 @@ class _CreateAccountWidgetState extends State<CreateAccountWidget> {
                               },
                               obscureText: !passwordVisibility,
                               decoration: InputDecoration(
-                                errorStyle: FlutterFlowTheme.of(context)
+                                errorStyle: FlutterAppTheme.of(context)
                                     .bodyText1
                                     .override(
                                       fontFamily: 'Roboto',
@@ -440,7 +441,7 @@ class _CreateAccountWidgetState extends State<CreateAccountWidget> {
                                 contentPadding: EdgeInsetsDirectional.fromSTEB(
                                     12, 0, 12, 0),
                               ),
-                              style: FlutterFlowTheme.of(context)
+                              style: FlutterAppTheme.of(context)
                                   .bodyText1
                                   .override(
                                       fontFamily: 'Roboto',
@@ -462,7 +463,7 @@ class _CreateAccountWidgetState extends State<CreateAccountWidget> {
                                 child: Padding(
                                   padding: EdgeInsetsDirectional.fromSTEB(
                                       0, 0, 0, 0),
-                                  child: FFButtonWidget(
+                                  child: buttonWidget(
                                     onPressed: () async {
                                       if (formKey.currentState.validate()) {
                                         String response = await api.signupUser(
@@ -518,22 +519,6 @@ class _CreateAccountWidgetState extends State<CreateAccountWidget> {
                                       }
                                     },
                                     text: 'create',
-                                    options: FFButtonOptions(
-                                      height: 45,
-                                      color: Color(0xff132137),
-                                      textStyle: FlutterFlowTheme.of(context)
-                                          .subtitle2
-                                          .override(
-                                            fontFamily: 'Roboto',
-                                            color: FlutterFlowTheme.of(context)
-                                                .primaryBtnText,
-                                            fontWeight: FontWeight.bold,
-                                          ),
-                                      borderSide: BorderSide(
-                                        color: Colors.transparent,
-                                        width: 1,
-                                      ),
-                                    ),
                                   ),
                                 ),
                               ),
@@ -565,7 +550,7 @@ class _CreateAccountWidgetState extends State<CreateAccountWidget> {
                                   },
                                   child: Text(
                                     'Already have an account?',
-                                    style: FlutterFlowTheme.of(context)
+                                    style: FlutterAppTheme.of(context)
                                         .bodyText1
                                         .override(
                                           fontFamily: 'Roboto',

@@ -1,7 +1,7 @@
 import 'package:new_mee/apis/doctorsMan.dart';
-import 'package:new_mee/components/appBar.dart';
-import 'package:new_mee/components/drawer.dart';
-import 'package:new_mee/components/theme.dart';
+import 'package:new_mee/common_widgets/appBar.dart';
+import 'package:new_mee/common_widgets/drawer.dart';
+import 'package:new_mee/themes/theme.dart';
 import 'package:flutter/material.dart';
 import 'package:new_mee/models/Doctor.dart';
 
@@ -36,7 +36,7 @@ class _DoctorprofileWidgetState extends State<DoctorprofileWidget> {
   Widget build(BuildContext context) {
     return Scaffold(
       key: scaffoldKey,
-      backgroundColor: FlutterFlowTheme.of(context).primaryBtnText,
+      backgroundColor: FlutterAppTheme.of(context).primaryBtnText,
       appBar: PreferredSize(
         preferredSize: const Size.fromHeight(60),
         child: appbar(text: 'doctor profile'),
@@ -68,7 +68,7 @@ class _DoctorprofileWidgetState extends State<DoctorprofileWidget> {
                                     width: 80,
                                     height: 80,
                                     decoration: BoxDecoration(
-                                      color: FlutterFlowTheme.of(context)
+                                      color: FlutterAppTheme.of(context)
                                           .primaryColor,
                                       shape: BoxShape.circle,
                                     ),
@@ -104,7 +104,7 @@ class _DoctorprofileWidgetState extends State<DoctorprofileWidget> {
                                   children: [
                                     Text(
                                       '${snapshot.data.firstName} ${snapshot.data.lastName}',
-                                      style: FlutterFlowTheme.of(context)
+                                      style: FlutterAppTheme.of(context)
                                           .title3
                                           .override(
                                             fontFamily: 'Roboto',
@@ -127,12 +127,12 @@ class _DoctorprofileWidgetState extends State<DoctorprofileWidget> {
                                             5, 0, 0, 0),
                                         child: Text(
                                           '8 years exeriences',
-                                          style: FlutterFlowTheme.of(context)
+                                          style: FlutterAppTheme.of(context)
                                               .bodyText1
                                               .override(
                                                 fontFamily: 'Roboto',
                                                 color:
-                                                    FlutterFlowTheme.of(context)
+                                                    FlutterAppTheme.of(context)
                                                         .primaryText,
                                                 fontWeight: FontWeight.normal,
                                               ),
@@ -150,12 +150,12 @@ class _DoctorprofileWidgetState extends State<DoctorprofileWidget> {
                                     children: [
                                       Text(
                                         '${snapshot.data.speciality}',
-                                        style: FlutterFlowTheme.of(context)
+                                        style: FlutterAppTheme.of(context)
                                             .bodyText1
                                             .override(
                                               fontFamily: 'Roboto',
                                               color:
-                                                  FlutterFlowTheme.of(context)
+                                                  FlutterAppTheme.of(context)
                                                       .primaryColor,
                                               fontSize: 14,
                                               fontWeight: FontWeight.w500,
@@ -176,7 +176,7 @@ class _DoctorprofileWidgetState extends State<DoctorprofileWidget> {
                               children: [
                                 Text(
                                   'About Doctor ',
-                                  style: FlutterFlowTheme.of(context)
+                                  style: FlutterAppTheme.of(context)
                                       .subtitle1
                                       .override(
                                         fontFamily: 'Roboto',
@@ -197,11 +197,11 @@ class _DoctorprofileWidgetState extends State<DoctorprofileWidget> {
                                 Expanded(
                                   child: Text(
                                     'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.',
-                                    style: FlutterFlowTheme.of(context)
+                                    style: FlutterAppTheme.of(context)
                                         .bodyText2
                                         .override(
                                           fontFamily: 'Roboto',
-                                          color: FlutterFlowTheme.of(context)
+                                          color: FlutterAppTheme.of(context)
                                               .secondaryText,
                                           fontSize: 14,
                                           fontWeight: FontWeight.w500,
@@ -220,7 +220,7 @@ class _DoctorprofileWidgetState extends State<DoctorprofileWidget> {
                               children: [
                                 Text(
                                   'Communication',
-                                  style: FlutterFlowTheme.of(context)
+                                  style: FlutterAppTheme.of(context)
                                       .subtitle2
                                       .override(
                                         fontFamily: 'Roboto',
@@ -266,24 +266,24 @@ class _DoctorprofileWidgetState extends State<DoctorprofileWidget> {
                                     children: [
                                       Text(
                                         'Localisation',
-                                        style: FlutterFlowTheme.of(context)
+                                        style: FlutterAppTheme.of(context)
                                             .bodyText1
                                             .override(
                                               fontFamily: 'Roboto',
                                               color:
-                                                  FlutterFlowTheme.of(context)
+                                                  FlutterAppTheme.of(context)
                                                       .secondaryText,
                                               fontWeight: FontWeight.w600,
                                             ),
                                       ),
                                       Text(
                                         '${snapshot.data.Adress}',
-                                        style: FlutterFlowTheme.of(context)
+                                        style: FlutterAppTheme.of(context)
                                             .bodyText1
                                             .override(
                                               fontFamily: 'Roboto',
                                               color:
-                                                  FlutterFlowTheme.of(context)
+                                                  FlutterAppTheme.of(context)
                                                       .secondaryText,
                                               fontWeight: FontWeight.normal,
                                             ),
@@ -313,7 +313,7 @@ class _DoctorprofileWidgetState extends State<DoctorprofileWidget> {
                                     ),
                                     child: Icon(
                                       Icons.phone_rounded,
-                                      color: FlutterFlowTheme.of(context)
+                                      color: FlutterAppTheme.of(context)
                                           .alternate,
                                       size: 20,
                                     ),
@@ -329,24 +329,24 @@ class _DoctorprofileWidgetState extends State<DoctorprofileWidget> {
                                     children: [
                                       Text(
                                         'Audio call',
-                                        style: FlutterFlowTheme.of(context)
+                                        style: FlutterAppTheme.of(context)
                                             .bodyText1
                                             .override(
                                               fontFamily: 'Roboto',
                                               color:
-                                                  FlutterFlowTheme.of(context)
+                                                  FlutterAppTheme.of(context)
                                                       .secondaryText,
                                               fontWeight: FontWeight.w600,
                                             ),
                                       ),
                                       Text(
                                         '${snapshot.data.phoneNumber}',
-                                        style: FlutterFlowTheme.of(context)
+                                        style: FlutterAppTheme.of(context)
                                             .bodyText1
                                             .override(
                                               fontFamily: 'Roboto',
                                               color:
-                                                  FlutterFlowTheme.of(context)
+                                                  FlutterAppTheme.of(context)
                                                       .secondaryText,
                                               fontWeight: FontWeight.normal,
                                             ),
@@ -391,24 +391,24 @@ class _DoctorprofileWidgetState extends State<DoctorprofileWidget> {
                                     children: [
                                       Text(
                                         'send mail',
-                                        style: FlutterFlowTheme.of(context)
+                                        style: FlutterAppTheme.of(context)
                                             .bodyText1
                                             .override(
                                               fontFamily: 'Roboto',
                                               color:
-                                                  FlutterFlowTheme.of(context)
+                                                  FlutterAppTheme.of(context)
                                                       .secondaryText,
                                               fontWeight: FontWeight.w600,
                                             ),
                                       ),
                                       Text(
                                         '${snapshot.data.email}',
-                                        style: FlutterFlowTheme.of(context)
+                                        style: FlutterAppTheme.of(context)
                                             .bodyText1
                                             .override(
                                               fontFamily: 'Roboto',
                                               color:
-                                                  FlutterFlowTheme.of(context)
+                                                  FlutterAppTheme.of(context)
                                                       .secondaryText,
                                               fontWeight: FontWeight.normal,
                                             ),
@@ -431,7 +431,7 @@ class _DoctorprofileWidgetState extends State<DoctorprofileWidget> {
                                   children: [
                                     Text(
                                       'Reveiws',
-                                      style: FlutterFlowTheme.of(context)
+                                      style: FlutterAppTheme.of(context)
                                           .subtitle2
                                           .override(
                                             fontFamily: 'Roboto',
@@ -462,7 +462,7 @@ class _DoctorprofileWidgetState extends State<DoctorprofileWidget> {
                                                     2, 0, 0, 0),
                                             child: Text(
                                               '4.5',
-                                              style: FlutterFlowTheme.of(
+                                              style: FlutterAppTheme.of(
                                                       context)
                                                   .subtitle1
                                                   .override(
@@ -480,12 +480,12 @@ class _DoctorprofileWidgetState extends State<DoctorprofileWidget> {
                                             child: Text(
                                               '(124)',
                                               style:
-                                                  FlutterFlowTheme.of(context)
+                                                  FlutterAppTheme.of(context)
                                                       .bodyText1
                                                       .override(
                                                         fontFamily: 'Roboto',
                                                         color:
-                                                            FlutterFlowTheme.of(
+                                                            FlutterAppTheme.of(
                                                                     context)
                                                                 .secondaryText,
                                                         fontWeight:
@@ -518,7 +518,7 @@ class _DoctorprofileWidgetState extends State<DoctorprofileWidget> {
                         child: Text(
                           'add review',
                           style:
-                              FlutterFlowTheme.of(context).bodyText1.override(
+                              FlutterAppTheme.of(context).bodyText1.override(
                                     fontFamily: 'Roboto',
                                     color: Color.fromARGB(255, 214, 116, 36),
                                     fontWeight: FontWeight.w500,
@@ -622,7 +622,7 @@ class _DoctorprofileWidgetState extends State<DoctorprofileWidget> {
                                                         children: [
                                                           Text(
                                                             'John Smith',
-                                                            style: FlutterFlowTheme
+                                                            style: FlutterAppTheme
                                                                     .of(context)
                                                                 .subtitle1
                                                                 .override(
@@ -638,13 +638,13 @@ class _DoctorprofileWidgetState extends State<DoctorprofileWidget> {
                                                           ),
                                                           Text(
                                                             '1 day ago',
-                                                            style: FlutterFlowTheme
+                                                            style: FlutterAppTheme
                                                                     .of(context)
                                                                 .bodyText1
                                                                 .override(
                                                                   fontFamily:
                                                                       'Roboto',
-                                                                  color: FlutterFlowTheme.of(
+                                                                  color: FlutterAppTheme.of(
                                                                           context)
                                                                       .secondaryText,
                                                                   fontWeight:
@@ -684,7 +684,7 @@ class _DoctorprofileWidgetState extends State<DoctorprofileWidget> {
                                                                       0, 0, 0),
                                                           child: Text(
                                                             '4.5',
-                                                            style: FlutterFlowTheme
+                                                            style: FlutterAppTheme
                                                                     .of(context)
                                                                 .subtitle1
                                                                 .override(
@@ -715,7 +715,7 @@ class _DoctorprofileWidgetState extends State<DoctorprofileWidget> {
                                                     child: Text(
                                                       'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor.',
                                                       style:
-                                                          FlutterFlowTheme.of(
+                                                          FlutterAppTheme.of(
                                                                   context)
                                                               .bodyText2
                                                               .override(

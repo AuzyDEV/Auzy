@@ -1,10 +1,12 @@
 import 'package:intl_phone_number_input/intl_phone_number_input.dart';
 import 'package:new_mee/apis/mailingMan.dart';
-import 'package:new_mee/components/appBar.dart';
-import 'package:new_mee/components/drawer.dart';
+import 'package:new_mee/common_widgets/Button_widget.dart';
+import 'package:new_mee/common_widgets/appBar.dart';
+import 'package:new_mee/common_widgets/drawer.dart';
+import 'package:new_mee/home/home_widget.dart';
 import 'package:new_mee/index.dart';
-import 'package:new_mee/components/theme.dart';
-import 'package:new_mee/components/widgets.dart';
+import 'package:new_mee/themes/theme.dart';
+import 'package:new_mee/common_widgets/widgets.dart';
 import 'package:flutter/material.dart';
 
 class announcementWidget extends StatefulWidget {
@@ -77,7 +79,7 @@ class _announcementWidgetState extends State<announcementWidget> {
                               children: [
                                 Text(
                                   'Message*',
-                                  style: FlutterFlowTheme.of(context)
+                                  style: FlutterAppTheme.of(context)
                                       .bodyText2
                                       .override(
                                         fontFamily: 'Roboto',
@@ -100,7 +102,7 @@ class _announcementWidgetState extends State<announcementWidget> {
                                   value.isEmpty ? 'Field is required' : null,
                               obscureText: false,
                               decoration: InputDecoration(
-                                errorStyle: FlutterFlowTheme.of(context)
+                                errorStyle: FlutterAppTheme.of(context)
                                     .bodyText1
                                     .override(
                                       fontFamily: 'Roboto',
@@ -136,7 +138,7 @@ class _announcementWidgetState extends State<announcementWidget> {
                                   borderRadius: BorderRadius.circular(8),
                                 ),
                                 hintText: 'Enter your message...',
-                                hintStyle: FlutterFlowTheme.of(context)
+                                hintStyle: FlutterAppTheme.of(context)
                                     .bodyText1
                                     .override(
                                       fontFamily: 'Roboto',
@@ -149,7 +151,7 @@ class _announcementWidgetState extends State<announcementWidget> {
                                 contentPadding: EdgeInsetsDirectional.fromSTEB(
                                     20, 16, 20, 16),
                               ),
-                              style: FlutterFlowTheme.of(context)
+                              style: FlutterAppTheme.of(context)
                                   .bodyText1
                                   .override(
                                       fontFamily: 'Roboto',
@@ -171,7 +173,7 @@ class _announcementWidgetState extends State<announcementWidget> {
                                 child: Padding(
                                   padding: EdgeInsetsDirectional.fromSTEB(
                                       0, 0, 0, 0),
-                                  child: FFButtonWidget(
+                                  child: buttonWidget(
                                     onPressed: () async {
                                       if (formKey.currentState.validate()) {
                                         bool response = await Maillingapi
@@ -195,7 +197,7 @@ class _announcementWidgetState extends State<announcementWidget> {
                                                             context,
                                                             MaterialPageRoute(
                                                               builder: (context) =>
-                                                                  MenuWidget(),
+                                                                  HomeWidget(),
                                                             ),
                                                           );
                                                         },
@@ -224,23 +226,7 @@ class _announcementWidgetState extends State<announcementWidget> {
                                       }
                                     },
                                     text: 'send',
-                                    options: FFButtonOptions(
-                                      height: 45,
-                                      color: Color(0xff132137),
-                                      textStyle: FlutterFlowTheme.of(context)
-                                          .subtitle2
-                                          .override(
-                                            fontFamily: 'Roboto',
-                                            color: FlutterFlowTheme.of(context)
-                                                .primaryBtnText,
-                                            fontWeight: FontWeight.bold,
-                                          ),
-                                      borderSide: BorderSide(
-                                        color: Colors.transparent,
-                                        width: 1,
-                                      ),
-                                    ),
-                                  ),
+                                 ),
                                 ),
                               ),
                             ])),

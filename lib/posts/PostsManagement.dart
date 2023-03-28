@@ -2,14 +2,17 @@ import 'dart:convert';
 
 import 'package:new_mee/apis/User_api.dart';
 import 'package:new_mee/apis/postMan.dart';
-import 'package:new_mee/components/appBar.dart';
-import 'package:new_mee/components/drawer.dart';
+import 'package:new_mee/common_widgets/appBar.dart';
+import 'package:new_mee/common_widgets/drawer.dart';
+import 'package:new_mee/home/home_widget.dart';
 import 'package:new_mee/index.dart';
-
+import 'package:flutter_html/flutter_html.dart';
 import 'package:new_mee/posts/postDetails.dart';
-import 'package:new_mee/components/theme.dart';
+import 'package:new_mee/themes/theme.dart';
 import 'package:flutter/material.dart';
 import 'package:new_mee/posts/summernote_widget.dart';
+
+import '../common_widgets/floatingActionButton_widget.dart';
 
 class PostsManagementWidget extends StatefulWidget {
   const PostsManagementWidget({Key key}) : super(key: key);
@@ -117,20 +120,14 @@ class _PostsManagementWidgetState extends State<PostsManagementWidget>
         child: appbar(text: 'Posts'),
       ),
       backgroundColor: Colors.white,
-      floatingActionButton: FloatingActionButton(
+      floatingActionButton: floatingActionButtonWidget(
         onPressed: () async {
           await Navigator.push(
             context,
             MaterialPageRoute(builder: (context) => addNewPostWidget()),
           );
         },
-        backgroundColor: Color(0xFF101213),
-        elevation: 2,
-        child: Icon(
-          Icons.add,
-          color: FlutterFlowTheme.of(context).primaryBtnText,
-          size: 24,
-        ),
+        icon: Icons.add,
       ),
       drawer: Drawerr(),
       body: SafeArea(
@@ -183,85 +180,7 @@ class _PostsManagementWidgetState extends State<PostsManagementWidget>
                     )),
                 Column(
                   mainAxisSize: MainAxisSize.max,
-                  children: [
-                    /*  Padding(
-                        padding: EdgeInsetsDirectional.fromSTEB(16, 30, 16, 10),
-                        child: Row(children: [
-                          Expanded(
-                            child: Padding(
-                              padding:
-                                  EdgeInsetsDirectional.fromSTEB(0, 0, 0, 0),
-                              child: FFButtonWidget(
-                                onPressed: () async {
-                                  var confirmDialogResponse = await showDialog<
-                                          bool>(
-                                        context: context,
-                                        builder: (alertDialogContext) {
-                                          return AlertDialog(
-                                            title: Text('Delete user'),
-                                            content: Text(
-                                                'Are you sure to delete this user ?'),
-                                            actions: [
-                                              ElevatedButton(
-                                                onPressed: () => Navigator.pop(
-                                                    alertDialogContext, false),
-                                                child: Text('Cancel'),
-                                              ),
-                                              ElevatedButton(
-                                                onPressed: () => {
-                                                  api.deleteAllUsers(),
-                                                  Navigator.push(
-                                                    context,
-                                                    MaterialPageRoute(
-                                                      builder: (context) =>
-                                                          MenuWidget(),
-                                                    ),
-                                                  ),
-                                                  ScaffoldMessenger.of(context)
-                                                      .showSnackBar(
-                                                    SnackBar(
-                                                        content: Text(
-                                                          'Successfully Users deleted!',
-                                                          style: TextStyle(
-                                                            color: Colors.black,
-                                                          ),
-                                                        ),
-                                                        duration: Duration(
-                                                            milliseconds: 4000),
-                                                        backgroundColor:
-                                                            Colors.red),
-                                                  ),
-                                                },
-                                                child: Text('Confirm'),
-                                              ),
-                                            ],
-                                          );
-                                        },
-                                      ) ??
-                                      false;
-                                },
-                                text: 'Delete all users',
-                                options: FFButtonOptions(
-                                  height: 45,
-                                  color: Colors.grey[100],
-                                  textStyle: FlutterFlowTheme.of(context)
-                                      .subtitle2
-                                      .override(
-                                        fontFamily: 'Roboto',
-                                        color: Color(0xff132137),
-                                        fontWeight: FontWeight.normal,
-                                      ),
-                                  borderSide: BorderSide(
-                                    color: Colors.grey,
-                                    width: 1,
-                                  ),
-                                ),
-                              ),
-                            ),
-                          ),
-                        ])),
-               */
-                  ],
+                  children: [],
                 ),
               ],
             ),
@@ -317,7 +236,10 @@ class _PostsManagementWidgetState extends State<PostsManagementWidget>
               cells: [
                 DataCell(Text('#' + e.id.toString())),
                 _createTitleCell(e.title.toString()),
-                DataCell(getTextSpanFromRichTextJson(e.contenu.toString())),
+                DataCell(
+                  Text("haifa"),
+                  //Html(data: e.contenu.toString()),
+                ),
                 _createTitleCell(e.date.toString()),
                 DataCell(
                   Padding(
@@ -381,7 +303,7 @@ class _PostsManagementWidgetState extends State<PostsManagementWidget>
                                                     context,
                                                     MaterialPageRoute(
                                                       builder: (context) =>
-                                                          MenuWidget(),
+                                                          HomeWidget(),
                                                     ),
                                                   ),
                                                   ScaffoldMessenger.of(context)
@@ -494,7 +416,7 @@ class _PostsManagementWidgetState extends State<PostsManagementWidget>
                                                           context,
                                                           MaterialPageRoute(
                                                             builder: (context) =>
-                                                                MenuWidget(),
+                                                                HomeWidget(),
                                                           ),
                                                         ),
                                                         ScaffoldMessenger.of(
@@ -576,7 +498,7 @@ class _PostsManagementWidgetState extends State<PostsManagementWidget>
                                                           context,
                                                           MaterialPageRoute(
                                                             builder: (context) =>
-                                                                MenuWidget(),
+                                                                HomeWidget(),
                                                           ),
                                                         ),
                                                         ScaffoldMessenger.of(

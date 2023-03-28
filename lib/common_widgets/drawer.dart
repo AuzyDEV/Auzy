@@ -1,11 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:new_mee/apis/User_api.dart';
 import 'package:new_mee/chat/chats_copy.dart';
-import 'package:new_mee/components/theme.dart';
+import 'package:new_mee/themes/theme.dart';
 import 'package:new_mee/doctors/specialities_widget.dart';
-import 'package:new_mee/drugs/drugsList_widget.dart';
-import 'package:new_mee/files/filesList.dart';
-import 'package:new_mee/home/welcome_widget.dart';
+import 'package:new_mee/home/HomeWithNavBar_widget.dart';
 import 'package:new_mee/index.dart';
 import 'package:new_mee/mailing/annoucement.dart';
 import 'package:new_mee/models/User.dart';
@@ -47,38 +45,6 @@ class _DrawerrState extends State<Drawerr> {
       child: Container(
         child: ListView(
           children: <Widget>[
-            /* Padding(
-              padding: EdgeInsetsDirectional.fromSTEB(25, 55, 0, 0),
-              child: Row(
-                mainAxisSize: MainAxisSize.max,
-                children: [
-                  Card(
-                    clipBehavior: Clip.antiAliasWithSaveLayer,
-                    color: FlutterFlowTheme.of(context).primaryBtnText,
-                    shape: RoundedRectangleBorder(
-                      borderRadius: BorderRadius.circular(40),
-                    ),
-                    child: Padding(
-                      padding: EdgeInsetsDirectional.fromSTEB(2, 2, 2, 2),
-                      child: Container(
-                        width: 60,
-                        height: 60,
-                        clipBehavior: Clip.antiAlias,
-                        decoration: BoxDecoration(
-                          shape: BoxShape.circle,
-                        ),
-                        child: Image.asset(
-                          'assets/images/auzy.png',
-                        ),
-                      ),
-                    ),
-                  ),
-                  Padding(
-                    padding: EdgeInsetsDirectional.fromSTEB(130, 0, 0, 0),
-                  ),
-                ],
-              ),
-            ),*/
             Row(
               mainAxisSize: MainAxisSize.max,
               children: [
@@ -106,9 +72,8 @@ class _DrawerrState extends State<Drawerr> {
                                             child: Card(
                                               clipBehavior:
                                                   Clip.antiAliasWithSaveLayer,
-                                              color:
-                                                  FlutterFlowTheme.of(context)
-                                                      .primaryColor,
+                                              color: FlutterAppTheme.of(context)
+                                                  .primaryColor,
                                               shape: RoundedRectangleBorder(
                                                 borderRadius:
                                                     BorderRadius.circular(50),
@@ -142,7 +107,7 @@ class _DrawerrState extends State<Drawerr> {
                                         children: [
                                           Text(
                                             '${snapshot.data.displayName}',
-                                            style: FlutterFlowTheme.of(context)
+                                            style: FlutterAppTheme.of(context)
                                                 .title1
                                                 .override(
                                                   fontFamily: 'Lexend Deca',
@@ -157,8 +122,7 @@ class _DrawerrState extends State<Drawerr> {
                                                     0, 5, 0, 0),
                                             child: Text(
                                               '${snapshot.data.email}',
-                                              style: FlutterFlowTheme.of(
-                                                      context)
+                                              style: FlutterAppTheme.of(context)
                                                   .title1
                                                   .override(
                                                     fontFamily: 'Lexend Deca',
@@ -187,44 +151,6 @@ class _DrawerrState extends State<Drawerr> {
                 ),
               ],
             ),
-            /* Padding(
-              padding: EdgeInsetsDirectional.fromSTEB(25, 100, 0, 0),
-              child: Row(
-                mainAxisSize: MainAxisSize.max,
-                children: [
-                  Text(
-                    'Welcome,',
-                    style: FlutterFlowTheme.of(context).title3.override(
-                          fontFamily: 'Roboto',
-                          color: Color(0xFF090F13),
-                          fontSize: 18,
-                          fontWeight: FontWeight.bold,
-                        ),
-                  ),
-                ],
-              ),
-            ),
-            Padding(
-              padding: EdgeInsetsDirectional.fromSTEB(25, 5, 0, 0),
-              child: Row(
-                mainAxisSize: MainAxisSize.max,
-                children: [
-                  Text(
-                    'to Auzy Mental Health',
-                    style: FlutterFlowTheme.of(context).title3.override(
-                          fontFamily: 'Roboto',
-                          color: Color(0xFF090F13),
-                          fontSize: 16,
-                          fontWeight: FontWeight.w500,
-                        ),
-                  ),
-                ],
-              ),
-            ),
-            Divider(
-              height: 40,
-              indent: 1,
-            ),*/
             _createDrawerItem(
                 icon: Icons.home_outlined,
                 text: 'Home',
@@ -237,7 +163,7 @@ class _DrawerrState extends State<Drawerr> {
                   Navigator.push(
                     context,
                     MaterialPageRoute(
-                      builder: (context) => welcomeWidget(),
+                      builder: (context) => HomeWithButtomNavBarWidget(),
                     ),
                   );
                 }),
@@ -271,22 +197,6 @@ class _DrawerrState extends State<Drawerr> {
                       context,
                       MaterialPageRoute(
                         builder: (context) => UsersWidget(),
-                      ),
-                    );
-                  }),
-            if (_futureStringValue == "admin")
-              _createDrawerItem(
-                  icon: Icons.image_outlined,
-                  text: 'Drive',
-                  isSelected: selectedIndex == 4,
-                  onTap: () {
-                    setState(() {
-                      selectedIndex = 4;
-                    });
-                    Navigator.push(
-                      context,
-                      MaterialPageRoute(
-                        builder: (context) => FileWidget(),
                       ),
                     );
                   }),
@@ -341,22 +251,6 @@ class _DrawerrState extends State<Drawerr> {
                       ),
                     );
                   }),
-            _createDrawerItem(
-                icon: Icons.medical_services_outlined,
-                text: 'Medecines',
-                isSelected: selectedIndex == 7,
-                onTap: () {
-                  setState(() {
-                    selectedIndex = 7;
-                  });
-
-                  Navigator.push(
-                    context,
-                    MaterialPageRoute(
-                      builder: (context) => DrugsListWidget(),
-                    ),
-                  );
-                }),
             _createDrawerItem(
                 icon: Icons.person_search_outlined,
                 text: 'Doctors',

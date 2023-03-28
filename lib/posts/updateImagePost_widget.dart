@@ -2,12 +2,13 @@ import 'dart:html';
 import 'dart:typed_data';
 import 'package:firebase_storage/firebase_storage.dart';
 import 'package:new_mee/apis/fileMan.dart';
-import 'package:new_mee/apis/medecineMan.dart';
-import 'package:new_mee/components/appBar.dart';
-import 'package:new_mee/components/drawer.dart';
+import 'package:new_mee/common_widgets/Button_widget.dart';
+import 'package:new_mee/common_widgets/appBar.dart';
+import 'package:new_mee/common_widgets/drawer.dart';
+import 'package:new_mee/home/home_widget.dart';
 import 'package:new_mee/index.dart';
-import 'package:new_mee/components/theme.dart';
-import 'package:new_mee/components/widgets.dart';
+import 'package:new_mee/themes/theme.dart';
+import 'package:new_mee/common_widgets/widgets.dart';
 import 'package:flutter/material.dart';
 
 class updateImagePostWidget extends StatefulWidget {
@@ -25,7 +26,6 @@ class _updateImagePostWidgetState extends State<updateImagePostWidget> {
   final scaffoldKey = GlobalKey<ScaffoldState>();
   final formKey = GlobalKey<FormState>();
   Uint8List fileContents;
-  medecineMan apimed = medecineMan();
   fileMan apifile = fileMan();
   @override
   void initState() {
@@ -114,14 +114,13 @@ class _updateImagePostWidgetState extends State<updateImagePostWidget> {
                                 child: Padding(
                                   padding: EdgeInsetsDirectional.fromSTEB(
                                       0, 0, 0, 0),
-                                  child: FFButtonWidget(
+                                  child: buttonWidget(
                                     onPressed: () async {
                                       if (formKey.currentState.validate()) {
                                         bool response = await apifile
                                             .deleteFilePostFromDownloadURL(
                                                 widget.downloadURL);
                                         print(response);
-                                        // imageRef.delete();
                                         if (response == true) {
                                           await FirebaseStorage.instance
                                               .ref(
@@ -143,7 +142,7 @@ class _updateImagePostWidgetState extends State<updateImagePostWidget> {
                                                         context,
                                                         MaterialPageRoute(
                                                           builder: (context) =>
-                                                              MenuWidget(),
+                                                              HomeWidget(),
                                                         ),
                                                       );
                                                     },
@@ -154,22 +153,6 @@ class _updateImagePostWidgetState extends State<updateImagePostWidget> {
                                       }
                                     },
                                     text: 'send',
-                                    options: FFButtonOptions(
-                                      height: 45,
-                                      color: Color(0xff132137),
-                                      textStyle: FlutterFlowTheme.of(context)
-                                          .subtitle2
-                                          .override(
-                                            fontFamily: 'Roboto',
-                                            color: FlutterFlowTheme.of(context)
-                                                .primaryBtnText,
-                                            fontWeight: FontWeight.bold,
-                                          ),
-                                      borderSide: BorderSide(
-                                        color: Colors.transparent,
-                                        width: 1,
-                                      ),
-                                    ),
                                   ),
                                 ),
                               ),

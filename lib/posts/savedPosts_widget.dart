@@ -2,11 +2,11 @@ import 'dart:convert';
 
 import 'package:new_mee/apis/User_api.dart';
 import 'package:new_mee/apis/savedPostMan.dart';
-import 'package:new_mee/components/appBar.dart';
-import 'package:new_mee/components/drawer.dart';
+import 'package:new_mee/common_widgets/appBar.dart';
+import 'package:new_mee/common_widgets/drawer.dart';
 import 'package:new_mee/index.dart';
-import 'package:new_mee/components/icon_button.dart';
-import 'package:new_mee/components/theme.dart';
+import 'package:new_mee/common_widgets/icon_button.dart';
+import 'package:new_mee/themes/theme.dart';
 import 'package:flutter/material.dart';
 import 'package:new_mee/models/savedPost.dart';
 
@@ -155,7 +155,7 @@ class _savedPostsForUsersWidgetState extends State<savedPostsForUsersWidget> {
                                         Card(
                                           clipBehavior:
                                               Clip.antiAliasWithSaveLayer,
-                                          color: FlutterFlowTheme.of(context)
+                                          color: FlutterAppTheme.of(context)
                                               .primaryColor,
                                           shape: RoundedRectangleBorder(
                                             borderRadius:
@@ -190,7 +190,7 @@ class _savedPostsForUsersWidgetState extends State<savedPostsForUsersWidget> {
                                                     .fromSTEB(12, 0, 0, 0),
                                                 child: Text(
                                                   '${snapshot.data[index].uname}',
-                                                  style: FlutterFlowTheme.of(
+                                                  style: FlutterAppTheme.of(
                                                           context)
                                                       .bodyText1,
                                                 ),
@@ -267,7 +267,7 @@ class _savedPostsForUsersWidgetState extends State<savedPostsForUsersWidget> {
                                                   4, 0, 0, 0),
                                           child: Text(
                                             '2,493',
-                                            style: FlutterFlowTheme.of(context)
+                                            style: FlutterAppTheme.of(context)
                                                 .bodyText2,
                                           ),
                                         )
@@ -287,7 +287,7 @@ class _savedPostsForUsersWidgetState extends State<savedPostsForUsersWidget> {
                         return Text('There is no saved posts',
                             textAlign: TextAlign.center,
                             style:
-                                FlutterFlowTheme.of(context).bodyText2.override(
+                                FlutterAppTheme.of(context).bodyText2.override(
                                       fontFamily: 'Roboto',
                                       fontSize: 17,
                                       fontWeight: FontWeight.bold,

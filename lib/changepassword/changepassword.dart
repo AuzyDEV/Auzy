@@ -1,9 +1,11 @@
 import 'package:new_mee/apis/User_api.dart';
-import 'package:new_mee/components/appBar.dart';
+import 'package:new_mee/common_widgets/Button_widget.dart';
+import 'package:new_mee/common_widgets/appBar.dart';
+import 'package:new_mee/home/home_widget.dart';
 import 'package:new_mee/index.dart';
 import 'package:new_mee/models/User.dart';
-import 'package:new_mee/components/theme.dart';
-import 'package:new_mee/components/widgets.dart';
+import 'package:new_mee/themes/theme.dart';
+import 'package:new_mee/common_widgets/widgets.dart';
 import 'package:flutter/material.dart';
 
 class changePasswordWidget extends StatefulWidget {
@@ -77,7 +79,7 @@ class _changePasswordWidgetState extends State<changePasswordWidget> {
                                         children: [
                                           Text(
                                             'Password*',
-                                            style: FlutterFlowTheme.of(context)
+                                            style: FlutterAppTheme.of(context)
                                                 .bodyText2
                                                 .override(
                                                   fontFamily: 'Roboto',
@@ -103,7 +105,7 @@ class _changePasswordWidgetState extends State<changePasswordWidget> {
                                         obscureText: !passwordVisibility,
                                         decoration: InputDecoration(
                                           errorStyle:
-                                              FlutterFlowTheme.of(context)
+                                              FlutterAppTheme.of(context)
                                                   .bodyText1
                                                   .override(
                                                     fontFamily: 'Roboto',
@@ -148,7 +150,7 @@ class _changePasswordWidgetState extends State<changePasswordWidget> {
                                               EdgeInsetsDirectional.fromSTEB(
                                                   12, 0, 12, 0),
                                         ),
-                                        style: FlutterFlowTheme.of(context)
+                                        style: FlutterAppTheme.of(context)
                                             .bodyText1
                                             .override(
                                                 fontFamily: 'Roboto',
@@ -169,7 +171,7 @@ class _changePasswordWidgetState extends State<changePasswordWidget> {
                                   children: [
                                     Text(
                                       'Confirm password*',
-                                      style: FlutterFlowTheme.of(context)
+                                      style: FlutterAppTheme.of(context)
                                           .bodyText2
                                           .override(
                                             fontFamily: 'Roboto',
@@ -198,7 +200,7 @@ class _changePasswordWidgetState extends State<changePasswordWidget> {
                                         obscureText: !passwordVisibility1,
                                         decoration: InputDecoration(
                                           errorStyle:
-                                              FlutterFlowTheme.of(context)
+                                              FlutterAppTheme.of(context)
                                                   .bodyText1
                                                   .override(
                                                     fontFamily: 'Roboto',
@@ -243,7 +245,7 @@ class _changePasswordWidgetState extends State<changePasswordWidget> {
                                               EdgeInsetsDirectional.fromSTEB(
                                                   12, 0, 12, 0),
                                         ),
-                                        style: FlutterFlowTheme.of(context)
+                                        style: FlutterAppTheme.of(context)
                                             .bodyText1
                                             .override(
                                               fontFamily: 'Roboto',
@@ -267,7 +269,7 @@ class _changePasswordWidgetState extends State<changePasswordWidget> {
                                             padding:
                                                 EdgeInsetsDirectional.fromSTEB(
                                                     0, 0, 0, 0),
-                                            child: FFButtonWidget(
+                                            child: buttonWidget(
                                               onPressed: () async {
                                                 if (formKey.currentState
                                                     .validate()) {
@@ -298,7 +300,7 @@ class _changePasswordWidgetState extends State<changePasswordWidget> {
                                                                       MaterialPageRoute(
                                                                         builder:
                                                                             (context) =>
-                                                                                MenuWidget(),
+                                                                                HomeWidget(),
                                                                       ),
                                                                     );
                                                                   },
@@ -332,25 +334,6 @@ class _changePasswordWidgetState extends State<changePasswordWidget> {
                                                 }
                                               },
                                               text: 'submit',
-                                              options: FFButtonOptions(
-                                                height: 45,
-                                                color: Color(0xff132137),
-                                                textStyle:
-                                                    FlutterFlowTheme.of(context)
-                                                        .subtitle2
-                                                        .override(
-                                                          fontFamily: 'Roboto',
-                                                          color: FlutterFlowTheme
-                                                                  .of(context)
-                                                              .primaryBtnText,
-                                                          fontWeight:
-                                                              FontWeight.bold,
-                                                        ),
-                                                borderSide: BorderSide(
-                                                  color: Colors.transparent,
-                                                  width: 1,
-                                                ),
-                                              ),
                                             ),
                                           ),
                                         ),

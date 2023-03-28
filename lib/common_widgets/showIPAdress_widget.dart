@@ -1,9 +1,9 @@
 import 'package:new_mee/apis/User_api.dart';
 
-import '../components/theme.dart';
+import '../themes/theme.dart';
 import 'package:flutter/material.dart';
 
-class ShowIpAdressWidget extends StatefulWidget { 
+class ShowIpAdressWidget extends StatefulWidget {
   final String id;
   const ShowIpAdressWidget({Key key, this.id}) : super(key: key);
 
@@ -38,7 +38,7 @@ class _ShowIpAdressWidgetState extends State<ShowIpAdressWidget> {
                     Text(
                       '${snapshot.data}',
                       textAlign: TextAlign.center,
-                      style: FlutterFlowTheme.of(context).bodyText1.override(
+                      style: FlutterAppTheme.of(context).bodyText1.override(
                             fontFamily: 'Roboto',
                             fontSize: 20,
                             fontWeight: FontWeight.bold,
@@ -49,8 +49,7 @@ class _ShowIpAdressWidgetState extends State<ShowIpAdressWidget> {
               } else if (snapshot.hasError) {
                 return Text("${snapshot.error}");
               }
-                return Center(
-                              child: const CircularProgressIndicator());
+              return Center(child: const CircularProgressIndicator());
             }));
   }
 }

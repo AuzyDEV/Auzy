@@ -1,4 +1,4 @@
-import 'package:new_mee/components/theme.dart';
+import 'package:new_mee/themes/theme.dart';
 import 'package:flutter/material.dart';
 
 class appbar extends StatefulWidget {
@@ -27,7 +27,7 @@ class _appbarState extends State<appbar> {
       ),
       title: Text(
         widget.text,
-        style: FlutterFlowTheme.of(context).bodyText1.override(
+        style: FlutterAppTheme.of(context).bodyText1.override(
               fontFamily: 'Roboto',
               color: Colors.white,
               fontSize: 18,

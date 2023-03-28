@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:new_mee/apis/User_api.dart';
 import 'package:new_mee/models/User.dart';
-import '../components/chat_body_widget.dart';
-import '../components/chat_header_widget.dart';
+import '../common_widgets/chat_body_widget.dart';
+import '../common_widgets/chat_header_widget.dart';
 
 class ChatsPage extends StatelessWidget {
   UserMan api = UserMan();

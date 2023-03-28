@@ -90,6 +90,7 @@ dependencies:
   webview_flutter: ^4.0.7
   html_editor_enhanced: ^2.5.1
   flutter_html: ^3.0.0-alpha.6
+  html_unescape: ^2.0.0
 dev_dependencies:
 
   flutter_test:

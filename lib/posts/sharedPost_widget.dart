@@ -4,10 +4,10 @@ import 'package:new_mee/apis/User_api.dart';
 import 'package:new_mee/apis/postMan.dart';
 import 'package:new_mee/apis/savedPostMan.dart';
 import 'package:new_mee/apis/sharedPostMan.dart';
-import 'package:new_mee/components/appBar.dart';
-import 'package:new_mee/components/drawer.dart';
+import 'package:new_mee/common_widgets/appBar.dart';
+import 'package:new_mee/common_widgets/drawer.dart';
 import 'package:new_mee/models/Post.dart';
-import 'package:new_mee/components/theme.dart';
+import 'package:new_mee/themes/theme.dart';
 import 'package:flutter/material.dart';
 import 'package:new_mee/models/sharedPost.dart';
 
@@ -191,7 +191,7 @@ class _sharedPostsByUserWidgetState extends State<sharedPostsByUserWidget> {
                                                     child: Text(
                                                       '${snapshot.data[index].currentUserName}',
                                                       style:
-                                                          FlutterFlowTheme.of(
+                                                          FlutterAppTheme.of(
                                                                   context)
                                                               .bodyText1,
                                                     ),
@@ -229,7 +229,7 @@ class _sharedPostsByUserWidgetState extends State<sharedPostsByUserWidget> {
                                                             Card(
                                                               clipBehavior: Clip
                                                                   .antiAliasWithSaveLayer,
-                                                              color: FlutterFlowTheme
+                                                              color: FlutterAppTheme
                                                                       .of(context)
                                                                   .primaryColor,
                                                               shape:
@@ -277,7 +277,7 @@ class _sharedPostsByUserWidgetState extends State<sharedPostsByUserWidget> {
                                                                           0),
                                                               child: Text(
                                                                 '${snapshot.data[index].adminName}',
-                                                                style: FlutterFlowTheme.of(
+                                                                style: FlutterAppTheme.of(
                                                                         context)
                                                                     .bodyText1,
                                                               ),
@@ -340,7 +340,7 @@ class _sharedPostsByUserWidgetState extends State<sharedPostsByUserWidget> {
                                                                           0),
                                                               child: Text(
                                                                 '2,493',
-                                                                style: FlutterFlowTheme.of(
+                                                                style: FlutterAppTheme.of(
                                                                         context)
                                                                     .bodyText2,
                                                               ),
@@ -375,7 +375,7 @@ class _sharedPostsByUserWidgetState extends State<sharedPostsByUserWidget> {
                         return Text('No shared posts with you',
                             textAlign: TextAlign.center,
                             style:
-                                FlutterFlowTheme.of(context).bodyText2.override(
+                                FlutterAppTheme.of(context).bodyText2.override(
                                       fontFamily: 'Roboto',
                                       fontSize: 17,
                                       fontWeight: FontWeight.bold,

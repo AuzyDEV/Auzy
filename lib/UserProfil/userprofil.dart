@@ -1,9 +1,10 @@
 import 'package:new_mee/apis/User_api.dart';
-import 'package:new_mee/components/appBar.dart';
-import 'package:new_mee/components/showIPAdress_widget.dart';
+import 'package:new_mee/common_widgets/Button_widget.dart';
+import 'package:new_mee/common_widgets/appBar.dart';
+import 'package:new_mee/common_widgets/showIPAdress_widget.dart';
 import 'package:new_mee/models/User.dart';
-import 'package:new_mee/components/theme.dart';
-import 'package:new_mee/components/widgets.dart';
+import 'package:new_mee/themes/theme.dart';
+import 'package:new_mee/common_widgets/widgets.dart';
 import 'package:flutter/material.dart';
 
 class ProfillWidget extends StatefulWidget {
@@ -126,12 +127,12 @@ class _ProfillWidgetState extends State<ProfillWidget> {
                                           decoration: InputDecoration(
                                             hintText: '${snapshot.data.id}',
                                             hintStyle:
-                                                FlutterFlowTheme.of(context)
+                                                FlutterAppTheme.of(context)
                                                     .bodyText2,
                                             enabledBorder: OutlineInputBorder(
                                               borderSide: BorderSide(
                                                 color:
-                                                    FlutterFlowTheme.of(context)
+                                                    FlutterAppTheme.of(context)
                                                         .primaryBackground,
                                                 width: 2,
                                               ),
@@ -141,7 +142,7 @@ class _ProfillWidgetState extends State<ProfillWidget> {
                                             focusedBorder: OutlineInputBorder(
                                               borderSide: BorderSide(
                                                 color:
-                                                    FlutterFlowTheme.of(context)
+                                                    FlutterAppTheme.of(context)
                                                         .primaryBackground,
                                                 width: 2,
                                               ),
@@ -166,7 +167,7 @@ class _ProfillWidgetState extends State<ProfillWidget> {
                                                   BorderRadius.circular(8),
                                             ),
                                           ),
-                                          style: FlutterFlowTheme.of(context)
+                                          style: FlutterAppTheme.of(context)
                                               .bodyText1,
                                           maxLines: null,
                                         ),
@@ -188,12 +189,12 @@ class _ProfillWidgetState extends State<ProfillWidget> {
                                           decoration: InputDecoration(
                                             hintText: '${snapshot.data.email}',
                                             hintStyle:
-                                                FlutterFlowTheme.of(context)
+                                                FlutterAppTheme.of(context)
                                                     .bodyText2,
                                             enabledBorder: OutlineInputBorder(
                                               borderSide: BorderSide(
                                                 color:
-                                                    FlutterFlowTheme.of(context)
+                                                    FlutterAppTheme.of(context)
                                                         .primaryBackground,
                                                 width: 2,
                                               ),
@@ -203,7 +204,7 @@ class _ProfillWidgetState extends State<ProfillWidget> {
                                             focusedBorder: OutlineInputBorder(
                                               borderSide: BorderSide(
                                                 color:
-                                                    FlutterFlowTheme.of(context)
+                                                    FlutterAppTheme.of(context)
                                                         .primaryBackground,
                                                 width: 2,
                                               ),
@@ -228,7 +229,7 @@ class _ProfillWidgetState extends State<ProfillWidget> {
                                                   BorderRadius.circular(8),
                                             ),
                                           ),
-                                          style: FlutterFlowTheme.of(context)
+                                          style: FlutterAppTheme.of(context)
                                               .bodyText1,
                                           maxLines: null,
                                         ),
@@ -251,12 +252,12 @@ class _ProfillWidgetState extends State<ProfillWidget> {
                                             hintText:
                                                 '${snapshot.data.photoURL}',
                                             hintStyle:
-                                                FlutterFlowTheme.of(context)
+                                                FlutterAppTheme.of(context)
                                                     .bodyText2,
                                             enabledBorder: OutlineInputBorder(
                                               borderSide: BorderSide(
                                                 color:
-                                                    FlutterFlowTheme.of(context)
+                                                    FlutterAppTheme.of(context)
                                                         .primaryBackground,
                                                 width: 2,
                                               ),
@@ -266,7 +267,7 @@ class _ProfillWidgetState extends State<ProfillWidget> {
                                             focusedBorder: OutlineInputBorder(
                                               borderSide: BorderSide(
                                                 color:
-                                                    FlutterFlowTheme.of(context)
+                                                    FlutterAppTheme.of(context)
                                                         .primaryBackground,
                                                 width: 2,
                                               ),
@@ -291,7 +292,7 @@ class _ProfillWidgetState extends State<ProfillWidget> {
                                                   BorderRadius.circular(8),
                                             ),
                                           ),
-                                          style: FlutterFlowTheme.of(context)
+                                          style: FlutterAppTheme.of(context)
                                               .bodyText1,
                                           maxLines: null,
                                         ),
@@ -306,12 +307,12 @@ class _ProfillWidgetState extends State<ProfillWidget> {
                                     mainAxisSize: MainAxisSize.max,
                                     mainAxisAlignment: MainAxisAlignment.center,
                                     children: [
-                                      FFButtonWidget(
+                                      buttonWidget(
                                         onPressed: () async {
                                           await showModalBottomSheet(
                                             isScrollControlled: true,
                                             backgroundColor:
-                                                FlutterFlowTheme.of(context)
+                                                FlutterAppTheme.of(context)
                                                     .primaryBtnText,
                                             context: context,
                                             builder: (context) {
@@ -328,27 +329,6 @@ class _ProfillWidgetState extends State<ProfillWidget> {
                                           );
                                         },
                                         text: 'get IP adress',
-                                        options: FFButtonOptions(
-                                          width: 150,
-                                          height: 40,
-                                          color: FlutterFlowTheme.of(context)
-                                              .secondaryBackground,
-                                          textStyle:
-                                              FlutterFlowTheme.of(context)
-                                                  .bodyText2
-                                                  .override(
-                                                    fontFamily: 'Lexend Deca',
-                                                    color: Color(0xFF9457FB),
-                                                    fontSize: 14,
-                                                    fontWeight:
-                                                        FontWeight.normal,
-                                                  ),
-                                          elevation: 3,
-                                          borderSide: BorderSide(
-                                            color: Colors.transparent,
-                                            width: 1,
-                                          ),
-                                        ),
                                       ),
                                     ],
                                   ),

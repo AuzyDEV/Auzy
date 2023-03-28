@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:new_mee/apis/User_api.dart';
-import 'package:new_mee/components/messages_widget.dart';
-import 'package:new_mee/components/new_message_widget.dart';
-import 'package:new_mee/components/profile_header_widget.dart';
+import 'package:new_mee/common_widgets/messages_widget.dart';
+import 'package:new_mee/common_widgets/new_message_widget.dart';
+import 'package:new_mee/common_widgets/profile_header_widget.dart';
 import 'package:new_mee/models/User.dart';
 
 class ChatPage extends StatefulWidget {

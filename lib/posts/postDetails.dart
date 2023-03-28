@@ -1,12 +1,13 @@
 import 'dart:convert';
 
 import 'package:new_mee/apis/postMan.dart';
-import 'package:new_mee/components/appBar.dart';
-import 'package:new_mee/components/drawer.dart';
+import 'package:new_mee/common_widgets/Button_widget.dart';
+import 'package:new_mee/common_widgets/appBar.dart';
+import 'package:new_mee/common_widgets/drawer.dart';
 import 'package:new_mee/models/Post.dart';
-import 'package:new_mee/components/icon_button.dart';
-import 'package:new_mee/components/theme.dart';
-import 'package:new_mee/components/widgets.dart';
+import 'package:new_mee/common_widgets/icon_button.dart';
+import 'package:new_mee/themes/theme.dart';
+import 'package:new_mee/common_widgets/widgets.dart';
 import 'package:flutter/material.dart';
 import 'package:new_mee/posts/updateImagePost_widget.dart';
 
@@ -230,7 +231,7 @@ class _postDetailsWidgetState extends State<postDetailsWidget> {
                             children: [
                               Text(
                                 '${snapshot.data.title}',
-                                style: FlutterFlowTheme.of(context).title1,
+                                style: FlutterAppTheme.of(context).title1,
                               ),
                             ],
                           ),
@@ -259,7 +260,7 @@ class _postDetailsWidgetState extends State<postDetailsWidget> {
                                 child: Text(
                                   '${snapshot.data.date}',
                                   textAlign: TextAlign.right,
-                                  style: FlutterFlowTheme.of(context).bodyText1,
+                                  style: FlutterAppTheme.of(context).bodyText1,
                                 ),
                               ),
                             ],
@@ -273,7 +274,7 @@ class _postDetailsWidgetState extends State<postDetailsWidget> {
                             children: [
                               if (_futureStringValue == "admin") 
                               Expanded(
-                                child: FFButtonWidget(
+                                child: buttonWidget(
                                   onPressed: () async {
                                     Navigator.push(
                                       context,
@@ -287,24 +288,6 @@ class _postDetailsWidgetState extends State<postDetailsWidget> {
                                     );
                                   },
                                   text: 'update post\'s photo',
-                                  options: FFButtonOptions(
-                                    width: 160,
-                                    height: 40,
-                                    color: Colors.green,
-                                    textStyle: FlutterFlowTheme.of(context)
-                                        .bodyText2
-                                        .override(
-                                          fontFamily: 'Lexend Deca',
-                                          color: Colors.white,
-                                          fontSize: 14,
-                                          fontWeight: FontWeight.normal,
-                                        ),
-                                    elevation: 3,
-                                    borderSide: BorderSide(
-                                      color: Colors.transparent,
-                                      width: 1,
-                                    ),
-                                  ),
                                 ),
                               ),
                             ],

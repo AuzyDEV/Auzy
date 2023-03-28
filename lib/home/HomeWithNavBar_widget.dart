@@ -1,16 +1,19 @@
-import 'package:new_mee/components/drawer.dart';
+import 'package:new_mee/common_widgets/drawer.dart';
 import 'package:new_mee/doctors/doctorsListing_widget.dart';
+import 'package:new_mee/home/home_widget.dart';
 import 'package:new_mee/index.dart';
 import 'package:flutter/material.dart';
 
-class welcomeWidget extends StatefulWidget {
-  const welcomeWidget({Key key}) : super(key: key);
+class HomeWithButtomNavBarWidget extends StatefulWidget {
+  const HomeWithButtomNavBarWidget({Key key}) : super(key: key);
 
   @override
-  _welcomeWidgetState createState() => _welcomeWidgetState();
+  _HomeWithButtomNavBarWidgetState createState() =>
+      _HomeWithButtomNavBarWidgetState();
 }
 
-class _welcomeWidgetState extends State<welcomeWidget> {
+class _HomeWithButtomNavBarWidgetState
+    extends State<HomeWithButtomNavBarWidget> {
   final scaffoldKey = GlobalKey<ScaffoldState>();
   String _futureRoleValue;
   Future<String> _getCurrentUserRole() async {
@@ -31,13 +34,13 @@ class _welcomeWidgetState extends State<welcomeWidget> {
   }
 
   final List<Widget> _pagesUser = [
-    MenuWidget(),
+    HomeWidget(),
     postsForUsersWidget(),
     listsdocWidget(),
     MyprofilWidget()
   ];
   final List<Widget> _pagesAdmin = [
-    MenuWidget(),
+    HomeWidget(),
     PostsManagementWidget(),
     listsdocWidget(),
     MyprofilWidget()

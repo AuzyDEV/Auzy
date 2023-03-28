@@ -1,6 +1,6 @@
 import 'dart:convert';
 import 'package:new_mee/models/File.dart';
-import '../components/util.dart';
+import '../utils/util.dart';
 
 List<Post> postFromJson(String str) =>
     List<Post>.from(json.decode(str).map((x) => Post.fromMap(x)));

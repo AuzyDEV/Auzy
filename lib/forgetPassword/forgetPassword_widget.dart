@@ -1,6 +1,7 @@
 import 'package:new_mee/apis/User_api.dart';
-import '../components/theme.dart';
-import '../components/widgets.dart';
+import 'package:new_mee/common_widgets/Button_widget.dart';
+import '../themes/theme.dart';
+import '../common_widgets/widgets.dart';
 import 'package:flutter/material.dart';
 
 class ForgetpasswordWidget extends StatefulWidget {
@@ -69,7 +70,7 @@ class _ForgetpasswordWidgetState extends State<ForgetpasswordWidget> {
                           Text.rich(
                             TextSpan(
                               text: 'Reset ',
-                              style: FlutterFlowTheme.of(context)
+                              style: FlutterAppTheme.of(context)
                                   .bodyText1
                                   .override(
                                     fontFamily: 'Open Sans',
@@ -79,7 +80,7 @@ class _ForgetpasswordWidgetState extends State<ForgetpasswordWidget> {
                               children: <TextSpan>[
                                 TextSpan(
                                   text: 'password',
-                                  style: FlutterFlowTheme.of(context)
+                                  style: FlutterAppTheme.of(context)
                                       .bodyText1
                                       .override(
                                         fontFamily: 'Open Sans',
@@ -93,9 +94,9 @@ class _ForgetpasswordWidgetState extends State<ForgetpasswordWidget> {
                           Text(
                             'Enter the email associated with your account',
                             style:
-                                FlutterFlowTheme.of(context).bodyText1.override(
+                                FlutterAppTheme.of(context).bodyText1.override(
                                       fontFamily: 'Open Sans',
-                                      color: FlutterFlowTheme.of(context)
+                                      color: FlutterAppTheme.of(context)
                                           .secondaryText,
                                     ),
                           ),
@@ -120,7 +121,7 @@ class _ForgetpasswordWidgetState extends State<ForgetpasswordWidget> {
                           Text(
                             'Email',
                             style:
-                                FlutterFlowTheme.of(context).bodyText2.override(
+                                FlutterAppTheme.of(context).bodyText2.override(
                                       fontFamily: 'Roboto',
                                       color: Color(0xFF101213),
                                       fontSize: 14,
@@ -143,7 +144,7 @@ class _ForgetpasswordWidgetState extends State<ForgetpasswordWidget> {
                         obscureText: false,
                         decoration: InputDecoration(
                           errorStyle:
-                              FlutterFlowTheme.of(context).bodyText1.override(
+                              FlutterAppTheme.of(context).bodyText1.override(
                                     fontFamily: 'Roboto',
                                     color: Colors.red,
                                     fontWeight: FontWeight.normal,
@@ -179,7 +180,7 @@ class _ForgetpasswordWidgetState extends State<ForgetpasswordWidget> {
                           contentPadding:
                               EdgeInsetsDirectional.fromSTEB(12, 0, 12, 0),
                         ),
-                        style: FlutterFlowTheme.of(context).bodyText1.override(
+                        style: FlutterAppTheme.of(context).bodyText1.override(
                             fontFamily: 'Roboto',
                             color: Colors.black,
                             fontWeight: FontWeight.normal),
@@ -189,7 +190,7 @@ class _ForgetpasswordWidgetState extends State<ForgetpasswordWidget> {
                         padding: EdgeInsetsDirectional.fromSTEB(16, 30, 16, 0),
                         child: Row(children: [
                           Expanded(
-                            child: FFButtonWidget(
+                            child: buttonWidget(
                               onPressed: () async {
                                 clickCount = clickCount + 1;
                                 if (formKey.currentState.validate()) {
@@ -251,22 +252,6 @@ class _ForgetpasswordWidgetState extends State<ForgetpasswordWidget> {
                                       });
                               },
                               text: 'Send',
-                              options: FFButtonOptions(
-                                height: 45,
-                                color: Color(0xff132137),
-                                textStyle: FlutterFlowTheme.of(context)
-                                    .subtitle2
-                                    .override(
-                                      fontFamily: 'Roboto',
-                                      color: FlutterFlowTheme.of(context)
-                                          .primaryBtnText,
-                                      fontWeight: FontWeight.bold,
-                                    ),
-                                borderSide: BorderSide(
-                                  color: Colors.transparent,
-                                  width: 1,
-                                ),
-                              ),
                             ),
                           )
                         ])),

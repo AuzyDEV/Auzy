@@ -1,6 +1,6 @@
-import 'package:new_mee/components/appBar.dart';
-import 'package:new_mee/components/drawer.dart';
-import 'package:new_mee/components/theme.dart';
+import 'package:new_mee/common_widgets/appBar.dart';
+import 'package:new_mee/common_widgets/drawer.dart';
+import 'package:new_mee/themes/theme.dart';
 import 'package:flutter/material.dart';
 import 'package:new_mee/doctors/doctorsListing_widget.dart';
 
@@ -33,7 +33,7 @@ class _SpecialitiesWidgetState extends State<SpecialitiesWidget> {
   Widget build(BuildContext context) {
     return Scaffold(
       key: scaffoldKey,
-      backgroundColor: FlutterFlowTheme.of(context).primaryBtnText,
+      backgroundColor: FlutterAppTheme.of(context).primaryBtnText,
       appBar: PreferredSize(
         preferredSize: const Size.fromHeight(60),
         child: appbar(text: 'Doctors'),
@@ -59,7 +59,7 @@ class _SpecialitiesWidgetState extends State<SpecialitiesWidget> {
                           Text(
                             'Health Professional\'s \nSpecialities',
                             style:
-                                FlutterFlowTheme.of(context).bodyText1.override(
+                                FlutterAppTheme.of(context).bodyText1.override(
                                       fontFamily: 'Open Sans',
                                       fontSize: 20,
                                     ),
@@ -127,11 +127,11 @@ class _SpecialitiesWidgetState extends State<SpecialitiesWidget> {
                                     Text(
                                       'Neurologist',
                                       textAlign: TextAlign.center,
-                                      style: FlutterFlowTheme.of(context)
+                                      style: FlutterAppTheme.of(context)
                                           .bodyText1
                                           .override(
                                             fontFamily: 'Roboto',
-                                            color: FlutterFlowTheme.of(context)
+                                            color: FlutterAppTheme.of(context)
                                                 .secondaryText,
                                             fontSize: 13,
                                             fontWeight: FontWeight.normal,
@@ -191,11 +191,11 @@ class _SpecialitiesWidgetState extends State<SpecialitiesWidget> {
                                     Text(
                                       'Psychiatrist',
                                       textAlign: TextAlign.center,
-                                      style: FlutterFlowTheme.of(context)
+                                      style: FlutterAppTheme.of(context)
                                           .bodyText1
                                           .override(
                                             fontFamily: 'Roboto',
-                                            color: FlutterFlowTheme.of(context)
+                                            color: FlutterAppTheme.of(context)
                                                 .secondaryText,
                                             fontSize: 13,
                                             fontWeight: FontWeight.normal,
@@ -251,12 +251,12 @@ class _SpecialitiesWidgetState extends State<SpecialitiesWidget> {
                                       child: Text(
                                         'Family physician',
                                         textAlign: TextAlign.center,
-                                        style: FlutterFlowTheme.of(context)
+                                        style: FlutterAppTheme.of(context)
                                             .bodyText1
                                             .override(
                                               fontFamily: 'Roboto',
                                               color:
-                                                  FlutterFlowTheme.of(context)
+                                                  FlutterAppTheme.of(context)
                                                       .secondaryText,
                                               fontSize: 13,
                                               fontWeight: FontWeight.normal,
@@ -317,11 +317,11 @@ class _SpecialitiesWidgetState extends State<SpecialitiesWidget> {
                                     Text(
                                       'Pediatrician',
                                       textAlign: TextAlign.center,
-                                      style: FlutterFlowTheme.of(context)
+                                      style: FlutterAppTheme.of(context)
                                           .bodyText1
                                           .override(
                                             fontFamily: 'Roboto',
-                                            color: FlutterFlowTheme.of(context)
+                                            color: FlutterAppTheme.of(context)
                                                 .secondaryText,
                                             fontSize: 13,
                                             fontWeight: FontWeight.normal,
@@ -382,12 +382,12 @@ class _SpecialitiesWidgetState extends State<SpecialitiesWidget> {
                                       child: Text(
                                         'Child psychiatrist',
                                         textAlign: TextAlign.center,
-                                        style: FlutterFlowTheme.of(context)
+                                        style: FlutterAppTheme.of(context)
                                             .bodyText1
                                             .override(
                                               fontFamily: 'Roboto',
                                               color:
-                                                  FlutterFlowTheme.of(context)
+                                                  FlutterAppTheme.of(context)
                                                       .secondaryText,
                                               fontSize: 13,
                                               fontWeight: FontWeight.normal,
@@ -449,12 +449,12 @@ class _SpecialitiesWidgetState extends State<SpecialitiesWidget> {
                                       child: Text(
                                         'Occupational therapist',
                                         textAlign: TextAlign.center,
-                                        style: FlutterFlowTheme.of(context)
+                                        style: FlutterAppTheme.of(context)
                                             .bodyText1
                                             .override(
                                               fontFamily: 'Roboto',
                                               color:
-                                                  FlutterFlowTheme.of(context)
+                                                  FlutterAppTheme.of(context)
                                                       .secondaryText,
                                               fontSize: 13,
                                               fontWeight: FontWeight.normal,
@@ -516,12 +516,12 @@ class _SpecialitiesWidgetState extends State<SpecialitiesWidget> {
                                       child: Text(
                                         'Ophtalmologist',
                                         textAlign: TextAlign.center,
-                                        style: FlutterFlowTheme.of(context)
+                                        style: FlutterAppTheme.of(context)
                                             .bodyText1
                                             .override(
                                               fontFamily: 'Roboto',
                                               color:
-                                                  FlutterFlowTheme.of(context)
+                                                  FlutterAppTheme.of(context)
                                                       .secondaryText,
                                               fontSize: 13,
                                               fontWeight: FontWeight.normal,
@@ -583,12 +583,12 @@ class _SpecialitiesWidgetState extends State<SpecialitiesWidget> {
                                       child: Text(
                                         'Orthopdist',
                                         textAlign: TextAlign.center,
-                                        style: FlutterFlowTheme.of(context)
+                                        style: FlutterAppTheme.of(context)
                                             .bodyText1
                                             .override(
                                               fontFamily: 'Roboto',
                                               color:
-                                                  FlutterFlowTheme.of(context)
+                                                  FlutterAppTheme.of(context)
                                                       .secondaryText,
                                               fontSize: 13,
                                               fontWeight: FontWeight.normal,
@@ -650,12 +650,12 @@ class _SpecialitiesWidgetState extends State<SpecialitiesWidget> {
                                       child: Text(
                                         'Physical therapist',
                                         textAlign: TextAlign.center,
-                                        style: FlutterFlowTheme.of(context)
+                                        style: FlutterAppTheme.of(context)
                                             .bodyText1
                                             .override(
                                               fontFamily: 'Roboto',
                                               color:
-                                                  FlutterFlowTheme.of(context)
+                                                  FlutterAppTheme.of(context)
                                                       .secondaryText,
                                               fontSize: 13,
                                               fontWeight: FontWeight.normal,
@@ -717,12 +717,12 @@ class _SpecialitiesWidgetState extends State<SpecialitiesWidget> {
                                       child: Text(
                                         'Otorhinolaryngologist',
                                         textAlign: TextAlign.center,
-                                        style: FlutterFlowTheme.of(context)
+                                        style: FlutterAppTheme.of(context)
                                             .bodyText1
                                             .override(
                                               fontFamily: 'Roboto',
                                               color:
-                                                  FlutterFlowTheme.of(context)
+                                                  FlutterAppTheme.of(context)
                                                       .secondaryText,
                                               fontSize: 13,
                                               fontWeight: FontWeight.normal,
@@ -784,12 +784,12 @@ class _SpecialitiesWidgetState extends State<SpecialitiesWidget> {
                                       child: Text(
                                         'Psychotherapist',
                                         textAlign: TextAlign.center,
-                                        style: FlutterFlowTheme.of(context)
+                                        style: FlutterAppTheme.of(context)
                                             .bodyText1
                                             .override(
                                               fontFamily: 'Roboto',
                                               color:
-                                                  FlutterFlowTheme.of(context)
+                                                  FlutterAppTheme.of(context)
                                                       .secondaryText,
                                               fontSize: 13,
                                               fontWeight: FontWeight.normal,
@@ -849,12 +849,12 @@ class _SpecialitiesWidgetState extends State<SpecialitiesWidget> {
                                       child: Text(
                                         'Psychomotor therapist',
                                         textAlign: TextAlign.center,
-                                        style: FlutterFlowTheme.of(context)
+                                        style: FlutterAppTheme.of(context)
                                             .bodyText1
                                             .override(
                                               fontFamily: 'Roboto',
                                               color:
-                                                  FlutterFlowTheme.of(context)
+                                                  FlutterAppTheme.of(context)
                                                       .secondaryText,
                                               fontSize: 13,
                                               fontWeight: FontWeight.normal,
@@ -916,12 +916,12 @@ class _SpecialitiesWidgetState extends State<SpecialitiesWidget> {
                                       child: Text(
                                         'Psychologist',
                                         textAlign: TextAlign.center,
-                                        style: FlutterFlowTheme.of(context)
+                                        style: FlutterAppTheme.of(context)
                                             .bodyText1
                                             .override(
                                               fontFamily: 'Roboto',
                                               color:
-                                                  FlutterFlowTheme.of(context)
+                                                  FlutterAppTheme.of(context)
                                                       .secondaryText,
                                               fontSize: 13,
                                               fontWeight: FontWeight.normal,
@@ -983,12 +983,12 @@ class _SpecialitiesWidgetState extends State<SpecialitiesWidget> {
                                       child: Text(
                                         'speech and language therapist',
                                         textAlign: TextAlign.center,
-                                        style: FlutterFlowTheme.of(context)
+                                        style: FlutterAppTheme.of(context)
                                             .bodyText1
                                             .override(
                                               fontFamily: 'Roboto',
                                               color:
-                                                  FlutterFlowTheme.of(context)
+                                                  FlutterAppTheme.of(context)
                                                       .secondaryText,
                                               fontSize: 13,
                                               fontWeight: FontWeight.normal,

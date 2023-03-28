@@ -4,10 +4,10 @@ import 'package:new_mee/apis/User_api.dart';
 import 'package:new_mee/apis/postMan.dart';
 import 'package:new_mee/apis/savedPostMan.dart';
 import 'package:new_mee/apis/sharedPostMan.dart';
-import 'package:new_mee/components/appBar.dart';
-import 'package:new_mee/components/drawer.dart';
-import 'package:new_mee/components/icon_button.dart';
-import 'package:new_mee/components/theme.dart';
+import 'package:new_mee/common_widgets/appBar.dart';
+import 'package:new_mee/common_widgets/drawer.dart';
+import 'package:new_mee/common_widgets/icon_button.dart';
+import 'package:new_mee/themes/theme.dart';
 import 'package:new_mee/index.dart';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
@@ -18,6 +18,7 @@ import 'package:new_mee/posts/postDetails.dart';
 import 'package:new_mee/posts/savedPosts_widget.dart';
 import 'package:new_mee/users/UsersListForSharePost_widget.dart';
 import 'package:flutter_html/flutter_html.dart';
+import 'package:html_unescape/html_unescape.dart';
 
 class postsForUsersWidget extends StatefulWidget {
   const postsForUsersWidget({Key key}) : super(key: key);
@@ -38,8 +39,7 @@ class _postsForUsersWidgetState extends State<postsForUsersWidget> {
   SavedPostMan apiSavedPost = SavedPostMan();
   sharedPostMan sharedpostapi = sharedPostMan();
   String htmlText =
-      '<h1>text content initial, if<font face="Times New Roman"> any<i>&nbsp;hh&nbsp; </i><u style="font-style: italic;">hs c haifa</u><span style="font-weight: normal;"> <font color="#bf1313">haifa&nbsp;</font></span></font></h1>';
-
+      "<h2><span style=\"background-color: rgb(255, 255, 255);\"><font color=\"#e91e63\" style=\"\" size=\"3\">Summer</font></span><span style=\"color: rgb(77, 81, 86); font-size: 14px; background-color: rgb(255, 255, 255);\"> is the <u>hottest</u> of the </span><span style=\"font-size: 14px; background-color: rgb(255, 255, 255);\"><font color=\"#fe1616\">four</font></span><span style=\"color: rgb(77, 81, 86); font-size: 14px; background-color: rgb(255, 255, 255);\"> temperate seasons, occurring after spring and before autumn. At or </span><span style=\"color: rgb(77, 81, 86); font-size: 14px; background-color: rgb(255, 235, 59);\">centred</span><span style=\"color: rgb(77, 81, 86); font-size: 14px; background-color: rgb(255, 255, 255);\"> on the summer solstice, daylight hours are longest and darkness hours are shortest, with day length decreasing as the season progresses after the solstice.</span></h2>";
   int number;
   Future<String> _getCurrentUserId() async {
     return apiUser.GetIDCurrentUser();
@@ -224,7 +224,7 @@ class _postsForUsersWidgetState extends State<postsForUsersWidget> {
                                                                                   children: [
                                                                                     Card(
                                                                                       clipBehavior: Clip.antiAliasWithSaveLayer,
-                                                                                      color: FlutterFlowTheme.of(context).primaryColor,
+                                                                                      color: FlutterAppTheme.of(context).primaryColor,
                                                                                       shape: RoundedRectangleBorder(
                                                                                         borderRadius: BorderRadius.circular(20),
                                                                                       ),
@@ -248,7 +248,7 @@ class _postsForUsersWidgetState extends State<postsForUsersWidget> {
                                                                                       padding: EdgeInsetsDirectional.fromSTEB(12, 0, 0, 0),
                                                                                       child: Text(
                                                                                         '${snapshot.data[index].uname}',
-                                                                                        style: FlutterFlowTheme.of(context).bodyText1,
+                                                                                        style: FlutterAppTheme.of(context).bodyText1,
                                                                                       ),
                                                                                     ),
                                                                                   ],
@@ -335,7 +335,7 @@ class _postsForUsersWidgetState extends State<postsForUsersWidget> {
                                                                                       padding: EdgeInsetsDirectional.fromSTEB(4, 0, 0, 0),
                                                                                       child: Text(
                                                                                         '2,493',
-                                                                                        style: FlutterFlowTheme.of(context).bodyText2,
+                                                                                        style: FlutterAppTheme.of(context).bodyText2,
                                                                                       ),
                                                                                     ),
                                                                                   ],
@@ -366,9 +366,9 @@ class _postsForUsersWidgetState extends State<postsForUsersWidget> {
                                                                                 2,
                                                                                 0),
                                                                             child:
-                                                                                getTextSpanFromRichTextJson(snapshot.data[index].contenu),
-
-                                                                            // Html(data: htmlText),
+                                                                                //getTextSpanFromRichTextJson(snapshot.data[index].contenu),
+                                                                                Html(data: snapshot.data[index].contenu),
+                                                                            // Html(data: HtmlUnescape().convert(snapshot.data[index].contenu)),
                                                                           ),
                                                                           Row(
                                                                               mainAxisAlignment: MainAxisAlignment.start,
@@ -382,10 +382,12 @@ class _postsForUsersWidgetState extends State<postsForUsersWidget> {
                                                                                     ),
                                                                                   ),
                                                                                   onTap: () {
-                                                                                    Navigator.push(
+                                                                                    print(htmlText);
+                                                                                    print(snapshot.data[index].contenu);
+                                                                                    /*Navigator.push(
                                                                                       context,
                                                                                       MaterialPageRoute(builder: (context) => postDetailsWidget(id: snapshot.data[index].id)),
-                                                                                    );
+                                                                                    );*/
                                                                                   },
                                                                                 ),
                                                                               ]),
@@ -412,7 +414,7 @@ class _postsForUsersWidgetState extends State<postsForUsersWidget> {
                                                                 textAlign:
                                                                     TextAlign
                                                                         .center,
-                                                                style: FlutterFlowTheme.of(
+                                                                style: FlutterAppTheme.of(
                                                                         context)
                                                                     .bodyText2
                                                                     .override(
@@ -492,7 +494,7 @@ class _postsForUsersWidgetState extends State<postsForUsersWidget> {
                                                                             children: [
                                                                               Card(
                                                                                 clipBehavior: Clip.antiAliasWithSaveLayer,
-                                                                                color: FlutterFlowTheme.of(context).primaryColor,
+                                                                                color: FlutterAppTheme.of(context).primaryColor,
                                                                                 shape: RoundedRectangleBorder(
                                                                                   borderRadius: BorderRadius.circular(20),
                                                                                 ),
@@ -521,7 +523,7 @@ class _postsForUsersWidgetState extends State<postsForUsersWidget> {
                                                                                       padding: EdgeInsetsDirectional.fromSTEB(12, 0, 0, 0),
                                                                                       child: Text(
                                                                                         '${snapshot.data[index].uname}',
-                                                                                        style: FlutterFlowTheme.of(context).bodyText1,
+                                                                                        style: FlutterAppTheme.of(context).bodyText1,
                                                                                       ),
                                                                                     ),
                                                                                     FlutterFlowIconButton(
@@ -594,7 +596,7 @@ class _postsForUsersWidgetState extends State<postsForUsersWidget> {
                                                                                 padding: EdgeInsetsDirectional.fromSTEB(4, 0, 0, 0),
                                                                                 child: Text(
                                                                                   '2,493',
-                                                                                  style: FlutterFlowTheme.of(context).bodyText2,
+                                                                                  style: FlutterAppTheme.of(context).bodyText2,
                                                                                 ),
                                                                               )
                                                                             ],
@@ -640,7 +642,7 @@ class _postsForUsersWidgetState extends State<postsForUsersWidget> {
                                                               textAlign:
                                                                   TextAlign
                                                                       .center,
-                                                              style: FlutterFlowTheme
+                                                              style: FlutterAppTheme
                                                                       .of(context)
                                                                   .bodyText2
                                                                   .override(
@@ -747,7 +749,7 @@ class _postsForUsersWidgetState extends State<postsForUsersWidget> {
                                                                                         padding: EdgeInsetsDirectional.fromSTEB(12, 0, 0, 0),
                                                                                         child: Text(
                                                                                           '${snapshot.data[index].currentUserName}',
-                                                                                          style: FlutterFlowTheme.of(context).bodyText1,
+                                                                                          style: FlutterAppTheme.of(context).bodyText1,
                                                                                         ),
                                                                                       ),
                                                                                       InkWell(
@@ -788,7 +790,7 @@ class _postsForUsersWidgetState extends State<postsForUsersWidget> {
                                                                                               children: [
                                                                                                 Card(
                                                                                                   clipBehavior: Clip.antiAliasWithSaveLayer,
-                                                                                                  color: FlutterFlowTheme.of(context).primaryColor,
+                                                                                                  color: FlutterAppTheme.of(context).primaryColor,
                                                                                                   shape: RoundedRectangleBorder(
                                                                                                     borderRadius: BorderRadius.circular(20),
                                                                                                   ),
@@ -812,7 +814,7 @@ class _postsForUsersWidgetState extends State<postsForUsersWidget> {
                                                                                                   padding: EdgeInsetsDirectional.fromSTEB(12, 0, 0, 0),
                                                                                                   child: Text(
                                                                                                     '${snapshot.data[index].adminName}',
-                                                                                                    style: FlutterFlowTheme.of(context).bodyText1,
+                                                                                                    style: FlutterAppTheme.of(context).bodyText1,
                                                                                                   ),
                                                                                                 ),
                                                                                               ],
@@ -851,7 +853,7 @@ class _postsForUsersWidgetState extends State<postsForUsersWidget> {
                                                                                                   padding: EdgeInsetsDirectional.fromSTEB(4, 0, 0, 0),
                                                                                                   child: Text(
                                                                                                     '2,493',
-                                                                                                    style: FlutterFlowTheme.of(context).bodyText2,
+                                                                                                    style: FlutterAppTheme.of(context).bodyText2,
                                                                                                   ),
                                                                                                 ),
                                                                                               ],
@@ -899,7 +901,7 @@ class _postsForUsersWidgetState extends State<postsForUsersWidget> {
                                                             'No shared posts with you',
                                                             textAlign: TextAlign
                                                                 .center,
-                                                            style: FlutterFlowTheme
+                                                            style: FlutterAppTheme
                                                                     .of(context)
                                                                 .bodyText2
                                                                 .override(

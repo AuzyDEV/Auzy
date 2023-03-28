@@ -4,12 +4,14 @@ import 'dart:typed_data';
 import 'package:firebase_storage/firebase_storage.dart';
 import 'package:new_mee/apis/User_api.dart';
 import 'package:new_mee/apis/postMan.dart';
-import 'package:new_mee/components/appBar.dart';
-import 'package:new_mee/components/drawer.dart';
+import 'package:new_mee/common_widgets/Button_widget.dart';
+import 'package:new_mee/common_widgets/appBar.dart';
+import 'package:new_mee/common_widgets/drawer.dart';
+import 'package:new_mee/home/home_widget.dart';
 import 'package:new_mee/index.dart';
 import 'package:new_mee/models/User.dart';
-import 'package:new_mee/components/theme.dart';
-import 'package:new_mee/components/widgets.dart';
+import 'package:new_mee/themes/theme.dart';
+import 'package:new_mee/common_widgets/widgets.dart';
 import 'package:flutter/material.dart';
 //import 'package:flutter_quill/flutter_quill.dart' as quill;
 import 'package:html_editor_enhanced/html_editor.dart';
@@ -110,7 +112,7 @@ class _addNewPostWidgetState extends State<addNewPostWidget> {
                                           children: [
                                             Text(
                                               'Title*',
-                                              style: FlutterFlowTheme.of(
+                                              style: FlutterAppTheme.of(
                                                       context)
                                                   .bodyText2
                                                   .override(
@@ -135,7 +137,7 @@ class _addNewPostWidgetState extends State<addNewPostWidget> {
                                           obscureText: false,
                                           decoration: InputDecoration(
                                             errorStyle:
-                                                FlutterFlowTheme.of(context)
+                                                FlutterAppTheme.of(context)
                                                     .bodyText1
                                                     .override(
                                                       fontFamily: 'Roboto',
@@ -180,7 +182,7 @@ class _addNewPostWidgetState extends State<addNewPostWidget> {
                                                 EdgeInsetsDirectional.fromSTEB(
                                                     12, 0, 12, 0),
                                           ),
-                                          style: FlutterFlowTheme.of(context)
+                                          style: FlutterAppTheme.of(context)
                                               .bodyText1
                                               .override(
                                                   fontFamily: 'Roboto',
@@ -199,7 +201,7 @@ class _addNewPostWidgetState extends State<addNewPostWidget> {
                                           children: [
                                             Text(
                                               'Text*',
-                                              style: FlutterFlowTheme.of(
+                                              style: FlutterAppTheme.of(
                                                       context)
                                                   .bodyText2
                                                   .override(
@@ -292,39 +294,25 @@ class _addNewPostWidgetState extends State<addNewPostWidget> {
                                             child: Padding(
                                               padding: EdgeInsetsDirectional
                                                   .fromSTEB(0, 0, 0, 0),
-                                              child: FFButtonWidget(
+                                              child: buttonWidget(
                                                 onPressed: () async {
                                                   String text = await controller
                                                       .getText();
                                                   print(text);
-                                                },
-                                                /*onPressed: () async {
-                                                  var contenu = _controller
-                                                      .document
-                                                      .toDelta()
-                                                      .toJson();
-                                                  print(_controller.document
-                                                      .toPlainText());
+
                                                   if (formKey.currentState
                                                       .validate()) {
                                                     String response =
                                                         await apiPost.addNewPost(
                                                             titleController
                                                                 .text,
-                                                            contenu,
+                                                            text,
                                                             snapshot.data.id,
                                                             snapshot.data
                                                                 .displayName,
                                                             snapshot
                                                                 .data.photoURL);
-                                                    print(response);
-                                                    final metadata =
-                                                        SettableMetadata(
-                                                      //contentType: 'image/jpg',
-                                                      customMetadata: {
-                                                        'uid': response
-                                                      },
-                                                    );
+                                                 
                                                     await FirebaseStorage
                                                         .instance
                                                         .ref(
@@ -352,7 +340,7 @@ class _addNewPostWidgetState extends State<addNewPostWidget> {
                                                                     MaterialPageRoute(
                                                                       builder:
                                                                           (context) =>
-                                                                              MenuWidget(),
+                                                                              HomeWidget(),
                                                                     ),
                                                                   );
                                                                 },
@@ -361,29 +349,9 @@ class _addNewPostWidgetState extends State<addNewPostWidget> {
                                                           );
                                                         });
                                                   }
-                                                },*/
+                                                },
                                                 text: 'send',
-                                                options: FFButtonOptions(
-                                                  height: 45,
-                                                  color: Color(0xff132137),
-                                                  textStyle: FlutterFlowTheme
-                                                          .of(context)
-                                                      .subtitle2
-                                                      .override(
-                                                        fontFamily: 'Roboto',
-                                                        color:
-                                                            FlutterFlowTheme.of(
-                                                                    context)
-                                                                .primaryBtnText,
-                                                        fontWeight:
-                                                            FontWeight.bold,
-                                                      ),
-                                                  borderSide: BorderSide(
-                                                    color: Colors.transparent,
-                                                    width: 1,
-                                                  ),
-                                                ),
-                                              ),
+                                             ),
                                             ),
                                           ),
                                         ])),

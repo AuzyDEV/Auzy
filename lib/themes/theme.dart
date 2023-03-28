@@ -8,7 +8,7 @@ import 'package:shared_preferences/shared_preferences.dart';
 const kThemeModeKey = '__theme_mode__';
 SharedPreferences _prefs;
 
-abstract class FlutterFlowTheme {
+abstract class FlutterAppTheme {
   static Future initialize() async =>
       _prefs = await SharedPreferences.getInstance();
   static ThemeMode get themeMode {
@@ -24,7 +24,7 @@ abstract class FlutterFlowTheme {
       ? _prefs?.remove(kThemeModeKey)
       : _prefs?.setBool(kThemeModeKey, mode == ThemeMode.dark);
 
-  static FlutterFlowTheme of(BuildContext context) =>
+  static FlutterAppTheme of(BuildContext context) =>
       Theme.of(context).brightness == Brightness.dark
           ? DarkModeTheme()
           : LightModeTheme();
@@ -37,6 +37,7 @@ abstract class FlutterFlowTheme {
   Color secondaryBackground;
   Color primaryText;
   Color secondaryText;
+  Color ButtonPrimaryColor;
 
   Color primaryBtnText;
   Color lineColor;
@@ -85,21 +86,23 @@ abstract class FlutterFlowTheme {
       );
 }
 
-class LightModeTheme extends FlutterFlowTheme {
-  Color primaryColor = const Color(0xFF4B39EF);
-  Color secondaryColor = const Color(0xFF39D2C0);
-  Color tertiaryColor = const Color(0xFFEE8B60);
+class LightModeTheme extends FlutterAppTheme {
+  Color primaryColor = const Color(0xFF9457FB);
+  Color secondaryColor = const Color(0x369457FB);
+  Color tertiaryColor = const Color(0xFF009FFF);
+
+  //Color tertiaryColor = const Color(0xFFEE8B60);
   Color alternate = const Color(0xFFFF5963);
   Color primaryBackground = const Color(0xFFF1F4F8);
   Color secondaryBackground = const Color(0xFFFFFFFF);
   Color primaryText = const Color(0xFF101213);
   Color secondaryText = const Color(0xFF57636C);
-
+  Color ButtonPrimaryColor = const Color(0xFF101213);
   Color primaryBtnText = Color(0xFFFFFFFF);
   Color lineColor = Color(0xFFE0E3E7);
 }
 
-class DarkModeTheme extends FlutterFlowTheme {
+class DarkModeTheme extends FlutterAppTheme {
   Color primaryColor = const Color(0xFF4B39EF);
   Color secondaryColor = const Color(0xFF39D2C0);
   Color tertiaryColor = const Color(0xFFEE8B60);

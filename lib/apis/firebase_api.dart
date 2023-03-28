@@ -3,7 +3,7 @@ import 'dart:convert';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:new_mee/models/Message.dart';
 import 'package:http/http.dart' as http;
-import '../utils.dart';
+import '../utils/utils.dart';
 
 class FirebaseApi {
   /*static Stream<List<Userr>> getUsers() => FirebaseFirestore.instance

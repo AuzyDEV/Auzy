@@ -1,9 +1,10 @@
 import 'package:new_mee/apis/User_api.dart';
 import 'package:new_mee/apis/sharedPostMan.dart';
-import 'package:new_mee/components/appBar.dart';
-import 'package:new_mee/components/drawer.dart';
-import 'package:new_mee/components/theme.dart';
-import 'package:new_mee/components/widgets.dart';
+import 'package:new_mee/common_widgets/Button_widget.dart';
+import 'package:new_mee/common_widgets/appBar.dart';
+import 'package:new_mee/common_widgets/drawer.dart';
+import 'package:new_mee/themes/theme.dart';
+import 'package:new_mee/common_widgets/widgets.dart';
 import 'package:new_mee/index.dart';
 import 'package:new_mee/models/User.dart';
 import 'package:flutter/material.dart';
@@ -155,7 +156,7 @@ class _UsersListForPostsWidgetState extends State<UsersListForPostsWidget> {
                                                         ),
                                                       ),
                                                     ),
-                                                    style: FlutterFlowTheme.of(
+                                                    style: FlutterAppTheme.of(
                                                             context)
                                                         .bodyText1
                                                         .override(
@@ -306,7 +307,7 @@ class _UsersListForPostsWidgetState extends State<UsersListForPostsWidget> {
                                                                                     children: [
                                                                                       Text(
                                                                                         "${users[index].displayName}",
-                                                                                        style: FlutterFlowTheme.of(context).bodyText1.override(fontFamily: 'Roboto', fontSize: 18, fontWeight: FontWeight.w500),
+                                                                                        style: FlutterAppTheme.of(context).bodyText1.override(fontFamily: 'Roboto', fontSize: 18, fontWeight: FontWeight.w500),
                                                                                       ),
                                                                                       Padding(
                                                                                         padding: EdgeInsetsDirectional.fromSTEB(0, 5, 0, 0),
@@ -315,7 +316,7 @@ class _UsersListForPostsWidgetState extends State<UsersListForPostsWidget> {
                                                                                           children: [
                                                                                             Text(
                                                                                               '${users[index].email}',
-                                                                                              style: FlutterFlowTheme.of(context).bodyText2.override(fontFamily: 'Roboto', fontSize: 12, fontWeight: FontWeight.normal),
+                                                                                              style: FlutterAppTheme.of(context).bodyText2.override(fontFamily: 'Roboto', fontSize: 12, fontWeight: FontWeight.normal),
                                                                                             ),
                                                                                           ],
                                                                                         ),
@@ -375,7 +376,7 @@ class _UsersListForPostsWidgetState extends State<UsersListForPostsWidget> {
                                             padding:
                                                 EdgeInsetsDirectional.fromSTEB(
                                                     16, 0, 16, 0),
-                                            child: FFButtonWidget(
+                                            child: buttonWidget(
                                               onPressed: () async {
                                                 bool response =
                                                     await sharedpostapi
@@ -446,25 +447,6 @@ class _UsersListForPostsWidgetState extends State<UsersListForPostsWidget> {
                                                         });
                                               },
                                               text: 'share',
-                                              options: FFButtonOptions(
-                                                height: 45,
-                                                color: Color(0xff132137),
-                                                textStyle:
-                                                    FlutterFlowTheme.of(context)
-                                                        .subtitle2
-                                                        .override(
-                                                          fontFamily: 'Roboto',
-                                                          color: FlutterFlowTheme
-                                                                  .of(context)
-                                                              .primaryBtnText,
-                                                          fontWeight:
-                                                              FontWeight.bold,
-                                                        ),
-                                                borderSide: BorderSide(
-                                                  color: Colors.transparent,
-                                                  width: 1,
-                                                ),
-                                              ),
                                             ),
                                           ),
                                         ),

@@ -3,7 +3,7 @@ import 'dart:async';
 import 'package:flutter/material.dart';
 import 'package:new_mee/apis/firebase_api.dart';
 import 'package:new_mee/apis/messagesMan.dart';
-import 'package:new_mee/components/message_widget.dart';
+import 'package:new_mee/common_widgets/message_widget.dart';
 import 'package:new_mee/models/Message.dart';
 
 class MessagesWidget extends StatefulWidget {

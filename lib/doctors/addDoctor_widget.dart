@@ -2,11 +2,13 @@ import 'dart:html';
 import 'dart:typed_data';
 import 'package:firebase_storage/firebase_storage.dart';
 import 'package:new_mee/apis/doctorsMan.dart';
-import 'package:new_mee/components/appBar.dart';
-import 'package:new_mee/components/drawer.dart';
+import 'package:new_mee/common_widgets/Button_widget.dart';
+import 'package:new_mee/common_widgets/appBar.dart';
+import 'package:new_mee/common_widgets/drawer.dart';
+import 'package:new_mee/home/home_widget.dart';
 import 'package:new_mee/index.dart';
-import 'package:new_mee/components/theme.dart';
-import 'package:new_mee/components/widgets.dart';
+import 'package:new_mee/themes/theme.dart';
+import 'package:new_mee/common_widgets/widgets.dart';
 import 'package:flutter/material.dart';
 
 class addDoctorWidget extends StatefulWidget {
@@ -83,7 +85,7 @@ class _addDoctorWidgetState extends State<addDoctorWidget> {
                               children: [
                                 Text(
                                   'First Name*',
-                                  style: FlutterFlowTheme.of(context)
+                                  style: FlutterAppTheme.of(context)
                                       .bodyText2
                                       .override(
                                         fontFamily: 'Roboto',
@@ -105,7 +107,7 @@ class _addDoctorWidgetState extends State<addDoctorWidget> {
                               obscureText: false,
                               cursorColor: Color(0xFF9457FB),
                               decoration: InputDecoration(
-                                errorStyle: FlutterFlowTheme.of(context)
+                                errorStyle: FlutterAppTheme.of(context)
                                     .bodyText1
                                     .override(
                                       fontFamily: 'Roboto',
@@ -143,7 +145,7 @@ class _addDoctorWidgetState extends State<addDoctorWidget> {
                                 contentPadding: EdgeInsetsDirectional.fromSTEB(
                                     12, 0, 12, 0),
                               ),
-                              style: FlutterFlowTheme.of(context)
+                              style: FlutterAppTheme.of(context)
                                   .bodyText1
                                   .override(
                                       fontFamily: 'Roboto',
@@ -160,7 +162,7 @@ class _addDoctorWidgetState extends State<addDoctorWidget> {
                               children: [
                                 Text(
                                   'Last Name*',
-                                  style: FlutterFlowTheme.of(context)
+                                  style: FlutterAppTheme.of(context)
                                       .bodyText2
                                       .override(
                                         fontFamily: 'Roboto',
@@ -182,7 +184,7 @@ class _addDoctorWidgetState extends State<addDoctorWidget> {
                               obscureText: false,
                               cursorColor: Color(0xFF9457FB),
                               decoration: InputDecoration(
-                                errorStyle: FlutterFlowTheme.of(context)
+                                errorStyle: FlutterAppTheme.of(context)
                                     .bodyText1
                                     .override(
                                       fontFamily: 'Roboto',
@@ -220,7 +222,7 @@ class _addDoctorWidgetState extends State<addDoctorWidget> {
                                 contentPadding: EdgeInsetsDirectional.fromSTEB(
                                     12, 0, 12, 0),
                               ),
-                              style: FlutterFlowTheme.of(context)
+                              style: FlutterAppTheme.of(context)
                                   .bodyText1
                                   .override(
                                       fontFamily: 'Roboto',
@@ -237,7 +239,7 @@ class _addDoctorWidgetState extends State<addDoctorWidget> {
                               children: [
                                 Text(
                                   'Speciality*',
-                                  style: FlutterFlowTheme.of(context)
+                                  style: FlutterAppTheme.of(context)
                                       .bodyText2
                                       .override(
                                         fontFamily: 'Roboto',
@@ -361,7 +363,7 @@ class _addDoctorWidgetState extends State<addDoctorWidget> {
                                             : null,
                                         decoration: InputDecoration(
                                           errorStyle:
-                                              FlutterFlowTheme.of(context)
+                                              FlutterAppTheme.of(context)
                                                   .bodyText1
                                                   .override(
                                                     fontFamily: 'Roboto',
@@ -424,7 +426,7 @@ class _addDoctorWidgetState extends State<addDoctorWidget> {
                               children: [
                                 Text(
                                   'Adress*',
-                                  style: FlutterFlowTheme.of(context)
+                                  style: FlutterAppTheme.of(context)
                                       .bodyText2
                                       .override(
                                         fontFamily: 'Roboto',
@@ -447,7 +449,7 @@ class _addDoctorWidgetState extends State<addDoctorWidget> {
                                   value.isEmpty ? 'Field is required' : null,
                               obscureText: false,
                               decoration: InputDecoration(
-                                errorStyle: FlutterFlowTheme.of(context)
+                                errorStyle: FlutterAppTheme.of(context)
                                     .bodyText1
                                     .override(
                                       fontFamily: 'Roboto',
@@ -485,7 +487,7 @@ class _addDoctorWidgetState extends State<addDoctorWidget> {
                                 contentPadding: EdgeInsetsDirectional.fromSTEB(
                                     12, 0, 12, 0),
                               ),
-                              style: FlutterFlowTheme.of(context)
+                              style: FlutterAppTheme.of(context)
                                   .bodyText1
                                   .override(
                                       fontFamily: 'Roboto',
@@ -502,7 +504,7 @@ class _addDoctorWidgetState extends State<addDoctorWidget> {
                               children: [
                                 Text(
                                   'Email*',
-                                  style: FlutterFlowTheme.of(context)
+                                  style: FlutterAppTheme.of(context)
                                       .bodyText2
                                       .override(
                                         fontFamily: 'Roboto',
@@ -527,7 +529,7 @@ class _addDoctorWidgetState extends State<addDoctorWidget> {
                                       : 'Enter valid Email '),
                               obscureText: false,
                               decoration: InputDecoration(
-                                errorStyle: FlutterFlowTheme.of(context)
+                                errorStyle: FlutterAppTheme.of(context)
                                     .bodyText1
                                     .override(
                                       fontFamily: 'Roboto',
@@ -565,7 +567,7 @@ class _addDoctorWidgetState extends State<addDoctorWidget> {
                                 contentPadding: EdgeInsetsDirectional.fromSTEB(
                                     12, 0, 12, 0),
                               ),
-                              style: FlutterFlowTheme.of(context)
+                              style: FlutterAppTheme.of(context)
                                   .bodyText1
                                   .override(
                                       fontFamily: 'Roboto',
@@ -582,7 +584,7 @@ class _addDoctorWidgetState extends State<addDoctorWidget> {
                               children: [
                                 Text(
                                   'Phone number*',
-                                  style: FlutterFlowTheme.of(context)
+                                  style: FlutterAppTheme.of(context)
                                       .bodyText2
                                       .override(
                                         fontFamily: 'Roboto',
@@ -603,7 +605,7 @@ class _addDoctorWidgetState extends State<addDoctorWidget> {
                                   value.isEmpty ? 'Field is required' : null,
                               obscureText: false,
                               decoration: InputDecoration(
-                                errorStyle: FlutterFlowTheme.of(context)
+                                errorStyle: FlutterAppTheme.of(context)
                                     .bodyText1
                                     .override(
                                       fontFamily: 'Roboto',
@@ -641,7 +643,7 @@ class _addDoctorWidgetState extends State<addDoctorWidget> {
                                 contentPadding: EdgeInsetsDirectional.fromSTEB(
                                     12, 0, 12, 0),
                               ),
-                              style: FlutterFlowTheme.of(context)
+                              style: FlutterAppTheme.of(context)
                                   .bodyText1
                                   .override(
                                       fontFamily: 'Roboto',
@@ -658,7 +660,7 @@ class _addDoctorWidgetState extends State<addDoctorWidget> {
                               children: [
                                 Text(
                                   'Select photo*',
-                                  style: FlutterFlowTheme.of(context)
+                                  style: FlutterAppTheme.of(context)
                                       .bodyText2
                                       .override(
                                         fontFamily: 'Roboto',
@@ -720,7 +722,7 @@ class _addDoctorWidgetState extends State<addDoctorWidget> {
                                 child: Padding(
                                   padding: EdgeInsetsDirectional.fromSTEB(
                                       0, 0, 0, 0),
-                                  child: FFButtonWidget(
+                                  child: buttonWidget(
                                     onPressed: () async {
                                       if (formKey.currentState.validate()) {
                                         String response =
@@ -750,7 +752,7 @@ class _addDoctorWidgetState extends State<addDoctorWidget> {
                                                         context,
                                                         MaterialPageRoute(
                                                           builder: (context) =>
-                                                              MenuWidget(),
+                                                              HomeWidget(),
                                                         ),
                                                       );
                                                     },
@@ -761,22 +763,6 @@ class _addDoctorWidgetState extends State<addDoctorWidget> {
                                       }
                                     },
                                     text: 'save',
-                                    options: FFButtonOptions(
-                                      height: 45,
-                                      color: Color(0xff132137),
-                                      textStyle: FlutterFlowTheme.of(context)
-                                          .subtitle2
-                                          .override(
-                                            fontFamily: 'Roboto',
-                                            color: FlutterFlowTheme.of(context)
-                                                .primaryBtnText,
-                                            fontWeight: FontWeight.bold,
-                                          ),
-                                      borderSide: BorderSide(
-                                        color: Colors.transparent,
-                                        width: 1,
-                                      ),
-                                    ),
                                   ),
                                 ),
                               ),

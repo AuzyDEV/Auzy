@@ -1,10 +1,11 @@
 import 'package:new_mee/apis/doctorsMan.dart';
-import 'package:new_mee/components/appBar.dart';
-import 'package:new_mee/components/drawer.dart';
+import 'package:new_mee/common_widgets/appBar.dart';
+import 'package:new_mee/common_widgets/drawer.dart';
+import 'package:new_mee/common_widgets/floatingActionButton_widget.dart';
 import 'package:new_mee/doctors/addDoctor_widget.dart';
 import 'package:new_mee/doctors/doctorProfil_widget.dart';
 import 'package:new_mee/models/Doctor.dart';
-import 'package:new_mee/components/theme.dart';
+import 'package:new_mee/themes/theme.dart';
 import 'package:flutter/material.dart';
 
 class listsdocWidget extends StatefulWidget {
@@ -62,20 +63,14 @@ class _listsdocWidgetState extends State<listsdocWidget> {
         child: appbar(text: 'Doctors'),
       ),
       floatingActionButton: _futureRoleValue == "admin"
-          ? FloatingActionButton(
+          ? floatingActionButtonWidget(
               onPressed: () async {
                 await Navigator.push(
                   context,
                   MaterialPageRoute(builder: (context) => addDoctorWidget()),
                 );
               },
-              backgroundColor: Color(0xff132137),
-              elevation: 1,
-              child: Icon(
-                Icons.add,
-                color: FlutterFlowTheme.of(context).primaryBtnText,
-                size: 24,
-              ),
+              icon: Icons.add,
             )
           : null,
       drawer: Drawerr(),
@@ -145,7 +140,7 @@ class _listsdocWidgetState extends State<listsdocWidget> {
                                         ),
                                       ),
                                     ),
-                                    style: FlutterFlowTheme.of(context)
+                                    style: FlutterAppTheme.of(context)
                                         .bodyText1
                                         .override(
                                           fontFamily: 'Roboto',
@@ -246,7 +241,7 @@ class _listsdocWidgetState extends State<listsdocWidget> {
                                                                                 width: 60,
                                                                                 height: 60,
                                                                                 decoration: BoxDecoration(
-                                                                                  color: FlutterFlowTheme.of(context).primaryColor,
+                                                                                  color: FlutterAppTheme.of(context).primaryColor,
                                                                                   shape: BoxShape.circle,
                                                                                 ),
                                                                                 child: Padding(
@@ -290,7 +285,7 @@ class _listsdocWidgetState extends State<listsdocWidget> {
                                                                             children: [
                                                                               Text(
                                                                                 '${snapshot.data[index].firstName} ${snapshot.data[index].lastName}',
-                                                                                style: FlutterFlowTheme.of(context).subtitle1.override(
+                                                                                style: FlutterAppTheme.of(context).subtitle1.override(
                                                                                       fontFamily: 'Roboto',
                                                                                       color: Color(0xFF15212B),
                                                                                       fontSize: 18,
@@ -311,7 +306,7 @@ class _listsdocWidgetState extends State<listsdocWidget> {
                                                                               children: [
                                                                                 Text(
                                                                                   '${snapshot.data[index].speciality}',
-                                                                                  style: FlutterFlowTheme.of(context).bodyText2.override(
+                                                                                  style: FlutterAppTheme.of(context).bodyText2.override(
                                                                                         fontFamily: 'Roboto',
                                                                                         color: Color.fromARGB(255, 73, 82, 90),
                                                                                         fontSize: 14,
@@ -348,61 +343,6 @@ class _listsdocWidgetState extends State<listsdocWidget> {
                                                                               Icons.arrow_forward_ios_outlined,
                                                                               color: Colors.grey),
                                                                         )
-
-                                                                        /*    child: FFButtonWidget(
-                                                            onPressed:
-                                                                () async {
-                                                              Navigator.push(
-                                                                  context,
-                                                                  MaterialPageRoute(
-                                                                      builder:
-                                                                          (context) =>
-                                                                              DoctorprofileWidget()));
-                                                            },
-                                                            text: 'choose',
-                                                            options:
-                                                                FFButtonOptions(
-                                                              width: 65,
-                                                              height: 30,
-                                                              padding:
-                                                                  EdgeInsetsDirectional
-                                                                      .fromSTEB(
-                                                                          0,
-                                                                          0,
-                                                                          0,
-                                                                          0),
-                                                              iconPadding:
-                                                                  EdgeInsetsDirectional
-                                                                      .fromSTEB(
-                                                                          0,
-                                                                          0,
-                                                                          0,
-                                                                          0),
-                                                              color: Color(
-                                                                  0xFFCCF5E1),
-                                                              textStyle:
-                                                                  FlutterFlowTheme.of(
-                                                                          context)
-                                                                      .subtitle2
-                                                                      .override(
-                                                                        fontFamily:
-                                                                            'Roboto',
-                                                                        color: Color(
-                                                                            0xFF00EF30),
-                                                                        fontSize:
-                                                                            1,
-                                                                        fontWeight:
-                                                                            FontWeight.w500,
-                                                                      ),
-                                                              borderSide:
-                                                                  BorderSide(
-                                                                color: Colors
-                                                                    .transparent,
-                                                                width: 1,
-                                                              ),
-                                                            ),
-                                                          ),
-                                                      */
                                                                       ],
                                                                     ),
                                                                   ),
@@ -466,7 +406,7 @@ class _listsdocWidgetState extends State<listsdocWidget> {
                                                                           child:
                                                                               Text(
                                                                             '${snapshot.data[index].Adress}',
-                                                                            style: FlutterFlowTheme.of(context).bodyText1.override(
+                                                                            style: FlutterAppTheme.of(context).bodyText1.override(
                                                                                   fontFamily: 'Roboto',
                                                                                   color: Color(0xFF8B97A2),
                                                                                   fontSize: 14,
@@ -506,7 +446,7 @@ class _listsdocWidgetState extends State<listsdocWidget> {
                                                                           child:
                                                                               Text(
                                                                             '${snapshot.data[index].phoneNumber}',
-                                                                            style: FlutterFlowTheme.of(context).bodyText1.override(
+                                                                            style: FlutterAppTheme.of(context).bodyText1.override(
                                                                                   fontFamily: 'Roboto',
                                                                                   color: Colors.black,
                                                                                   fontSize: 14,
@@ -536,7 +476,7 @@ class _listsdocWidgetState extends State<listsdocWidget> {
                                 EdgeInsetsDirectional.fromSTEB(0, 80, 0, 0),
                             child: Text('No doctors',
                                 textAlign: TextAlign.center,
-                                style: FlutterFlowTheme.of(context)
+                                style: FlutterAppTheme.of(context)
                                     .bodyText2
                                     .override(
                                       fontFamily: 'Roboto',
@@ -544,7 +484,9 @@ class _listsdocWidgetState extends State<listsdocWidget> {
                                       fontWeight: FontWeight.bold,
                                     )));
                       }
-                      return const CircularProgressIndicator(color: Color(0xFF9457FB),);
+                      return const CircularProgressIndicator(
+                        color: Color(0xFF9457FB),
+                      );
                     }))
           ],
         ),

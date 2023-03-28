@@ -1,10 +1,14 @@
 import 'package:new_mee/apis/User_api.dart';
-import 'package:new_mee/components/appBar.dart';
-import 'package:new_mee/components/drawer.dart';
+import 'package:new_mee/common_widgets/Button_widget.dart';
+import 'package:new_mee/common_widgets/appBar.dart';
+import 'package:new_mee/common_widgets/drawer.dart';
+import 'package:new_mee/home/home_widget.dart';
 import 'package:new_mee/index.dart';
-import 'package:new_mee/components/theme.dart';
-import 'package:new_mee/components/widgets.dart';
+import 'package:new_mee/themes/theme.dart';
+import 'package:new_mee/common_widgets/widgets.dart';
 import 'package:flutter/material.dart';
+
+import '../common_widgets/floatingActionButton_widget.dart';
 
 class UsersWidget extends StatefulWidget {
   const UsersWidget({Key key}) : super(key: key);
@@ -42,7 +46,7 @@ class _UsersWidgetState extends State<UsersWidget>
         child: appbar(text: 'Users'),
       ),
       backgroundColor: Colors.white,
-      floatingActionButton: FloatingActionButton(
+      floatingActionButton: floatingActionButtonWidget(
         onPressed: () async {
           await Navigator.push(
             context,
@@ -51,13 +55,7 @@ class _UsersWidgetState extends State<UsersWidget>
             ),
           );
         },
-        backgroundColor: Color(0xFF101213),
-        elevation: 2,
-        child: Icon(
-          Icons.add,
-          color: FlutterFlowTheme.of(context).primaryBtnText,
-          size: 24,
-        ),
+        icon: Icons.add,
       ),
       drawer: Drawerr(),
       body: SafeArea(
@@ -116,7 +114,7 @@ class _UsersWidgetState extends State<UsersWidget>
                             child: Padding(
                               padding:
                                   EdgeInsetsDirectional.fromSTEB(0, 0, 0, 0),
-                              child: FFButtonWidget(
+                              child: buttonWidget(
                                 onPressed: () async {
                                   var confirmDialogResponse = await showDialog<
                                           bool>(
@@ -139,7 +137,7 @@ class _UsersWidgetState extends State<UsersWidget>
                                                     context,
                                                     MaterialPageRoute(
                                                       builder: (context) =>
-                                                          MenuWidget(),
+                                                          HomeWidget(),
                                                     ),
                                                   ),
                                                   ScaffoldMessenger.of(context)
@@ -166,21 +164,6 @@ class _UsersWidgetState extends State<UsersWidget>
                                       false;
                                 },
                                 text: 'Delete all users',
-                                options: FFButtonOptions(
-                                  height: 45,
-                                  color: Colors.white,
-                                  textStyle: FlutterFlowTheme.of(context)
-                                      .subtitle2
-                                      .override(
-                                        fontFamily: 'Roboto',
-                                        color: Color(0xFF9457FB),
-                                        fontWeight: FontWeight.normal,
-                                      ),
-                                  borderSide: BorderSide(
-                                    color: Color(0xFF9457FB),
-                                    width: 1,
-                                  ),
-                                ),
                               ),
                             ),
                           ),
@@ -414,7 +397,7 @@ class _UsersWidgetState extends State<UsersWidget>
                                                           context,
                                                           MaterialPageRoute(
                                                             builder: (context) =>
-                                                                MenuWidget(),
+                                                                HomeWidget(),
                                                           ),
                                                         ),
                                                         ScaffoldMessenger.of(
@@ -496,7 +479,7 @@ class _UsersWidgetState extends State<UsersWidget>
                                                           context,
                                                           MaterialPageRoute(
                                                             builder: (context) =>
-                                                                MenuWidget(),
+                                                                HomeWidget(),
                                                           ),
                                                         ),
                                                         ScaffoldMessenger.of(
