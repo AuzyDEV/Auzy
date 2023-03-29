@@ -1,12 +1,14 @@
 import 'package:flutter/material.dart';
-import 'package:new_mee/apis/User_api.dart';
-import 'package:new_mee/chat/chats_copy.dart';
+import 'package:new_mee/services/User_api.dart';
+import 'package:new_mee/views/chat/chats_copy.dart';
 import 'package:new_mee/themes/theme.dart';
-import 'package:new_mee/doctors/specialities_widget.dart';
-import 'package:new_mee/home/HomeWithNavBar_widget.dart';
+import 'package:new_mee/views/doctors/specialities_widget.dart';
+import 'package:new_mee/views/home/HomeWithNavBar_widget.dart';
 import 'package:new_mee/index.dart';
-import 'package:new_mee/mailing/annoucement.dart';
+import 'package:new_mee/views/mailing/annoucement.dart';
+
 import 'package:new_mee/models/User.dart';
+import 'package:new_mee/views/users/users.dart';
 
 class Drawerr extends StatefulWidget {
   @override

@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:bottom_navy_bar/bottom_navy_bar.dart';
-import 'package:new_mee/apis/User_api.dart';
-import 'package:new_mee/doctors/doctorsListing_widget.dart';
-import 'package:new_mee/home/home_widget.dart';
+import 'package:new_mee/services/User_api.dart';
+import 'package:new_mee/views/doctors/doctorsListing_widget.dart';
+import 'package:new_mee/views/home/home_widget.dart';
 import 'package:new_mee/index.dart';
 
 class buttomNavBar extends StatefulWidget {
