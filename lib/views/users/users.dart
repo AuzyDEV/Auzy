@@ -1,15 +1,13 @@
-import 'package:new_mee/services/User_api.dart';
-import 'package:new_mee/common_widgets/Button_widget.dart';
-import 'package:new_mee/common_widgets/customized_AlertDialog.dart';
-import 'package:new_mee/common_widgets/app_bar.dart';
-import 'package:new_mee/common_widgets/drawer.dart';
-import 'package:new_mee/views/home/home_widget.dart';
-import 'package:new_mee/index.dart';
-import 'package:new_mee/themes/theme.dart';
-import 'package:new_mee/common_widgets/FFButtonWidget.dart';
+import '../../services/User_api.dart';
+import '../../common_widgets/Button_widget.dart';
+import '../../common_widgets/customized_AlertDialog.dart';
+import '../../common_widgets/app_bar.dart';
+import '../../common_widgets/drawer.dart';
+import '../../themes/theme.dart';
+import '../../views/home/home_widget.dart';
+import '../../index.dart';
 import 'package:flutter/material.dart';
-import 'package:new_mee/views/UserProfil/userprofil.dart';
-
+import '../../views/UserProfil/userprofil.dart';
 import '../../../common_widgets/floatingActionButton_widget.dart';
 import '../../common_widgets/snack_bar.dart';
 
@@ -48,7 +46,7 @@ class _UsersWidgetState extends State<UsersWidget>
         preferredSize: const Size.fromHeight(60),
         child: appbar(text: 'Users'),
       ),
-      backgroundColor: Colors.white,
+      backgroundColor: FlutterAppTheme.of(context).whiteColor,
       floatingActionButton: floatingActionButtonWidget(
         onPressed: () async {
           await Navigator.push(

@@ -1,16 +1,13 @@
 import 'package:intl_phone_number_input/intl_phone_number_input.dart';
-import 'package:new_mee/common_widgets/Button_widget.dart';
-import 'package:new_mee/common_widgets/customized_AlertDialog.dart';
-import 'package:new_mee/common_widgets/error_AlertDialog.dart';
-import 'package:new_mee/common_widgets/app_bar.dart';
-import 'package:new_mee/common_widgets/drawer.dart';
-import 'package:new_mee/views/home/home_widget.dart';
-import 'package:new_mee/index.dart';
-import 'package:new_mee/themes/theme.dart';
-import 'package:new_mee/common_widgets/FFButtonWidget.dart';
+import '../../common_widgets/Button_widget.dart';
+import '../../common_widgets/customized_AlertDialog.dart';
+import '../../common_widgets/error_AlertDialog.dart';
+import '../../common_widgets/app_bar.dart';
+import '../../common_widgets/drawer.dart';
+import '../home/home_widget.dart';
+import '../../themes/theme.dart';
 import 'package:flutter/material.dart';
 import 'package:string_validator/string_validator.dart';
-
 import '../../services/mailingMan.dart';
 
 class contactUsWidget extends StatefulWidget {
@@ -52,7 +49,7 @@ class _contactUsWidgetState extends State<contactUsWidget> {
   Widget build(BuildContext context) {
     return Scaffold(
       key: scaffoldKey,
-      backgroundColor: Colors.white,
+      backgroundColor: FlutterAppTheme.of(context).whiteColor,
       appBar: PreferredSize(
         preferredSize: const Size.fromHeight(60),
         child: appbar(text: 'Contact us'),
@@ -88,7 +85,8 @@ class _contactUsWidgetState extends State<contactUsWidget> {
                                     .bodyText2
                                     .override(
                                       fontFamily: 'Roboto',
-                                      color: Color(0xFF101213),
+                                      color:
+                                          FlutterAppTheme.of(context).TextColor,
                                       fontSize: 14,
                                       fontWeight: FontWeight.bold,
                                     ),
@@ -178,7 +176,8 @@ class _contactUsWidgetState extends State<contactUsWidget> {
                                     .bodyText2
                                     .override(
                                       fontFamily: 'Roboto',
-                                      color: Color(0xFF101213),
+                                      color:
+                                          FlutterAppTheme.of(context).TextColor,
                                       fontSize: 14,
                                       fontWeight: FontWeight.bold,
                                     ),
@@ -260,7 +259,8 @@ class _contactUsWidgetState extends State<contactUsWidget> {
                                     .bodyText2
                                     .override(
                                       fontFamily: 'Roboto',
-                                      color: Color(0xFF101213),
+                                      color:
+                                          FlutterAppTheme.of(context).TextColor,
                                       fontSize: 14,
                                       fontWeight: FontWeight.bold,
                                     ),
@@ -308,7 +308,8 @@ class _contactUsWidgetState extends State<contactUsWidget> {
                                     .bodyText2
                                     .override(
                                       fontFamily: 'Roboto',
-                                      color: Color(0xFF101213),
+                                      color:
+                                          FlutterAppTheme.of(context).TextColor,
                                       fontSize: 14,
                                       fontWeight: FontWeight.bold,
                                     ),

@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:new_mee/themes/theme.dart';
 
 class ProfileHeaderWidget extends StatelessWidget {
   final String name;
@@ -17,26 +18,19 @@ class ProfileHeaderWidget extends StatelessWidget {
             Row(
               mainAxisAlignment: MainAxisAlignment.spaceBetween,
               children: [
-                BackButton(color: Colors.white),
+                BackButton(color: FlutterAppTheme.of(context).whiteColor),
                 Expanded(
                   child: Text(
                     name,
                     style: TextStyle(
                       fontSize: 24,
-                      color: Colors.white,
+                      color: FlutterAppTheme.of(context).whiteColor,
                       fontWeight: FontWeight.bold,
                     ),
                     overflow: TextOverflow.ellipsis,
                   ),
                 ),
-                /*Row(
-                  mainAxisSize: MainAxisSize.min,
-                  children: [
-                    buildIcon(Icons.call),
-                    SizedBox(width: 12),
-                    buildIcon(Icons.videocam),
-                  ],
-                ),*/
+            
                SizedBox(width: 4),
               ],
             )

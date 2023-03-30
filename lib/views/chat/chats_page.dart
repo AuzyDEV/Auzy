@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
-import 'package:new_mee/services/User_api.dart';
-import 'package:new_mee/models/User.dart';
+import 'package:new_mee/themes/theme.dart';
+import '../../services/User_api.dart';
+import '../../models/User.dart';
 import 'chat_components/chat_body_widget.dart';
 import 'chat_components/chat_header_widget.dart';
 
@@ -8,7 +9,7 @@ class ChatsPage extends StatelessWidget {
   UserMan api = UserMan();
   @override
   Widget build(BuildContext context) => Scaffold(
-        backgroundColor: Colors.blue,
+        backgroundColor: FlutterAppTheme.of(context).tertiaryColor,
         body: SafeArea(
           child: FutureBuilder<List<User>>(
               future: api.GetAllUsersForChats(),

@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
 
+import '../themes/theme.dart';
+
 class FlutterFlowDropDown extends StatefulWidget {
   const FlutterFlowDropDown({
     this.initialOption,
@@ -74,7 +76,7 @@ class _FlutterFlowDropDownState extends State<FlutterFlowDropDown> {
       icon: widget.icon,
       isExpanded: true,
       dropdownColor: widget.fillColor,
-      focusColor: Colors.transparent,
+      focusColor: FlutterAppTheme.of(context).TransparentColor,
     );
     final childWidget = DecoratedBox(
       decoration: BoxDecoration(

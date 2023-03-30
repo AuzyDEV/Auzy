@@ -1,9 +1,9 @@
 import 'package:flutter/material.dart';
-import 'package:bottom_navy_bar/bottom_navy_bar.dart';
-import 'package:new_mee/services/User_api.dart';
-import 'package:new_mee/views/doctors/doctorsListing_widget.dart';
-import 'package:new_mee/views/home/home_widget.dart';
-import 'package:new_mee/index.dart';
+import 'package:new_mee/themes/theme.dart';
+import '../services/User_api.dart';
+import '../views/doctors/doctorsListing_widget.dart';
+import '../views/home/home_widget.dart';
+import '../index.dart';
 
 class buttomNavBar extends StatefulWidget {
   @override
@@ -35,8 +35,7 @@ Future<String> _getCurrentUserRole() async {
 void _getFutureRoleValue() async {
   String value = await _getCurrentUserRole();
 
-    _futureRoleValue = value;
-  
+  _futureRoleValue = value;
 }
 
 class _buttomNavBarState extends State<buttomNavBar> {
@@ -50,8 +49,8 @@ class _buttomNavBarState extends State<buttomNavBar> {
   @override
   Widget build(BuildContext context) {
     return BottomNavigationBar(
-      fixedColor: Color(0xff132137),
-      unselectedItemColor: Colors.grey,
+      fixedColor: FlutterAppTheme.of(context).ButtonPrimaryColor,
+      unselectedItemColor: FlutterAppTheme.of(context).secondaryText,
       currentIndex: _currentIndex,
       onTap: (index) => setState(() => _currentIndex = index),
       items: [
@@ -79,5 +78,5 @@ class _buttomNavBarState extends State<buttomNavBar> {
         ),
       ],
     );
- }
+  }
 }

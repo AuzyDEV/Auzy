@@ -1,7 +1,5 @@
 import 'dart:convert';
 
-
-
 List<sharedPost> sharedPostFromJson(String str) =>
     List<sharedPost>.from(json.decode(str).map((x) => sharedPost.fromMap(x)));
 

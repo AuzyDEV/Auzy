@@ -1,12 +1,10 @@
-import 'package:new_mee/services/User_api.dart';
-import 'package:new_mee/common_widgets/Button_widget.dart';
-import 'package:new_mee/common_widgets/customized_AlertDialog.dart';
-import 'package:new_mee/index.dart';
-import 'package:new_mee/themes/theme.dart';
-import 'package:new_mee/common_widgets/FFButtonWidget.dart';
+import '../../services/User_api.dart';
+import '../../common_widgets/Button_widget.dart';
+import '../../common_widgets/customized_AlertDialog.dart';
+import '../../index.dart';
+import '../../themes/theme.dart';
 import 'package:flutter/material.dart';
 import 'package:string_validator/string_validator.dart';
-
 import '../../common_widgets/error_AlertDialog.dart';
 
 class CreateAccountWidget extends StatefulWidget {
@@ -91,7 +89,7 @@ class _CreateAccountWidgetState extends State<CreateAccountWidget> {
                     thickness: 3,
                     indent: 5,
                     endIndent: 200,
-                    color: Color(0xFF9457FB),
+                    color: FlutterAppTheme.of(context).primaryColor,
                   ),
                 ],
               ),
@@ -122,7 +120,7 @@ class _CreateAccountWidgetState extends State<CreateAccountWidget> {
                                       .bodyText2
                                       .override(
                                         fontFamily: 'Roboto',
-                                        color: Color(0xFF101213),
+                                        color: FlutterAppTheme.of(context).TextColor,
                                         fontSize: 14,
                                         fontWeight: FontWeight.bold,
                                       ),
@@ -212,7 +210,7 @@ class _CreateAccountWidgetState extends State<CreateAccountWidget> {
                                       .bodyText2
                                       .override(
                                         fontFamily: 'Roboto',
-                                        color: Color(0xFF101213),
+                                        color: FlutterAppTheme.of(context).TextColor,
                                         fontSize: 14,
                                         fontWeight: FontWeight.bold,
                                       ),
@@ -301,7 +299,7 @@ class _CreateAccountWidgetState extends State<CreateAccountWidget> {
                                       .bodyText2
                                       .override(
                                         fontFamily: 'Roboto',
-                                        color: Color(0xFF101213),
+                                        color: FlutterAppTheme.of(context).TextColor,
                                         fontSize: 14,
                                         fontWeight: FontWeight.bold,
                                       ),
@@ -381,7 +379,7 @@ class _CreateAccountWidgetState extends State<CreateAccountWidget> {
                                       .bodyText2
                                       .override(
                                         fontFamily: 'Roboto',
-                                        color: Color(0xFF101213),
+                                        color: FlutterAppTheme.of(context).TextColor,
                                         fontSize: 14,
                                         fontWeight: FontWeight.bold,
                                       ),

@@ -1,5 +1,5 @@
 import 'dart:convert';
-import 'package:new_mee/models/File.dart';
+import 'File.dart';
 import '../utils/util.dart';
 
 List<Post> postFromJson(String str) =>

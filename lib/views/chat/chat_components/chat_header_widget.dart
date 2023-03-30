@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
-import 'package:new_mee/views/chat/chat_page.dart';
-import 'package:new_mee/models/User.dart';
+import '../../../themes/theme.dart';
+import '../chat_page.dart';
+import '../../../models/User.dart';
 
 class ChatHeaderWidget extends StatelessWidget {
   final List<User> users;
@@ -22,7 +23,7 @@ class ChatHeaderWidget extends StatelessWidget {
               child: Text(
                 'ChatsApp',
                 style: TextStyle(
-                  color: Colors.white,
+                  color: FlutterAppTheme.of(context).whiteColor,
                   fontSize: 30,
                   fontWeight: FontWeight.bold,
                 ),

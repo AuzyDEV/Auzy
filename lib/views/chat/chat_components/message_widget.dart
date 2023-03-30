@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:new_mee/index.dart';
-import 'package:new_mee/views/UserProfil/userprofil.dart';
-
+import 'package:new_mee/themes/theme.dart';
+import '../../UserProfil/userprofil.dart';
 import '../../../models/Message.dart';
 
 class MessageWidget extends StatelessWidget {
@@ -42,7 +41,7 @@ class MessageWidget extends StatelessWidget {
               constraints: BoxConstraints(maxWidth: 140),
               decoration: BoxDecoration(
                 color: isMe
-                    ? Colors.grey[100]
+                    ? FlutterAppTheme.of(context).lightGrey
                     : Theme.of(context).colorScheme.secondary,
                 borderRadius: isMe
                     ? borderRadius

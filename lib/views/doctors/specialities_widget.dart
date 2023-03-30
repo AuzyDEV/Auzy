@@ -1,8 +1,8 @@
-import 'package:new_mee/common_widgets/app_bar.dart';
-import 'package:new_mee/common_widgets/drawer.dart';
-import 'package:new_mee/themes/theme.dart';
+import '../../common_widgets/app_bar.dart';
+import '../../common_widgets/drawer.dart';
+import '../../themes/theme.dart';
 import 'package:flutter/material.dart';
-import 'package:new_mee/views/doctors/doctorsListing_widget.dart';
+import 'doctorsListing_widget.dart';
 
 class SpecialitiesWidget extends StatefulWidget {
   const SpecialitiesWidget({Key key}) : super(key: key);
@@ -255,9 +255,8 @@ class _SpecialitiesWidgetState extends State<SpecialitiesWidget> {
                                             .bodyText1
                                             .override(
                                               fontFamily: 'Roboto',
-                                              color:
-                                                  FlutterAppTheme.of(context)
-                                                      .secondaryText,
+                                              color: FlutterAppTheme.of(context)
+                                                  .secondaryText,
                                               fontSize: 13,
                                               fontWeight: FontWeight.normal,
                                             ),
@@ -386,9 +385,8 @@ class _SpecialitiesWidgetState extends State<SpecialitiesWidget> {
                                             .bodyText1
                                             .override(
                                               fontFamily: 'Roboto',
-                                              color:
-                                                  FlutterAppTheme.of(context)
-                                                      .secondaryText,
+                                              color: FlutterAppTheme.of(context)
+                                                  .secondaryText,
                                               fontSize: 13,
                                               fontWeight: FontWeight.normal,
                                             ),
@@ -453,9 +451,8 @@ class _SpecialitiesWidgetState extends State<SpecialitiesWidget> {
                                             .bodyText1
                                             .override(
                                               fontFamily: 'Roboto',
-                                              color:
-                                                  FlutterAppTheme.of(context)
-                                                      .secondaryText,
+                                              color: FlutterAppTheme.of(context)
+                                                  .secondaryText,
                                               fontSize: 13,
                                               fontWeight: FontWeight.normal,
                                             ),
@@ -520,9 +517,8 @@ class _SpecialitiesWidgetState extends State<SpecialitiesWidget> {
                                             .bodyText1
                                             .override(
                                               fontFamily: 'Roboto',
-                                              color:
-                                                  FlutterAppTheme.of(context)
-                                                      .secondaryText,
+                                              color: FlutterAppTheme.of(context)
+                                                  .secondaryText,
                                               fontSize: 13,
                                               fontWeight: FontWeight.normal,
                                             ),
@@ -587,9 +583,8 @@ class _SpecialitiesWidgetState extends State<SpecialitiesWidget> {
                                             .bodyText1
                                             .override(
                                               fontFamily: 'Roboto',
-                                              color:
-                                                  FlutterAppTheme.of(context)
-                                                      .secondaryText,
+                                              color: FlutterAppTheme.of(context)
+                                                  .secondaryText,
                                               fontSize: 13,
                                               fontWeight: FontWeight.normal,
                                             ),
@@ -654,9 +649,8 @@ class _SpecialitiesWidgetState extends State<SpecialitiesWidget> {
                                             .bodyText1
                                             .override(
                                               fontFamily: 'Roboto',
-                                              color:
-                                                  FlutterAppTheme.of(context)
-                                                      .secondaryText,
+                                              color: FlutterAppTheme.of(context)
+                                                  .secondaryText,
                                               fontSize: 13,
                                               fontWeight: FontWeight.normal,
                                             ),
@@ -721,9 +715,8 @@ class _SpecialitiesWidgetState extends State<SpecialitiesWidget> {
                                             .bodyText1
                                             .override(
                                               fontFamily: 'Roboto',
-                                              color:
-                                                  FlutterAppTheme.of(context)
-                                                      .secondaryText,
+                                              color: FlutterAppTheme.of(context)
+                                                  .secondaryText,
                                               fontSize: 13,
                                               fontWeight: FontWeight.normal,
                                             ),
@@ -788,9 +781,8 @@ class _SpecialitiesWidgetState extends State<SpecialitiesWidget> {
                                             .bodyText1
                                             .override(
                                               fontFamily: 'Roboto',
-                                              color:
-                                                  FlutterAppTheme.of(context)
-                                                      .secondaryText,
+                                              color: FlutterAppTheme.of(context)
+                                                  .secondaryText,
                                               fontSize: 13,
                                               fontWeight: FontWeight.normal,
                                             ),
@@ -853,9 +845,8 @@ class _SpecialitiesWidgetState extends State<SpecialitiesWidget> {
                                             .bodyText1
                                             .override(
                                               fontFamily: 'Roboto',
-                                              color:
-                                                  FlutterAppTheme.of(context)
-                                                      .secondaryText,
+                                              color: FlutterAppTheme.of(context)
+                                                  .secondaryText,
                                               fontSize: 13,
                                               fontWeight: FontWeight.normal,
                                             ),
@@ -920,9 +911,8 @@ class _SpecialitiesWidgetState extends State<SpecialitiesWidget> {
                                             .bodyText1
                                             .override(
                                               fontFamily: 'Roboto',
-                                              color:
-                                                  FlutterAppTheme.of(context)
-                                                      .secondaryText,
+                                              color: FlutterAppTheme.of(context)
+                                                  .secondaryText,
                                               fontSize: 13,
                                               fontWeight: FontWeight.normal,
                                             ),
@@ -987,9 +977,8 @@ class _SpecialitiesWidgetState extends State<SpecialitiesWidget> {
                                             .bodyText1
                                             .override(
                                               fontFamily: 'Roboto',
-                                              color:
-                                                  FlutterAppTheme.of(context)
-                                                      .secondaryText,
+                                              color: FlutterAppTheme.of(context)
+                                                  .secondaryText,
                                               fontSize: 13,
                                               fontWeight: FontWeight.normal,
                                             ),

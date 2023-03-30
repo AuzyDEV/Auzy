@@ -1,11 +1,13 @@
-import 'package:new_mee/services/doctorsMan.dart';
-import 'package:new_mee/common_widgets/app_bar.dart';
-import 'package:new_mee/common_widgets/drawer.dart';
-import 'package:new_mee/common_widgets/floatingActionButton_widget.dart';
-import 'package:new_mee/views/doctors/addDoctor_widget.dart';
-import 'package:new_mee/views/doctors/doctorProfil_widget.dart';
-import 'package:new_mee/models/Doctor.dart';
-import 'package:new_mee/themes/theme.dart';
+import 'package:new_mee/common_widgets/textFormFied.dart';
+
+import '../../services/doctorsMan.dart';
+import '../../common_widgets/app_bar.dart';
+import '../../common_widgets/drawer.dart';
+import '../../common_widgets/floatingActionButton_widget.dart';
+import 'addDoctor_widget.dart';
+import 'doctorProfil_widget.dart';
+import '../../models/Doctor.dart';
+import '../../themes/theme.dart';
 import 'package:flutter/material.dart';
 
 class listsdocWidget extends StatefulWidget {
@@ -57,7 +59,7 @@ class _listsdocWidgetState extends State<listsdocWidget> {
   Widget build(BuildContext context) {
     return Scaffold(
       key: scaffoldKey,
-      backgroundColor: Colors.white,
+      backgroundColor: FlutterAppTheme.of(context).whiteColor,
       appBar: PreferredSize(
         preferredSize: const Size.fromHeight(60),
         child: appbar(text: 'Doctors'),
@@ -92,7 +94,7 @@ class _listsdocWidgetState extends State<listsdocWidget> {
                         width: double.infinity,
                         height: 52,
                         decoration: BoxDecoration(
-                          color: Colors.grey[50],
+                          color: FlutterAppTheme.of(context).lightGrey,
                           borderRadius: BorderRadius.circular(8),
                         ),
                         child: Padding(
@@ -109,45 +111,14 @@ class _listsdocWidgetState extends State<listsdocWidget> {
                                 child: Padding(
                                   padding: EdgeInsetsDirectional.fromSTEB(
                                       5, 0, 0, 2),
-                                  child: TextFormField(
+                                  child: TextFormFieldWidget(
                                     onChanged: (value) {
                                       setState(() {
                                         searchString = value.toLowerCase();
                                       });
                                     },
+                                    hintText: "Search for doctors",
                                     controller: SearchtextController,
-                                    obscureText: false,
-                                    decoration: InputDecoration(
-                                      hintText: "Search for doctors",
-                                      enabledBorder: OutlineInputBorder(
-                                        borderSide: BorderSide(
-                                          color: Color(0x00000000),
-                                          width: 1,
-                                        ),
-                                        borderRadius: const BorderRadius.only(
-                                          topLeft: Radius.circular(4.0),
-                                          topRight: Radius.circular(4.0),
-                                        ),
-                                      ),
-                                      focusedBorder: OutlineInputBorder(
-                                        borderSide: BorderSide(
-                                          color: Color(0x00000000),
-                                          width: 1,
-                                        ),
-                                        borderRadius: const BorderRadius.only(
-                                          topLeft: Radius.circular(4.0),
-                                          topRight: Radius.circular(4.0),
-                                        ),
-                                      ),
-                                    ),
-                                    style: FlutterAppTheme.of(context)
-                                        .bodyText1
-                                        .override(
-                                          fontFamily: 'Roboto',
-                                          color: Color(0xFF57636C),
-                                          fontSize: 14,
-                                          fontWeight: FontWeight.w500,
-                                        ),
                                   ),
                                 ),
                               ),
@@ -190,7 +161,9 @@ class _listsdocWidgetState extends State<listsdocWidget> {
                                                   child: Card(
                                                     clipBehavior: Clip
                                                         .antiAliasWithSaveLayer,
-                                                    color: Colors.white,
+                                                    color: FlutterAppTheme.of(
+                                                            context)
+                                                        .whiteColor,
                                                     elevation: 1,
                                                     shape:
                                                         RoundedRectangleBorder(
@@ -287,7 +260,7 @@ class _listsdocWidgetState extends State<listsdocWidget> {
                                                                                 '${snapshot.data[index].firstName} ${snapshot.data[index].lastName}',
                                                                                 style: FlutterAppTheme.of(context).subtitle1.override(
                                                                                       fontFamily: 'Roboto',
-                                                                                      color: Color(0xFF15212B),
+                                                                                      color: FlutterAppTheme.of(context).TextColor,
                                                                                       fontSize: 18,
                                                                                       fontWeight: FontWeight.w500,
                                                                                     ),
@@ -308,7 +281,7 @@ class _listsdocWidgetState extends State<listsdocWidget> {
                                                                                   '${snapshot.data[index].speciality}',
                                                                                   style: FlutterAppTheme.of(context).bodyText2.override(
                                                                                         fontFamily: 'Roboto',
-                                                                                        color: Color.fromARGB(255, 73, 82, 90),
+                                                                                        color: FlutterAppTheme.of(context).TextColor,
                                                                                         fontSize: 14,
                                                                                         fontWeight: FontWeight.bold,
                                                                                       ),
@@ -339,9 +312,12 @@ class _listsdocWidgetState extends State<listsdocWidget> {
                                                                             Navigator.push(context,
                                                                                 MaterialPageRoute(builder: (context) => DoctorprofileWidget(id: snapshot.data[index].id)));
                                                                           },
-                                                                          child: Icon(
-                                                                              Icons.arrow_forward_ios_outlined,
-                                                                              color: Colors.grey),
+                                                                          child:
+                                                                              Icon(
+                                                                            Icons.arrow_forward_ios_outlined,
+                                                                            color:
+                                                                                FlutterAppTheme.of(context).TextColor,
+                                                                          ),
                                                                         )
                                                                       ],
                                                                     ),

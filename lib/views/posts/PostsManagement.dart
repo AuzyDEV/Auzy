@@ -1,19 +1,18 @@
 import 'dart:convert';
-
-import 'package:new_mee/services/User_api.dart';
-import 'package:new_mee/services/postMan.dart';
-import 'package:new_mee/common_widgets/customized_AlertDialog.dart';
-import 'package:new_mee/common_widgets/app_bar.dart';
-import 'package:new_mee/common_widgets/drawer.dart';
-import 'package:new_mee/views/home/home_widget.dart';
-import 'package:new_mee/index.dart';
 import 'package:flutter_html/flutter_html.dart';
-import 'package:new_mee/views/posts/postDetails.dart';
-import 'package:new_mee/themes/theme.dart';
-import 'package:flutter/material.dart';
-import 'package:new_mee/views/posts/summernote_widget.dart';
 
+import '../../services/User_api.dart';
+import '../../services/postMan.dart';
+import '../../common_widgets/customized_AlertDialog.dart';
+import '../../common_widgets/app_bar.dart';
+import '../../common_widgets/drawer.dart';
+import '../../themes/theme.dart';
+import '../home/home_widget.dart';
+import '../../index.dart';
+import 'postDetails.dart';
+import 'package:flutter/material.dart';
 import '../../common_widgets/floatingActionButton_widget.dart';
+import '../../common_widgets/snack_bar.dart';
 
 class PostsManagementWidget extends StatefulWidget {
   const PostsManagementWidget({Key key}) : super(key: key);
@@ -120,7 +119,7 @@ class _PostsManagementWidgetState extends State<PostsManagementWidget>
         preferredSize: const Size.fromHeight(60),
         child: appbar(text: 'Posts'),
       ),
-      backgroundColor: Colors.white,
+      backgroundColor: FlutterAppTheme.of(context).whiteColor,
       floatingActionButton: floatingActionButtonWidget(
         onPressed: () async {
           await Navigator.push(
@@ -237,10 +236,9 @@ class _PostsManagementWidgetState extends State<PostsManagementWidget>
               cells: [
                 DataCell(Text('#' + e.id.toString())),
                 _createTitleCell(e.title.toString()),
-                DataCell(
-                  Text("haifa"),
-                  //Html(data: e.contenu.toString()),
-                ),
+                DataCell(Text("post ")
+                    // Html(data: e.contenu.toString()),
+                    ),
                 _createTitleCell(e.date.toString()),
                 DataCell(
                   Padding(
@@ -309,17 +307,11 @@ class _PostsManagementWidgetState extends State<PostsManagementWidget>
                                                   ),
                                                   ScaffoldMessenger.of(context)
                                                       .showSnackBar(
-                                                    SnackBar(
-                                                        content: Text(
-                                                          'Successfully post deleted!',
-                                                          style: TextStyle(
-                                                            color: Colors.black,
-                                                          ),
-                                                        ),
-                                                        duration: Duration(
-                                                            milliseconds: 4000),
-                                                        backgroundColor:
-                                                            Colors.red),
+                                                    SnackbarWidget(
+                                                      content: Text(
+                                                        'Successfully post deleted!',
+                                                      ),
+                                                    ),
                                                   ),
                                                 },
                                                 child: Text('Confirm'),
@@ -423,21 +415,11 @@ class _PostsManagementWidgetState extends State<PostsManagementWidget>
                                                         ScaffoldMessenger.of(
                                                                 context)
                                                             .showSnackBar(
-                                                          SnackBar(
-                                                              content: Text(
-                                                                'Successfully post hide!',
-                                                                style:
-                                                                    TextStyle(
-                                                                  color: Colors
-                                                                      .black,
-                                                                ),
-                                                              ),
-                                                              duration: Duration(
-                                                                  milliseconds:
-                                                                      4000),
-                                                              backgroundColor:
-                                                                  Colors.red),
-                                                        ),
+                                                                SnackbarWidget(
+                                                          content: Text(
+                                                            'Successfully post hide!',
+                                                          ),
+                                                        )),
                                                       },
                                                       child: Text('Confirm'),
                                                     ),
@@ -505,21 +487,12 @@ class _PostsManagementWidgetState extends State<PostsManagementWidget>
                                                         ScaffoldMessenger.of(
                                                                 context)
                                                             .showSnackBar(
-                                                          SnackBar(
-                                                              content: Text(
-                                                                'Successfully post restored!',
-                                                                style:
-                                                                    TextStyle(
-                                                                  color: Colors
-                                                                      .black,
-                                                                ),
-                                                              ),
-                                                              duration: Duration(
-                                                                  milliseconds:
-                                                                      4000),
-                                                              backgroundColor:
-                                                                  Colors.red),
-                                                        ),
+                                                          SnackbarWidget(
+                                                            content: Text(
+                                                              'Successfully post restored!',
+                                                            ),
+                                                          ),
+                                                        )
                                                       },
                                                       child: Text('Confirm'),
                                                     ),

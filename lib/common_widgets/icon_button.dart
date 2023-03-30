@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
 
+import '../themes/theme.dart';
+
 class FlutterFlowIconButton extends StatelessWidget {
   const FlutterFlowIconButton(
       {Key key,
@@ -24,7 +26,7 @@ class FlutterFlowIconButton extends StatelessWidget {
   Widget build(BuildContext context) => Material(
         borderRadius:
             borderRadius != null ? BorderRadius.circular(borderRadius) : null,
-        color: Colors.transparent,
+        color: FlutterAppTheme.of(context).TransparentColor,
         clipBehavior: Clip.antiAlias,
         child: Ink(
           width: buttonSize,
@@ -32,7 +34,7 @@ class FlutterFlowIconButton extends StatelessWidget {
           decoration: BoxDecoration(
             color: fillColor,
             border: Border.all(
-              color: borderColor ?? Colors.transparent,
+              color: borderColor ?? FlutterAppTheme.of(context).TransparentColor,
               width: borderWidth ?? 0,
             ),
             borderRadius: borderRadius != null

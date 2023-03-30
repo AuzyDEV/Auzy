@@ -1,9 +1,8 @@
-import 'package:new_mee/services/User_api.dart';
-import 'package:new_mee/common_widgets/Button_widget.dart';
-import 'package:new_mee/common_widgets/customized_AlertDialog.dart';
-import 'package:new_mee/common_widgets/error_AlertDialog.dart';
+import '../../services/User_api.dart';
+import '../../common_widgets/Button_widget.dart';
+import '../../common_widgets/customized_AlertDialog.dart';
+import '../../common_widgets/error_AlertDialog.dart';
 import '../../themes/theme.dart';
-import '../../common_widgets/FFButtonWidget.dart';
 import 'package:flutter/material.dart';
 
 class ForgetpasswordWidget extends StatefulWidget {
@@ -51,7 +50,7 @@ class _ForgetpasswordWidgetState extends State<ForgetpasswordWidget> {
                       },
                       child: Icon(
                         Icons.arrow_back_ios_new_outlined,
-                        color: Color(0xff132137),
+                        color: FlutterAppTheme.of(context).AppBarPrimaryColor,
                         size: 24,
                       ),
                     ),
@@ -76,7 +75,8 @@ class _ForgetpasswordWidgetState extends State<ForgetpasswordWidget> {
                                   .bodyText1
                                   .override(
                                     fontFamily: 'Open Sans',
-                                    color: Color(0xFF9457FB),
+                                    color: FlutterAppTheme.of(context)
+                                        .primaryColor,
                                     fontSize: 30,
                                   ),
                               children: <TextSpan>[
@@ -86,7 +86,8 @@ class _ForgetpasswordWidgetState extends State<ForgetpasswordWidget> {
                                       .bodyText1
                                       .override(
                                         fontFamily: 'Open Sans',
-                                        color: Color(0xFF101213),
+                                        color: FlutterAppTheme.of(context)
+                                            .TextColor,
                                         fontSize: 30,
                                       ),
                                 ),
@@ -123,13 +124,14 @@ class _ForgetpasswordWidgetState extends State<ForgetpasswordWidget> {
                         children: [
                           Text(
                             'Email',
-                            style:
-                                FlutterAppTheme.of(context).bodyText2.override(
-                                      fontFamily: 'Roboto',
-                                      color: Color(0xFF101213),
-                                      fontSize: 14,
-                                      fontWeight: FontWeight.bold,
-                                    ),
+                            style: FlutterAppTheme.of(context)
+                                .bodyText2
+                                .override(
+                                  fontFamily: 'Roboto',
+                                  color: FlutterAppTheme.of(context).TextColor,
+                                  fontSize: 14,
+                                  fontWeight: FontWeight.bold,
+                                ),
                           ),
                         ],
                       ),

@@ -1,11 +1,10 @@
-import 'package:new_mee/services/User_api.dart';
-import 'package:new_mee/common_widgets/Button_widget.dart';
-import 'package:new_mee/common_widgets/app_bar.dart';
-import 'package:new_mee/common_widgets/drawer.dart';
-import 'package:new_mee/index.dart';
-import 'package:new_mee/models/User.dart';
-import 'package:new_mee/themes/theme.dart';
-import 'package:new_mee/common_widgets/FFButtonWidget.dart';
+import '../../services/User_api.dart';
+import '../../common_widgets/Button_widget.dart';
+import '../../common_widgets/app_bar.dart';
+import '../../common_widgets/drawer.dart';
+import '../../index.dart';
+import '../../models/User.dart';
+import '../../themes/theme.dart';
 import 'package:flutter/material.dart';
 import 'package:string_validator/string_validator.dart';
 
@@ -53,7 +52,7 @@ class _addUserWidgetState extends State<addUserWidget> {
   Widget build(BuildContext context) {
     return Scaffold(
         key: scaffoldKey,
-        backgroundColor: Colors.white,
+        backgroundColor: FlutterAppTheme.of(context).whiteColor,
         appBar: PreferredSize(
           preferredSize: const Size.fromHeight(60),
           child: appbar(text: 'Add user'),
@@ -88,7 +87,8 @@ class _addUserWidgetState extends State<addUserWidget> {
                                       .bodyText2
                                       .override(
                                         fontFamily: 'Roboto',
-                                        color: Color(0xFF101213),
+                                        color: FlutterAppTheme.of(context)
+                                            .TextColor,
                                         fontSize: 14,
                                         fontWeight: FontWeight.bold,
                                       ),
@@ -178,7 +178,8 @@ class _addUserWidgetState extends State<addUserWidget> {
                                       .bodyText2
                                       .override(
                                         fontFamily: 'Roboto',
-                                        color: Color(0xFF101213),
+                                        color: FlutterAppTheme.of(context)
+                                            .TextColor,
                                         fontSize: 14,
                                         fontWeight: FontWeight.bold,
                                       ),
@@ -267,7 +268,8 @@ class _addUserWidgetState extends State<addUserWidget> {
                                       .bodyText2
                                       .override(
                                         fontFamily: 'Roboto',
-                                        color: Color(0xFF101213),
+                                        color: FlutterAppTheme.of(context)
+                                            .TextColor,
                                         fontSize: 14,
                                         fontWeight: FontWeight.bold,
                                       ),
@@ -347,7 +349,8 @@ class _addUserWidgetState extends State<addUserWidget> {
                                       .bodyText2
                                       .override(
                                         fontFamily: 'Roboto',
-                                        color: Color(0xFF101213),
+                                        color: FlutterAppTheme.of(context)
+                                            .TextColor,
                                         fontSize: 14,
                                         fontWeight: FontWeight.bold,
                                       ),

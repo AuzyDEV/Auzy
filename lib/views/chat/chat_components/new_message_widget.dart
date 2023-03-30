@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:new_mee/services/firebase_api.dart';
-//import 'package:emoji_picker_flutter/emoji_picker_flutter.dart';
-//import 'package:emoji_chooser/emoji_chooser.dart';
+import 'package:new_mee/themes/theme.dart';
+import '../../../services/messagesMan.dart';
 
 class NewMessageWidget extends StatefulWidget {
   final String idUser;
@@ -22,7 +21,7 @@ class _NewMessageWidgetState extends State<NewMessageWidget> {
   // EmojiData _emojiData;
   void sendMessage() async {
     FocusScope.of(context).unfocus();
-    await FirebaseApi.uploadMessage(widget.idUser, message);
+    await MessageMan.uploadMessage(widget.idUser, message);
     _controller.clear();
   }
 
@@ -48,7 +47,7 @@ class _NewMessageWidgetState extends State<NewMessageWidget> {
   Widget build(BuildContext context) =>
       Column(mainAxisAlignment: MainAxisAlignment.end, children: <Widget>[
         Container(
-          color: Colors.white,
+          color: FlutterAppTheme.of(context).whiteColor,
           padding: EdgeInsets.all(8),
           child: Row(
             children: <Widget>[
@@ -86,11 +85,11 @@ class _NewMessageWidgetState extends State<NewMessageWidget> {
                       }
                       );
                     },*/
-                      color: Colors.blueGrey,
+                      color: FlutterAppTheme.of(context).TransparentColor,
                     ),
                   ),
                 ),
-                color: Colors.white,
+                color: FlutterAppTheme.of(context).whiteColor,
               ),
               Expanded(
                 child: TextField(
@@ -100,7 +99,7 @@ class _NewMessageWidgetState extends State<NewMessageWidget> {
                   enableSuggestions: true,
                   decoration: InputDecoration(
                     filled: true,
-                    fillColor: Colors.grey[100],
+                    fillColor: FlutterAppTheme.of(context).lightGrey,
                     labelText: 'Type your message',
                     border: OutlineInputBorder(
                       borderSide: BorderSide(width: 0),
@@ -120,9 +119,12 @@ class _NewMessageWidgetState extends State<NewMessageWidget> {
                   padding: EdgeInsets.all(8),
                   decoration: BoxDecoration(
                     shape: BoxShape.circle,
-                    color: Colors.blue,
+                    color: FlutterAppTheme.of(context).tertiaryColor,
                   ),
-                  child: Icon(Icons.send, color: Colors.white),
+                  child: Icon(
+                    Icons.send,
+                    color: FlutterAppTheme.of(context).whiteColor,
+                  ),
                 ),
               ),
             ],
@@ -131,36 +133,3 @@ class _NewMessageWidgetState extends State<NewMessageWidget> {
         /*(isShowSticker ? buildSticker() : Container()),*/
       ]);
 }
-/*
-Widget buildSticker() {
-  return EmojiPicker(
-      config: Config(
-    columns: 7,
-    emojiSizeMax: 32 *
-        (foundation.defaultTargetPlatform == TargetPlatform.iOS
-            ? 1.30
-            : 1.0), // Issue: https://github.com/flutter/flutter/issues/28894
-    verticalSpacing: 0,
-    horizontalSpacing: 0,
-    gridPadding: EdgeInsets.zero,
-    initCategory: Category.RECENT,
-    bgColor: Color(0xFFF2F2F2),
-    indicatorColor: Colors.blue,
-    iconColor: Colors.grey,
-    iconColorSelected: Colors.blue,
-    backspaceColor: Colors.blue,
-    skinToneDialogBgColor: Colors.white,
-    skinToneIndicatorColor: Colors.grey,
-    enableSkinTones: true,
-    showRecentsTab: true,
-    recentsLimit: 28,
-    noRecents: const Text(
-      'No Recents',
-      style: TextStyle(fontSize: 20, color: Colors.black26),
-      textAlign: TextAlign.center,
-    ), // Needs to be const Widget// Needs to be const Widget
-    tabIndicatorAnimDuration: kTabScrollDuration,
-    categoryIcons: const CategoryIcons(),
-    buttonMode: ButtonMode.MATERIAL,
-  ));
-}*/

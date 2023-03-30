@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
-import 'package:new_mee/views/chat/chat_page.dart';
-import 'package:new_mee/models/User.dart';
+import 'package:new_mee/themes/theme.dart';
+import '../chat_page.dart';
+import '../../../models/User.dart';
 
 class ChatBodyWidget extends StatelessWidget {
   final List<User> users;
@@ -15,7 +16,7 @@ class ChatBodyWidget extends StatelessWidget {
         child: Container(
           padding: EdgeInsets.all(10),
           decoration: BoxDecoration(
-            color: Colors.white,
+            color: FlutterAppTheme.of(context).whiteColor,
             borderRadius: BorderRadius.only(
               topLeft: Radius.circular(25),
               topRight: Radius.circular(25),

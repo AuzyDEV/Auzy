@@ -1,5 +1,3 @@
-import 'package:new_mee/common_widgets/FFButtonWidget.dart';
-import 'package:new_mee/themes/theme.dart';
 import 'package:flutter/material.dart';
 
 class SnackbarWidget extends SnackBar {
@@ -17,8 +15,8 @@ class _SnackbarWidgetState extends State<SnackbarWidget> {
   @override
   Widget build(BuildContext context) {
     return SnackBar(
-        content: widget.content,
-        duration: Duration(milliseconds: 3000),
-        backgroundColor: Colors.red);
+      content: widget.content,
+      duration: Duration(milliseconds: 3000),
+    );
   }
 }

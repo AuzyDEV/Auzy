@@ -1,7 +1,8 @@
-import 'package:new_mee/common_widgets/drawer.dart';
-import 'package:new_mee/views/doctors/doctorsListing_widget.dart';
-import 'package:new_mee/views/home/home_widget.dart';
-import 'package:new_mee/index.dart';
+import '../../common_widgets/drawer.dart';
+import '../../themes/theme.dart';
+import '../doctors/doctorsListing_widget.dart';
+import 'home_widget.dart';
+import '../../index.dart';
 import 'package:flutter/material.dart';
 
 class HomeWithButtomNavBarWidget extends StatefulWidget {
@@ -53,8 +54,8 @@ class _HomeWithButtomNavBarWidgetState
           ? _pagesAdmin[_currentIndex]
           : _pagesUser[_currentIndex],
       bottomNavigationBar: BottomNavigationBar(
-        fixedColor: Color(0xff132137),
-        unselectedItemColor: Colors.grey,
+        fixedColor: FlutterAppTheme.of(context).ButtonPrimaryColor,
+        unselectedItemColor: FlutterAppTheme.of(context).Grey,
         currentIndex: _currentIndex,
         onTap: (index) => setState(() => _currentIndex = index),
         items: [

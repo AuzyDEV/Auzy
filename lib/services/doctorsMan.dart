@@ -2,7 +2,7 @@ import 'dart:convert';
 import 'package:http/http.dart' as http;
 import 'dart:async';
 import 'package:firebase_auth/firebase_auth.dart';
-import 'package:new_mee/models/Doctor.dart';
+import '../models/Doctor.dart';
 
 class DBDoctorMan {
   final FirebaseAuth _auth = FirebaseAuth.instance;

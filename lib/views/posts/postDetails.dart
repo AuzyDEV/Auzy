@@ -1,15 +1,15 @@
 import 'dart:convert';
+import 'package:flutter_html/flutter_html.dart';
 
-import 'package:new_mee/services/postMan.dart';
-import 'package:new_mee/common_widgets/Button_widget.dart';
-import 'package:new_mee/common_widgets/app_bar.dart';
-import 'package:new_mee/common_widgets/drawer.dart';
-import 'package:new_mee/models/Post.dart';
-import 'package:new_mee/common_widgets/icon_button.dart';
-import 'package:new_mee/themes/theme.dart';
-import 'package:new_mee/common_widgets/FFButtonWidget.dart';
+import '../../services/postMan.dart';
+import '../../common_widgets/Button_widget.dart';
+import '../../common_widgets/app_bar.dart';
+import '../../common_widgets/drawer.dart';
+import '../../models/Post.dart';
+import '../../common_widgets/icon_button.dart';
+import '../../themes/theme.dart';
 import 'package:flutter/material.dart';
-import 'package:new_mee/views/posts/updateImagePost_widget.dart';
+import 'updateImagePost_widget.dart';
 
 class postDetailsWidget extends StatefulWidget {
   final String id;
@@ -85,10 +85,12 @@ class _postDetailsWidgetState extends State<postDetailsWidget> {
       TextSpan(children: textSpans),
     );
   }
+
   Future<String> _getCurrentUserRole() async {
     return apiUser.GetCurrentUserRole();
   }
-   void _getFutureStringValue() async {
+
+  void _getFutureStringValue() async {
     String value = await _getCurrentUserRole();
     setState(() {
       _futureStringValue = value;
@@ -112,7 +114,7 @@ class _postDetailsWidgetState extends State<postDetailsWidget> {
   Widget build(BuildContext context) {
     return Scaffold(
         key: scaffoldKey,
-        backgroundColor: Colors.white,
+        backgroundColor: FlutterAppTheme.of(context).whiteColor,
         appBar: PreferredSize(
           preferredSize: const Size.fromHeight(60),
           child: appbar(text: 'Post details'),
@@ -136,7 +138,7 @@ class _postDetailsWidgetState extends State<postDetailsWidget> {
                                 width: MediaQuery.of(context).size.width * 0.9,
                                 height: 320,
                                 decoration: BoxDecoration(
-                                  color: Color(0xFFDBE2E7),
+                                  color: FlutterAppTheme.of(context).whiteColor,
                                   borderRadius: BorderRadius.circular(16),
                                 ),
                                 child: Stack(
@@ -167,19 +169,25 @@ class _postDetailsWidgetState extends State<postDetailsWidget> {
                                               Card(
                                                 clipBehavior:
                                                     Clip.antiAliasWithSaveLayer,
-                                                color: Color(0x3A000000),
+                                                color:
+                                                    FlutterAppTheme.of(context)
+                                                        .TransparentColor,
                                                 shape: RoundedRectangleBorder(
                                                   borderRadius:
                                                       BorderRadius.circular(8),
                                                 ),
                                                 child: FlutterFlowIconButton(
                                                   borderColor:
-                                                      Colors.transparent,
+                                                      FlutterAppTheme.of(
+                                                              context)
+                                                          .TransparentColor,
                                                   borderRadius: 30,
                                                   buttonSize: 46,
                                                   icon: Icon(
                                                     Icons.arrow_back_rounded,
-                                                    color: Colors.white,
+                                                    color: FlutterAppTheme.of(
+                                                            context)
+                                                        .whiteColor,
                                                     size: 24,
                                                   ),
                                                   onPressed: () {
@@ -191,19 +199,25 @@ class _postDetailsWidgetState extends State<postDetailsWidget> {
                                               Card(
                                                 clipBehavior:
                                                     Clip.antiAliasWithSaveLayer,
-                                                color: Color(0x3A000000),
+                                                color:
+                                                    FlutterAppTheme.of(context)
+                                                        .TransparentColor,
                                                 shape: RoundedRectangleBorder(
                                                   borderRadius:
                                                       BorderRadius.circular(8),
                                                 ),
                                                 child: FlutterFlowIconButton(
                                                   borderColor:
-                                                      Colors.transparent,
+                                                      FlutterAppTheme.of(
+                                                              context)
+                                                          .TransparentColor,
                                                   borderRadius: 30,
                                                   buttonSize: 46,
                                                   icon: Icon(
                                                     Icons.favorite_border,
-                                                    color: Colors.white,
+                                                    color: FlutterAppTheme.of(
+                                                            context)
+                                                        .whiteColor,
                                                     size: 24,
                                                   ),
                                                   onPressed: () {
@@ -245,8 +259,7 @@ class _postDetailsWidgetState extends State<postDetailsWidget> {
                                 child: Padding(
                                   padding: EdgeInsetsDirectional.fromSTEB(
                                       0, 0, 0, 10),
-                                  child: getTextSpanFromRichTextJson(
-                                      snapshot.data.contenu),
+                                  child: Html(data: snapshot.data.contenu),
                                 ),
                               ),
                             ],
@@ -272,24 +285,24 @@ class _postDetailsWidgetState extends State<postDetailsWidget> {
                           child: Row(
                             mainAxisSize: MainAxisSize.max,
                             children: [
-                              if (_futureStringValue == "admin") 
-                              Expanded(
-                                child: buttonWidget(
-                                  onPressed: () async {
-                                    Navigator.push(
-                                      context,
-                                      MaterialPageRoute(
-                                        builder: (context) =>
-                                            updateImagePostWidget(
-                                                id: widget.id.toString(),
-                                                downloadURL: snapshot
-                                                    .data.files[0].downloadURL),
-                                      ),
-                                    );
-                                  },
-                                  text: 'update post\'s photo',
+                              if (_futureStringValue == "admin")
+                                Expanded(
+                                  child: buttonWidget(
+                                    onPressed: () async {
+                                      Navigator.push(
+                                        context,
+                                        MaterialPageRoute(
+                                          builder: (context) =>
+                                              updateImagePostWidget(
+                                                  id: widget.id.toString(),
+                                                  downloadURL: snapshot.data
+                                                      .files[0].downloadURL),
+                                        ),
+                                      );
+                                    },
+                                    text: 'update post\'s photo',
+                                  ),
                                 ),
-                              ),
                             ],
                           ),
                         ),

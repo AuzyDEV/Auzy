@@ -1,15 +1,14 @@
 import 'dart:convert';
-
-import 'package:new_mee/services/User_api.dart';
-import 'package:new_mee/services/postMan.dart';
-import 'package:new_mee/services/savedPostMan.dart';
-import 'package:new_mee/services/sharedPostMan.dart';
-import 'package:new_mee/common_widgets/app_bar.dart';
-import 'package:new_mee/common_widgets/drawer.dart';
-import 'package:new_mee/models/Post.dart';
-import 'package:new_mee/themes/theme.dart';
+import '../../services/User_api.dart';
+import '../../services/postMan.dart';
+import '../../services/savedPostMan.dart';
+import '../../services/sharedPostMan.dart';
+import '../../common_widgets/app_bar.dart';
+import '../../common_widgets/drawer.dart';
+import '../../models/Post.dart';
+import '../../themes/theme.dart';
 import 'package:flutter/material.dart';
-import 'package:new_mee/models/sharedPost.dart';
+import '../../models/sharedPost.dart';
 
 class sharedPostsByUserWidget extends StatefulWidget {
   const sharedPostsByUserWidget({Key key}) : super(key: key);
@@ -117,7 +116,7 @@ class _sharedPostsByUserWidgetState extends State<sharedPostsByUserWidget> {
   Widget build(BuildContext context) {
     return Scaffold(
       key: scaffoldKey,
-      backgroundColor: Colors.white,
+      backgroundColor: FlutterAppTheme.of(context).whiteColor,
       appBar: PreferredSize(
         preferredSize: const Size.fromHeight(60),
         child: appbar(text: 'Posts'),
@@ -141,8 +140,10 @@ class _sharedPostsByUserWidgetState extends State<sharedPostsByUserWidget> {
                                     EdgeInsetsDirectional.fromSTEB(9, 8, 9, 8),
                                 child: Container(
                                   decoration: BoxDecoration(
-                                      borderRadius: BorderRadius.circular(10),
-                                      color: Colors.white),
+                                    borderRadius: BorderRadius.circular(10),
+                                    color:
+                                        FlutterAppTheme.of(context).whiteColor,
+                                  ),
                                   child: Column(
                                     children: [
                                       Padding(
@@ -154,7 +155,8 @@ class _sharedPostsByUserWidgetState extends State<sharedPostsByUserWidget> {
                                             Card(
                                               clipBehavior:
                                                   Clip.antiAliasWithSaveLayer,
-                                              color: Colors.cyan,
+                                              color: FlutterAppTheme.of(context)
+                                                  .tertiaryColor,
                                               shape: RoundedRectangleBorder(
                                                 borderRadius:
                                                     BorderRadius.circular(20),
@@ -190,10 +192,9 @@ class _sharedPostsByUserWidgetState extends State<sharedPostsByUserWidget> {
                                                                 12, 0, 0, 0),
                                                     child: Text(
                                                       '${snapshot.data[index].currentUserName}',
-                                                      style:
-                                                          FlutterAppTheme.of(
-                                                                  context)
-                                                              .bodyText1,
+                                                      style: FlutterAppTheme.of(
+                                                              context)
+                                                          .bodyText1,
                                                     ),
                                                   ),
                                                 ],
@@ -210,7 +211,9 @@ class _sharedPostsByUserWidgetState extends State<sharedPostsByUserWidget> {
                                               decoration: BoxDecoration(
                                                 borderRadius:
                                                     BorderRadius.circular(10),
-                                                color: Colors.white,
+                                                color:
+                                                    FlutterAppTheme.of(context)
+                                                        .whiteColor,
                                               ),
                                               child: Column(
                                                 children: [
@@ -325,8 +328,9 @@ class _sharedPostsByUserWidgetState extends State<sharedPostsByUserWidget> {
                                                               child: Icon(
                                                                 Icons
                                                                     .favorite_border_outlined,
-                                                                color:
-                                                                    Colors.grey,
+                                                                color: FlutterAppTheme.of(
+                                                                        context)
+                                                                    .Grey,
                                                                 size: 24,
                                                               ),
                                                             ),

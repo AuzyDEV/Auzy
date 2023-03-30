@@ -1,9 +1,9 @@
-import 'package:new_mee/common_widgets/Button_widget.dart';
-import 'package:new_mee/common_widgets/app_bar.dart';
-import 'package:new_mee/common_widgets/showIPAdress_widget.dart';
-import 'package:new_mee/models/User.dart';
-import 'package:new_mee/themes/theme.dart';
-import 'package:new_mee/common_widgets/FFButtonWidget.dart';
+import '../../../common_widgets/Button_widget.dart';
+import '../../../common_widgets/app_bar.dart';
+import '../../../common_widgets/showIPAdress_widget.dart';
+import '../../../models/User.dart';
+import '../../../themes/theme.dart';
+import '../../../common_widgets/FFButtonWidget.dart';
 import 'package:flutter/material.dart';
 
 import '../../../services/User_api.dart';
@@ -48,7 +48,7 @@ class _ProfillWidgetState extends State<ProfillWidget> {
   Widget build(BuildContext context) {
     return Scaffold(
       key: scaffoldKey,
-      backgroundColor: Colors.white,
+      backgroundColor: FlutterAppTheme.of(context).whiteColor,
       appBar: PreferredSize(
         preferredSize: const Size.fromHeight(60),
         child: appbar(text: ' User profil'),
@@ -67,7 +67,7 @@ class _ProfillWidgetState extends State<ProfillWidget> {
                         child: Container(
                           width: MediaQuery.of(context).size.width,
                           decoration: BoxDecoration(
-                            color: Colors.white,
+                            color: FlutterAppTheme.of(context).whiteColor,
                             borderRadius: BorderRadius.only(
                               bottomLeft: Radius.circular(8),
                               bottomRight: Radius.circular(8),
@@ -104,9 +104,11 @@ class _ProfillWidgetState extends State<ProfillWidget> {
                                       0, 12, 0, 12),
                                   child: Text('${snapshot.data.displayName}',
                                       style: TextStyle(
-                                          fontSize: 22,
-                                          fontWeight: FontWeight.bold,
-                                          color: Color(0xff132137))),
+                                        fontSize: 22,
+                                        fontWeight: FontWeight.bold,
+                                        color: FlutterAppTheme.of(context)
+                                            .TextColor,
+                                      )),
                                 ),
                                 Divider(
                                   height: 40,

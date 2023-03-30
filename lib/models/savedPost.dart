@@ -1,6 +1,5 @@
 import 'dart:convert';
-
-import 'package:new_mee/models/File.dart';
+import 'File.dart';
 
 
 List<savedPost> savedPostFromJson(String str) =>

@@ -1,5 +1,5 @@
 import 'package:firebase_auth/firebase_auth.dart';
-import 'package:new_mee/models/Post.dart';
+import '../models/Post.dart';
 import 'package:http/http.dart' as http;
 import 'dart:convert';
 import 'dart:async';

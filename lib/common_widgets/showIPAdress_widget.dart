@@ -1,5 +1,4 @@
-import 'package:new_mee/services/User_api.dart';
-
+import '../services/User_api.dart';
 import '../themes/theme.dart';
 import 'package:flutter/material.dart';
 
@@ -26,7 +25,7 @@ class _ShowIpAdressWidgetState extends State<ShowIpAdressWidget> {
         width: double.infinity,
         height: double.infinity,
         decoration: BoxDecoration(
-          color: Color(0xFFEEEEEE),
+          color: FlutterAppTheme.of(context).whiteColor,
         ),
         child: FutureBuilder<String>(
             future: _futureUser,

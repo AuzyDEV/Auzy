@@ -1,13 +1,13 @@
-import 'package:new_mee/services/User_api.dart';
-import 'package:new_mee/services/sharedPostMan.dart';
-import 'package:new_mee/common_widgets/Button_widget.dart';
-import 'package:new_mee/common_widgets/customized_AlertDialog.dart';
-import 'package:new_mee/common_widgets/app_bar.dart';
-import 'package:new_mee/common_widgets/drawer.dart';
-import 'package:new_mee/themes/theme.dart';
-import 'package:new_mee/common_widgets/FFButtonWidget.dart';
-import 'package:new_mee/index.dart';
-import 'package:new_mee/models/User.dart';
+import '../../common_widgets/CircularProgressIndicator.dart';
+import '../../services/User_api.dart';
+import '../../services/sharedPostMan.dart';
+import '../../common_widgets/Button_widget.dart';
+import '../../common_widgets/customized_AlertDialog.dart';
+import '../../common_widgets/app_bar.dart';
+import '../../common_widgets/drawer.dart';
+import '../../themes/theme.dart';
+import '../../index.dart';
+import '../../models/User.dart';
 import 'package:flutter/material.dart';
 
 class UsersListForPostsWidget extends StatefulWidget {
@@ -52,7 +52,7 @@ class _UsersListForPostsWidgetState extends State<UsersListForPostsWidget> {
     return Scaffold(
       key: scaffoldKey,
       resizeToAvoidBottomInset: false,
-      backgroundColor: Colors.white,
+      backgroundColor: FlutterAppTheme.of(context).whiteColor,
       appBar: PreferredSize(
         preferredSize: const Size.fromHeight(60),
         child: appbar(text: 'Users'),
@@ -194,7 +194,9 @@ class _UsersListForPostsWidgetState extends State<UsersListForPostsWidget> {
                                             child: Container(
                                               padding: EdgeInsets.all(10),
                                               decoration: BoxDecoration(
-                                                color: Colors.white,
+                                                color:
+                                                    FlutterAppTheme.of(context)
+                                                        .whiteColor,
                                                 borderRadius: BorderRadius.only(
                                                   topLeft: Radius.circular(25),
                                                   topRight: Radius.circular(25),
@@ -240,13 +242,10 @@ class _UsersListForPostsWidgetState extends State<UsersListForPostsWidget> {
                                                                           Clip
                                                                               .antiAliasWithSaveLayer,
                                                                       color: selectedCard1 == index
-                                                                          ? Color.fromARGB(
-                                                                              57,
-                                                                              197,
-                                                                              167,
-                                                                              246)
-                                                                          : Colors
-                                                                              .white,
+                                                                          ? FlutterAppTheme.of(context)
+                                                                              .secondaryColor
+                                                                          : FlutterAppTheme.of(context)
+                                                                              .whiteColor,
                                                                       elevation:
                                                                           1,
                                                                       shape:
@@ -263,8 +262,8 @@ class _UsersListForPostsWidgetState extends State<UsersListForPostsWidget> {
                                                                         decoration:
                                                                             BoxDecoration(
                                                                           color: selectedCard1 == index
-                                                                              ? Color.fromARGB(57, 197, 167, 246)
-                                                                              : Colors.white,
+                                                                              ? FlutterAppTheme.of(context).secondaryColor
+                                                                              : FlutterAppTheme.of(context).whiteColor,
                                                                           boxShadow: [
                                                                             BoxShadow(
                                                                               blurRadius: 4,
@@ -357,10 +356,7 @@ class _UsersListForPostsWidgetState extends State<UsersListForPostsWidget> {
                                                       children: [
                                                         Center(
                                                           child:
-                                                              const CircularProgressIndicator(
-                                                            color: Color(
-                                                                0xFF9457FB),
-                                                          ),
+                                                              CircularProgressIndicatorWidget(),
                                                         )
                                                       ],
                                                     );

@@ -1,8 +1,5 @@
-// ignore_for_file: overridden_fields, annotate_overrides
-
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
-
 import 'package:shared_preferences/shared_preferences.dart';
 
 const kThemeModeKey = '__theme_mode__';
@@ -38,9 +35,23 @@ abstract class FlutterAppTheme {
   Color primaryText;
   Color secondaryText;
   Color ButtonPrimaryColor;
-
+  Color AppBarPrimaryColor;
+  Color BottomNavigationBarColor;
+  Color whiteColor;
+  Color blackColor;
+  Color lightGrey;
+  Color Grey;
+  Color lightRed;
+  Color lightBlue;
+  Color Orange;
+  Color LightOrange;
+  Color Green;
+  Color lightCreen;
+  Color BackgroundContainer;
+  Color TransparentColor;
   Color primaryBtnText;
   Color lineColor;
+  Color TextColor;
 
   TextStyle get title1 => GoogleFonts.getFont(
         'Poppins',
@@ -90,9 +101,23 @@ class LightModeTheme extends FlutterAppTheme {
   Color primaryColor = const Color(0xFF9457FB);
   Color secondaryColor = const Color(0x369457FB);
   Color tertiaryColor = const Color(0xFF009FFF);
-
-  //Color tertiaryColor = const Color(0xFFEE8B60);
+  Color TextColor = const Color(0xFF101213);
+  // colors
+  Color whiteColor = const Color(0xFFFFFFFF);
+  Color blackColor = Colors.black;
+  Color Grey = const Color(0xff95A1AC);
+  Color lightGrey = Colors.grey[100];
   Color alternate = const Color(0xFFFF5963);
+  Color lightRed = Colors.red[50];
+  Color LightBlue = Colors.blue[50];
+  Color Orange = const Color.fromARGB(255, 214, 116, 36);
+  Color LightOrange = Color.fromARGB(214, 241, 228, 200);
+  Color Green = Colors.green;
+  Color LightGreen = Colors.green[50];
+
+  // appbar and buttomNav
+  Color AppBarPrimaryColor = const Color(0xFF101213);
+  Color BottomNavigationBarColor = const Color(0xFF101213);
   Color primaryBackground = const Color(0xFFF1F4F8);
   Color secondaryBackground = const Color(0xFFFFFFFF);
   Color primaryText = const Color(0xFF101213);
@@ -100,6 +125,8 @@ class LightModeTheme extends FlutterAppTheme {
   Color ButtonPrimaryColor = const Color(0xFF101213);
   Color primaryBtnText = Color(0xFFFFFFFF);
   Color lineColor = Color(0xFFE0E3E7);
+  Color BackgroundContainer = const Color(0xFFF3F8FF);
+  Color TransparentColor = Colors.transparent;
 }
 
 class DarkModeTheme extends FlutterAppTheme {

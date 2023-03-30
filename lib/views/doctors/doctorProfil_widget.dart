@@ -1,9 +1,8 @@
-
-import 'package:new_mee/common_widgets/app_bar.dart';
-import 'package:new_mee/common_widgets/drawer.dart';
-import 'package:new_mee/themes/theme.dart';
+import '../../common_widgets/app_bar.dart';
+import '../../common_widgets/drawer.dart';
+import '../../themes/theme.dart';
 import 'package:flutter/material.dart';
-import 'package:new_mee/models/Doctor.dart';
+import '../../models/Doctor.dart';
 
 import '../../services/doctorsMan.dart';
 
@@ -38,7 +37,7 @@ class _DoctorprofileWidgetState extends State<DoctorprofileWidget> {
   Widget build(BuildContext context) {
     return Scaffold(
       key: scaffoldKey,
-      backgroundColor: FlutterAppTheme.of(context).primaryBtnText,
+      backgroundColor: FlutterAppTheme.of(context).whiteColor,
       appBar: PreferredSize(
         preferredSize: const Size.fromHeight(60),
         child: appbar(text: 'doctor profile'),
@@ -110,7 +109,8 @@ class _DoctorprofileWidgetState extends State<DoctorprofileWidget> {
                                           .title3
                                           .override(
                                             fontFamily: 'Roboto',
-                                            color: Color(0xFF0F1113),
+                                            color: FlutterAppTheme.of(context)
+                                                .TextColor,
                                             fontSize: 20,
                                             fontWeight: FontWeight.w500,
                                           ),
@@ -156,9 +156,8 @@ class _DoctorprofileWidgetState extends State<DoctorprofileWidget> {
                                             .bodyText1
                                             .override(
                                               fontFamily: 'Roboto',
-                                              color:
-                                                  FlutterAppTheme.of(context)
-                                                      .primaryColor,
+                                              color: FlutterAppTheme.of(context)
+                                                  .primaryColor,
                                               fontSize: 14,
                                               fontWeight: FontWeight.w500,
                                             ),
@@ -226,7 +225,8 @@ class _DoctorprofileWidgetState extends State<DoctorprofileWidget> {
                                       .subtitle2
                                       .override(
                                         fontFamily: 'Roboto',
-                                        color: Color(0xFF0F1113),
+                                        color: FlutterAppTheme.of(context)
+                                            .TextColor,
                                         fontSize: 14,
                                         fontWeight: FontWeight.w500,
                                       ),
@@ -272,9 +272,8 @@ class _DoctorprofileWidgetState extends State<DoctorprofileWidget> {
                                             .bodyText1
                                             .override(
                                               fontFamily: 'Roboto',
-                                              color:
-                                                  FlutterAppTheme.of(context)
-                                                      .secondaryText,
+                                              color: FlutterAppTheme.of(context)
+                                                  .secondaryText,
                                               fontWeight: FontWeight.w600,
                                             ),
                                       ),
@@ -284,9 +283,8 @@ class _DoctorprofileWidgetState extends State<DoctorprofileWidget> {
                                             .bodyText1
                                             .override(
                                               fontFamily: 'Roboto',
-                                              color:
-                                                  FlutterAppTheme.of(context)
-                                                      .secondaryText,
+                                              color: FlutterAppTheme.of(context)
+                                                  .secondaryText,
                                               fontWeight: FontWeight.normal,
                                             ),
                                       ),
@@ -315,8 +313,8 @@ class _DoctorprofileWidgetState extends State<DoctorprofileWidget> {
                                     ),
                                     child: Icon(
                                       Icons.phone_rounded,
-                                      color: FlutterAppTheme.of(context)
-                                          .alternate,
+                                      color:
+                                          FlutterAppTheme.of(context).alternate,
                                       size: 20,
                                     ),
                                   ),
@@ -335,9 +333,8 @@ class _DoctorprofileWidgetState extends State<DoctorprofileWidget> {
                                             .bodyText1
                                             .override(
                                               fontFamily: 'Roboto',
-                                              color:
-                                                  FlutterAppTheme.of(context)
-                                                      .secondaryText,
+                                              color: FlutterAppTheme.of(context)
+                                                  .secondaryText,
                                               fontWeight: FontWeight.w600,
                                             ),
                                       ),
@@ -347,9 +344,8 @@ class _DoctorprofileWidgetState extends State<DoctorprofileWidget> {
                                             .bodyText1
                                             .override(
                                               fontFamily: 'Roboto',
-                                              color:
-                                                  FlutterAppTheme.of(context)
-                                                      .secondaryText,
+                                              color: FlutterAppTheme.of(context)
+                                                  .secondaryText,
                                               fontWeight: FontWeight.normal,
                                             ),
                                       ),
@@ -397,9 +393,8 @@ class _DoctorprofileWidgetState extends State<DoctorprofileWidget> {
                                             .bodyText1
                                             .override(
                                               fontFamily: 'Roboto',
-                                              color:
-                                                  FlutterAppTheme.of(context)
-                                                      .secondaryText,
+                                              color: FlutterAppTheme.of(context)
+                                                  .secondaryText,
                                               fontWeight: FontWeight.w600,
                                             ),
                                       ),
@@ -409,336 +404,12 @@ class _DoctorprofileWidgetState extends State<DoctorprofileWidget> {
                                             .bodyText1
                                             .override(
                                               fontFamily: 'Roboto',
-                                              color:
-                                                  FlutterAppTheme.of(context)
-                                                      .secondaryText,
+                                              color: FlutterAppTheme.of(context)
+                                                  .secondaryText,
                                               fontWeight: FontWeight.normal,
                                             ),
                                       ),
                                     ],
-                                  ),
-                                ),
-                              ],
-                            ),
-                          ),
-                          Padding(
-                            padding:
-                                EdgeInsetsDirectional.fromSTEB(16, 25, 16, 0),
-                            child: Row(
-                              mainAxisSize: MainAxisSize.max,
-                              mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                              children: [
-                                Row(
-                                  mainAxisSize: MainAxisSize.max,
-                                  children: [
-                                    Text(
-                                      'Reveiws',
-                                      style: FlutterAppTheme.of(context)
-                                          .subtitle2
-                                          .override(
-                                            fontFamily: 'Roboto',
-                                            color: Color(0xFF0F1113),
-                                            fontSize: 14,
-                                            fontWeight: FontWeight.w500,
-                                          ),
-                                    ),
-                                    Padding(
-                                      padding: EdgeInsetsDirectional.fromSTEB(
-                                          8, 0, 12, 0),
-                                      child: Row(
-                                        mainAxisSize: MainAxisSize.max,
-                                        children: [
-                                          Padding(
-                                            padding:
-                                                EdgeInsetsDirectional.fromSTEB(
-                                                    0, 0, 0, 2),
-                                            child: Icon(
-                                              Icons.star_rounded,
-                                              color: Color(0xFFFFA130),
-                                              size: 18,
-                                            ),
-                                          ),
-                                          Padding(
-                                            padding:
-                                                EdgeInsetsDirectional.fromSTEB(
-                                                    2, 0, 0, 0),
-                                            child: Text(
-                                              '4.5',
-                                              style: FlutterAppTheme.of(
-                                                      context)
-                                                  .subtitle1
-                                                  .override(
-                                                    fontFamily: 'Roboto',
-                                                    color: Color(0xFF0F1113),
-                                                    fontSize: 13,
-                                                    fontWeight: FontWeight.w600,
-                                                  ),
-                                            ),
-                                          ),
-                                          Padding(
-                                            padding:
-                                                EdgeInsetsDirectional.fromSTEB(
-                                                    5, 0, 0, 0),
-                                            child: Text(
-                                              '(124)',
-                                              style:
-                                                  FlutterAppTheme.of(context)
-                                                      .bodyText1
-                                                      .override(
-                                                        fontFamily: 'Roboto',
-                                                        color:
-                                                            FlutterAppTheme.of(
-                                                                    context)
-                                                                .secondaryText,
-                                                        fontWeight:
-                                                            FontWeight.normal,
-                                                      ),
-                                            ),
-                                          ),
-                                        ],
-                                      ),
-                                    ),
-                                  ],
-                                ),
-                                /* InkWell(
-                        onTap: () async {
-                          /*await showModalBottomSheet(
-                            isScrollControlled: true,
-                            backgroundColor: Colors.transparent,
-                            context: context,
-                            builder: (context) {
-                              return Padding(
-                                padding: MediaQuery.of(context).viewInsets,
-                                child: Container(
-                                  height: 500,
-                                  child: AddreviewWidget(),
-                                ),
-                              );
-                            },
-                          ).then((value) => setState(() {}));*/
-                        },
-                        child: Text(
-                          'add review',
-                          style:
-                              FlutterAppTheme.of(context).bodyText1.override(
-                                    fontFamily: 'Roboto',
-                                    color: Color.fromARGB(255, 214, 116, 36),
-                                    fontWeight: FontWeight.w500,
-                                  ),
-                        ),
-                      ),
-                  */
-                              ],
-                            ),
-                          ),
-                          Padding(
-                            padding:
-                                EdgeInsetsDirectional.fromSTEB(16, 0, 16, 0),
-                            child: ListView(
-                              padding: EdgeInsets.zero,
-                              primary: false,
-                              shrinkWrap: true,
-                              scrollDirection: Axis.vertical,
-                              children: [
-                                Padding(
-                                  padding: EdgeInsetsDirectional.fromSTEB(
-                                      0, 8, 0, 8),
-                                  child: Container(
-                                    width: 270,
-                                    height: 120,
-                                    decoration: BoxDecoration(
-                                      color: Colors.white,
-                                      boxShadow: [
-                                        BoxShadow(
-                                          blurRadius: 4,
-                                          color: Color(0x320F1113),
-                                          offset: Offset(0, 2),
-                                        )
-                                      ],
-                                      borderRadius: BorderRadius.circular(12),
-                                    ),
-                                    child: Padding(
-                                      padding: EdgeInsetsDirectional.fromSTEB(
-                                          2, 2, 2, 2),
-                                      child: SingleChildScrollView(
-                                        child: Column(
-                                          mainAxisSize: MainAxisSize.max,
-                                          children: [
-                                            Padding(
-                                              padding: EdgeInsetsDirectional
-                                                  .fromSTEB(16, 0, 16, 0),
-                                              child: Row(
-                                                mainAxisSize: MainAxisSize.max,
-                                                mainAxisAlignment:
-                                                    MainAxisAlignment
-                                                        .spaceBetween,
-                                                children: [
-                                                  Padding(
-                                                    padding:
-                                                        EdgeInsetsDirectional
-                                                            .fromSTEB(
-                                                                0, 5, 0, 5),
-                                                    child: Container(
-                                                      width: 50,
-                                                      height: 50,
-                                                      decoration: BoxDecoration(
-                                                        color:
-                                                            Color(0xFFE0E3E7),
-                                                        borderRadius:
-                                                            BorderRadius
-                                                                .circular(10),
-                                                        shape:
-                                                            BoxShape.rectangle,
-                                                      ),
-                                                      child: Padding(
-                                                        padding:
-                                                            EdgeInsetsDirectional
-                                                                .fromSTEB(
-                                                                    2, 2, 2, 2),
-                                                        child: ClipRRect(
-                                                          borderRadius:
-                                                              BorderRadius
-                                                                  .circular(10),
-                                                          child: Image.network(
-                                                            'https://images.unsplash.com/photo-1522075469751-3a6694fb2f61?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxzZWFyY2h8NDF8fHVzZXJ8ZW58MHx8MHx8&auto=format&fit=crop&w=800&q=60',
-                                                            width: 70,
-                                                            height: 70,
-                                                            fit: BoxFit.cover,
-                                                          ),
-                                                        ),
-                                                      ),
-                                                    ),
-                                                  ),
-                                                  Expanded(
-                                                    child: Padding(
-                                                      padding:
-                                                          EdgeInsetsDirectional
-                                                              .fromSTEB(
-                                                                  8, 8, 0, 8),
-                                                      child: Column(
-                                                        mainAxisSize:
-                                                            MainAxisSize.max,
-                                                        crossAxisAlignment:
-                                                            CrossAxisAlignment
-                                                                .start,
-                                                        children: [
-                                                          Text(
-                                                            'John Smith',
-                                                            style: FlutterAppTheme
-                                                                    .of(context)
-                                                                .subtitle1
-                                                                .override(
-                                                                  fontFamily:
-                                                                      'Roboto',
-                                                                  color: Color(
-                                                                      0xFF0F1113),
-                                                                  fontSize: 16,
-                                                                  fontWeight:
-                                                                      FontWeight
-                                                                          .w500,
-                                                                ),
-                                                          ),
-                                                          Text(
-                                                            '1 day ago',
-                                                            style: FlutterAppTheme
-                                                                    .of(context)
-                                                                .bodyText1
-                                                                .override(
-                                                                  fontFamily:
-                                                                      'Roboto',
-                                                                  color: FlutterAppTheme.of(
-                                                                          context)
-                                                                      .secondaryText,
-                                                                  fontWeight:
-                                                                      FontWeight
-                                                                          .normal,
-                                                                ),
-                                                          ),
-                                                        ],
-                                                      ),
-                                                    ),
-                                                  ),
-                                                  Padding(
-                                                    padding:
-                                                        EdgeInsetsDirectional
-                                                            .fromSTEB(
-                                                                0, 0, 12, 18),
-                                                    child: Row(
-                                                      mainAxisSize:
-                                                          MainAxisSize.max,
-                                                      children: [
-                                                        Padding(
-                                                          padding:
-                                                              EdgeInsetsDirectional
-                                                                  .fromSTEB(0,
-                                                                      0, 0, 2),
-                                                          child: Icon(
-                                                            Icons.star_rounded,
-                                                            color: Color(
-                                                                0xFFFFA130),
-                                                            size: 18,
-                                                          ),
-                                                        ),
-                                                        Padding(
-                                                          padding:
-                                                              EdgeInsetsDirectional
-                                                                  .fromSTEB(4,
-                                                                      0, 0, 0),
-                                                          child: Text(
-                                                            '4.5',
-                                                            style: FlutterAppTheme
-                                                                    .of(context)
-                                                                .subtitle1
-                                                                .override(
-                                                                  fontFamily:
-                                                                      'Roboto',
-                                                                  color: Color(
-                                                                      0xFF0F1113),
-                                                                  fontSize: 13,
-                                                                  fontWeight:
-                                                                      FontWeight
-                                                                          .w600,
-                                                                ),
-                                                          ),
-                                                        ),
-                                                      ],
-                                                    ),
-                                                  ),
-                                                ],
-                                              ),
-                                            ),
-                                            Padding(
-                                              padding: EdgeInsetsDirectional
-                                                  .fromSTEB(16, 0, 16, 0),
-                                              child: Row(
-                                                mainAxisSize: MainAxisSize.max,
-                                                children: [
-                                                  Expanded(
-                                                    child: Text(
-                                                      'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor.',
-                                                      style:
-                                                          FlutterAppTheme.of(
-                                                                  context)
-                                                              .bodyText2
-                                                              .override(
-                                                                fontFamily:
-                                                                    'Roboto',
-                                                                color: Color(
-                                                                    0xFF57636C),
-                                                                fontSize: 14,
-                                                                fontWeight:
-                                                                    FontWeight
-                                                                        .normal,
-                                                              ),
-                                                    ),
-                                                  ),
-                                                ],
-                                              ),
-                                            ),
-                                          ],
-                                        ),
-                                      ),
-                                    ),
                                   ),
                                 ),
                               ],

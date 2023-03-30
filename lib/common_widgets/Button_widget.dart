@@ -1,5 +1,5 @@
-import 'package:new_mee/common_widgets/FFButtonWidget.dart';
-import 'package:new_mee/themes/theme.dart';
+import 'FFButtonWidget.dart';
+import '../themes/theme.dart';
 import 'package:flutter/material.dart';
 
 class buttonWidget extends StatefulWidget {
@@ -28,7 +28,7 @@ class _buttonWidgetState extends State<buttonWidget> {
               fontWeight: FontWeight.bold,
             ),
         borderSide: BorderSide(
-          color: Colors.transparent,
+          color: FlutterAppTheme.of(context).TransparentColor,
           width: 1,
         ),
       ),

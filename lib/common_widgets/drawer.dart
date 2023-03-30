@@ -1,14 +1,13 @@
 import 'package:flutter/material.dart';
-import 'package:new_mee/services/User_api.dart';
-import 'package:new_mee/views/chat/chats_copy.dart';
-import 'package:new_mee/themes/theme.dart';
-import 'package:new_mee/views/doctors/specialities_widget.dart';
-import 'package:new_mee/views/home/HomeWithNavBar_widget.dart';
-import 'package:new_mee/index.dart';
-import 'package:new_mee/views/mailing/annoucement.dart';
-
-import 'package:new_mee/models/User.dart';
-import 'package:new_mee/views/users/users.dart';
+import '../services/User_api.dart';
+import '../views/chat/chats_copy.dart';
+import '../themes/theme.dart';
+import '../views/doctors/specialities_widget.dart';
+import '../views/home/HomeWithNavBar_widget.dart';
+import '../index.dart';
+import '../views/mailing/annoucement.dart';
+import '../models/User.dart';
+import '../views/users/users.dart';
 
 class Drawerr extends StatefulWidget {
   @override
@@ -113,7 +112,9 @@ class _DrawerrState extends State<Drawerr> {
                                                 .title1
                                                 .override(
                                                   fontFamily: 'Lexend Deca',
-                                                  color: Colors.black,
+                                                  color: FlutterAppTheme.of(
+                                                          context)
+                                                      .blackColor,
                                                   fontSize: 18,
                                                   fontWeight: FontWeight.bold,
                                                 ),
@@ -128,7 +129,9 @@ class _DrawerrState extends State<Drawerr> {
                                                   .title1
                                                   .override(
                                                     fontFamily: 'Lexend Deca',
-                                                    color: Color(0xAA9457FB),
+                                                    color: FlutterAppTheme.of(
+                                                            context)
+                                                        .primaryColor,
                                                     fontSize: 14,
                                                     fontWeight: FontWeight.w800,
                                                   ),

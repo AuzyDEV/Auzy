@@ -1,14 +1,14 @@
 import 'dart:convert';
-
-import 'package:new_mee/services/User_api.dart';
-import 'package:new_mee/services/savedPostMan.dart';
-import 'package:new_mee/common_widgets/app_bar.dart';
-import 'package:new_mee/common_widgets/drawer.dart';
-import 'package:new_mee/index.dart';
-import 'package:new_mee/common_widgets/icon_button.dart';
-import 'package:new_mee/themes/theme.dart';
+import '../../services/User_api.dart';
+import '../../services/savedPostMan.dart';
+import '../../common_widgets/app_bar.dart';
+import '../../common_widgets/drawer.dart';
+import '../../index.dart';
+import '../../common_widgets/icon_button.dart';
+import '../../themes/theme.dart';
 import 'package:flutter/material.dart';
-import 'package:new_mee/models/savedPost.dart';
+import '../../models/savedPost.dart';
+import '../../common_widgets/snack_bar.dart';
 
 class savedPostsForUsersWidget extends StatefulWidget {
   const savedPostsForUsersWidget({Key key}) : super(key: key);
@@ -120,7 +120,7 @@ class _savedPostsForUsersWidgetState extends State<savedPostsForUsersWidget> {
   Widget build(BuildContext context) {
     return Scaffold(
       key: scaffoldKey,
-      backgroundColor: Colors.white,
+      backgroundColor: FlutterAppTheme.of(context).whiteColor,
       appBar: PreferredSize(
         preferredSize: const Size.fromHeight(60),
         child: appbar(text: 'Posts'),
@@ -196,7 +196,9 @@ class _savedPostsForUsersWidgetState extends State<savedPostsForUsersWidget> {
                                                 ),
                                               ),
                                               FlutterFlowIconButton(
-                                                borderColor: Colors.transparent,
+                                                borderColor:
+                                                    FlutterAppTheme.of(context)
+                                                        .TransparentColor,
                                                 borderRadius: 30,
                                                 buttonSize: 46,
                                                 icon: Icon(
@@ -223,18 +225,11 @@ class _savedPostsForUsersWidgetState extends State<savedPostsForUsersWidget> {
                                                     );
                                                   ScaffoldMessenger.of(context)
                                                       .showSnackBar(
-                                                    SnackBar(
-                                                        content: Text(
-                                                          'Successfully save deleted!',
-                                                          style: TextStyle(
-                                                            color: Colors.black,
-                                                          ),
-                                                        ),
-                                                        duration: Duration(
-                                                            milliseconds: 4000),
-                                                        backgroundColor:
-                                                            Colors.red),
-                                                  );
+                                                          SnackbarWidget(
+                                                    content: Text(
+                                                      'Successfully save deleted!',
+                                                    ),
+                                                  ));
                                                 },
                                               ),
                                             ],

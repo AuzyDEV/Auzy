@@ -1,25 +1,23 @@
 import 'dart:convert';
-
-import 'package:new_mee/views/UserProfil/userprofil.dart';
-import 'package:new_mee/services/User_api.dart';
-import 'package:new_mee/services/postMan.dart';
-import 'package:new_mee/services/savedPostMan.dart';
-import 'package:new_mee/services/sharedPostMan.dart';
-import 'package:new_mee/common_widgets/app_bar.dart';
-import 'package:new_mee/common_widgets/drawer.dart';
-import 'package:new_mee/common_widgets/icon_button.dart';
-import 'package:new_mee/themes/theme.dart';
-import 'package:new_mee/index.dart';
+import '../UserProfil/userprofil.dart';
+import '../../services/User_api.dart';
+import '../../services/postMan.dart';
+import '../../services/savedPostMan.dart';
+import '../../services/sharedPostMan.dart';
+import '../../common_widgets/app_bar.dart';
+import '../../common_widgets/drawer.dart';
+import '../../common_widgets/icon_button.dart';
+import '../../themes/theme.dart';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
-import 'package:new_mee/models/Post.dart';
-import 'package:new_mee/models/savedPost.dart';
-import 'package:new_mee/models/sharedPost.dart';
-import 'package:new_mee/views/posts/postDetails.dart';
-import 'package:new_mee/views/posts/savedPosts_widget.dart';
+import '../../models/Post.dart';
+import '../../models/savedPost.dart';
+import '../../models/sharedPost.dart';
+import 'postDetails.dart';
+import 'savedPosts_widget.dart';
 import 'package:flutter_html/flutter_html.dart';
-import 'package:html_unescape/html_unescape.dart';
-import 'package:new_mee/views/users/UsersListForSharePost_widget.dart';
+import '../users/UsersListForSharePost_widget.dart';
+import '../../common_widgets/snack_bar.dart';
 
 class postsForUsersWidget extends StatefulWidget {
   const postsForUsersWidget({Key key}) : super(key: key);
@@ -133,7 +131,7 @@ class _postsForUsersWidgetState extends State<postsForUsersWidget> {
         preferredSize: const Size.fromHeight(60),
         child: appbar(text: 'Posts'),
       ),
-      backgroundColor: Colors.white,
+      backgroundColor: FlutterAppTheme.of(context).whiteColor,
       drawer: Drawerr(),
       body: SafeArea(
         child: GestureDetector(
@@ -149,12 +147,13 @@ class _postsForUsersWidgetState extends State<postsForUsersWidget> {
                     children: [
                       TabBar(
                         isScrollable: true,
-                        labelColor: Color(0xFF9457FB),
-                        unselectedLabelColor: Color(0xFF95A1AC),
+                        labelColor: FlutterAppTheme.of(context).primaryColor,
+                        unselectedLabelColor: FlutterAppTheme.of(context).Grey,
                         labelStyle: GoogleFonts.getFont(
                           'Roboto',
                         ),
-                        indicatorColor: Color(0xFF9457FB),
+                        indicatorColor:
+                            FlutterAppTheme.of(context).primaryColor,
                         indicatorWeight: 3,
                         tabs: [
                           Tab(
@@ -258,12 +257,12 @@ class _postsForUsersWidgetState extends State<postsForUsersWidget> {
                                                                                     ? Padding(
                                                                                         padding: EdgeInsetsDirectional.fromSTEB(12, 0, 0, 0),
                                                                                         child: FlutterFlowIconButton(
-                                                                                          borderColor: Colors.transparent,
+                                                                                          borderColor: FlutterAppTheme.of(context).TransparentColor,
                                                                                           borderRadius: 30,
                                                                                           buttonSize: 46,
                                                                                           icon: Icon(
                                                                                             Icons.bookmark_outline_outlined,
-                                                                                            color: Colors.grey,
+                                                                                            color: FlutterAppTheme.of(context).Grey,
                                                                                             size: 23,
                                                                                           ),
                                                                                           onPressed: () async {
@@ -281,7 +280,7 @@ class _postsForUsersWidgetState extends State<postsForUsersWidget> {
                                                                                     : Padding(
                                                                                         padding: EdgeInsetsDirectional.fromSTEB(12, 0, 0, 0),
                                                                                         child: FlutterFlowIconButton(
-                                                                                          borderColor: Colors.transparent,
+                                                                                          borderColor: FlutterAppTheme.of(context).TransparentColor,
                                                                                           borderRadius: 30,
                                                                                           buttonSize: 46,
                                                                                           icon: Icon(
@@ -328,7 +327,7 @@ class _postsForUsersWidgetState extends State<postsForUsersWidget> {
                                                                                       padding: EdgeInsetsDirectional.fromSTEB(4, 0, 0, 0),
                                                                                       child: Icon(
                                                                                         Icons.favorite_border_outlined,
-                                                                                        color: Colors.grey,
+                                                                                        color: FlutterAppTheme.of(context).Grey,
                                                                                         size: 24,
                                                                                       ),
                                                                                     ),
@@ -352,7 +351,7 @@ class _postsForUsersWidgetState extends State<postsForUsersWidget> {
                                                                                     },
                                                                                     child: Icon(
                                                                                       Icons.ios_share_sharp,
-                                                                                      color: Colors.grey,
+                                                                                      color: FlutterAppTheme.of(context).Grey,
                                                                                       size: 23,
                                                                                     ),
                                                                                   ),
@@ -378,7 +377,7 @@ class _postsForUsersWidgetState extends State<postsForUsersWidget> {
                                                                                   child: Text(
                                                                                     "See all",
                                                                                     style: TextStyle(
-                                                                                      color: Colors.blue,
+                                                                                      color: FlutterAppTheme.of(context).tertiaryColor,
                                                                                       decoration: TextDecoration.underline,
                                                                                     ),
                                                                                   ),
@@ -528,7 +527,7 @@ class _postsForUsersWidgetState extends State<postsForUsersWidget> {
                                                                                       ),
                                                                                     ),
                                                                                     FlutterFlowIconButton(
-                                                                                      borderColor: Colors.transparent,
+                                                                                      borderColor: FlutterAppTheme.of(context).TransparentColor,
                                                                                       borderRadius: 30,
                                                                                       buttonSize: 46,
                                                                                       icon: Icon(
@@ -547,15 +546,10 @@ class _postsForUsersWidgetState extends State<postsForUsersWidget> {
                                                                                             ),
                                                                                           );
                                                                                         ScaffoldMessenger.of(context).showSnackBar(
-                                                                                          SnackBar(
+                                                                                          SnackbarWidget(
                                                                                               content: Text(
-                                                                                                'Successfully save deleted!',
-                                                                                                style: TextStyle(
-                                                                                                  color: Colors.black,
-                                                                                                ),
-                                                                                              ),
-                                                                                              duration: Duration(milliseconds: 4000),
-                                                                                              backgroundColor: Colors.red),
+                                                                                            'Successfully save deleted!',
+                                                                                          )),
                                                                                         );
                                                                                       },
                                                                                     ),
@@ -621,7 +615,7 @@ class _postsForUsersWidgetState extends State<postsForUsersWidget> {
                                                                                 child: Text(
                                                                                   "See all",
                                                                                   style: TextStyle(
-                                                                                    color: Colors.blue,
+                                                                                    color: FlutterAppTheme.of(context).tertiaryColor,
                                                                                     decoration: TextDecoration.underline,
                                                                                   ),
                                                                                 ),
@@ -701,11 +695,13 @@ class _postsForUsersWidgetState extends State<postsForUsersWidget> {
                                                                             8),
                                                                     child:
                                                                         Container(
-                                                                      decoration: BoxDecoration(
-                                                                          borderRadius: BorderRadius.circular(
-                                                                              10),
-                                                                          color:
-                                                                              Colors.white),
+                                                                      decoration:
+                                                                          BoxDecoration(
+                                                                        borderRadius:
+                                                                            BorderRadius.circular(10),
+                                                                        color: FlutterAppTheme.of(context)
+                                                                            .whiteColor,
+                                                                      ),
                                                                       child:
                                                                           Column(
                                                                         children: [
@@ -721,7 +717,7 @@ class _postsForUsersWidgetState extends State<postsForUsersWidget> {
                                                                               children: [
                                                                                 Card(
                                                                                   clipBehavior: Clip.antiAliasWithSaveLayer,
-                                                                                  color: Colors.cyan,
+                                                                                  color: FlutterAppTheme.of(context).tertiaryColor,
                                                                                   shape: RoundedRectangleBorder(
                                                                                     borderRadius: BorderRadius.circular(20),
                                                                                   ),
@@ -764,7 +760,7 @@ class _postsForUsersWidgetState extends State<postsForUsersWidget> {
                                                                                           },
                                                                                           child: Icon(
                                                                                             Icons.more_vert_outlined,
-                                                                                            color: Colors.grey,
+                                                                                            color: FlutterAppTheme.of(context).Grey,
                                                                                           )),
                                                                                     ],
                                                                                   ),
@@ -777,7 +773,7 @@ class _postsForUsersWidgetState extends State<postsForUsersWidget> {
                                                                               child: Container(
                                                                                   decoration: BoxDecoration(
                                                                                     borderRadius: BorderRadius.circular(10),
-                                                                                    color: Colors.white,
+                                                                                    color: FlutterAppTheme.of(context).whiteColor,
                                                                                   ),
                                                                                   child: Column(
                                                                                     children: [
@@ -846,7 +842,7 @@ class _postsForUsersWidgetState extends State<postsForUsersWidget> {
                                                                                                   padding: EdgeInsetsDirectional.fromSTEB(4, 0, 0, 0),
                                                                                                   child: Icon(
                                                                                                     Icons.favorite_border_outlined,
-                                                                                                    color: Colors.grey,
+                                                                                                    color: FlutterAppTheme.of(context).Grey,
                                                                                                     size: 24,
                                                                                                   ),
                                                                                                 ),
@@ -871,7 +867,7 @@ class _postsForUsersWidgetState extends State<postsForUsersWidget> {
                                                                                           child: Text(
                                                                                             "See all",
                                                                                             style: TextStyle(
-                                                                                              color: Colors.blue,
+                                                                                              color: FlutterAppTheme.of(context).tertiaryColor,
                                                                                               decoration: TextDecoration.underline,
                                                                                             ),
                                                                                           ),
@@ -888,7 +884,7 @@ class _postsForUsersWidgetState extends State<postsForUsersWidget> {
                                                                           Padding(
                                                                               padding: EdgeInsetsDirectional.fromSTEB(0, 8, 2, 0),
                                                                               child: Divider(
-                                                                                color: Colors.grey,
+                                                                                color: FlutterAppTheme.of(context).Grey,
                                                                                 thickness: 1,
                                                                                 endIndent: 50,
                                                                                 indent: 50,

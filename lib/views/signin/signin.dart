@@ -1,9 +1,9 @@
-import 'package:new_mee/services/User_api.dart';
-import 'package:new_mee/common_widgets/Button_widget.dart';
-import 'package:new_mee/views/home/HomeWithNavBar_widget.dart';
-import 'package:new_mee/index.dart';
-import 'package:new_mee/themes/theme.dart';
-import 'package:new_mee/common_widgets/FFButtonWidget.dart';
+import '../../services/User_api.dart';
+import '../../common_widgets/Button_widget.dart';
+import '../../views/home/HomeWithNavBar_widget.dart';
+import '../../index.dart';
+import '../../themes/theme.dart';
+import '../../common_widgets/FFButtonWidget.dart';
 import 'package:flutter/material.dart';
 import '../../common_widgets/customized_AlertDialog.dart';
 import '../../common_widgets/error_AlertDialog.dart';
@@ -59,7 +59,7 @@ class _SigninWidgetWidgetState extends State<SigninWidget> {
                     },
                     child: Icon(
                       Icons.arrow_back_ios_new,
-                      color: Color(0xff132137),
+                      color: FlutterAppTheme.of(context).AppBarPrimaryColor,
                       size: 24,
                     ),
                   ),
@@ -120,7 +120,7 @@ class _SigninWidgetWidgetState extends State<SigninWidget> {
                                       .bodyText2
                                       .override(
                                         fontFamily: 'Roboto',
-                                        color: Color(0xFF101213),
+                                        color: FlutterAppTheme.of(context).TextColor,
                                         fontSize: 14,
                                         fontWeight: FontWeight.bold,
                                       ),
@@ -200,7 +200,7 @@ class _SigninWidgetWidgetState extends State<SigninWidget> {
                                       .bodyText2
                                       .override(
                                         fontFamily: 'Roboto',
-                                        color: Color(0xFF101213),
+                                        color: FlutterAppTheme.of(context).TextColor,
                                         fontSize: 14,
                                         fontWeight: FontWeight.bold,
                                       ),

@@ -1,6 +1,7 @@
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:flutter/material.dart';
 import 'package:auto_size_text/auto_size_text.dart';
+import 'package:new_mee/themes/theme.dart';
 
 class FFButtonOptions {
   const FFButtonOptions({
@@ -70,7 +71,8 @@ class _FFButtonWidgetState extends State<FFButtonWidget> {
               height: 23,
               child: CircularProgressIndicator(
                 valueColor: AlwaysStoppedAnimation<Color>(
-                  widget.options.textStyle.color ?? Colors.white,
+                  widget.options.textStyle.color ??
+                      FlutterAppTheme.of(context).whiteColor,
                 ),
               ),
             ),

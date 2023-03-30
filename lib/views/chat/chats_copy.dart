@@ -1,9 +1,9 @@
-import 'package:new_mee/services/User_api.dart';
-import 'package:new_mee/views/chat/chat_page.dart';
-import 'package:new_mee/common_widgets/app_bar.dart';
-import 'package:new_mee/common_widgets/drawer.dart';
-import 'package:new_mee/themes/theme.dart';
-import 'package:new_mee/models/User.dart';
+import '../../services/User_api.dart';
+import 'chat_page.dart';
+import '../../common_widgets/app_bar.dart';
+import '../../common_widgets/drawer.dart';
+import '../../themes/theme.dart';
+import '../../models/User.dart';
 import 'package:flutter/material.dart';
 
 class chatcopyWidget extends StatefulWidget {
@@ -33,7 +33,7 @@ class _chatcopyWidgetState extends State<chatcopyWidget> {
     return Scaffold(
       key: scaffoldKey,
       resizeToAvoidBottomInset: false,
-      backgroundColor: Colors.white,
+      backgroundColor: FlutterAppTheme.of(context).whiteColor,
       appBar: PreferredSize(
         preferredSize: const Size.fromHeight(60),
         child: appbar(text: 'Messages'),

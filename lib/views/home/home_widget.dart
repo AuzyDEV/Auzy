@@ -1,8 +1,8 @@
-import 'package:new_mee/services/User_api.dart';
-import 'package:new_mee/common_widgets/app_bar.dart';
-import 'package:new_mee/common_widgets/drawer.dart';
-import 'package:new_mee/models/User.dart';
-import 'package:new_mee/themes/theme.dart';
+import '../../services/User_api.dart';
+import '../../common_widgets/app_bar.dart';
+import '../../common_widgets/drawer.dart';
+import '../../models/User.dart';
+import '../../themes/theme.dart';
 import 'package:flutter/material.dart';
 
 class HomeWidget extends StatefulWidget {
@@ -40,7 +40,7 @@ class _HomeWidgetState extends State<HomeWidget> {
           preferredSize: const Size.fromHeight(60),
           child: appbar(text: 'Home'),
         ),
-        backgroundColor: Colors.white,
+        backgroundColor: FlutterAppTheme.of(context).whiteColor,
         drawer: Drawerr(),
         //  bottomNavigationBar: buttomNavBar()
         body: SafeArea(
@@ -108,7 +108,9 @@ class _HomeWidgetState extends State<HomeWidget> {
                                                 width: 50,
                                                 height: 50,
                                                 decoration: BoxDecoration(
-                                                  color: Color(0xFFE0E3E7),
+                                                  color: FlutterAppTheme.of(
+                                                          context)
+                                                      .whiteColor,
                                                   borderRadius:
                                                       BorderRadius.circular(10),
                                                   shape: BoxShape.rectangle,
@@ -137,9 +139,9 @@ class _HomeWidgetState extends State<HomeWidget> {
                                         height: 12,
                                         indent: 50,
                                         endIndent: 50,
-                                        color: Colors.grey[150],
+                                        color: FlutterAppTheme.of(context)
+                                            .lightGrey,
                                       ),
-                                      // Generated code for this Column Widget...
                                       Padding(
                                         padding: EdgeInsetsDirectional.fromSTEB(
                                             0, 10, 0, 0),
@@ -181,8 +183,9 @@ class _HomeWidgetState extends State<HomeWidget> {
                                                         height: 16,
                                                         decoration:
                                                             BoxDecoration(
-                                                          color:
-                                                              Color(0xFFDBE2E7),
+                                                          color: FlutterAppTheme
+                                                                  .of(context)
+                                                              .lightGrey,
                                                           shape:
                                                               BoxShape.circle,
                                                         ),
@@ -192,8 +195,9 @@ class _HomeWidgetState extends State<HomeWidget> {
                                                         height: 110,
                                                         decoration:
                                                             BoxDecoration(
-                                                          color:
-                                                              Color(0x369457FB),
+                                                          color: FlutterAppTheme
+                                                                  .of(context)
+                                                              .lightGrey,
                                                         ),
                                                       ),
                                                     ],
@@ -209,7 +213,9 @@ class _HomeWidgetState extends State<HomeWidget> {
                                                                 .width *
                                                             0.80,
                                                     decoration: BoxDecoration(
-                                                      color: Color(0xFFF3F8FF),
+                                                      color: FlutterAppTheme.of(
+                                                              context)
+                                                          .BackgroundContainer,
                                                       borderRadius:
                                                           BorderRadius.circular(
                                                               8),
@@ -253,8 +259,8 @@ class _HomeWidgetState extends State<HomeWidget> {
                                                                       .override(
                                                                         fontFamily:
                                                                             'Lexend Deca',
-                                                                        color: Color(
-                                                                            0xFF9457FB),
+                                                                        color: FlutterAppTheme.of(context)
+                                                                            .primaryColor,
                                                                         fontSize:
                                                                             15,
                                                                         fontWeight:
@@ -289,7 +295,7 @@ class _HomeWidgetState extends State<HomeWidget> {
                                                                           fontFamily:
                                                                               'Lexend Deca',
                                                                           color:
-                                                                              Colors.black,
+                                                                              FlutterAppTheme.of(context).blackColor,
                                                                           fontSize:
                                                                               12,
                                                                           fontWeight:
@@ -327,8 +333,9 @@ class _HomeWidgetState extends State<HomeWidget> {
                                                         height: 16,
                                                         decoration:
                                                             BoxDecoration(
-                                                          color:
-                                                              Color(0xFFDBE2E7),
+                                                          color: FlutterAppTheme
+                                                                  .of(context)
+                                                              .BackgroundContainer,
                                                           shape:
                                                               BoxShape.circle,
                                                         ),
@@ -338,8 +345,9 @@ class _HomeWidgetState extends State<HomeWidget> {
                                                         height: 110,
                                                         decoration:
                                                             BoxDecoration(
-                                                          color:
-                                                              Color(0xFFDBE2E7),
+                                                          color: FlutterAppTheme
+                                                                  .of(context)
+                                                              .BackgroundContainer,
                                                         ),
                                                       ),
                                                     ],
@@ -355,7 +363,9 @@ class _HomeWidgetState extends State<HomeWidget> {
                                                                 .width *
                                                             0.80,
                                                     decoration: BoxDecoration(
-                                                      color: Color(0xFFF3F8FF),
+                                                      color: FlutterAppTheme.of(
+                                                              context)
+                                                          .BackgroundContainer,
                                                       borderRadius:
                                                           BorderRadius.circular(
                                                               8),
@@ -399,8 +409,8 @@ class _HomeWidgetState extends State<HomeWidget> {
                                                                       .override(
                                                                         fontFamily:
                                                                             'Lexend Deca',
-                                                                        color: Color(
-                                                                            0xFF009FFF),
+                                                                        color: FlutterAppTheme.of(context)
+                                                                            .tertiaryColor,
                                                                         fontSize:
                                                                             15,
                                                                         fontWeight:
@@ -435,7 +445,7 @@ class _HomeWidgetState extends State<HomeWidget> {
                                                                           fontFamily:
                                                                               'Lexend Deca',
                                                                           color:
-                                                                              Colors.black,
+                                                                              FlutterAppTheme.of(context).blackColor,
                                                                           fontSize:
                                                                               12,
                                                                           fontWeight:
@@ -473,8 +483,9 @@ class _HomeWidgetState extends State<HomeWidget> {
                                                         height: 16,
                                                         decoration:
                                                             BoxDecoration(
-                                                          color:
-                                                              Color(0xFFDBE2E7),
+                                                          color: FlutterAppTheme
+                                                                  .of(context)
+                                                              .BackgroundContainer,
                                                           shape:
                                                               BoxShape.circle,
                                                         ),
@@ -484,8 +495,9 @@ class _HomeWidgetState extends State<HomeWidget> {
                                                         height: 100,
                                                         decoration:
                                                             BoxDecoration(
-                                                          color:
-                                                              Color(0xFFDBE2E7),
+                                                          color: FlutterAppTheme
+                                                                  .of(context)
+                                                              .BackgroundContainer,
                                                         ),
                                                       ),
                                                     ],
@@ -501,7 +513,9 @@ class _HomeWidgetState extends State<HomeWidget> {
                                                                 .width *
                                                             0.80,
                                                     decoration: BoxDecoration(
-                                                      color: Color(0xFFF3F8FF),
+                                                      color: FlutterAppTheme.of(
+                                                              context)
+                                                          .BackgroundContainer,
                                                       borderRadius:
                                                           BorderRadius.circular(
                                                               8),
@@ -545,8 +559,8 @@ class _HomeWidgetState extends State<HomeWidget> {
                                                                       .override(
                                                                         fontFamily:
                                                                             'Lexend Deca',
-                                                                        color: Color(
-                                                                            0xFF9457FB),
+                                                                        color: FlutterAppTheme.of(context)
+                                                                            .primaryColor,
                                                                         fontSize:
                                                                             15,
                                                                         fontWeight:
@@ -581,7 +595,7 @@ class _HomeWidgetState extends State<HomeWidget> {
                                                                           fontFamily:
                                                                               'Lexend Deca',
                                                                           color:
-                                                                              Colors.black,
+                                                                              FlutterAppTheme.of(context).blackColor,
                                                                           fontSize:
                                                                               12,
                                                                           fontWeight:
@@ -619,8 +633,9 @@ class _HomeWidgetState extends State<HomeWidget> {
                                                         height: 16,
                                                         decoration:
                                                             BoxDecoration(
-                                                          color:
-                                                              Color(0xFFDBE2E7),
+                                                          color: FlutterAppTheme
+                                                                  .of(context)
+                                                              .BackgroundContainer,
                                                           shape:
                                                               BoxShape.circle,
                                                         ),
@@ -630,8 +645,9 @@ class _HomeWidgetState extends State<HomeWidget> {
                                                         height: 100,
                                                         decoration:
                                                             BoxDecoration(
-                                                          color:
-                                                              Color(0xFFDBE2E7),
+                                                          color: FlutterAppTheme
+                                                                  .of(context)
+                                                              .BackgroundContainer,
                                                         ),
                                                       ),
                                                     ],
@@ -647,7 +663,9 @@ class _HomeWidgetState extends State<HomeWidget> {
                                                                 .width *
                                                             0.80,
                                                     decoration: BoxDecoration(
-                                                      color: Color(0xFFF3F8FF),
+                                                      color: FlutterAppTheme.of(
+                                                              context)
+                                                          .BackgroundContainer,
                                                       borderRadius:
                                                           BorderRadius.circular(
                                                               8),
@@ -691,8 +709,8 @@ class _HomeWidgetState extends State<HomeWidget> {
                                                                       .override(
                                                                         fontFamily:
                                                                             'Lexend Deca',
-                                                                        color: Color(
-                                                                            0xFF009FFF),
+                                                                        color: FlutterAppTheme.of(context)
+                                                                            .tertiaryColor,
                                                                         fontSize:
                                                                             15,
                                                                         fontWeight:
@@ -727,7 +745,7 @@ class _HomeWidgetState extends State<HomeWidget> {
                                                                           fontFamily:
                                                                               'Lexend Deca',
                                                                           color:
-                                                                              Colors.black,
+                                                                              FlutterAppTheme.of(context).blackColor,
                                                                           fontSize:
                                                                               12,
                                                                           fontWeight:

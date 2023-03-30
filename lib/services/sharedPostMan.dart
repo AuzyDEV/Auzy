@@ -2,7 +2,7 @@ import 'package:firebase_auth/firebase_auth.dart';
 import 'package:http/http.dart' as http;
 import 'dart:convert';
 import 'dart:async';
-import 'package:new_mee/models/sharedPost.dart';
+import '../models/sharedPost.dart';
 
 class sharedPostMan {
   final FirebaseAuth _auth = FirebaseAuth.instance;

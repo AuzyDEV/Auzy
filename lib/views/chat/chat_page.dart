@@ -1,9 +1,10 @@
 import 'package:flutter/material.dart';
-import 'package:new_mee/services/User_api.dart';
-import 'package:new_mee/views/chat/chat_components/messages_widget.dart';
-import 'package:new_mee/views/chat/chat_components/new_message_widget.dart';
-import 'package:new_mee/views/chat/chat_components/profile_header_widget.dart';
-import 'package:new_mee/models/User.dart';
+import 'package:new_mee/themes/theme.dart';
+import '../../services/User_api.dart';
+import 'chat_components/messages_widget.dart';
+import 'chat_components/new_message_widget.dart';
+import 'chat_components/profile_header_widget.dart';
+import '../../models/User.dart';
 
 class ChatPage extends StatefulWidget {
   final User user;
@@ -29,7 +30,7 @@ class _ChatPageState extends State<ChatPage> {
   @override
   Widget build(BuildContext context) => Scaffold(
         extendBodyBehindAppBar: true,
-        backgroundColor: Color(0xff132137),
+        backgroundColor: FlutterAppTheme.of(context).AppBarPrimaryColor,
         body: SafeArea(
             child: FutureBuilder<User>(
                 future: _futureUser,
@@ -43,7 +44,7 @@ class _ChatPageState extends State<ChatPage> {
                           child: Container(
                             padding: EdgeInsets.all(10),
                             decoration: BoxDecoration(
-                              color: Colors.white,
+                              color: FlutterAppTheme.of(context).whiteColor,
                               borderRadius: BorderRadius.only(
                                 topLeft: Radius.circular(25),
                                 topRight: Radius.circular(25),

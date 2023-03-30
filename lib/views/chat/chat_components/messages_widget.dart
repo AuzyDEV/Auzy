@@ -1,10 +1,8 @@
 import 'dart:async';
-
 import 'package:flutter/material.dart';
-import 'package:new_mee/services/firebase_api.dart';
-import 'package:new_mee/services/messagesMan.dart';
-import 'package:new_mee/views/chat/chat_components/message_widget.dart';
-import 'package:new_mee/models/Message.dart';
+import '../../../services/messagesMan.dart';
+import 'message_widget.dart';
+import '../../../models/Message.dart';
 
 class MessagesWidget extends StatefulWidget {
   final String idUser, myId;
@@ -24,24 +22,7 @@ class _MessagesWidgetState extends State<MessagesWidget> {
   StreamController streamController;
   ValueNotifier<String> _myString = ValueNotifier<String>('');
   Stream<List<Message>> list;
-  MessageMan Messageapi = MessageMan();
   int nbr;
-  Future<int> getnbr() async {
-    nbr = await Messageapi.getNbrMessages(widget.idUser);
-    return nbr;
-  }
-
-  void startTimer() {
-    const oneSec = Duration(seconds: 1);
-    streamController = new StreamController<int>.broadcast();
-    _timer = Timer.periodic(oneSec, (Timer timer) async {
-      int a = await getnbr();
-      print(a);
-      streamController.sink.add(a);
-      print('start value $a');
-    });
-  }
-
   @override
   void initState() {
     super.initState();
@@ -51,7 +32,7 @@ class _MessagesWidgetState extends State<MessagesWidget> {
 
   @override
   Widget build(BuildContext context) => StreamBuilder<List<Message>>(
-        stream: FirebaseApi.getMessages(widget.idUser),
+        stream: MessageMan.getMessages(widget.idUser),
         builder: (context, snapshot) {
           // int length = snapshot.data.length;
           switch (snapshot.connectionState) {

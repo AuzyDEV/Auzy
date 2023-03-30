@@ -1,15 +1,13 @@
 import 'dart:html';
 import 'dart:typed_data';
 import 'package:firebase_storage/firebase_storage.dart';
-import 'package:new_mee/services/fileMan.dart';
-import 'package:new_mee/common_widgets/Button_widget.dart';
-import 'package:new_mee/common_widgets/customized_AlertDialog.dart';
-import 'package:new_mee/common_widgets/app_bar.dart';
-import 'package:new_mee/common_widgets/drawer.dart';
-import 'package:new_mee/views/home/home_widget.dart';
-import 'package:new_mee/index.dart';
 import 'package:new_mee/themes/theme.dart';
-import 'package:new_mee/common_widgets/FFButtonWidget.dart';
+import '../../services/fileMan.dart';
+import '../../common_widgets/Button_widget.dart';
+import '../../common_widgets/customized_AlertDialog.dart';
+import '../../common_widgets/app_bar.dart';
+import '../../common_widgets/drawer.dart';
+import '../../views/home/home_widget.dart';
 import 'package:flutter/material.dart';
 
 class updateImagePostWidget extends StatefulWidget {
@@ -42,7 +40,7 @@ class _updateImagePostWidgetState extends State<updateImagePostWidget> {
   Widget build(BuildContext context) {
     return Scaffold(
         key: scaffoldKey,
-        backgroundColor: Colors.white,
+        backgroundColor: FlutterAppTheme.of(context).whiteColor,
         appBar: PreferredSize(
           preferredSize: const Size.fromHeight(60),
           child: appbar(text: 'Post\'s image'),

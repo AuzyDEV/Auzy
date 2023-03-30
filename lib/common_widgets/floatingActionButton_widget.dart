@@ -1,6 +1,5 @@
-import 'package:new_mee/common_widgets/FFButtonWidget.dart';
-import 'package:new_mee/themes/theme.dart';
 import 'package:flutter/material.dart';
+import 'package:new_mee/themes/theme.dart';
 
 class floatingActionButtonWidget extends StatefulWidget {
   final IconData icon;
@@ -19,7 +18,7 @@ class _floatingActionButtonWidgetState
   Widget build(BuildContext context) {
     return FloatingActionButton(
       onPressed: widget.onPressed,
-      backgroundColor: Color(0xFF101213),
+      backgroundColor: FlutterAppTheme.of(context).ButtonPrimaryColor,
       elevation: 2,
       child: Icon(widget.icon),
     );

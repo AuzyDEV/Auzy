@@ -1,13 +1,13 @@
-import 'package:new_mee/services/User_api.dart';
-import 'package:new_mee/common_widgets/Button_widget.dart';
-import 'package:new_mee/common_widgets/customized_AlertDialog.dart';
-import 'package:new_mee/common_widgets/app_bar.dart';
-import 'package:new_mee/common_widgets/drawer.dart';
-import 'package:new_mee/index.dart';
-import 'package:new_mee/models/User.dart';
-import 'package:new_mee/themes/theme.dart';
-import 'package:new_mee/common_widgets/FFButtonWidget.dart';
+import '../../services/User_api.dart';
+import '../../common_widgets/Button_widget.dart';
+import '../../common_widgets/customized_AlertDialog.dart';
+import '../../common_widgets/app_bar.dart';
+import '../../common_widgets/drawer.dart';
+import '../../index.dart';
+import '../../models/User.dart';
+import '../../themes/theme.dart';
 import 'package:flutter/material.dart';
+import '../../common_widgets/snack_bar.dart';
 
 class MyprofilWidget extends StatefulWidget {
   final String id;
@@ -36,7 +36,7 @@ class _MyprofilWidgetState extends State<MyprofilWidget> {
   Widget build(BuildContext context) {
     return Scaffold(
       key: scaffoldKey,
-      backgroundColor: Colors.white,
+      backgroundColor: FlutterAppTheme.of(context).whiteColor,
       appBar: PreferredSize(
         preferredSize: const Size.fromHeight(60),
         child: appbar(text: 'My profil'),
@@ -82,7 +82,9 @@ class _MyprofilWidgetState extends State<MyprofilWidget> {
                                                   width: 100,
                                                   height: 100,
                                                   decoration: BoxDecoration(
-                                                    color: Color(0xF8AA6CF9),
+                                                    color: FlutterAppTheme.of(
+                                                            context)
+                                                        .primaryColor,
                                                     shape: BoxShape.circle,
                                                   ),
                                                   child: Stack(
@@ -109,8 +111,9 @@ class _MyprofilWidgetState extends State<MyprofilWidget> {
                                                             AlignmentDirectional(
                                                                 0.96, 0.98),
                                                         child: Material(
-                                                          color: Colors
-                                                              .transparent,
+                                                          color: FlutterAppTheme
+                                                                  .of(context)
+                                                              .TransparentColor,
                                                           elevation: 1,
                                                           child: Container(
                                                             width: 30,
@@ -171,7 +174,9 @@ class _MyprofilWidgetState extends State<MyprofilWidget> {
                                                     style: TextStyle(
                                                       fontWeight:
                                                           FontWeight.bold,
-                                                      color: Color(0xFF9457FB),
+                                                      color: FlutterAppTheme.of(
+                                                              context)
+                                                          .primaryColor,
                                                     ),
                                                   ),
                                                 ),
@@ -183,7 +188,9 @@ class _MyprofilWidgetState extends State<MyprofilWidget> {
                                                   .fromSTEB(0, 175, 0, 0),
                                               child: Divider(
                                                 height: 50,
-                                                color: Colors.grey[100],
+                                                color:
+                                                    FlutterAppTheme.of(context)
+                                                        .lightGrey,
                                               ))
                                         ],
                                       ),
@@ -261,7 +268,9 @@ class _MyprofilWidgetState extends State<MyprofilWidget> {
                                                     .fromSTEB(8, 0, 0, 0),
                                                 child: Icon(
                                                   Icons.account_circle_outlined,
-                                                  color: Color(0xff95A1AC),
+                                                  color: FlutterAppTheme.of(
+                                                          context)
+                                                      .Grey,
                                                   size: 24,
                                                 ),
                                               ),
@@ -330,7 +339,9 @@ class _MyprofilWidgetState extends State<MyprofilWidget> {
                                                       .fromSTEB(8, 0, 0, 0),
                                                   child: Icon(
                                                     Icons.lock_outlined,
-                                                    color: Color(0xff95A1AC),
+                                                    color: FlutterAppTheme.of(
+                                                            context)
+                                                        .Grey,
                                                     size: 24,
                                                   ),
                                                 ),
@@ -396,21 +407,11 @@ class _MyprofilWidgetState extends State<MyprofilWidget> {
                                                           ScaffoldMessenger.of(
                                                                   context)
                                                               .showSnackBar(
-                                                            SnackBar(
-                                                                content: Text(
-                                                                  'Successfully account blocked!',
-                                                                  style:
-                                                                      TextStyle(
-                                                                    color: Colors
-                                                                        .black,
-                                                                  ),
-                                                                ),
-                                                                duration: Duration(
-                                                                    milliseconds:
-                                                                        4000),
-                                                                backgroundColor:
-                                                                    Colors.red),
-                                                          ),
+                                                                  SnackbarWidget(
+                                                                      content:
+                                                                          Text(
+                                                            'Successfully account blocked!',
+                                                          ))),
                                                         },
                                                         child: Text('Confirm'),
                                                       ),
@@ -446,7 +447,9 @@ class _MyprofilWidgetState extends State<MyprofilWidget> {
                                                       .fromSTEB(8, 0, 0, 0),
                                                   child: Icon(
                                                     Icons.block_flipped,
-                                                    color: Color(0xff95A1AC),
+                                                    color: FlutterAppTheme.of(
+                                                            context)
+                                                        .Grey,
                                                     size: 24,
                                                   ),
                                                 ),
@@ -512,21 +515,11 @@ class _MyprofilWidgetState extends State<MyprofilWidget> {
                                                           ScaffoldMessenger.of(
                                                                   context)
                                                               .showSnackBar(
-                                                            SnackBar(
-                                                                content: Text(
-                                                                  'Successfully account deleted!',
-                                                                  style:
-                                                                      TextStyle(
-                                                                    color: Colors
-                                                                        .black,
-                                                                  ),
-                                                                ),
-                                                                duration: Duration(
-                                                                    milliseconds:
-                                                                        4000),
-                                                                backgroundColor:
-                                                                    Colors.red),
-                                                          ),
+                                                                  SnackbarWidget(
+                                                            content: Text(
+                                                              'Successfully account deleted!',
+                                                            ),
+                                                          )),
                                                         },
                                                         child: Text('Confirm'),
                                                       ),
@@ -562,7 +555,9 @@ class _MyprofilWidgetState extends State<MyprofilWidget> {
                                                       .fromSTEB(8, 0, 0, 0),
                                                   child: Icon(
                                                     Icons.delete_outlined,
-                                                    color: Color(0xff95A1AC),
+                                                    color: FlutterAppTheme.of(
+                                                            context)
+                                                        .Grey,
                                                     size: 24,
                                                   ),
                                                 ),

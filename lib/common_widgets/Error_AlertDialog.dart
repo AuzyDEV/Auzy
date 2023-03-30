@@ -1,5 +1,3 @@
-import 'package:new_mee/common_widgets/FFButtonWidget.dart';
-import 'package:new_mee/themes/theme.dart';
 import 'package:flutter/material.dart';
 
 class errorAlertDialogWidget extends StatefulWidget {
