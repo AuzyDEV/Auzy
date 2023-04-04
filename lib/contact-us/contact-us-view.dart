@@ -1,6 +1,8 @@
 import 'package:intl_phone_number_input/intl_phone_number_input.dart';
 import 'package:new_mee/home/home-view.dart';
 import 'package:new_mee/home/home-view.dart';
+import 'package:new_mee/themes/label-row.dart';
+import 'package:new_mee/themes/text-field.dart';
 import '../../themes/custom-button-widget.dart';
 import '../../themes/left-drawer.dart';
 import '../../themes/theme.dart';
@@ -77,34 +79,13 @@ class _contactUsWidgetState extends State<contactUsWidget> {
                         Padding(
                           padding:
                               EdgeInsetsDirectional.fromSTEB(16, 20, 16, 0),
-                          child: Row(
-                            mainAxisSize: MainAxisSize.max,
-                            mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                            children: [
-                              Text(
-                                'Name*',
-                                style: FlutterAppTheme.of(context)
-                                    .bodyText2
-                                    .override(
-                                      fontFamily: 'Roboto',
-                                      color:
-                                          FlutterAppTheme.of(context).TextColor,
-                                      fontSize: 14,
-                                      fontWeight: FontWeight.bold,
-                                    ),
-                              ),
-                            ],
-                          ),
+                          child: LabeledRowWidget(text: 'Name'),
                         ),
                         Padding(
                           padding:
                               EdgeInsetsDirectional.fromSTEB(16, 10, 16, 0),
-                          child: TextFormField(
+                          child: TextFormFieldWidget(
                             controller: fullnameController,
-                            cursorColor: Color(0xFF9457FB),
-                            keyboardType: TextInputType.text,
-                            autovalidateMode:
-                                AutovalidateMode.onUserInteraction,
                             validator: (value) {
                               if (value == null || value.isEmpty) {
                                 return 'Field is required';
@@ -117,158 +98,29 @@ class _contactUsWidgetState extends State<contactUsWidget> {
                               }
                               return null;
                             },
-                            obscureText: false,
-                            decoration: InputDecoration(
-                              errorStyle: FlutterAppTheme.of(context)
-                                  .bodyText1
-                                  .override(
-                                    fontFamily: 'Roboto',
-                                    color: Colors.red,
-                                    fontWeight: FontWeight.normal,
-                                  ),
-                              focusedErrorBorder: OutlineInputBorder(
-                                borderSide: BorderSide(
-                                  color: Colors.red,
-                                  width: 1,
-                                ),
-                                borderRadius: BorderRadius.circular(8),
-                              ),
-                              errorBorder: OutlineInputBorder(
-                                borderSide: BorderSide(
-                                  color: Colors.red,
-                                  width: 1,
-                                ),
-                                borderRadius: BorderRadius.circular(8),
-                              ),
-                              enabledBorder: OutlineInputBorder(
-                                borderSide: BorderSide(
-                                  color: Color(0x988B97A2),
-                                  width: 1,
-                                ),
-                                borderRadius: BorderRadius.circular(8),
-                              ),
-                              focusedBorder: OutlineInputBorder(
-                                borderSide: BorderSide(
-                                  color: Color(0x988B97A2),
-                                  width: 1,
-                                ),
-                                borderRadius: BorderRadius.circular(8),
-                              ),
-                              contentPadding:
-                                  EdgeInsetsDirectional.fromSTEB(12, 0, 12, 0),
-                            ),
-                            style: FlutterAppTheme.of(context)
-                                .bodyText1
-                                .override(
-                                    fontFamily: 'Roboto',
-                                    color: Colors.black,
-                                    fontWeight: FontWeight.normal),
                           ),
                         ),
                         Padding(
                           padding:
                               EdgeInsetsDirectional.fromSTEB(16, 20, 16, 0),
-                          child: Row(
-                            mainAxisSize: MainAxisSize.max,
-                            mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                            children: [
-                              Text(
-                                'Email*',
-                                style: FlutterAppTheme.of(context)
-                                    .bodyText2
-                                    .override(
-                                      fontFamily: 'Roboto',
-                                      color:
-                                          FlutterAppTheme.of(context).TextColor,
-                                      fontSize: 14,
-                                      fontWeight: FontWeight.bold,
-                                    ),
-                              ),
-                            ],
-                          ),
+                          child: LabeledRowWidget(text: 'Email'),
                         ),
                         Padding(
                           padding:
                               EdgeInsetsDirectional.fromSTEB(16, 10, 16, 0),
-                          child: TextFormField(
+                          child: TextFormFieldWidget(
                             controller: emailAddressController,
-                            cursorColor: Color(0xFF9457FB),
-                            autovalidateMode:
-                                AutovalidateMode.onUserInteraction,
                             validator: (value) => value.isEmpty
                                 ? 'Field is required'
                                 : (emailReg.hasMatch(value)
                                     ? null
                                     : 'Enter a Valid email'),
-                            obscureText: false,
-                            decoration: InputDecoration(
-                              errorStyle: FlutterAppTheme.of(context)
-                                  .bodyText1
-                                  .override(
-                                    fontFamily: 'Roboto',
-                                    color: Colors.red,
-                                    fontWeight: FontWeight.normal,
-                                  ),
-                              focusedErrorBorder: OutlineInputBorder(
-                                borderSide: BorderSide(
-                                  color: Colors.red,
-                                  width: 1,
-                                ),
-                                borderRadius: BorderRadius.circular(8),
-                              ),
-                              errorBorder: OutlineInputBorder(
-                                borderSide: BorderSide(
-                                  color: Colors.red,
-                                  width: 1,
-                                ),
-                                borderRadius: BorderRadius.circular(8),
-                              ),
-                              enabledBorder: OutlineInputBorder(
-                                borderSide: BorderSide(
-                                  color: Color(0x988B97A2),
-                                  width: 1,
-                                ),
-                                borderRadius: BorderRadius.circular(8),
-                              ),
-                              focusedBorder: OutlineInputBorder(
-                                borderSide: BorderSide(
-                                  color: Color(0x988B97A2),
-                                  width: 1,
-                                ),
-                                borderRadius: BorderRadius.circular(8),
-                              ),
-                              contentPadding:
-                                  EdgeInsetsDirectional.fromSTEB(12, 0, 12, 0),
-                            ),
-                            style: FlutterAppTheme.of(context)
-                                .bodyText1
-                                .override(
-                                    fontFamily: 'Roboto',
-                                    color: Colors.black,
-                                    fontWeight: FontWeight.normal),
                           ),
                         ),
                         Padding(
                           padding:
                               EdgeInsetsDirectional.fromSTEB(16, 20, 16, 0),
-                          child: Row(
-                            mainAxisSize: MainAxisSize.max,
-                            mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                            children: [
-                              Text(
-                                'Mobile*',
-                                style: FlutterAppTheme.of(context)
-                                    .bodyText2
-                                    .override(
-                                      fontFamily: 'Roboto',
-                                      color:
-                                          FlutterAppTheme.of(context).TextColor,
-                                      fontSize: 14,
-                                      fontWeight: FontWeight.bold,
-                                    ),
-                              ),
-                            ],
-                          ),
+                          child: LabeledRowWidget(text: 'Mobile'),
                         ),
                         Padding(
                           padding:
@@ -292,88 +144,20 @@ class _contactUsWidgetState extends State<contactUsWidget> {
                             textFieldController: mobilecontroller,
                             formatInput: true,
                             inputBorder: OutlineInputBorder(),
-                            onSaved: (PhoneNumber number) {
-                              print('On Saved: $number');
-                            },
+                            onSaved: (PhoneNumber number) {},
                           ),
                         ),
                         Padding(
                           padding:
                               EdgeInsetsDirectional.fromSTEB(16, 20, 16, 0),
-                          child: Row(
-                            mainAxisSize: MainAxisSize.max,
-                            mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                            children: [
-                              Text(
-                                'Message*',
-                                style: FlutterAppTheme.of(context)
-                                    .bodyText2
-                                    .override(
-                                      fontFamily: 'Roboto',
-                                      color:
-                                          FlutterAppTheme.of(context).TextColor,
-                                      fontSize: 14,
-                                      fontWeight: FontWeight.bold,
-                                    ),
-                              ),
-                            ],
-                          ),
+                          child: LabeledRowWidget(text: 'Message'),
                         ),
                         Padding(
                           padding:
                               EdgeInsetsDirectional.fromSTEB(16, 10, 16, 0),
-                          child: TextFormField(
+                          child: TextFormFieldWidget(
                             controller: messageController,
-                            cursorColor: Color(0xFF9457FB),
                             maxLines: 8,
-                            validator: (value) =>
-                                value.isEmpty ? 'Field is required' : null,
-                            obscureText: false,
-                            decoration: InputDecoration(
-                              errorStyle: FlutterAppTheme.of(context)
-                                  .bodyText1
-                                  .override(
-                                    fontFamily: 'Roboto',
-                                    color: Colors.red,
-                                    fontWeight: FontWeight.normal,
-                                  ),
-                              focusedErrorBorder: OutlineInputBorder(
-                                borderSide: BorderSide(
-                                  color: Colors.red,
-                                  width: 1,
-                                ),
-                                borderRadius: BorderRadius.circular(8),
-                              ),
-                              errorBorder: OutlineInputBorder(
-                                borderSide: BorderSide(
-                                  color: Colors.red,
-                                  width: 1,
-                                ),
-                                borderRadius: BorderRadius.circular(8),
-                              ),
-                              enabledBorder: OutlineInputBorder(
-                                borderSide: BorderSide(
-                                  color: Color(0x988B97A2),
-                                  width: 1,
-                                ),
-                                borderRadius: BorderRadius.circular(8),
-                              ),
-                              focusedBorder: OutlineInputBorder(
-                                borderSide: BorderSide(
-                                  color: Color(0x988B97A2),
-                                  width: 1,
-                                ),
-                                borderRadius: BorderRadius.circular(8),
-                              ),
-                              contentPadding: EdgeInsetsDirectional.fromSTEB(
-                                  20, 16, 20, 16),
-                            ),
-                            style: FlutterAppTheme.of(context)
-                                .bodyText1
-                                .override(
-                                    fontFamily: 'Roboto',
-                                    color: Colors.black,
-                                    fontWeight: FontWeight.normal),
                           ),
                         ),
                       ],
@@ -409,7 +193,7 @@ class _contactUsWidgetState extends State<contactUsWidget> {
                                                   content:
                                                       "Email was sent successfully",
                                                   actions: [
-                                                    ElevatedButton(
+                                                    TextButton(
                                                       child: Text("Ok"),
                                                       onPressed: () async {
                                                         await Navigator.push(

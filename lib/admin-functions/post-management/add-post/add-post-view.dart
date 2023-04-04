@@ -1,7 +1,10 @@
+
 import 'dart:html';
 import 'dart:typed_data';
 import 'package:firebase_storage/firebase_storage.dart';
 import 'package:new_mee/admin-functions/post-management/add-post/add-post-controller.dart';
+import 'package:new_mee/themes/label-row.dart';
+import 'package:new_mee/themes/text-field.dart';
 import 'package:new_mee/user-profile/profile-controller.dart';
 import '../../../themes/alert-popup.dart';
 import '../../../themes/app-bar-widget.dart';
@@ -106,116 +109,19 @@ class _addNewPostWidgetState extends State<addNewPostWidget> {
                                       Padding(
                                         padding: EdgeInsetsDirectional.fromSTEB(
                                             16, 20, 16, 0),
-                                        child: Row(
-                                          mainAxisSize: MainAxisSize.max,
-                                          mainAxisAlignment:
-                                              MainAxisAlignment.spaceBetween,
-                                          children: [
-                                            Text(
-                                              'Title*',
-                                              style: FlutterAppTheme.of(context)
-                                                  .bodyText2
-                                                  .override(
-                                                    fontFamily: 'Roboto',
-                                                    color: FlutterAppTheme.of(
-                                                            context)
-                                                        .TextColor,
-                                                    fontSize: 14,
-                                                    fontWeight: FontWeight.bold,
-                                                  ),
-                                            ),
-                                          ],
-                                        ),
+                                        child: LabeledRowWidget(text: 'Title'),
                                       ),
                                       Padding(
                                         padding: EdgeInsetsDirectional.fromSTEB(
                                             16, 10, 16, 0),
-                                        child: TextFormField(
+                                        child: TextFormFieldWidget(
                                           controller: titleController,
-                                          cursorColor: Color(0xFF9457FB),
-                                          validator: (value) => value.isEmpty
-                                              ? 'Field is required'
-                                              : null,
-                                          obscureText: false,
-                                          decoration: InputDecoration(
-                                            errorStyle:
-                                                FlutterAppTheme.of(context)
-                                                    .bodyText1
-                                                    .override(
-                                                      fontFamily: 'Roboto',
-                                                      color: Colors.red,
-                                                      fontWeight:
-                                                          FontWeight.normal,
-                                                    ),
-                                            focusedErrorBorder:
-                                                OutlineInputBorder(
-                                              borderSide: BorderSide(
-                                                color: Colors.red,
-                                                width: 1,
-                                              ),
-                                              borderRadius:
-                                                  BorderRadius.circular(8),
-                                            ),
-                                            errorBorder: OutlineInputBorder(
-                                              borderSide: BorderSide(
-                                                color: Colors.red,
-                                                width: 1,
-                                              ),
-                                              borderRadius:
-                                                  BorderRadius.circular(8),
-                                            ),
-                                            enabledBorder: OutlineInputBorder(
-                                              borderSide: BorderSide(
-                                                color: Color(0x988B97A2),
-                                                width: 1,
-                                              ),
-                                              borderRadius:
-                                                  BorderRadius.circular(8),
-                                            ),
-                                            focusedBorder: OutlineInputBorder(
-                                              borderSide: BorderSide(
-                                                color: Color(0x988B97A2),
-                                                width: 1,
-                                              ),
-                                              borderRadius:
-                                                  BorderRadius.circular(8),
-                                            ),
-                                            contentPadding:
-                                                EdgeInsetsDirectional.fromSTEB(
-                                                    12, 0, 12, 0),
-                                          ),
-                                          style: FlutterAppTheme.of(context)
-                                              .bodyText1
-                                              .override(
-                                                  fontFamily: 'Roboto',
-                                                  color: Colors.black,
-                                                  fontWeight:
-                                                      FontWeight.normal),
                                         ),
                                       ),
                                       Padding(
                                         padding: EdgeInsetsDirectional.fromSTEB(
                                             16, 20, 16, 0),
-                                        child: Row(
-                                          mainAxisSize: MainAxisSize.max,
-                                          mainAxisAlignment:
-                                              MainAxisAlignment.spaceBetween,
-                                          children: [
-                                            Text(
-                                              'Text*',
-                                              style: FlutterAppTheme.of(context)
-                                                  .bodyText2
-                                                  .override(
-                                                    fontFamily: 'Roboto',
-                                                    color: FlutterAppTheme.of(
-                                                            context)
-                                                        .TextColor,
-                                                    fontSize: 14,
-                                                    fontWeight: FontWeight.bold,
-                                                  ),
-                                            ),
-                                          ],
-                                        ),
+                                        child: LabeledRowWidget(text: 'Text'),
                                       ),
                                     ],
                                   ),
@@ -233,33 +139,12 @@ class _addNewPostWidgetState extends State<addNewPostWidget> {
                                         ),
                                       ),
                                     ])),
-
-                                /* Padding(
-                                  padding: EdgeInsetsDirectional.fromSTEB(
-                                      16, 20, 16, 0),
-                                  child: Column(
-                                    children: [
-                                      quill.QuillToolbar.basic(
-                                          controller: _controller),
-                                      Container(
-                                        height: 200,
-                                        child: quill.QuillEditor.basic(
-                                          controller: _controller,
-                                          readOnly:
-                                              false, // true for view only mode
-                                        ),
-                                      ),
-                                    ],
-                                  ),
-                                ),*/
                                 Column(
                                   mainAxisAlignment: MainAxisAlignment.center,
                                   children: [
                                     Text(fileName),
                                     ElevatedButton(
                                       onPressed: (() {
-                                        /*  print((_controller.document.toDelta())
-                                            .toJson());*/
                                         InputElement inputElement =
                                             FileUploadInputElement();
                                         inputElement.click();
@@ -281,9 +166,6 @@ class _addNewPostWidgetState extends State<addNewPostWidget> {
                                       }),
                                       child: Text("Pick a file"),
                                     ),
-                                    /* if (fileContents != null)
-                                      Text(
-                                          "File contents: ${String.fromCharCodes(fileContents)}")*/
                                   ],
                                 ),
                                 Column(

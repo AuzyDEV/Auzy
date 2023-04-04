@@ -13,7 +13,7 @@ import '../../../index.dart';
 import 'package:flutter/material.dart';
 import 'all-users-controller.dart';
 import '../add-user/add-user-view.dart';
-import '../profil-user/userprofil.dart';
+import '../profil-user/profil-user-view.dart';
 
 class UsersWidget extends StatefulWidget {
   const UsersWidget({Key key}) : super(key: key);
@@ -283,7 +283,7 @@ class _UsersWidgetState extends State<UsersWidget>
                                                     context,
                                                     MaterialPageRoute(
                                                       builder: (context) =>
-                                                          UsersWidget(),
+                                                          HomeWidget(),
                                                     ),
                                                   ),
                                                   ScaffoldMessenger.of(context)

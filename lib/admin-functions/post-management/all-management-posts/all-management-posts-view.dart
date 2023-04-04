@@ -1,5 +1,5 @@
 import 'dart:convert';
-import 'package:new_mee/admin-functions/post-management/add-post/add-post-widget.dart';
+import 'package:new_mee/admin-functions/post-management/add-post/add-post-view.dart';
 import 'package:new_mee/admin-functions/post-management/all-management-posts/all-management-posts-controller.dart';
 import 'package:new_mee/user-profile/profile-controller.dart';
 import 'package:flutter/material.dart';

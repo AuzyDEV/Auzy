@@ -1,4 +1,5 @@
-
+import 'package:new_mee/themes/label-row.dart';
+import 'package:new_mee/themes/text-field.dart';
 import 'package:new_mee/user-profile/profile-model.dart';
 
 import '../../themes/alert-popup.dart';
@@ -75,92 +76,14 @@ class _changePasswordWidgetState extends State<changePasswordWidget> {
                                     Padding(
                                       padding: EdgeInsetsDirectional.fromSTEB(
                                           16, 20, 16, 0),
-                                      child: Row(
-                                        mainAxisSize: MainAxisSize.max,
-                                        mainAxisAlignment:
-                                            MainAxisAlignment.spaceBetween,
-                                        children: [
-                                          Text(
-                                            'Password*',
-                                            style: FlutterAppTheme.of(context)
-                                                .bodyText2
-                                                .override(
-                                                  fontFamily: 'Roboto',
-                                                  color: FlutterAppTheme.of(
-                                                          context)
-                                                      .TextColor,
-                                                  fontSize: 14,
-                                                  fontWeight: FontWeight.bold,
-                                                ),
-                                          ),
-                                        ],
-                                      ),
+                                      child: LabeledRowWidget(text: 'Password'),
                                     ),
                                     Padding(
                                       padding: EdgeInsetsDirectional.fromSTEB(
                                           16, 10, 16, 0),
-                                      child: TextFormField(
+                                      child: TextFormFieldWidget(
                                         controller: passwordController,
-                                        validator: (value) {
-                                          if (value == null || value.isEmpty) {
-                                            return 'Field is required';
-                                          }
-                                          return null;
-                                        },
                                         obscureText: !passwordVisibility,
-                                        decoration: InputDecoration(
-                                          errorStyle:
-                                              FlutterAppTheme.of(context)
-                                                  .bodyText1
-                                                  .override(
-                                                    fontFamily: 'Roboto',
-                                                    color: Colors.red,
-                                                    fontWeight:
-                                                        FontWeight.normal,
-                                                  ),
-                                          focusedErrorBorder:
-                                              OutlineInputBorder(
-                                            borderSide: BorderSide(
-                                              color: Colors.red,
-                                              width: 1,
-                                            ),
-                                            borderRadius:
-                                                BorderRadius.circular(8),
-                                          ),
-                                          errorBorder: OutlineInputBorder(
-                                            borderSide: BorderSide(
-                                              color: Colors.red,
-                                              width: 1,
-                                            ),
-                                            borderRadius:
-                                                BorderRadius.circular(8),
-                                          ),
-                                          enabledBorder: OutlineInputBorder(
-                                            borderSide: BorderSide(
-                                              color: Color(0x988B97A2),
-                                              width: 1,
-                                            ),
-                                            borderRadius:
-                                                BorderRadius.circular(8),
-                                          ),
-                                          focusedBorder: OutlineInputBorder(
-                                            borderSide: BorderSide(
-                                              color: Color(0x988B97A2),
-                                              width: 1,
-                                            ),
-                                            borderRadius:
-                                                BorderRadius.circular(8),
-                                          ),
-                                          contentPadding:
-                                              EdgeInsetsDirectional.fromSTEB(
-                                                  12, 0, 12, 0),
-                                        ),
-                                        style: FlutterAppTheme.of(context)
-                                            .bodyText1
-                                            .override(
-                                                fontFamily: 'Roboto',
-                                                color: Colors.black,
-                                                fontWeight: FontWeight.normal),
                                       ),
                                     ),
                                   ],
@@ -169,98 +92,20 @@ class _changePasswordWidgetState extends State<changePasswordWidget> {
                               Padding(
                                 padding: EdgeInsetsDirectional.fromSTEB(
                                     16, 20, 16, 0),
-                                child: Row(
-                                  mainAxisSize: MainAxisSize.max,
-                                  mainAxisAlignment:
-                                      MainAxisAlignment.spaceBetween,
-                                  children: [
-                                    Text(
-                                      'Confirm password*',
-                                      style: FlutterAppTheme.of(context)
-                                          .bodyText2
-                                          .override(
-                                            fontFamily: 'Roboto',
-                                            color: FlutterAppTheme.of(context)
-                                                .TextColor,
-                                            fontSize: 14,
-                                            fontWeight: FontWeight.bold,
-                                          ),
-                                    ),
-                                  ],
-                                ),
+                                child:
+                                    LabeledRowWidget(text: 'Confirm password'),
                               ),
                               Padding(
                                 padding: EdgeInsetsDirectional.fromSTEB(
                                     16, 10, 16, 10),
-                                child: Row(
-                                  mainAxisSize: MainAxisSize.max,
-                                  children: [
-                                    Expanded(
-                                      child: TextFormField(
-                                        controller: passwordController1,
-                                        validator: (value) => value.isEmpty
-                                            ? 'Field is required'
-                                            : (value != passwordController.text
-                                                ? 'Please confirm your password'
-                                                : null),
-                                        obscureText: !passwordVisibility1,
-                                        decoration: InputDecoration(
-                                          errorStyle:
-                                              FlutterAppTheme.of(context)
-                                                  .bodyText1
-                                                  .override(
-                                                    fontFamily: 'Roboto',
-                                                    color: Colors.red,
-                                                    fontWeight:
-                                                        FontWeight.normal,
-                                                  ),
-                                          focusedErrorBorder:
-                                              OutlineInputBorder(
-                                            borderSide: BorderSide(
-                                              color: Colors.red,
-                                              width: 1,
-                                            ),
-                                            borderRadius:
-                                                BorderRadius.circular(8),
-                                          ),
-                                          errorBorder: OutlineInputBorder(
-                                            borderSide: BorderSide(
-                                              color: Colors.red,
-                                              width: 1,
-                                            ),
-                                            borderRadius:
-                                                BorderRadius.circular(8),
-                                          ),
-                                          enabledBorder: OutlineInputBorder(
-                                            borderSide: BorderSide(
-                                              color: Color(0x988B97A2),
-                                              width: 1,
-                                            ),
-                                            borderRadius:
-                                                BorderRadius.circular(8),
-                                          ),
-                                          focusedBorder: OutlineInputBorder(
-                                            borderSide: BorderSide(
-                                              color: Color(0x988B97A2),
-                                              width: 1,
-                                            ),
-                                            borderRadius:
-                                                BorderRadius.circular(8),
-                                          ),
-                                          contentPadding:
-                                              EdgeInsetsDirectional.fromSTEB(
-                                                  12, 0, 12, 0),
-                                        ),
-                                        style: FlutterAppTheme.of(context)
-                                            .bodyText1
-                                            .override(
-                                              fontFamily: 'Roboto',
-                                              color: Colors.black,
-                                              fontWeight: FontWeight.normal,
-                                            ),
-                                      ),
-                                    ),
-                                  ],
+                                child: TextFormFieldWidget(
+                                  controller: passwordController1,
+                                  validator: (value) => value.isEmpty
+                                      ? 'Field is required'
+                                      : (value != passwordController.text
+                                          ? 'Please confirm your password'
+                                          : null),
+                                  obscureText: !passwordVisibility1,
                                 ),
                               ),
                               Column(
@@ -318,9 +163,10 @@ class _changePasswordWidgetState extends State<changePasswordWidget> {
                                                           builder: (BuildContext
                                                               context) {
                                                             return alertDialogWidget(
-                                                    title: "Error!",
-                                                    content: "$response",
-                                                  );
+                                                              title: "Error!",
+                                                              content:
+                                                                  "$response",
+                                                            );
                                                           });
                                                 }
                                               },

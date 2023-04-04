@@ -1,13 +1,13 @@
-import 'package:new_mee/listing-directory/DataBaseView/addDoctor_widget.dart';
+import 'package:new_mee/listing-directory/add-listing/add-listing-view.dart';
 import 'package:new_mee/listing-directory/all-listings/all-listings-controller.dart';
 
 import '../../themes/text-field.dart';
-import '../DataBaseController/doctorsMan.dart';
+import '../add-listing/add-listing-controller.dart';
 import '../../../themes/app-bar-widget.dart';
 import '../../../themes/floating-button-widget.dart';
 import '../../../themes/left-drawer.dart';
 import '../../../themes/theme.dart';
-import '../single-listing/single-listing-widget.dart';
+import '../single-listing/single-listing-view.dart';
 import '../single-listing/single-listing-model.dart';
 import '../../themes/theme.dart';
 import 'package:flutter/material.dart';
@@ -96,7 +96,7 @@ class _listsdocWidgetState extends State<listsdocWidget> {
                         width: double.infinity,
                         height: 52,
                         decoration: BoxDecoration(
-                          color: FlutterAppTheme.of(context).lightGrey,
+                          color: FlutterAppTheme.of(context).whiteColor,
                           borderRadius: BorderRadius.circular(8),
                         ),
                         child: Padding(

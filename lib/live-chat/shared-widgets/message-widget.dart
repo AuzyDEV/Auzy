@@ -1,7 +1,7 @@
 
 import 'package:flutter/material.dart';
 import 'package:new_mee/themes/theme.dart';
-import '../../admin-functions/user-management/profil-user/userprofil.dart';
+import '../../admin-functions/user-management/profil-user/profil-user-view.dart';
 import '../conversation/conversation-model.dart';
 
 class MessageWidget extends StatelessWidget {

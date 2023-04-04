@@ -8,7 +8,7 @@ import '../../../themes/loading-spinner.dart';
 import '../../../themes/snack-bar-widget.dart';
 import '../../../themes/theme.dart';
 
-import '../../admin-functions/user-management/profil-user/userprofil.dart';
+import '../../admin-functions/user-management/profil-user/profil-user-view.dart';
 import '../../themes/icon-button-widget.dart';
 import 'all-posts-controller.dart';
 import '../all-saved-posts/all-saved-posts-controller.dart';

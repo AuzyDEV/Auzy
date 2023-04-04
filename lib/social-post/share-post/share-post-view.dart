@@ -1,16 +1,15 @@
 import 'dart:convert';
 
-import '../../CommonWidgets/LoadingSpinner.dart';
-import '../../Profiling/ProfilingController/ProfilingController.dart';
 import 'package:new_mee/social-post/all-posts/all-posts-model.dart';
 import '../all-saved-posts/all-saved-posts-controller.dart';
-import '../../admin-functions/post-management/PostMan.dart';
 import 'share-post-controller.dart';
-import '../../CommonWidgets/AppBar.dart';
-import '../../CommonWidgets/LeftDrawer.dart';
 import '../../themes/theme.dart';
 import 'package:flutter/material.dart';
 import 'share-post-model.dart';
+import '../../../themes/app-bar-widget.dart';
+import '../../../themes/left-drawer.dart';
+import '../../../themes/loading-spinner.dart';
+import 'package:new_mee/user-profile/profile-controller.dart';
 
 class sharedPostsByUserWidget extends StatefulWidget {
   const sharedPostsByUserWidget({Key key}) : super(key: key);
@@ -23,7 +22,6 @@ class sharedPostsByUserWidget extends StatefulWidget {
 class _sharedPostsByUserWidgetState extends State<sharedPostsByUserWidget> {
   final scaffoldKey = GlobalKey<ScaffoldState>();
   Future<List<Post>> futurePost;
-  PostMan apiPost = PostMan();
   SavedPostMan apisavedpost = SavedPostMan();
   ProfilingMan apiUser = ProfilingMan();
   String _CurrentUserId;

@@ -1,5 +1,8 @@
+import 'package:new_mee/authentification/forgot-password/forgot-password-view.dart';
 import 'package:new_mee/authentification/login/login-controller.dart';
 import 'package:new_mee/home/welcome-view.dart';
+import 'package:new_mee/themes/label-row.dart';
+import 'package:new_mee/themes/text-field.dart';
 
 import '../../../themes/alert-popup.dart';
 import '../../../themes/custom-button-widget.dart';
@@ -7,9 +10,7 @@ import '../../../themes/theme.dart';
 import '../../index.dart';
 import '../../themes/theme.dart';
 import 'package:flutter/material.dart';
-
 import '../create-account/create-account-view.dart';
-import '../forgot-password/forgetPassword_widget.dart';
 
 class SigninWidget extends StatefulWidget {
   const SigninWidget({Key key}) : super(key: key);
@@ -82,13 +83,6 @@ class _SigninWidgetWidgetState extends State<SigninWidget> {
                           fontSize: 30,
                         ),
                   ),
-                  /* Text(
-                    'To Auzy',
-                    style: FlutterAppTheme.of(context).bodyText1.override(
-                          fontFamily: 'Open Sans',
-                          fontSize: 30,
-                        ),
-                  ),*/
                   Divider(
                     thickness: 3,
                     indent: 5,
@@ -113,164 +107,31 @@ class _SigninWidgetWidgetState extends State<SigninWidget> {
                         children: [
                           Padding(
                             padding: EdgeInsetsDirectional.fromSTEB(0, 0, 0, 0),
-                            child: Row(
-                              mainAxisSize: MainAxisSize.max,
-                              mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                              children: [
-                                Text(
-                                  'Email*',
-                                  style: FlutterAppTheme.of(context)
-                                      .bodyText2
-                                      .override(
-                                        fontFamily: 'Roboto',
-                                        color: FlutterAppTheme.of(context)
-                                            .TextColor,
-                                        fontSize: 14,
-                                        fontWeight: FontWeight.bold,
-                                      ),
-                                ),
-                              ],
-                            ),
+                            child: LabeledRowWidget(text: 'Email'),
                           ),
                           Padding(
                             padding:
                                 EdgeInsetsDirectional.fromSTEB(0, 10, 0, 0),
-                            child: TextFormField(
+                            child: TextFormFieldWidget(
                               controller: emailAddressController,
-                              cursorColor: Color(0xFF9457FB),
                               validator: (value) => value.isEmpty
                                   ? 'Field is required'
                                   : (emailReg.hasMatch(value)
                                       ? null
                                       : 'Enter a Valid email'),
-                              obscureText: false,
-                              decoration: InputDecoration(
-                                errorStyle: FlutterAppTheme.of(context)
-                                    .bodyText1
-                                    .override(
-                                      fontFamily: 'Roboto',
-                                      color: Colors.red,
-                                      fontWeight: FontWeight.normal,
-                                    ),
-                                focusedErrorBorder: OutlineInputBorder(
-                                  borderSide: BorderSide(
-                                    color: Colors.red,
-                                    width: 1,
-                                  ),
-                                  borderRadius: BorderRadius.circular(8),
-                                ),
-                                errorBorder: OutlineInputBorder(
-                                  borderSide: BorderSide(
-                                    color: Colors.red,
-                                    width: 1,
-                                  ),
-                                  borderRadius: BorderRadius.circular(8),
-                                ),
-                                enabledBorder: OutlineInputBorder(
-                                  borderSide: BorderSide(
-                                    color: Color(0x988B97A2),
-                                    width: 1,
-                                  ),
-                                  borderRadius: BorderRadius.circular(8),
-                                ),
-                                focusedBorder: OutlineInputBorder(
-                                  borderSide: BorderSide(
-                                    color: Color(0x988B97A2),
-                                    width: 1,
-                                  ),
-                                  borderRadius: BorderRadius.circular(8),
-                                ),
-                                contentPadding: EdgeInsetsDirectional.fromSTEB(
-                                    12, 0, 12, 0),
-                              ),
-                              style: FlutterAppTheme.of(context)
-                                  .bodyText1
-                                  .override(
-                                      fontFamily: 'Roboto',
-                                      color: Colors.black,
-                                      fontWeight: FontWeight.normal),
                             ),
                           ),
                           Padding(
                             padding:
                                 EdgeInsetsDirectional.fromSTEB(0, 20, 0, 0),
-                            child: Row(
-                              mainAxisSize: MainAxisSize.max,
-                              mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                              children: [
-                                Text(
-                                  'Password*',
-                                  style: FlutterAppTheme.of(context)
-                                      .bodyText2
-                                      .override(
-                                        fontFamily: 'Roboto',
-                                        color: FlutterAppTheme.of(context)
-                                            .TextColor,
-                                        fontSize: 14,
-                                        fontWeight: FontWeight.bold,
-                                      ),
-                                ),
-                              ],
-                            ),
+                            child: LabeledRowWidget(text: 'Password'),
                           ),
                           Padding(
                             padding:
                                 EdgeInsetsDirectional.fromSTEB(0, 10, 0, 0),
-                            child: TextFormField(
+                            child: TextFormFieldWidget(
                               controller: passwordController,
-                              cursorColor: Color(0xFF9457FB),
-                              validator: (value) {
-                                if (value == null || value.isEmpty) {
-                                  return 'Field is required';
-                                }
-                                return null;
-                              },
                               obscureText: !passwordVisibility,
-                              decoration: InputDecoration(
-                                errorStyle: FlutterAppTheme.of(context)
-                                    .bodyText1
-                                    .override(
-                                      fontFamily: 'Roboto',
-                                      color: Colors.red,
-                                      fontWeight: FontWeight.normal,
-                                    ),
-                                focusedErrorBorder: OutlineInputBorder(
-                                  borderSide: BorderSide(
-                                    color: Colors.red,
-                                    width: 1,
-                                  ),
-                                  borderRadius: BorderRadius.circular(8),
-                                ),
-                                errorBorder: OutlineInputBorder(
-                                  borderSide: BorderSide(
-                                    color: Colors.red,
-                                    width: 1,
-                                  ),
-                                  borderRadius: BorderRadius.circular(8),
-                                ),
-                                enabledBorder: OutlineInputBorder(
-                                  borderSide: BorderSide(
-                                    color: Color(0x988B97A2),
-                                    width: 1,
-                                  ),
-                                  borderRadius: BorderRadius.circular(8),
-                                ),
-                                focusedBorder: OutlineInputBorder(
-                                  borderSide: BorderSide(
-                                    color: Color(0x988B97A2),
-                                    width: 1,
-                                  ),
-                                  borderRadius: BorderRadius.circular(8),
-                                ),
-                                contentPadding: EdgeInsetsDirectional.fromSTEB(
-                                    12, 0, 12, 0),
-                              ),
-                              style: FlutterAppTheme.of(context)
-                                  .bodyText1
-                                  .override(
-                                      fontFamily: 'Roboto',
-                                      color: Colors.black,
-                                      fontWeight: FontWeight.normal),
                             ),
                           ),
                         ],

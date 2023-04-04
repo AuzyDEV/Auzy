@@ -1,5 +1,7 @@
 import 'package:intl_phone_number_input/intl_phone_number_input.dart';
 import 'package:new_mee/home/home-view.dart';
+import 'package:new_mee/themes/label-row.dart';
+import 'package:new_mee/themes/text-field.dart';
 
 import '../../../themes/theme.dart';
 import 'package:flutter/material.dart';
@@ -71,93 +73,15 @@ class _announcementWidgetState extends State<announcementWidget> {
                         mainAxisSize: MainAxisSize.max,
                         children: [
                           Padding(
-                            padding:
-                                EdgeInsetsDirectional.fromSTEB(16, 20, 16, 0),
-                            child: Row(
-                              mainAxisSize: MainAxisSize.max,
-                              mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                              children: [
-                                Text(
-                                  'Message*',
-                                  style: FlutterAppTheme.of(context)
-                                      .bodyText2
-                                      .override(
-                                        fontFamily: 'Roboto',
-                                        color: FlutterAppTheme.of(context)
-                                            .TextColor,
-                                        fontSize: 14,
-                                        fontWeight: FontWeight.bold,
-                                      ),
-                                ),
-                              ],
-                            ),
-                          ),
+                              padding:
+                                  EdgeInsetsDirectional.fromSTEB(16, 20, 16, 0),
+                              child: LabeledRowWidget(text: 'Message')),
                           Padding(
                             padding:
                                 EdgeInsetsDirectional.fromSTEB(16, 10, 16, 0),
-                            child: TextFormField(
-                              controller: messageController,
+                            child: TextFormFieldWidget(
                               maxLines: 8,
-                              cursorColor: Color(0xFF9457FB),
-                              validator: (value) =>
-                                  value.isEmpty ? 'Field is required' : null,
-                              obscureText: false,
-                              decoration: InputDecoration(
-                                errorStyle: FlutterAppTheme.of(context)
-                                    .bodyText1
-                                    .override(
-                                      fontFamily: 'Roboto',
-                                      color: Colors.red,
-                                      fontWeight: FontWeight.normal,
-                                    ),
-                                focusedErrorBorder: OutlineInputBorder(
-                                  borderSide: BorderSide(
-                                    color: Colors.red,
-                                    width: 1,
-                                  ),
-                                  borderRadius: BorderRadius.circular(8),
-                                ),
-                                errorBorder: OutlineInputBorder(
-                                  borderSide: BorderSide(
-                                    color: Colors.red,
-                                    width: 1,
-                                  ),
-                                  borderRadius: BorderRadius.circular(8),
-                                ),
-                                enabledBorder: OutlineInputBorder(
-                                  borderSide: BorderSide(
-                                    color: Color(0x988B97A2),
-                                    width: 1,
-                                  ),
-                                  borderRadius: BorderRadius.circular(8),
-                                ),
-                                focusedBorder: OutlineInputBorder(
-                                  borderSide: BorderSide(
-                                    color: Color(0x988B97A2),
-                                    width: 1,
-                                  ),
-                                  borderRadius: BorderRadius.circular(8),
-                                ),
-                                hintText: 'Enter your message...',
-                                hintStyle: FlutterAppTheme.of(context)
-                                    .bodyText1
-                                    .override(
-                                      fontFamily: 'Roboto',
-                                      color: Color(0xFF9DA3A9),
-                                      fontSize: 14,
-                                      fontWeight: FontWeight.normal,
-                                    ),
-                                filled: true,
-                                fillColor: Colors.white,
-                                contentPadding: EdgeInsetsDirectional.fromSTEB(
-                                    20, 16, 20, 16),
-                              ),
-                              style: FlutterAppTheme.of(context)
-                                  .bodyText1
-                                  .override(
-                                      fontFamily: 'Roboto',
-                                      color: Colors.black,
-                                      fontWeight: FontWeight.normal),
+                              controller: messageController,
                             ),
                           ),
                         ],
@@ -191,7 +115,7 @@ class _announcementWidgetState extends State<announcementWidget> {
                                                     content:
                                                         "Email was sent successfully",
                                                     actions: [
-                                                      ElevatedButton(
+                                                      TextButton(
                                                         child: Text("Ok"),
                                                         onPressed: () async {
                                                           await Navigator.push(

@@ -1,12 +1,15 @@
 import 'dart:html';
 import 'dart:typed_data';
 import 'package:firebase_storage/firebase_storage.dart';
+import 'package:new_mee/themes/label-row.dart';
+import 'package:new_mee/themes/text-field.dart';
+import 'package:string_validator/string_validator.dart';
 import '../../../themes/alert-popup.dart';
 import '../../../themes/app-bar-widget.dart';
 import '../../../themes/custom-button-widget.dart';
 import '../../../themes/left-drawer.dart';
 import '../../../themes/theme.dart';
-import '../DataBaseController/doctorsMan.dart';
+import 'add-listing-controller.dart';
 import 'package:new_mee/home/home-view.dart';
 import '../../themes/theme.dart';
 import 'package:flutter/material.dart';
@@ -31,7 +34,7 @@ class _addDoctorWidgetState extends State<addDoctorWidget> {
   String dropDownValue;
   String _dropdownError;
   Uint8List fileContents;
-  static final RegExp emailReForInput = RegExp(
+  static final RegExp emailReg = RegExp(
       r"^[a-zA-Z0-9.a-zA-Z0-9.!#$%&'*+-/=?^_`{|}~]+@[a-zA-Z0-9]+\.[a-zA-Z]+");
   DBDoctorMan apiDBDoctor = DBDoctorMan();
   @override
@@ -79,180 +82,55 @@ class _addDoctorWidgetState extends State<addDoctorWidget> {
                           Padding(
                             padding:
                                 EdgeInsetsDirectional.fromSTEB(16, 20, 16, 0),
-                            child: Row(
-                              mainAxisSize: MainAxisSize.max,
-                              mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                              children: [
-                                Text(
-                                  'First Name*',
-                                  style: FlutterAppTheme.of(context)
-                                      .bodyText2
-                                      .override(
-                                        fontFamily: 'Roboto',
-                                        color: FlutterAppTheme.of(context)
-                                            .TextColor,
-                                        fontSize: 14,
-                                        fontWeight: FontWeight.bold,
-                                      ),
-                                ),
-                              ],
-                            ),
+                            child: LabeledRowWidget(text: 'First Name'),
                           ),
                           Padding(
                             padding:
                                 EdgeInsetsDirectional.fromSTEB(16, 10, 16, 0),
-                            child: TextFormField(
+                            child: TextFormFieldWidget(
                               controller: firstNameController,
-                              validator: (value) =>
-                                  value.isEmpty ? 'Filed is required' : null,
-                              obscureText: false,
-                              cursorColor: Color(0xFF9457FB),
-                              decoration: InputDecoration(
-                                errorStyle: FlutterAppTheme.of(context)
-                                    .bodyText1
-                                    .override(
-                                      fontFamily: 'Roboto',
-                                      color: Colors.red,
-                                      fontWeight: FontWeight.normal,
-                                    ),
-                                focusedErrorBorder: OutlineInputBorder(
-                                  borderSide: BorderSide(
-                                    color: Colors.red,
-                                    width: 1,
-                                  ),
-                                  borderRadius: BorderRadius.circular(8),
-                                ),
-                                errorBorder: OutlineInputBorder(
-                                  borderSide: BorderSide(
-                                    color: Colors.red,
-                                    width: 1,
-                                  ),
-                                  borderRadius: BorderRadius.circular(8),
-                                ),
-                                enabledBorder: OutlineInputBorder(
-                                  borderSide: BorderSide(
-                                    color: Color(0x988B97A2),
-                                    width: 1,
-                                  ),
-                                  borderRadius: BorderRadius.circular(8),
-                                ),
-                                focusedBorder: OutlineInputBorder(
-                                  borderSide: BorderSide(
-                                    color: Color(0x988B97A2),
-                                    width: 1,
-                                  ),
-                                  borderRadius: BorderRadius.circular(8),
-                                ),
-                                contentPadding: EdgeInsetsDirectional.fromSTEB(
-                                    12, 0, 12, 0),
-                              ),
-                              style: FlutterAppTheme.of(context)
-                                  .bodyText1
-                                  .override(
-                                      fontFamily: 'Roboto',
-                                      color: Colors.black,
-                                      fontWeight: FontWeight.normal),
+                              validator: (value) {
+                                if (value == null || value.isEmpty) {
+                                  return 'Field is required';
+                                }
+                                if (!isAlpha(value.replaceAll(' ', ''))) {
+                                  return 'Requires only characters';
+                                }
+                                if (value.length < 3) {
+                                  return 'Requires at least 3 characters.';
+                                }
+                                return null;
+                              },
                             ),
                           ),
                           Padding(
                             padding:
                                 EdgeInsetsDirectional.fromSTEB(16, 20, 16, 0),
-                            child: Row(
-                              mainAxisSize: MainAxisSize.max,
-                              mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                              children: [
-                                Text(
-                                  'Last Name*',
-                                  style: FlutterAppTheme.of(context)
-                                      .bodyText2
-                                      .override(
-                                        fontFamily: 'Roboto',
-                                        color: FlutterAppTheme.of(context)
-                                            .TextColor,
-                                        fontSize: 14,
-                                        fontWeight: FontWeight.bold,
-                                      ),
-                                ),
-                              ],
-                            ),
+                            child: LabeledRowWidget(text: 'Last Name'),
                           ),
                           Padding(
                             padding:
                                 EdgeInsetsDirectional.fromSTEB(16, 10, 16, 0),
-                            child: TextFormField(
+                            child: TextFormFieldWidget(
                               controller: lastNameController,
-                              validator: (value) =>
-                                  value.isEmpty ? 'Field is required' : null,
-                              obscureText: false,
-                              cursorColor: Color(0xFF9457FB),
-                              decoration: InputDecoration(
-                                errorStyle: FlutterAppTheme.of(context)
-                                    .bodyText1
-                                    .override(
-                                      fontFamily: 'Roboto',
-                                      color: Colors.red,
-                                      fontWeight: FontWeight.normal,
-                                    ),
-                                focusedErrorBorder: OutlineInputBorder(
-                                  borderSide: BorderSide(
-                                    color: Colors.red,
-                                    width: 1,
-                                  ),
-                                  borderRadius: BorderRadius.circular(8),
-                                ),
-                                errorBorder: OutlineInputBorder(
-                                  borderSide: BorderSide(
-                                    color: Colors.red,
-                                    width: 1,
-                                  ),
-                                  borderRadius: BorderRadius.circular(8),
-                                ),
-                                enabledBorder: OutlineInputBorder(
-                                  borderSide: BorderSide(
-                                    color: Color(0x988B97A2),
-                                    width: 1,
-                                  ),
-                                  borderRadius: BorderRadius.circular(8),
-                                ),
-                                focusedBorder: OutlineInputBorder(
-                                  borderSide: BorderSide(
-                                    color: Color(0x988B97A2),
-                                    width: 1,
-                                  ),
-                                  borderRadius: BorderRadius.circular(8),
-                                ),
-                                contentPadding: EdgeInsetsDirectional.fromSTEB(
-                                    12, 0, 12, 0),
-                              ),
-                              style: FlutterAppTheme.of(context)
-                                  .bodyText1
-                                  .override(
-                                      fontFamily: 'Roboto',
-                                      color: Colors.black,
-                                      fontWeight: FontWeight.normal),
+                              validator: (value) {
+                                if (value == null || value.isEmpty) {
+                                  return 'Field is required';
+                                }
+                                if (!isAlpha(value.replaceAll(' ', ''))) {
+                                  return 'Requires only characters';
+                                }
+                                if (value.length < 3) {
+                                  return 'Requires at least 3 characters.';
+                                }
+                                return null;
+                              },
                             ),
                           ),
                           Padding(
                             padding:
                                 EdgeInsetsDirectional.fromSTEB(16, 20, 16, 0),
-                            child: Row(
-                              mainAxisSize: MainAxisSize.max,
-                              mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                              children: [
-                                Text(
-                                  'Speciality*',
-                                  style: FlutterAppTheme.of(context)
-                                      .bodyText2
-                                      .override(
-                                        fontFamily: 'Roboto',
-                                        color: FlutterAppTheme.of(context)
-                                            .TextColor,
-                                        fontSize: 14,
-                                        fontWeight: FontWeight.bold,
-                                      ),
-                                ),
-                              ],
-                            ),
+                            child: LabeledRowWidget(text: 'Speciality'),
                           ),
                           Padding(
                               padding:
@@ -423,261 +301,49 @@ class _addDoctorWidgetState extends State<addDoctorWidget> {
                           Padding(
                             padding:
                                 EdgeInsetsDirectional.fromSTEB(16, 20, 16, 0),
-                            child: Row(
-                              mainAxisSize: MainAxisSize.max,
-                              mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                              children: [
-                                Text(
-                                  'Adress*',
-                                  style: FlutterAppTheme.of(context)
-                                      .bodyText2
-                                      .override(
-                                        fontFamily: 'Roboto',
-                                        color: FlutterAppTheme.of(context)
-                                            .TextColor,
-                                        fontSize: 14,
-                                        fontWeight: FontWeight.bold,
-                                      ),
-                                ),
-                              ],
-                            ),
+                            child: LabeledRowWidget(text: 'Adress'),
                           ),
                           Padding(
                             padding:
                                 EdgeInsetsDirectional.fromSTEB(16, 10, 16, 0),
-                            child: TextFormField(
-                              maxLines: 2,
+                            child: TextFormFieldWidget(
                               controller: addressController,
-                              cursorColor: Color(0xFF9457FB),
-                              validator: (value) =>
-                                  value.isEmpty ? 'Field is required' : null,
-                              obscureText: false,
-                              decoration: InputDecoration(
-                                errorStyle: FlutterAppTheme.of(context)
-                                    .bodyText1
-                                    .override(
-                                      fontFamily: 'Roboto',
-                                      color: Colors.red,
-                                      fontWeight: FontWeight.normal,
-                                    ),
-                                focusedErrorBorder: OutlineInputBorder(
-                                  borderSide: BorderSide(
-                                    color: Colors.red,
-                                    width: 1,
-                                  ),
-                                  borderRadius: BorderRadius.circular(8),
-                                ),
-                                errorBorder: OutlineInputBorder(
-                                  borderSide: BorderSide(
-                                    color: Colors.red,
-                                    width: 1,
-                                  ),
-                                  borderRadius: BorderRadius.circular(8),
-                                ),
-                                enabledBorder: OutlineInputBorder(
-                                  borderSide: BorderSide(
-                                    color: Color(0x988B97A2),
-                                    width: 1,
-                                  ),
-                                  borderRadius: BorderRadius.circular(8),
-                                ),
-                                focusedBorder: OutlineInputBorder(
-                                  borderSide: BorderSide(
-                                    color: Color(0x988B97A2),
-                                    width: 1,
-                                  ),
-                                  borderRadius: BorderRadius.circular(8),
-                                ),
-                                contentPadding: EdgeInsetsDirectional.fromSTEB(
-                                    12, 0, 12, 0),
-                              ),
-                              style: FlutterAppTheme.of(context)
-                                  .bodyText1
-                                  .override(
-                                      fontFamily: 'Roboto',
-                                      color: Colors.black,
-                                      fontWeight: FontWeight.normal),
+                              maxLines: 2,
                             ),
                           ),
                           Padding(
                             padding:
                                 EdgeInsetsDirectional.fromSTEB(16, 20, 16, 0),
-                            child: Row(
-                              mainAxisSize: MainAxisSize.max,
-                              mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                              children: [
-                                Text(
-                                  'Email*',
-                                  style: FlutterAppTheme.of(context)
-                                      .bodyText2
-                                      .override(
-                                        fontFamily: 'Roboto',
-                                        color: FlutterAppTheme.of(context)
-                                            .TextColor,
-                                        fontSize: 14,
-                                        fontWeight: FontWeight.bold,
-                                      ),
-                                ),
-                              ],
-                            ),
+                            child: LabeledRowWidget(text: 'Email'),
                           ),
                           Padding(
                             padding:
                                 EdgeInsetsDirectional.fromSTEB(16, 10, 16, 0),
-                            child: TextFormField(
+                            child: TextFormFieldWidget(
                               controller: emailController,
-                              cursorColor: Color(0xFF9457FB),
                               validator: (value) => value.isEmpty
                                   ? 'Field is required'
-                                  : (emailReForInput.hasMatch(value)
+                                  : (emailReg.hasMatch(value)
                                       ? null
-                                      : 'Enter valid Email '),
-                              obscureText: false,
-                              decoration: InputDecoration(
-                                errorStyle: FlutterAppTheme.of(context)
-                                    .bodyText1
-                                    .override(
-                                      fontFamily: 'Roboto',
-                                      color: Colors.red,
-                                      fontWeight: FontWeight.normal,
-                                    ),
-                                focusedErrorBorder: OutlineInputBorder(
-                                  borderSide: BorderSide(
-                                    color: Colors.red,
-                                    width: 1,
-                                  ),
-                                  borderRadius: BorderRadius.circular(8),
-                                ),
-                                errorBorder: OutlineInputBorder(
-                                  borderSide: BorderSide(
-                                    color: Colors.red,
-                                    width: 1,
-                                  ),
-                                  borderRadius: BorderRadius.circular(8),
-                                ),
-                                enabledBorder: OutlineInputBorder(
-                                  borderSide: BorderSide(
-                                    color: Color(0x988B97A2),
-                                    width: 1,
-                                  ),
-                                  borderRadius: BorderRadius.circular(8),
-                                ),
-                                focusedBorder: OutlineInputBorder(
-                                  borderSide: BorderSide(
-                                    color: Color(0x988B97A2),
-                                    width: 1,
-                                  ),
-                                  borderRadius: BorderRadius.circular(8),
-                                ),
-                                contentPadding: EdgeInsetsDirectional.fromSTEB(
-                                    12, 0, 12, 0),
-                              ),
-                              style: FlutterAppTheme.of(context)
-                                  .bodyText1
-                                  .override(
-                                      fontFamily: 'Roboto',
-                                      color: Colors.black,
-                                      fontWeight: FontWeight.normal),
+                                      : 'Enter a Valid email'),
                             ),
                           ),
                           Padding(
                             padding:
                                 EdgeInsetsDirectional.fromSTEB(16, 20, 16, 0),
-                            child: Row(
-                              mainAxisSize: MainAxisSize.max,
-                              mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                              children: [
-                                Text(
-                                  'Phone number*',
-                                  style: FlutterAppTheme.of(context)
-                                      .bodyText2
-                                      .override(
-                                        fontFamily: 'Roboto',
-                                        color: FlutterAppTheme.of(context)
-                                            .TextColor,
-                                        fontSize: 14,
-                                        fontWeight: FontWeight.bold,
-                                      ),
-                                ),
-                              ],
-                            ),
+                            child: LabeledRowWidget(text: 'Phone number'),
                           ),
                           Padding(
                             padding:
                                 EdgeInsetsDirectional.fromSTEB(16, 10, 16, 0),
-                            child: TextFormField(
+                            child: TextFormFieldWidget(
                               controller: phoneNumberController,
-                              validator: (value) =>
-                                  value.isEmpty ? 'Field is required' : null,
-                              obscureText: false,
-                              decoration: InputDecoration(
-                                errorStyle: FlutterAppTheme.of(context)
-                                    .bodyText1
-                                    .override(
-                                      fontFamily: 'Roboto',
-                                      color: Colors.red,
-                                      fontWeight: FontWeight.normal,
-                                    ),
-                                focusedErrorBorder: OutlineInputBorder(
-                                  borderSide: BorderSide(
-                                    color: Colors.red,
-                                    width: 1,
-                                  ),
-                                  borderRadius: BorderRadius.circular(8),
-                                ),
-                                errorBorder: OutlineInputBorder(
-                                  borderSide: BorderSide(
-                                    color: Colors.red,
-                                    width: 1,
-                                  ),
-                                  borderRadius: BorderRadius.circular(8),
-                                ),
-                                enabledBorder: OutlineInputBorder(
-                                  borderSide: BorderSide(
-                                    color: Color(0x988B97A2),
-                                    width: 1,
-                                  ),
-                                  borderRadius: BorderRadius.circular(8),
-                                ),
-                                focusedBorder: OutlineInputBorder(
-                                  borderSide: BorderSide(
-                                    color: Color(0x988B97A2),
-                                    width: 1,
-                                  ),
-                                  borderRadius: BorderRadius.circular(8),
-                                ),
-                                contentPadding: EdgeInsetsDirectional.fromSTEB(
-                                    12, 0, 12, 0),
-                              ),
-                              style: FlutterAppTheme.of(context)
-                                  .bodyText1
-                                  .override(
-                                      fontFamily: 'Roboto',
-                                      color: Colors.black,
-                                      fontWeight: FontWeight.normal),
                             ),
                           ),
                           Padding(
                             padding:
                                 EdgeInsetsDirectional.fromSTEB(16, 20, 16, 0),
-                            child: Row(
-                              mainAxisSize: MainAxisSize.max,
-                              mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                              children: [
-                                Text(
-                                  'Select photo*',
-                                  style: FlutterAppTheme.of(context)
-                                      .bodyText2
-                                      .override(
-                                        fontFamily: 'Roboto',
-                                        color: FlutterAppTheme.of(context)
-                                            .TextColor,
-                                        fontSize: 14,
-                                        fontWeight: FontWeight.bold,
-                                      ),
-                                ),
-                              ],
-                            ),
+                            child: LabeledRowWidget(text: 'Select photo'),
                           ),
                           Padding(
                             padding:
@@ -709,7 +375,6 @@ class _addDoctorWidgetState extends State<addDoctorWidget> {
                                   }),
                                   child: Text("Pick an image"),
                                 ),
-                            
                               ],
                             ),
                           ),
@@ -748,7 +413,7 @@ class _addDoctorWidgetState extends State<addDoctorWidget> {
                                               return alertDialogWidget(
                                                 title: "Succes!",
                                                 content:
-                                                    "Drug was added successfully",
+                                                    "Doctor was added successfully",
                                                 actions: [
                                                   TextButton(
                                                     child: Text("Ok"),
