@@ -318,7 +318,6 @@ class _postDetailsWidgetState extends State<postDetailsWidget> {
                     return Text("${snapshot.error}");
                   }
 
-                  // By default, show a loading spinner.
                   return Center(child: const CircularProgressIndicatorWidget());
                 })));
   }

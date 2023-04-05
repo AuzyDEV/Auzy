@@ -110,11 +110,6 @@ class _savedPostsForUsersWidgetState extends State<savedPostsForUsersWidget> {
   void initState() {
     super.initState();
     _getFutureStringValue();
-    print(_CurrentUserId);
-
-    //futurePost = apiSavedPost.getAllSavedPostsForUsers(_CurrentUserId);
-
-    //print(futurePost);
   }
 
   @override
@@ -151,7 +146,6 @@ class _savedPostsForUsersWidgetState extends State<savedPostsForUsersWidget> {
                                   EdgeInsetsDirectional.fromSTEB(16, 8, 16, 8),
                               child: Column(
                                 children: [
-                                  // Generated code for this userInfo Widget...
                                   Padding(
                                     padding: EdgeInsetsDirectional.fromSTEB(
                                         0, 0, 2, 0),

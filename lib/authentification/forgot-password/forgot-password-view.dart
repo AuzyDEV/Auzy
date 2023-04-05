@@ -133,11 +133,9 @@ class _ForgetpasswordWidgetState extends State<ForgetpasswordWidget> {
                       padding: EdgeInsetsDirectional.fromSTEB(16, 10, 16, 0),
                       child: TextFormFieldWidget(
                         controller: emailAddressController,
-                        validator: (value) => value.isEmpty
-                            ? 'Field is required'
-                            : (emailReg.hasMatch(value)
-                                ? null
-                                : 'Enter a Valid email'),
+                        isRequired: true,
+                        isEmail: true,
+                      
                       ),
                     ),
                     Padding(

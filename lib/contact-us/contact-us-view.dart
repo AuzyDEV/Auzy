@@ -86,18 +86,8 @@ class _contactUsWidgetState extends State<contactUsWidget> {
                               EdgeInsetsDirectional.fromSTEB(16, 10, 16, 0),
                           child: TextFormFieldWidget(
                             controller: fullnameController,
-                            validator: (value) {
-                              if (value == null || value.isEmpty) {
-                                return 'Field is required';
-                              }
-                              if (!isAlpha(value.replaceAll(' ', ''))) {
-                                return 'Requires only characters';
-                              }
-                              if (value.length < 3) {
-                                return 'Requires at least 3 characters.';
-                              }
-                              return null;
-                            },
+                            isRequired: true,
+                            isString: true,
                           ),
                         ),
                         Padding(
@@ -110,11 +100,8 @@ class _contactUsWidgetState extends State<contactUsWidget> {
                               EdgeInsetsDirectional.fromSTEB(16, 10, 16, 0),
                           child: TextFormFieldWidget(
                             controller: emailAddressController,
-                            validator: (value) => value.isEmpty
-                                ? 'Field is required'
-                                : (emailReg.hasMatch(value)
-                                    ? null
-                                    : 'Enter a Valid email'),
+                            isRequired: true,
+                            isEmail: true,
                           ),
                         ),
                         Padding(
@@ -157,6 +144,7 @@ class _contactUsWidgetState extends State<contactUsWidget> {
                               EdgeInsetsDirectional.fromSTEB(16, 10, 16, 0),
                           child: TextFormFieldWidget(
                             controller: messageController,
+                            isRequired: true,
                             maxLines: 8,
                           ),
                         ),
@@ -223,12 +211,6 @@ class _contactUsWidgetState extends State<contactUsWidget> {
                               ),
                             ),
                           ])),
-                      Divider(
-                        thickness: 1,
-                        indent: 50,
-                        endIndent: 50,
-                        color: Colors.grey[300],
-                      ),
                     ],
                   ),
                 ],

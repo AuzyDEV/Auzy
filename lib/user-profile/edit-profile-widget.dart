@@ -49,6 +49,7 @@ class _editprofilWidgetState extends State<editprofilWidget> {
     photourlController.text = widget.photourl.toString();
     passwordVisibility = false;
     _futureUser = api.GetCurrentUser();
+    print(widget.name);
   }
 
   @override
@@ -99,19 +100,8 @@ class _editprofilWidgetState extends State<editprofilWidget> {
                                           16, 10, 16, 0),
                                       child: TextFormFieldWidget(
                                         controller: fullnameController,
-                                        validator: (value) {
-                                          if (value == null || value.isEmpty) {
-                                            return 'Field is required';
-                                          }
-                                          if (!isAlpha(
-                                              value.replaceAll(' ', ''))) {
-                                            return 'Requires only characters';
-                                          }
-                                          if (value.length < 3) {
-                                            return 'Requires at least 3 characters.';
-                                          }
-                                          return null;
-                                        },
+                                        isRequired: true,
+                                        isString: true,
                                       ),
                                     ),
                                     Padding(
@@ -125,6 +115,7 @@ class _editprofilWidgetState extends State<editprofilWidget> {
                                           16, 10, 16, 0),
                                       child: TextFormFieldWidget(
                                         controller: photourlController,
+                                        isRequired: true,
                                       ),
                                     ),
                                     Padding(
@@ -137,11 +128,8 @@ class _editprofilWidgetState extends State<editprofilWidget> {
                                           16, 10, 16, 0),
                                       child: TextFormFieldWidget(
                                         controller: emailAddressController,
-                                        validator: (value) => value.isEmpty
-                                            ? 'Field is required'
-                                            : (emailReg.hasMatch(value)
-                                                ? null
-                                                : 'Enter a Valid email'),
+                                        isRequired: true,
+                                        isEmail: true,
                                       ),
                                     ),
                                   ],

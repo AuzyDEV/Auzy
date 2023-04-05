@@ -30,7 +30,6 @@ class addNewPostWidget extends StatefulWidget {
 class _addNewPostWidgetState extends State<addNewPostWidget> {
   TextEditingController titleController;
   TextEditingController TextController;
-  // quill.QuillController _controller;
   final scaffoldKey = GlobalKey<ScaffoldState>();
   final formKey = GlobalKey<FormState>();
   ProfilingMan apiUser = ProfilingMan();
@@ -63,7 +62,6 @@ class _addNewPostWidgetState extends State<addNewPostWidget> {
   @override
   void initState() {
     super.initState();
-    // _controller = quill.QuillController.basic();
     _futureUser = apiUser.GetCurrentUser();
     titleController = TextEditingController();
     TextController = TextEditingController();
@@ -116,6 +114,7 @@ class _addNewPostWidgetState extends State<addNewPostWidget> {
                                             16, 10, 16, 0),
                                         child: TextFormFieldWidget(
                                           controller: titleController,
+                                          isRequired: true,
                                         ),
                                       ),
                                       Padding(

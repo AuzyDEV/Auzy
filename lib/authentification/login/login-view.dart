@@ -114,11 +114,8 @@ class _SigninWidgetWidgetState extends State<SigninWidget> {
                                 EdgeInsetsDirectional.fromSTEB(0, 10, 0, 0),
                             child: TextFormFieldWidget(
                               controller: emailAddressController,
-                              validator: (value) => value.isEmpty
-                                  ? 'Field is required'
-                                  : (emailReg.hasMatch(value)
-                                      ? null
-                                      : 'Enter a Valid email'),
+                              isRequired: true,
+                              isEmail: true,
                             ),
                           ),
                           Padding(
@@ -131,6 +128,7 @@ class _SigninWidgetWidgetState extends State<SigninWidget> {
                                 EdgeInsetsDirectional.fromSTEB(0, 10, 0, 0),
                             child: TextFormFieldWidget(
                               controller: passwordController,
+                              isRequired: true,
                               obscureText: !passwordVisibility,
                             ),
                           ),
@@ -247,28 +245,7 @@ class _SigninWidgetWidgetState extends State<SigninWidget> {
                             ],
                           ),
                         ),
-                        /* Padding(
-                          padding:
-                              EdgeInsetsDirectional.fromSTEB(20, 0, 20, 12),
-                          child: Row(
-                            mainAxisSize: MainAxisSize.max,
-                            mainAxisAlignment: MainAxisAlignment.center,
-                            children: [
-                              SocialLoginButton(
-                                buttonType: SocialLoginButtonType.facebook,
-                                onPressed: () async {
-                                  UserMan api = UserMan();
-                                  var result = api.signInWithFacebook();
-                                  //print(result);
-                                  if (result != null) {
-                                    print(result);
-                                  }
-                                },
-                                mode: SocialLoginButtonMode.single,
-                              ),
-                            ],
-                          ),
-                        ),*/
+                      
                         Padding(
                           padding: EdgeInsetsDirectional.fromSTEB(8, 8, 8, 8),
                           child: Row(
@@ -278,7 +255,6 @@ class _SigninWidgetWidgetState extends State<SigninWidget> {
                               InkWell(
                                 onTap: () async {
                                   var result = api.signInWithGoogle();
-                                  //print(result);
                                   if (result != null) {
                                     print(result);
                                   }
@@ -308,7 +284,6 @@ class _SigninWidgetWidgetState extends State<SigninWidget> {
                               InkWell(
                                 onTap: () async {
                                   var result = api.facebookSignin();
-                                  //print(result);
                                   if (result != null) {
                                     print(result);
                                   }

@@ -50,29 +50,6 @@ class _NewMessageWidgetState extends State<NewMessageWidget> {
           padding: EdgeInsets.all(8),
           child: Row(
             children: <Widget>[
-              Material(
-                child: InkWell(
-                  onTap: () async {
-                    return showModalBottomSheet(
-                      context: context,
-                      builder: (BuildContext subcontext) {
-                        return Container(
-                          height: 266,
-                        );
-                      },
-                    );
-                  },
-                  child: new Container(
-                    margin: new EdgeInsets.symmetric(horizontal: 1.0),
-                    child: new IconButton(
-                      icon: new Icon(Icons.face),
-                   
-                      color: FlutterAppTheme.of(context).TransparentColor,
-                    ),
-                  ),
-                ),
-                color: FlutterAppTheme.of(context).whiteColor,
-              ),
               Expanded(
                 child: TextField(
                   controller: _controller,

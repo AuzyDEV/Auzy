@@ -122,18 +122,8 @@ class _CreateAccountWidgetState extends State<CreateAccountWidget> {
                                 EdgeInsetsDirectional.fromSTEB(16, 10, 16, 0),
                             child: TextFormFieldWidget(
                               controller: fullnameController,
-                              validator: (value) {
-                                if (value == null || value.isEmpty) {
-                                  return 'Field is required';
-                                }
-                                if (!isAlpha(value.replaceAll(' ', ''))) {
-                                  return 'Requires only characters';
-                                }
-                                if (value.length < 3) {
-                                  return 'Requires at least 3 characters.';
-                                }
-                                return null;
-                              },
+                              isRequired: true,
+                              isString: true,
                             ),
                           ),
                           Padding(
@@ -146,6 +136,7 @@ class _CreateAccountWidgetState extends State<CreateAccountWidget> {
                                 EdgeInsetsDirectional.fromSTEB(16, 10, 16, 0),
                             child: TextFormFieldWidget(
                               controller: photourlController,
+                              isRequired: true,
                             ),
                           ),
                           Padding(
@@ -158,11 +149,8 @@ class _CreateAccountWidgetState extends State<CreateAccountWidget> {
                                 EdgeInsetsDirectional.fromSTEB(16, 10, 16, 0),
                             child: TextFormFieldWidget(
                               controller: emailAddressController,
-                              validator: (value) => value.isEmpty
-                                  ? 'Field is required'
-                                  : (emailReg.hasMatch(value)
-                                      ? null
-                                      : 'Enter a Valid email'),
+                              isRequired: true,
+                              isEmail: true,
                             ),
                           ),
                           Padding(
@@ -175,15 +163,8 @@ class _CreateAccountWidgetState extends State<CreateAccountWidget> {
                                 EdgeInsetsDirectional.fromSTEB(16, 10, 16, 0),
                             child: TextFormFieldWidget(
                               controller: passwordController,
-                              validator: (value) {
-                                if (value == null || value.isEmpty) {
-                                  return 'Field is required';
-                                }
-                                if (value.length < 6) {
-                                  return 'Requires at least 6 characters.';
-                                }
-                                return null;
-                              },
+                              isRequired: true,
+                              isPassword: true,
                               obscureText: !passwordVisibility,
                             ),
                           ),
@@ -252,48 +233,6 @@ class _CreateAccountWidgetState extends State<CreateAccountWidget> {
                                 ),
                               ),
                             ])),
-                        Divider(
-                          thickness: 1,
-                          indent: 50,
-                          endIndent: 50,
-                          color: Colors.grey[300],
-                        ),
-                        Padding(
-                          padding:
-                              EdgeInsetsDirectional.fromSTEB(20, 0, 20, 12),
-                          child: Row(
-                            mainAxisSize: MainAxisSize.max,
-                            mainAxisAlignment: MainAxisAlignment.center,
-                            children: [
-                              Padding(
-                                padding:
-                                    EdgeInsetsDirectional.fromSTEB(0, 10, 0, 0),
-                                child: InkWell(
-                                  onTap: () async {
-                                    await Navigator.push(
-                                      context,
-                                      MaterialPageRoute(
-                                        builder: (context) => SigninWidget(),
-                                      ),
-                                    );
-                                  },
-                                  child: Text(
-                                    'Already have an account?',
-                                    style: FlutterAppTheme.of(context)
-                                        .bodyText1
-                                        .override(
-                                          fontFamily: 'Roboto',
-                                          fontSize: 14,
-                                          fontWeight: FontWeight.w500,
-                                          color: Color(0xFF9457FB),
-                                          decoration: TextDecoration.underline,
-                                        ),
-                                  ),
-                                ),
-                              ),
-                            ],
-                          ),
-                        ),
                       ],
                     ),
                   ],

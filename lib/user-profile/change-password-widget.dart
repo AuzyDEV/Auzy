@@ -83,6 +83,7 @@ class _changePasswordWidgetState extends State<changePasswordWidget> {
                                           16, 10, 16, 0),
                                       child: TextFormFieldWidget(
                                         controller: passwordController,
+                                        isRequired: true,
                                         obscureText: !passwordVisibility,
                                       ),
                                     ),
@@ -100,6 +101,7 @@ class _changePasswordWidgetState extends State<changePasswordWidget> {
                                     16, 10, 16, 10),
                                 child: TextFormFieldWidget(
                                   controller: passwordController1,
+                                  isRequired: true,
                                   validator: (value) => value.isEmpty
                                       ? 'Field is required'
                                       : (value != passwordController.text
@@ -187,7 +189,6 @@ class _changePasswordWidgetState extends State<changePasswordWidget> {
                   return Text("${snapshot.error}");
                 }
 
-                // By default, show a loading spinner.
                 return Center(child: const CircularProgressIndicatorWidget());
               })),
     );

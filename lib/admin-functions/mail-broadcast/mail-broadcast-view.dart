@@ -19,26 +19,14 @@ class announcementWidget extends StatefulWidget {
 }
 
 class _announcementWidgetState extends State<announcementWidget> {
-  TextEditingController emailAddressController;
-  TextEditingController fullnameController;
   TextEditingController messageController;
-  final TextEditingController mobilecontroller = TextEditingController();
-  bool passwordVisibility;
   final scaffoldKey = GlobalKey<ScaffoldState>();
-  static final RegExp emailReg = RegExp(
-      r"^[a-zA-Z0-9.a-zA-Z0-9.!#$%&'*+-/=?^_`{|}~]+@[a-zA-Z0-9]+\.[a-zA-Z]+");
   final formKey = GlobalKey<FormState>();
   AnnoucementMan Annapi = AnnoucementMan();
-  bool switchListTileValue;
-  String initialCountry = 'NG';
-  PhoneNumber number = PhoneNumber(isoCode: 'NG');
   @override
   void initState() {
     super.initState();
-    emailAddressController = TextEditingController();
-    fullnameController = TextEditingController();
     messageController = TextEditingController();
-    passwordVisibility = false;
   }
 
   @override
@@ -82,6 +70,7 @@ class _announcementWidgetState extends State<announcementWidget> {
                             child: TextFormFieldWidget(
                               maxLines: 8,
                               controller: messageController,
+                              isRequired: true,
                             ),
                           ),
                         ],

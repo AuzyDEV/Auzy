@@ -32,7 +32,6 @@ class _sharedPostsByUserWidgetState extends State<sharedPostsByUserWidget> {
     return apiUser.GetIDCurrentUser();
   }
 
-  // Function to get the value of Future<String>
   void _getFutureStringValue() async {
     String value = await _getCurrentUserId();
     setState(() {

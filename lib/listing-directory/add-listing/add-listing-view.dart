@@ -89,18 +89,8 @@ class _addDoctorWidgetState extends State<addDoctorWidget> {
                                 EdgeInsetsDirectional.fromSTEB(16, 10, 16, 0),
                             child: TextFormFieldWidget(
                               controller: firstNameController,
-                              validator: (value) {
-                                if (value == null || value.isEmpty) {
-                                  return 'Field is required';
-                                }
-                                if (!isAlpha(value.replaceAll(' ', ''))) {
-                                  return 'Requires only characters';
-                                }
-                                if (value.length < 3) {
-                                  return 'Requires at least 3 characters.';
-                                }
-                                return null;
-                              },
+                              isRequired: true,
+                              isString: true,
                             ),
                           ),
                           Padding(
@@ -113,18 +103,8 @@ class _addDoctorWidgetState extends State<addDoctorWidget> {
                                 EdgeInsetsDirectional.fromSTEB(16, 10, 16, 0),
                             child: TextFormFieldWidget(
                               controller: lastNameController,
-                              validator: (value) {
-                                if (value == null || value.isEmpty) {
-                                  return 'Field is required';
-                                }
-                                if (!isAlpha(value.replaceAll(' ', ''))) {
-                                  return 'Requires only characters';
-                                }
-                                if (value.length < 3) {
-                                  return 'Requires at least 3 characters.';
-                                }
-                                return null;
-                              },
+                              isRequired: true,
+                              isString: true,
                             ),
                           ),
                           Padding(
@@ -309,6 +289,7 @@ class _addDoctorWidgetState extends State<addDoctorWidget> {
                             child: TextFormFieldWidget(
                               controller: addressController,
                               maxLines: 2,
+                              isRequired: true,
                             ),
                           ),
                           Padding(
@@ -321,11 +302,8 @@ class _addDoctorWidgetState extends State<addDoctorWidget> {
                                 EdgeInsetsDirectional.fromSTEB(16, 10, 16, 0),
                             child: TextFormFieldWidget(
                               controller: emailController,
-                              validator: (value) => value.isEmpty
-                                  ? 'Field is required'
-                                  : (emailReg.hasMatch(value)
-                                      ? null
-                                      : 'Enter a Valid email'),
+                              isRequired: true,
+                              isEmail: true,
                             ),
                           ),
                           Padding(
@@ -338,6 +316,8 @@ class _addDoctorWidgetState extends State<addDoctorWidget> {
                                 EdgeInsetsDirectional.fromSTEB(16, 10, 16, 0),
                             child: TextFormFieldWidget(
                               controller: phoneNumberController,
+                              isRequired: true,
+                              isNumeric: true,
                             ),
                           ),
                           Padding(

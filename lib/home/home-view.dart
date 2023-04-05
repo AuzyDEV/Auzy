@@ -39,7 +39,6 @@ class _HomeWidgetState extends State<HomeWidget> {
         ),
         backgroundColor: FlutterAppTheme.of(context).whiteColor,
         drawer: Drawerr(),
-        //  bottomNavigationBar: buttomNavBar()
         body: SafeArea(
             child: GestureDetector(
                 onTap: () => FocusScope.of(context).unfocus(),

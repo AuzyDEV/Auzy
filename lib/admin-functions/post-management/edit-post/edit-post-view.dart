@@ -31,35 +31,15 @@ class _editPostDetailsWidgetState extends State<editPostDetailsWidget> {
   final scaffoldKey = GlobalKey<ScaffoldState>();
   final formKey = GlobalKey<FormState>();
   EditPostMan apiPost = EditPostMan();
-  //quill.QuillController _controller;
   Future<User> _futureUser;
-  /* quill.Delta deltaFromJson(String json) {
-    final List<dynamic> data = jsonDecode(json);
-    final quill.Delta delta = quill.Delta();
-    for (final item in data) {
-      final String text = item['insert'] as String;
-      final Map<String, dynamic> attributes =
-          item['attributes'] as Map<String, dynamic>;
-      if (attributes != null) {
-        delta.insert(text, attributes);
-      } else {
-        delta.insert(text);
-      }
-    }
-    return delta;
-  }
-*/
   @override
   void initState() {
     super.initState();
-    //_controller = quill.QuillController.basic();
     titleController = TextEditingController();
     titleController.text = widget.title.toString();
     contenuController = TextEditingController();
     contenuController.text = widget.contenu.toString();
     passwordVisibility = false;
-
-    //_futureUser = api.GetCurrentUser();
   }
 
   @override
@@ -103,6 +83,7 @@ class _editPostDetailsWidgetState extends State<editPostDetailsWidget> {
                               EdgeInsetsDirectional.fromSTEB(16, 10, 16, 0),
                           child: TextFormFieldWidget(
                             controller: titleController,
+                            isRequired: true,
                           ),
                         ),
                         Padding(

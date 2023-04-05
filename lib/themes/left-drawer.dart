@@ -182,7 +182,7 @@ class _DrawerrState extends State<Drawerr> {
                 }),
             _createDrawerItem(
                 icon: Icons.account_circle_outlined,
-                text: 'My Profil',
+                text: 'Profil',
                 isSelected: selectedIndex == 1,
                 onTap: () {
                   setState(() {

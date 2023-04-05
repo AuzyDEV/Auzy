@@ -91,18 +91,8 @@ class _addUserWidgetState extends State<addUserWidget> {
                                 EdgeInsetsDirectional.fromSTEB(16, 10, 16, 0),
                             child: TextFormFieldWidget(
                               controller: fullnameController,
-                              validator: (value) {
-                                if (value == null || value.isEmpty) {
-                                  return 'Field is required';
-                                }
-                                if (!isAlpha(value.replaceAll(' ', ''))) {
-                                  return 'Requires only characters';
-                                }
-                                if (value.length < 3) {
-                                  return 'Requires at least 3 characters.';
-                                }
-                                return null;
-                              },
+                              isRequired: true,
+                              isString: true,
                             ),
                           ),
                           Padding(
@@ -115,6 +105,7 @@ class _addUserWidgetState extends State<addUserWidget> {
                                 EdgeInsetsDirectional.fromSTEB(16, 10, 16, 0),
                             child: TextFormFieldWidget(
                               controller: photourlController,
+                              isRequired: true,
                             ),
                           ),
                           Padding(
@@ -123,17 +114,13 @@ class _addUserWidgetState extends State<addUserWidget> {
                             child: LabeledRowWidget(text: 'Email'),
                           ),
                           Padding(
-                            padding:
-                                EdgeInsetsDirectional.fromSTEB(16, 10, 16, 0),
-                            child: TextFormFieldWidget(
-                              controller: emailAddressController,
-                              validator: (value) => value.isEmpty
-                                  ? 'Field is required'
-                                  : (emailReg.hasMatch(value)
-                                      ? null
-                                      : 'Enter a Valid email'),
-                            ),
-                          ),
+                              padding:
+                                  EdgeInsetsDirectional.fromSTEB(16, 10, 16, 0),
+                              child: TextFormFieldWidget(
+                                controller: emailAddressController,
+                                isRequired: true,
+                                isEmail: true,
+                              )),
                           Padding(
                             padding:
                                 EdgeInsetsDirectional.fromSTEB(16, 20, 16, 0),
@@ -144,15 +131,8 @@ class _addUserWidgetState extends State<addUserWidget> {
                                 EdgeInsetsDirectional.fromSTEB(16, 10, 16, 0),
                             child: TextFormFieldWidget(
                               controller: passwordController,
-                              validator: (value) {
-                                if (value == null || value.isEmpty) {
-                                  return 'Field is required';
-                                }
-                                if (value.length < 6) {
-                                  return 'Requires at least 6 characters.';
-                                }
-                                return null;
-                              },
+                              isRequired: true,
+                              isPassword: true,
                               obscureText: !passwordVisibility,
                             ),
                           ),

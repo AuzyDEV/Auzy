@@ -49,7 +49,6 @@ class _postsForUsersWidgetState extends State<postsForUsersWidget> {
     return apiUser.GetIDCurrentUser();
   }
 
-  // Function to get the value of Future<String>
   void _getFutureStringValue() async {
     String value = await _getCurrentUserId();
     setState(() {
@@ -389,10 +388,10 @@ class _postsForUsersWidgetState extends State<postsForUsersWidget> {
                                                                                   onTap: () {
                                                                                     print(htmlText);
                                                                                     print(snapshot.data[index].contenu);
-                                                                                    /*Navigator.push(
+                                                                                    Navigator.push(
                                                                                       context,
                                                                                       MaterialPageRoute(builder: (context) => postDetailsWidget(id: snapshot.data[index].id)),
-                                                                                    );*/
+                                                                                    );
                                                                                   },
                                                                                 ),
                                                                               ]),
@@ -482,7 +481,6 @@ class _postsForUsersWidgetState extends State<postsForUsersWidget> {
                                                                     child:
                                                                         Column(
                                                                       children: [
-                                                                        // Generated code for this userInfo Widget...
                                                                         Padding(
                                                                           padding: EdgeInsetsDirectional.fromSTEB(
                                                                               0,
