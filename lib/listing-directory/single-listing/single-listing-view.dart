@@ -1,4 +1,3 @@
-
 import 'package:new_mee/listing-directory/single-listing/single-listing-controller.dart';
 
 import '../../../themes/app-bar-widget.dart';
@@ -20,7 +19,7 @@ class DoctorprofileWidget extends StatefulWidget {
 class _DoctorprofileWidgetState extends State<DoctorprofileWidget> {
   final scaffoldKey = GlobalKey<ScaffoldState>();
   final _unfocusNode = FocusNode();
-  Future<Doctor> _futureDoctor;
+  Future<ListingModel> _futureDoctor;
   SingleListingMan apiDB = SingleListingMan();
 
   @override
@@ -50,7 +49,7 @@ class _DoctorprofileWidgetState extends State<DoctorprofileWidget> {
         child: GestureDetector(
           onTap: () => FocusScope.of(context).requestFocus(_unfocusNode),
           child: SingleChildScrollView(
-              child: FutureBuilder<Doctor>(
+              child: FutureBuilder<ListingModel>(
                   future: _futureDoctor,
                   builder: (context, snapshot) {
                     if (snapshot.hasData) {

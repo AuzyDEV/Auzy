@@ -14,14 +14,14 @@ import 'package:new_mee/home/home-view.dart';
 import '../../themes/theme.dart';
 import 'package:flutter/material.dart';
 
-class addDoctorWidget extends StatefulWidget {
-  const addDoctorWidget({Key key}) : super(key: key);
+class addListingWidget extends StatefulWidget {
+  const addListingWidget({Key key}) : super(key: key);
 
   @override
-  _addDoctorWidgetState createState() => _addDoctorWidgetState();
+  _addListingWidgetState createState() => _addListingWidgetState();
 }
 
-class _addDoctorWidgetState extends State<addDoctorWidget> {
+class _addListingWidgetState extends State<addListingWidget> {
   TextEditingController firstNameController;
   TextEditingController lastNameController;
   TextEditingController emailController;
@@ -59,7 +59,7 @@ class _addDoctorWidgetState extends State<addDoctorWidget> {
         backgroundColor: FlutterAppTheme.of(context).whiteColor,
         appBar: PreferredSize(
           preferredSize: const Size.fromHeight(60),
-          child: appbar(text: 'New doctor'),
+          child: appbar(text: 'New Listing'),
         ),
         drawer: Drawerr(),
         body: SingleChildScrollView(
@@ -376,7 +376,7 @@ class _addDoctorWidgetState extends State<addDoctorWidget> {
                                     onPressed: () async {
                                       if (formKey.currentState.validate()) {
                                         String response =
-                                            await apiDBDoctor.addNewDoctor(
+                                            await apiDBDoctor.addNewListing(
                                                 firstNameController.text,
                                                 lastNameController.text,
                                                 dropDownValue,

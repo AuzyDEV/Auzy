@@ -2,15 +2,15 @@ import 'dart:convert';
 
 import 'package:new_mee/social-post/all-posts/File.dart';
 
-List<Doctor> DoctorFromJson(String str) =>
-    List<Doctor>.from(json.decode(str).map((x) => Doctor.fromMap(x)));
+List<ListingModel> ListingModelFromJson(String str) => List<ListingModel>.from(
+    json.decode(str).map((x) => ListingModel.fromMap(x)));
 
-class Doctor {
+class ListingModel {
   String id;
   String firstName, lastName, speciality;
   String email, phoneNumber, Adress;
   List<dynamic> files;
-  Doctor(
+  ListingModel(
       {this.id,
       this.firstName,
       this.lastName,
@@ -20,8 +20,8 @@ class Doctor {
       this.Adress,
       this.files});
 
-  factory Doctor.fromMap(Map<String, dynamic> json) {
-    return Doctor(
+  factory ListingModel.fromMap(Map<String, dynamic> json) {
+    return ListingModel(
       id: (json["id"] ?? ''),
       firstName: (json["data"]["firstName"] ?? ''),
       lastName: (json["data"]["lastName"] ?? ''),
@@ -32,8 +32,8 @@ class Doctor {
       files: List<File>.from(json["files"].map((x) => File.fromMap(x))),
     );
   }
-  factory Doctor.fromMaq(Map<String, dynamic> json) {
-    return Doctor(
+  factory ListingModel.fromMaq(Map<String, dynamic> json) {
+    return ListingModel(
       firstName: (json["data"]["firstName"] ?? ''),
       lastName: (json["data"]["lastName"] ?? ''),
       speciality: (json["data"]["speciality"] ?? ''),

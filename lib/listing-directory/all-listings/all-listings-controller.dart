@@ -7,7 +7,7 @@ import '../single-listing/single-listing-model.dart';
 class AllListingsMan {
   final FirebaseAuth _auth = FirebaseAuth.instance;
 
-  Future<List<Doctor>> getAllDoctors() async {
+  Future<List<ListingModel>> getAllDoctors() async {
     String collectionName = "doctors";
     final response = await http
         .get(Uri.parse('http://127.0.0.1:3000/api/DB/${collectionName}'));
@@ -15,13 +15,13 @@ class AllListingsMan {
       final parsed = jsonDecode(response.body);
       //print(parsed["posts"]);
       final data = parsed["listCollections"];
-      return data.map<Doctor>((json) => Doctor.fromMap(json)).toList();
+      return data.map<ListingModel>((json) => ListingModel.fromMap(json)).toList();
     } else {
       throw Exception("Failed to get post's list");
     }
   }
 
-  Future<List<Doctor>> getAllDoctorsWithSpeciality(String speciality) async {
+  Future<List<ListingModel>> getAllDoctorsWithSpeciality(String speciality) async {
     String collectionName = "doctors";
     final response = await http.get(Uri.parse(
         'http://127.0.0.1:3000/api/DataB/${collectionName}/${speciality}'));
@@ -29,7 +29,7 @@ class AllListingsMan {
       final parsed = jsonDecode(response.body);
       //print(parsed["posts"]);
       final data = parsed["listCollections"];
-      return data.map<Doctor>((json) => Doctor.fromMap(json)).toList();
+      return data.map<ListingModel>((json) => ListingModel.fromMap(json)).toList();
     } else {
       throw Exception("Failed to get post's list");
     }

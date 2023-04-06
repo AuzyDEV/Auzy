@@ -42,13 +42,13 @@ class _HomeWithButtomNavBarWidgetState
   final List<Widget> _pagesUser = [
     HomeWidget(),
     postsForUsersWidget(),
-    listsdocWidget(),
+    AllListingsWidget(),
     MyprofilWidget()
   ];
   final List<Widget> _pagesAdmin = [
     HomeWidget(),
     PostsManagementWidget(),
-    listsdocWidget(),
+    AllListingsWidget(),
     MyprofilWidget()
   ];
   int _currentIndex = 0;

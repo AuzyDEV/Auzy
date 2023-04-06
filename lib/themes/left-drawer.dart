@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:new_mee/authentification/login/login-controller.dart';
-import 'package:new_mee/listing-directory/add-listing-category/add-listing-category-view.dart';
+import 'package:new_mee/listing-directory/all-listing-category/all-listing-category-view.dart';
 import 'package:new_mee/social-post/all-posts/all-posts-view.dart';
 import 'package:new_mee/home/welcome-view.dart';
 import 'package:new_mee/live-chat/conversation-list/conversation-list-view.dart';

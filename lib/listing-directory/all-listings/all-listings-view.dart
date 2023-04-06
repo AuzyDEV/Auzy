@@ -12,17 +12,17 @@ import '../single-listing/single-listing-model.dart';
 import '../../themes/theme.dart';
 import 'package:flutter/material.dart';
 
-class listsdocWidget extends StatefulWidget {
+class AllListingsWidget extends StatefulWidget {
   final String speciality;
-  const listsdocWidget({Key key, this.speciality}) : super(key: key);
+  const AllListingsWidget({Key key, this.speciality}) : super(key: key);
 
   @override
-  _listsdocWidgetState createState() => _listsdocWidgetState();
+  _AllListingsWidgetState createState() => _AllListingsWidgetState();
 }
 
-class _listsdocWidgetState extends State<listsdocWidget> {
+class _AllListingsWidgetState extends State<AllListingsWidget> {
   final scaffoldKey = GlobalKey<ScaffoldState>();
-  Future<List<Doctor>> futureDoctor;
+  Future<List<ListingModel>> futureDoctor;
   AllListingsMan apiDBDoctor = AllListingsMan();
   String searchString = "";
   TextEditingController SearchtextController;
@@ -71,7 +71,7 @@ class _listsdocWidgetState extends State<listsdocWidget> {
               onPressed: () async {
                 await Navigator.push(
                   context,
-                  MaterialPageRoute(builder: (context) => addDoctorWidget()),
+                  MaterialPageRoute(builder: (context) => addListingWidget()),
                 );
               },
               icon: Icons.add,
@@ -91,41 +91,17 @@ class _listsdocWidgetState extends State<listsdocWidget> {
                   mainAxisAlignment: MainAxisAlignment.center,
                   children: [
                     Padding(
-                      padding: EdgeInsetsDirectional.fromSTEB(0, 15, 0, 0),
-                      child: Container(
-                        width: double.infinity,
-                        height: 52,
-                        decoration: BoxDecoration(
-                          color: FlutterAppTheme.of(context).whiteColor,
-                          borderRadius: BorderRadius.circular(8),
-                        ),
-                        child: Padding(
-                          padding: EdgeInsetsDirectional.fromSTEB(15, 0, 15, 0),
-                          child: Row(
-                            mainAxisSize: MainAxisSize.max,
-                            children: [
-                              Icon(
-                                Icons.search,
-                                color: Color(0xFF9457FB),
-                                size: 24,
-                              ),
-                              Expanded(
-                                child: Padding(
-                                  padding: EdgeInsetsDirectional.fromSTEB(
-                                      5, 0, 0, 2),
-                                  child: TextFormFieldWidget(
-                                    onChanged: (value) {
-                                      setState(() {
-                                        searchString = value.toLowerCase();
-                                      });
-                                    },
-                                    hintText: "Search for doctors",
-                                    controller: SearchtextController,
-                                  ),
-                                ),
-                              ),
-                            ],
-                          ),
+                      padding: EdgeInsetsDirectional.fromSTEB(0, 15, 0, 15),
+                      child: Padding(
+                        padding: EdgeInsetsDirectional.fromSTEB(5, 0, 0, 2),
+                        child: TextFormFieldWidget(
+                          onChanged: (value) {
+                            setState(() {
+                              searchString = value.toLowerCase();
+                            });
+                          },
+                          hintText: "Search for doctors",
+                          controller: SearchtextController,
                         ),
                       ),
                     ),
@@ -135,7 +111,7 @@ class _listsdocWidgetState extends State<listsdocWidget> {
             ),
             Padding(
                 padding: EdgeInsetsDirectional.fromSTEB(8, 0, 8, 0),
-                child: FutureBuilder<List<Doctor>>(
+                child: FutureBuilder<List<ListingModel>>(
                     future: futureDoctor,
                     builder: (context, snapshot) {
                       if (snapshot.hasData) {
