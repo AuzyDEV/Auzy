@@ -1,4 +1,3 @@
-
 import 'dart:html';
 import 'dart:typed_data';
 import 'package:firebase_storage/firebase_storage.dart';
@@ -182,8 +181,6 @@ class _addNewPostWidgetState extends State<addNewPostWidget> {
                                                 onPressed: () async {
                                                   String text = await controller
                                                       .getText();
-                                                  print(text);
-
                                                   if (formKey.currentState
                                                       .validate()) {
                                                     String response =

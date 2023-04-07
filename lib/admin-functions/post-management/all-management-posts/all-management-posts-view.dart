@@ -1,6 +1,8 @@
 import 'dart:convert';
+import 'package:flutter_html/flutter_html.dart';
 import 'package:new_mee/admin-functions/post-management/add-post/add-post-view.dart';
 import 'package:new_mee/admin-functions/post-management/all-management-posts/all-management-posts-controller.dart';
+import 'package:new_mee/social-post/all-posts/all-posts-model.dart';
 import 'package:new_mee/user-profile/profile-controller.dart';
 import 'package:flutter/material.dart';
 
@@ -36,8 +38,15 @@ class _PostsManagementWidgetState extends State<PostsManagementWidget>
   bool _isEditMode = false;
   String role;
   TextEditingController searchController = TextEditingController();
+  Future<List<Post>> _futurePosts;
   void _loadData() async {
     await api.GetAllPostsManagement();
+  }
+
+  Future<void> _refreshList() async {
+    setState(() {
+      _futurePosts = api.GetAllPostsManagement();
+    });
   }
 
   Future<String> _getCurrentUserRole() async {
@@ -112,13 +121,11 @@ class _PostsManagementWidgetState extends State<PostsManagementWidget>
                 SingleChildScrollView(
                     scrollDirection: Axis.vertical,
                     child: SingleChildScrollView(
-                      scrollDirection: Axis.horizontal,
-                      child: _createDataTable(),
-                    )),
-                Column(
-                  mainAxisSize: MainAxisSize.max,
-                  children: [],
-                ),
+                        scrollDirection: Axis.horizontal,
+                        child: RefreshIndicator(
+                          onRefresh: _refreshList,
+                          child: _createDataTable(),
+                        ))),
               ],
             ),
           ),
@@ -171,9 +178,16 @@ class _PostsManagementWidgetState extends State<PostsManagementWidget>
               cells: [
                 DataCell(Text('#' + e.id.toString())),
                 _createTitleCell(e.title.toString()),
-                DataCell(Text("post ")
-                    // Html(data: e.contenu.toString()),
+                DataCell(
+                  Container(
+                    width: 400,
+                    height: 50,
+                    child: Html(
+                      data: e.contenu.toString(),
                     ),
+                  ),
+                  //  Html(data: e.contenu.toString()),
+                ),
                 _createTitleCell(e.date.toString()),
                 DataCell(
                   Padding(
@@ -237,7 +251,7 @@ class _PostsManagementWidgetState extends State<PostsManagementWidget>
                                                     context,
                                                     MaterialPageRoute(
                                                       builder: (context) =>
-                                                          HomeWidget(),
+                                                          PostsManagementWidget(),
                                                     ),
                                                   ),
                                                   ScaffoldMessenger.of(context)
@@ -471,21 +485,5 @@ class _PostsManagementWidgetState extends State<PostsManagementWidget>
     return DataCell(_isEditMode == true
         ? TextFormField(initialValue: bookTitle, style: TextStyle(fontSize: 14))
         : Text(bookTitle));
-  }
-
-  Row _createCheckboxField() {
-    return Row(
-      children: [
-        Checkbox(
-          value: _isEditMode,
-          onChanged: (value) {
-            setState(() {
-              _isEditMode = value;
-            });
-          },
-        ),
-        Text('Edit mode'),
-      ],
-    );
   }
 }

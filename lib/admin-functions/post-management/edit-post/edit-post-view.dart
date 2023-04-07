@@ -1,11 +1,13 @@
 import 'package:new_mee/admin-functions/post-management/edit-post/edit-post-controller.dart';
+import 'package:new_mee/home/home-view.dart';
+import 'package:new_mee/themes/alert-popup.dart';
 import 'package:new_mee/themes/label-row.dart';
 import 'package:new_mee/themes/text-field.dart';
 
 import '../../../themes/app-bar-widget.dart';
 import '../../../themes/custom-button-widget.dart';
 import '../../../themes/theme.dart';
-
+import 'package:html_editor_enhanced/html_editor.dart';
 import 'package:new_mee/user-profile/profile-model.dart';
 import '../../../themes/theme.dart';
 import 'package:flutter/material.dart';
@@ -26,7 +28,7 @@ class editPostDetailsWidget extends StatefulWidget {
 
 class _editPostDetailsWidgetState extends State<editPostDetailsWidget> {
   TextEditingController titleController;
-  TextEditingController contenuController;
+  HtmlEditorController controller = HtmlEditorController();
   bool passwordVisibility;
   final scaffoldKey = GlobalKey<ScaffoldState>();
   final formKey = GlobalKey<FormState>();
@@ -37,8 +39,6 @@ class _editPostDetailsWidgetState extends State<editPostDetailsWidget> {
     super.initState();
     titleController = TextEditingController();
     titleController.text = widget.title.toString();
-    contenuController = TextEditingController();
-    contenuController.text = widget.contenu.toString();
     passwordVisibility = false;
   }
 
@@ -95,22 +95,13 @@ class _editPostDetailsWidgetState extends State<editPostDetailsWidget> {
                               EdgeInsetsDirectional.fromSTEB(16, 20, 16, 0),
                           child: Column(
                             children: [
-                              /* quill.QuillToolbar.basic(controller: _controller),
-                              Container(
-                                height: 200,
-                                child: quill.QuillEditor.basic(
-                                  controller: _controller =
-                                      quill.QuillController(
-                                    document: quill.Document.fromDelta(
-                                      deltaFromJson(widget.contenu),
-                                    ),
-                                    selection:
-                                        TextSelection.collapsed(offset: 0),
-                                  ),
-
-                                  readOnly: false, // true for view only mode
+                              HtmlEditor(
+                                controller: controller, //required
+                                htmlEditorOptions: HtmlEditorOptions(
+                                  hint: "Your text here...",
+                                  initialText: "text content initial, if any",
                                 ),
-                              ),*/
+                              ),
                             ],
                           ),
                         ),
@@ -129,16 +120,14 @@ class _editPostDetailsWidgetState extends State<editPostDetailsWidget> {
                                 padding:
                                     EdgeInsetsDirectional.fromSTEB(0, 0, 0, 0),
                                 child: buttonWidget(
-                                  /* onPressed: () async {
-                                      if (formKey.currentState.validate()) {
-                                      var contenu = _controller.document
-                                          .toDelta()
-                                          .toJson();
+                                  onPressed: () async {
+                                    String text = await controller.getText();
+                                    if (formKey.currentState.validate()) {
                                       bool response =
                                           await apiPost.UpdatePostInfos(
                                               widget.id,
                                               titleController.text,
-                                              contenu);
+                                              text);
                                       print(response);
                                       response == true
                                           ? showDialog(
@@ -146,11 +135,11 @@ class _editPostDetailsWidgetState extends State<editPostDetailsWidget> {
                                               builder: (BuildContext context) {
                                                 return alertDialogWidget(
                                                   title: "Succes!",
-                                                  content: 
+                                                  content:
                                                       "updating infos completed successfully!",
                                                   actions: [
                                                     TextButton(
-                                                      child: Text("ok"),
+                                                      child: Text("Ok"),
                                                       onPressed: () async {
                                                         await Navigator.push(
                                                           context,
@@ -167,13 +156,13 @@ class _editPostDetailsWidgetState extends State<editPostDetailsWidget> {
                                           : showDialog(
                                               context: context,
                                               builder: (BuildContext context) {
-                                                return errorAlertDialogWidget(
+                                                return alertDialogWidget(
+                                                  title: "Error",
                                                   content: "$response",
-                                              
                                                 );
                                               });
                                     }
-                                  },*/
+                                  },
                                   text: 'submit',
                                 ),
                               ),
