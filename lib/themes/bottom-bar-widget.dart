@@ -38,7 +38,6 @@ Future<String> _getCurrentUserRole() async {
 
 void _getFutureRoleValue() async {
   String value = await _getCurrentUserRole();
-
   _futureRoleValue = value;
 }
 

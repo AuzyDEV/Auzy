@@ -54,7 +54,8 @@ class _FlutterFlowDropDownState extends State<FlutterFlowDropDown> {
 
   @override
   Widget build(BuildContext context) {
-    final dropdownWidget = DropdownButton<String>(
+    final dropdownWidget = DropdownButtonFormField<String>(
+      validator: (value) => value == null ? 'Field is required' : null,
       value: effectiveOptions.contains(dropDownValue) ? dropDownValue : null,
       hint: widget.hintText != null
           ? Text(widget.hintText, style: widget.textStyle)
@@ -68,24 +69,52 @@ class _FlutterFlowDropDownState extends State<FlutterFlowDropDown> {
                 ),
               ))
           .toList(),
-      elevation: widget.elevation.toInt(),
+      elevation: 1,
       onChanged: (value) {
         dropDownValue = value;
         widget.onChanged(value);
       },
       icon: widget.icon,
       isExpanded: true,
-      dropdownColor: widget.fillColor,
+      dropdownColor: Colors.white,
       focusColor: FlutterAppTheme.of(context).TransparentColor,
     );
-    final childWidget = DecoratedBox(
-      decoration: BoxDecoration(
-        borderRadius: BorderRadius.circular(widget.borderRadius),
-        border: Border.all(
-          color: widget.borderColor,
-          width: widget.borderWidth,
+    final childWidget = InputDecorator(
+      decoration: InputDecoration(
+        errorStyle: FlutterAppTheme.of(context).bodyText1.override(
+              fontFamily: 'Roboto',
+              color: Colors.red,
+              fontWeight: FontWeight.normal,
+            ),
+        focusedErrorBorder: OutlineInputBorder(
+          borderSide: BorderSide(
+            color: Colors.red,
+            width: 1,
+          ),
+          borderRadius: BorderRadius.circular(8),
         ),
-        color: widget.fillColor,
+        errorBorder: OutlineInputBorder(
+          borderSide: BorderSide(
+            color: Colors.red,
+            width: 1,
+          ),
+          borderRadius: BorderRadius.circular(8),
+        ),
+        enabledBorder: OutlineInputBorder(
+          borderSide: BorderSide(
+            color: Color(0x988B97A2),
+            width: 1,
+          ),
+          borderRadius: BorderRadius.circular(8),
+        ),
+        focusedBorder: OutlineInputBorder(
+          borderSide: BorderSide(
+            color: Color(0x988B97A2),
+            width: 1,
+          ),
+          borderRadius: BorderRadius.circular(8),
+        ),
+        contentPadding: EdgeInsetsDirectional.fromSTEB(12, 0, 12, 0),
       ),
       child: Padding(
         padding: widget.margin,

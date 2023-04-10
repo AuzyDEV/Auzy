@@ -22,6 +22,7 @@ class _SpecialitiesWidgetState extends State<SpecialitiesWidget> {
   final _unfocusNode = FocusNode();
   Future<List<ListingCtegoryModel>> _futureCategory;
   CategoryListingCtegoryMan api = CategoryListingCtegoryMan();
+  
   @override
   void initState() {
     super.initState();

@@ -1,6 +1,8 @@
 import 'dart:html';
 import 'dart:typed_data';
 import 'package:firebase_storage/firebase_storage.dart';
+import 'package:new_mee/themes/custom-dropdown-field.dart';
+import 'package:new_mee/themes/dropdown-field.dart';
 import 'package:new_mee/themes/label-row.dart';
 import 'package:new_mee/themes/text-field.dart';
 import 'package:string_validator/string_validator.dart';
@@ -32,11 +34,25 @@ class _addListingWidgetState extends State<addListingWidget> {
   final scaffoldKey = GlobalKey<ScaffoldState>();
   final formKey = GlobalKey<FormState>();
   String dropDownValue;
-  String _dropdownError;
   Uint8List fileContents;
-  static final RegExp emailReg = RegExp(
-      r"^[a-zA-Z0-9.a-zA-Z0-9.!#$%&'*+-/=?^_`{|}~]+@[a-zA-Z0-9]+\.[a-zA-Z]+");
   DBDoctorMan apiDBDoctor = DBDoctorMan();
+  List<String> specialties = [
+    "Neurologist",
+    "Psychiatrist",
+    "Family physician",
+    "Pediatrician",
+    "Child psychiatrist",
+    "Occupational therapist",
+    "Ophtalmologist",
+    "Orthopdist",
+    "Physical therapist",
+    "Otorhinolaryngologist",
+    "Psychotherapist",
+    "Psychomotor therapist",
+    "Psychologist",
+    "speech and language therapist",
+  ];
+
   @override
   void initState() {
     super.initState();
@@ -119,7 +135,13 @@ class _addListingWidgetState extends State<addListingWidget> {
                                   mainAxisSize: MainAxisSize.max,
                                   children: [
                                     Expanded(
-                                      child: DropdownButtonFormField<String>(
+                                        child: ReusableDropdown(
+                                      items: specialties,
+                                      onChanged: (value) {
+                                        dropDownValue = value;
+                                      },
+                                    )
+                                        /*     child: DropdownButtonFormField<String>(
                                         items: [
                                           DropdownMenuItem<String>(
                                             value: "Neurologist",
@@ -276,7 +298,8 @@ class _addListingWidgetState extends State<addListingWidget> {
                                         iconSize: 18.0,
                                         iconEnabledColor: Colors.grey,
                                       ),
-                                    ),
+                                 */
+                                        ),
                                   ])),
                           Padding(
                             padding:

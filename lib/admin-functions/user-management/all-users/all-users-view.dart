@@ -1,3 +1,5 @@
+import 'package:new_mee/user-profile/profile-model.dart';
+
 import '../../../user-profile/edit-profile-widget.dart';
 import '../../../themes/alert-popup.dart';
 import '../../../themes/app-bar-widget.dart';
@@ -31,9 +33,16 @@ class _UsersWidgetState extends State<UsersWidget>
   bool _isSortAsc = true;
   UserMan api = UserMan();
   bool _isEditMode = false;
+  Future<List<User>> _futureUsers;
   TextEditingController searchController = TextEditingController();
   void _loadData() async {
     await api.GetAllUsers();
+  }
+
+  Future<void> _refreshList() async {
+    setState(() {
+      _futureUsers = api.GetAllUsers();
+    });
   }
 
   @override
@@ -107,7 +116,10 @@ class _UsersWidgetState extends State<UsersWidget>
                     scrollDirection: Axis.vertical,
                     child: SingleChildScrollView(
                       scrollDirection: Axis.horizontal,
-                      child: _createDataTable(),
+                      child: RefreshIndicator(
+                        onRefresh: _refreshList,
+                        child: _createDataTable(),
+                      ),
                     )),
                 Column(
                   mainAxisSize: MainAxisSize.max,
