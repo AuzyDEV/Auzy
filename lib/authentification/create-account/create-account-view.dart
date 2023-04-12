@@ -1,16 +1,7 @@
-import 'package:new_mee/authentification/create-account/create-account-controller.dart';
-import 'package:new_mee/themes/label-row.dart';
-import 'package:new_mee/themes/text-field.dart';
-
-import '../../../themes/alert-popup.dart';
-import '../../../themes/custom-button-widget.dart';
-import '../../../themes/theme.dart';
 import '../../index.dart';
-import '../../themes/theme.dart';
+import 'create-account-controller.dart';
+import '../../../themes/theme.dart';
 import 'package:flutter/material.dart';
-import 'package:string_validator/string_validator.dart';
-
-import '../login/login-view.dart';
 
 class CreateAccountWidget extends StatefulWidget {
   const CreateAccountWidget({Key key}) : super(key: key);
@@ -26,8 +17,6 @@ class _CreateAccountWidgetState extends State<CreateAccountWidget> {
   TextEditingController passwordController;
   bool passwordVisibility;
   final scaffoldKey = GlobalKey<ScaffoldState>();
-  static final RegExp emailReg = RegExp(
-      r"^[a-zA-Z0-9.a-zA-Z0-9.!#$%&'*+-/=?^_`{|}~]+@[a-zA-Z0-9]+\.[a-zA-Z]+");
   final formKey = GlobalKey<FormState>();
   bool futurepost;
   CreateAccountMan api = CreateAccountMan();

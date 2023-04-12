@@ -1,11 +1,8 @@
 import 'package:flutter/material.dart';
-import 'package:new_mee/themes/theme.dart';
-import 'package:new_mee/user-profile/profile-controller.dart';
-import '../../themes/loading-spinner.dart';
-import '../shared-widgets/messages-widget.dart';
-import '../shared-widgets/new-message-widget.dart';
-import '../shared-widgets/profile-header-widget.dart';
-import 'package:new_mee/user-profile/profile-model.dart';
+import '../../index.dart';
+import '../../themes/theme.dart';
+import '../../user-profile/profile-controller.dart';
+import '../../user-profile/profile-model.dart';
 
 class ChatPage extends StatefulWidget {
   final User user;

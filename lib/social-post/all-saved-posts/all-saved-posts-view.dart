@@ -1,18 +1,8 @@
 import 'dart:convert';
-import 'package:new_mee/social-post/all-posts/all-posts-view.dart';
 import 'package:new_mee/user-profile/profile-controller.dart';
-import '../../themes/icon-button-widget.dart';
 import 'all-saved-posts-controller.dart';
-import '../../../themes/alert-popup.dart';
-import '../../../themes/app-bar-widget.dart';
-import '../../../themes/custom-button-widget.dart';
-import '../../../themes/floating-button-widget.dart';
-import '../../../themes/left-drawer.dart';
-import '../../../themes/loading-spinner.dart';
-import '../../../themes/snack-bar-widget.dart';
 import '../../../themes/theme.dart';
 import '../../index.dart';
-import '../../themes/theme.dart';
 import 'package:flutter/material.dart';
 import 'all-saved-posts-model.dart';
 

@@ -1,20 +1,10 @@
 import 'dart:convert';
 import 'package:flutter_html/flutter_html.dart';
-import 'package:new_mee/social-post/all-posts/all-posts-model.dart';
-import 'package:new_mee/social-post/single-post/single-post-controller.dart';
-import '../../../../themes/alert-popup.dart';
-import '../../../../themes/app-bar-widget.dart';
-import '../../../../themes/custom-button-widget.dart';
-import '../../../../themes/floating-button-widget.dart';
-import '../../../../themes/left-drawer.dart';
-import '../../../../themes/loading-spinner.dart';
-import '../../../../themes/snack-bar-widget.dart';
+import '../../index.dart';
+import '../../user-profile/profile-controller.dart';
+import '../all-posts/all-posts-model.dart';
+import 'single-post-controller.dart';
 import '../../../../themes/theme.dart';
-import '../../admin-functions/post-management/all-management-posts/all-management-posts-controller.dart';
-import '../../admin-functions/post-management/edit-post/edit-post-image-widget.dart';
-import '../../themes/icon-button-widget.dart';
-import '../../themes/loading-spinner.dart';
-import '../../themes/theme.dart';
 import 'package:flutter/material.dart';
 
 class postDetailsWidget extends StatefulWidget {
@@ -30,6 +20,7 @@ class _postDetailsWidgetState extends State<postDetailsWidget> {
   Future<Post> _futurePost;
   String _futureStringValue;
   SinglePostMan apiPost = SinglePostMan();
+  ProfilingMan apiUser = ProfilingMan();
   Text getTextSpanFromRichTextJson(String jsonString) {
     final parsedJson = json.decode(jsonString);
     final List<dynamic> textObjects = parsedJson as List<dynamic>;
@@ -91,11 +82,9 @@ class _postDetailsWidgetState extends State<postDetailsWidget> {
       TextSpan(children: textSpans),
     );
   }
-
   Future<String> _getCurrentUserRole() async {
     return apiUser.GetCurrentUserRole();
   }
-
   void _getFutureStringValue() async {
     String value = await _getCurrentUserRole();
     setState(() {

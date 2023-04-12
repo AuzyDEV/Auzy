@@ -1,21 +1,11 @@
 import 'dart:html';
 import 'dart:typed_data';
 import 'package:firebase_storage/firebase_storage.dart';
-import 'package:new_mee/admin-functions/post-management/add-post/add-post-controller.dart';
-import 'package:new_mee/themes/label-row.dart';
-import 'package:new_mee/themes/text-field.dart';
-import 'package:new_mee/user-profile/profile-controller.dart';
-import '../../../themes/alert-popup.dart';
-import '../../../themes/app-bar-widget.dart';
-import '../../../themes/custom-button-widget.dart';
-import '../../../themes/left-drawer.dart';
-import '../../../themes/loading-spinner.dart';
+import '../../../index.dart';
+import 'add-post-controller.dart';
+import '../../../user-profile/profile-controller.dart';
 import '../../../themes/theme.dart';
-import 'package:new_mee/home/home-view.dart';
-import 'package:new_mee/user-profile/profile-model.dart';
-import 'package:new_mee/admin-functions/post-management/all-management-posts/all-management-posts-controller.dart';
-import 'package:new_mee/admin-functions/post-management/all-management-posts/all-management-posts-controller.dart';
-import '../../../themes/theme.dart';
+import '../../../user-profile/profile-model.dart';
 import 'package:flutter/material.dart';
 import 'package:html_editor_enhanced/html_editor.dart';
 

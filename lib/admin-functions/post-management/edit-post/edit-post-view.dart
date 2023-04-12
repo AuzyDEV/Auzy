@@ -1,15 +1,8 @@
-import 'package:new_mee/admin-functions/post-management/edit-post/edit-post-controller.dart';
-import 'package:new_mee/home/home-view.dart';
-import 'package:new_mee/themes/alert-popup.dart';
-import 'package:new_mee/themes/label-row.dart';
-import 'package:new_mee/themes/text-field.dart';
-
-import '../../../themes/app-bar-widget.dart';
-import '../../../themes/custom-button-widget.dart';
+import '../../../index.dart';
+import 'edit-post-controller.dart';
 import '../../../themes/theme.dart';
 import 'package:html_editor_enhanced/html_editor.dart';
-import 'package:new_mee/user-profile/profile-model.dart';
-import '../../../themes/theme.dart';
+import '../../../user-profile/profile-model.dart';
 import 'package:flutter/material.dart';
 
 class editPostDetailsWidget extends StatefulWidget {

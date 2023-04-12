@@ -1,13 +1,7 @@
 import 'package:flutter/material.dart';
-import 'package:new_mee/listing-directory/add-listing/add-listing-view.dart';
-import 'package:new_mee/listing-directory/all-listings/all-listings-view.dart';
-import 'package:new_mee/social-post/all-posts/all-posts-view.dart';
-import 'package:new_mee/themes/theme.dart';
-import 'package:new_mee/home/home-view.dart';
-import 'package:new_mee/user-profile/profile-controller.dart';
-import '../user-profile/profile-view.dart';
-import '../admin-functions/post-management/all-management-posts/all-management-posts-view.dart';
 import '../index.dart';
+import 'theme.dart';
+import '../user-profile/profile-controller.dart';
 
 class buttomNavBar extends StatefulWidget {
   @override

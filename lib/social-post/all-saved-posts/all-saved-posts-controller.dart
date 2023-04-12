@@ -1,10 +1,9 @@
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:http/http.dart' as http;
-import 'package:new_mee/social-post/all-posts/all-posts-model.dart';
+import '../all-posts/all-posts-model.dart';
 import 'dart:convert';
 import 'dart:async';
-
-import 'package:new_mee/social-post/all-saved-posts/all-saved-posts-model.dart';
+import 'all-saved-posts-model.dart';
 
 class SavedPostMan {
   final FirebaseAuth _auth = FirebaseAuth.instance;

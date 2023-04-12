@@ -1,21 +1,8 @@
-import 'package:new_mee/user-profile/profile-model.dart';
-
-import '../../../user-profile/edit-profile-widget.dart';
-import '../../../themes/alert-popup.dart';
-import '../../../themes/app-bar-widget.dart';
-import '../../../themes/custom-button-widget.dart';
-import '../../../themes/floating-button-widget.dart';
-import '../../../themes/left-drawer.dart';
-import '../../../themes/loading-spinner.dart';
-import '../../../themes/snack-bar-widget.dart';
-import '../../../themes/theme.dart';
-import '../../../themes/theme.dart';
-import 'package:new_mee/home/home-view.dart';
 import '../../../index.dart';
+import '../../../user-profile/profile-model.dart';
+import '../../../themes/theme.dart';
 import 'package:flutter/material.dart';
 import 'all-users-controller.dart';
-import '../add-user/add-user-view.dart';
-import '../profil-user/profil-user-view.dart';
 
 class UsersWidget extends StatefulWidget {
   const UsersWidget({Key key}) : super(key: key);

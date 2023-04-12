@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:new_mee/themes/theme.dart';
+import '../../themes/theme.dart';
 
 class ProfileHeaderWidget extends StatelessWidget {
   final String name;

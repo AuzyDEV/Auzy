@@ -1,6 +1,6 @@
 import 'dart:convert';
 
-import 'package:new_mee/social-post/all-posts/File.dart';
+import 'package:new_mee/social-post/all-posts/file-model.dart';
 
 List<ListingCtegoryModel> ListingCtegoryModelFromJson(String str) =>
     List<ListingCtegoryModel>.from(

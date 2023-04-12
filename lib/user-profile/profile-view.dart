@@ -1,20 +1,9 @@
-import 'package:new_mee/authentification/login/login-controller.dart';
-import 'package:new_mee/user-profile/profile-controller.dart';
-import 'package:new_mee/user-profile/profile-model.dart';
-import '../../themes/alert-popup.dart';
-import '../../themes/app-bar-widget.dart';
-import '../../themes/custom-button-widget.dart';
-import '../../themes/left-drawer.dart';
-import '../../themes/loading-spinner.dart';
-import '../../themes/snack-bar-widget.dart';
-import '../../themes/theme.dart';
-import '../authentification/login/login-view.dart';
+import '../authentification/login/login-controller.dart';
 import '../index.dart';
-import '../themes/theme.dart';
+import 'profile-controller.dart';
+import 'profile-model.dart';
+import '../../themes/theme.dart';
 import 'package:flutter/material.dart';
-
-import 'change-password-widget.dart';
-import 'edit-profile-widget.dart';
 
 class MyprofilWidget extends StatefulWidget {
   final String id;

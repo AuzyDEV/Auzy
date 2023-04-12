@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
-import 'package:new_mee/user-profile/profile-model.dart';
+import '../../index.dart';
+import '../../user-profile/profile-model.dart';
 import '../../themes/theme.dart';
-import '../conversation/conversation-view.dart';
 
 class ChatHeaderWidget extends StatelessWidget {
   final List<User> users;

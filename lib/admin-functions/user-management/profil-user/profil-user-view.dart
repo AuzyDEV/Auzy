@@ -1,16 +1,8 @@
-import 'package:new_mee/admin-functions/user-management/profil-user/profil-user-controller.dart';
-import 'package:new_mee/themes/text-field.dart';
-
-import '../../../themes/app-bar-widget.dart';
-import '../../../themes/custom-button-widget.dart';
-import '../../../themes/loading-spinner.dart';
-import '../../../themes/modal-bottom.dart';
+import '../../../index.dart';
+import 'profil-user-controller.dart';
 import '../../../themes/theme.dart';
-import 'package:new_mee/user-profile/profile-model.dart';
-import '../../../themes/theme.dart';
+import '../../../user-profile/profile-model.dart';
 import 'package:flutter/material.dart';
-
-import '../all-users/all-users-controller.dart';
 
 class ProfillWidget extends StatefulWidget {
   final String id;

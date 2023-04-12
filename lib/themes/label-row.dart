@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:new_mee/themes/theme.dart';
+import 'theme.dart';
 
 class LabeledRowWidget extends StatelessWidget {
   final String text;

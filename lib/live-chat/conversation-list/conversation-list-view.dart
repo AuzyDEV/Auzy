@@ -1,13 +1,8 @@
 
-import 'package:new_mee/admin-functions/user-management/all-users/all-users-controller.dart';
-
-import '../conversation/conversation-view.dart';
-import '../../../themes/app-bar-widget.dart';
-import '../../../themes/left-drawer.dart';
-import '../../../themes/loading-spinner.dart';
+import '../../admin-functions/user-management/all-users/all-users-controller.dart';
+import '../../index.dart';
 import '../../../themes/theme.dart';
-import '../../themes/theme.dart';
-import 'package:new_mee/user-profile/profile-model.dart';
+import '../../user-profile/profile-model.dart';
 import 'package:flutter/material.dart';
 
 class chatcopyWidget extends StatefulWidget {

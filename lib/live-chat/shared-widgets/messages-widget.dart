@@ -1,8 +1,7 @@
 import 'dart:async';
 import 'package:flutter/material.dart';
-import '../../themes/loading-spinner.dart';
+import '../../index.dart';
 import '../conversation/conversation-controller.dart';
-import 'message-widget.dart';
 import '../conversation/conversation-model.dart';
 
 class MessagesWidget extends StatefulWidget {

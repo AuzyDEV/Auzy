@@ -1,16 +1,7 @@
-import 'package:new_mee/authentification/forgot-password/forgot-password-view.dart';
-import 'package:new_mee/authentification/login/login-controller.dart';
-import 'package:new_mee/home/welcome-view.dart';
-import 'package:new_mee/themes/label-row.dart';
-import 'package:new_mee/themes/text-field.dart';
-
-import '../../../themes/alert-popup.dart';
-import '../../../themes/custom-button-widget.dart';
-import '../../../themes/theme.dart';
 import '../../index.dart';
-import '../../themes/theme.dart';
+import 'login-controller.dart';
+import '../../../themes/theme.dart';
 import 'package:flutter/material.dart';
-import '../create-account/create-account-view.dart';
 
 class SigninWidget extends StatefulWidget {
   const SigninWidget({Key key}) : super(key: key);

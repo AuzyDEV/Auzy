@@ -1,13 +1,7 @@
-import 'package:new_mee/listing-directory/add-listing-category/add-listing-category-controller.dart';
 import 'package:new_mee/listing-directory/add-listing-category/add-listing-category-model.dart';
-import 'package:new_mee/listing-directory/add-listing-category/add-listing-category-view.dart';
 import 'package:new_mee/listing-directory/all-listing-category/all-listing-category-controller.dart';
-import 'package:new_mee/listing-directory/all-listings/all-listings-view.dart';
-
-import '../../../themes/app-bar-widget.dart';
-import '../../../themes/left-drawer.dart';
 import '../../../themes/theme.dart';
-import '../../themes/theme.dart';
+import '../../index.dart';
 import 'package:flutter/material.dart';
 
 class SpecialitiesWidget extends StatefulWidget {

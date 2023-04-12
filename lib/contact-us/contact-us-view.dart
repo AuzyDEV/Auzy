@@ -1,16 +1,7 @@
 import 'package:intl_phone_number_input/intl_phone_number_input.dart';
-import 'package:new_mee/home/home-view.dart';
-import 'package:new_mee/home/home-view.dart';
-import 'package:new_mee/themes/label-row.dart';
-import 'package:new_mee/themes/text-field.dart';
-import '../../themes/custom-button-widget.dart';
-import '../../themes/left-drawer.dart';
+import '../index.dart';
 import '../../themes/theme.dart';
-import '../themes/alert-popup.dart';
-import '../themes/app-bar-widget.dart';
-import '../themes/theme.dart';
 import 'package:flutter/material.dart';
-import 'package:string_validator/string_validator.dart';
 
 import 'contact-us-controller.dart';
 

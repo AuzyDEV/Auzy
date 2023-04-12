@@ -1,13 +1,8 @@
-import 'package:firebase_messaging/firebase_messaging.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_localizations/flutter_localizations.dart';
-import 'package:new_mee/themes/theme.dart';
-import 'package:font_awesome_flutter/font_awesome_flutter.dart';
-import 'package:new_mee/index.dart';
+import 'index.dart';
+import 'themes/theme.dart';
 import 'package:firebase_core/firebase_core.dart';
-import 'authentification/login/login-view.dart';
 import 'firebase_options.dart';
-import 'package:firebase_app_installations/firebase_app_installations.dart';
 
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();

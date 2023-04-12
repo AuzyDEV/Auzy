@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
-import 'package:new_mee/themes/theme.dart';
-import 'package:new_mee/user-profile/profile-model.dart';
-import '../conversation/conversation-view.dart';
+import '../../index.dart';
+import '../../themes/theme.dart';
+import '../../user-profile/profile-model.dart';
 
 class ChatBodyWidget extends StatelessWidget {
   final List<User> users;

@@ -1,12 +1,8 @@
-import 'package:new_mee/listing-directory/single-listing/single-listing-controller.dart';
-
-import '../../../themes/app-bar-widget.dart';
-import '../../../themes/left-drawer.dart';
+import '../../index.dart';
+import 'single-listing-controller.dart';
 import '../../../themes/theme.dart';
-import '../../themes/theme.dart';
 import 'package:flutter/material.dart';
 import 'single-listing-model.dart';
-import '../add-listing/add-listing-controller.dart';
 
 class DoctorprofileWidget extends StatefulWidget {
   final String id;

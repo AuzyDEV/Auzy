@@ -1,6 +1,4 @@
-import 'package:new_mee/admin-functions/user-management/all-users/all-users-controller.dart';
-import 'package:new_mee/admin-functions/user-management/profil-user/profil-user-controller.dart';
-
+import '../admin-functions/user-management/profil-user/profil-user-controller.dart';
 import '../themes/theme.dart';
 import 'package:flutter/material.dart';
 

@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:new_mee/themes/theme.dart';
+import '../../themes/theme.dart';
 import '../conversation/conversation-controller.dart';
 
 class NewMessageWidget extends StatefulWidget {

@@ -1,12 +1,8 @@
-import '../../../themes/app-bar-widget.dart';
-import '../../../themes/left-drawer.dart';
-import '../../../themes/loading-spinner.dart';
 import '../../../themes/theme.dart';
 import 'package:new_mee/user-profile/profile-controller.dart';
-
 import 'package:new_mee/user-profile/profile-model.dart';
-import '../../themes/theme.dart';
 import 'package:flutter/material.dart';
+import '../index.dart';
 
 class HomeWidget extends StatefulWidget {
   const HomeWidget({Key key}) : super(key: key);

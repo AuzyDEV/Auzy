@@ -87,7 +87,6 @@ dependencies:
   bottom_navy_bar: ^6.0.0
   string_validator: ^0.3.0
   flutter_quill: ^6.0.2
-  webview_flutter: ^4.0.7
   html_editor_enhanced: ^2.5.1
   flutter_html: ^3.0.0-alpha.6
   html_unescape: ^2.0.0

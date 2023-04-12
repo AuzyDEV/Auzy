@@ -1,18 +1,9 @@
-import 'package:new_mee/admin-functions/user-management/all-users/all-users-controller.dart';
-import 'package:new_mee/social-post/all-posts/all-posts-view.dart';
-import 'package:new_mee/user-profile/profile-controller.dart';
-
-
-import 'share-post-controller.dart';
-import '../../../themes/alert-popup.dart';
-import '../../../themes/app-bar-widget.dart';
-import '../../../themes/custom-button-widget.dart';
-import '../../../themes/left-drawer.dart';
-import '../../../themes/loading-spinner.dart';
-import '../../../themes/theme.dart';
-import '../../themes/theme.dart';
+import '../../admin-functions/user-management/all-users/all-users-controller.dart';
 import '../../index.dart';
-import 'package:new_mee/user-profile/profile-model.dart';
+import '../../user-profile/profile-controller.dart';
+import 'share-post-controller.dart';
+import '../../../themes/theme.dart';
+import '../../user-profile/profile-model.dart';
 import 'package:flutter/material.dart';
 
 class UsersListForPostsWidget extends StatefulWidget {

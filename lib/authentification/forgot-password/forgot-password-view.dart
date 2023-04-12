@@ -1,11 +1,6 @@
-import 'package:new_mee/authentification/forgot-password/forgot-password-controller.dart';
-import 'package:new_mee/themes/label-row.dart';
-import 'package:new_mee/themes/text-field.dart';
-
-import '../../../themes/alert-popup.dart';
-import '../../../themes/custom-button-widget.dart';
+import '../../index.dart';
+import 'forgot-password-controller.dart';
 import '../../../themes/theme.dart';
-import '../../themes/theme.dart';
 import 'package:flutter/material.dart';
 
 class ForgetpasswordWidget extends StatefulWidget {

@@ -1,20 +1,9 @@
 import 'package:flutter/material.dart';
-import 'package:new_mee/authentification/login/login-controller.dart';
-import 'package:new_mee/listing-directory/all-listing-category/all-listing-category-view.dart';
-import 'package:new_mee/social-post/all-posts/all-posts-view.dart';
-import 'package:new_mee/home/welcome-view.dart';
-import 'package:new_mee/live-chat/conversation-list/conversation-list-view.dart';
-import 'package:new_mee/user-profile/profile-model.dart';
-import '../user-profile/profile-view.dart';
-import '../admin-functions/user-management/all-users/all-users-view.dart';
-import '../admin-functions/mail-broadcast/mail-broadcast-view.dart';
-import '../admin-functions/post-management/all-management-posts/all-management-posts-view.dart';
-import 'package:new_mee/user-profile/profile-controller.dart';
-import '../authentification/login/login-view.dart';
-import '../contact-us/contact-us-view.dart';
-import '../themes/theme.dart';
-import 'package:new_mee/home/home-view.dart';
+import '../authentification/login/login-controller.dart';
 import '../index.dart';
+import '../user-profile/profile-model.dart';
+import '../user-profile/profile-controller.dart';
+import '../themes/theme.dart';
 
 class Drawerr extends StatefulWidget {
   @override
@@ -33,7 +22,6 @@ class _DrawerrState extends State<Drawerr> {
     return apiUser.GetCurrentUserRole();
   }
 
-  // Function to get the value of Future<String>
   void _getFutureStringValue() async {
     String value = await _getCurrentUserRole();
     setState(() {

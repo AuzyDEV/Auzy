@@ -1,15 +1,8 @@
-import 'package:new_mee/listing-directory/add-listing/add-listing-view.dart';
-import 'package:new_mee/listing-directory/all-listings/all-listings-controller.dart';
-
-import '../../themes/text-field.dart';
-import '../add-listing/add-listing-controller.dart';
-import '../../../themes/app-bar-widget.dart';
-import '../../../themes/floating-button-widget.dart';
+import '../../index.dart';
+import 'all-listings-controller.dart';
 import '../../../themes/left-drawer.dart';
 import '../../../themes/theme.dart';
-import '../single-listing/single-listing-view.dart';
 import '../single-listing/single-listing-model.dart';
-import '../../themes/theme.dart';
 import 'package:flutter/material.dart';
 
 class AllListingsWidget extends StatefulWidget {

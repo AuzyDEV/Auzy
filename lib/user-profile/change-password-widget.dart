@@ -1,16 +1,8 @@
-import 'package:new_mee/themes/label-row.dart';
-import 'package:new_mee/themes/text-field.dart';
-import 'package:new_mee/user-profile/profile-model.dart';
-
-import '../../themes/alert-popup.dart';
-import '../../themes/app-bar-widget.dart';
-import '../../themes/custom-button-widget.dart';
-import '../../themes/loading-spinner.dart';
+import '../index.dart';
+import 'profile-model.dart';
 import '../../themes/theme.dart';
-import 'package:new_mee/home/home-view.dart';
-import '../themes/theme.dart';
 import 'package:flutter/material.dart';
-import 'package:new_mee/user-profile/profile-controller.dart';
+import 'profile-controller.dart';
 
 class changePasswordWidget extends StatefulWidget {
   const changePasswordWidget({Key key}) : super(key: key);

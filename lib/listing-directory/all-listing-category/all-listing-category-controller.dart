@@ -2,8 +2,7 @@ import 'dart:convert';
 import 'package:http/http.dart' as http;
 import 'dart:async';
 import 'package:firebase_auth/firebase_auth.dart';
-import 'package:new_mee/listing-directory/add-listing-category/add-listing-category-model.dart';
-import '../single-listing/single-listing-model.dart';
+import '../add-listing-category/add-listing-category-model.dart';
 
 class CategoryListingCtegoryMan {
   final FirebaseAuth _auth = FirebaseAuth.instance;

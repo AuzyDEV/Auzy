@@ -1,15 +1,12 @@
 import 'dart:convert';
-
-import 'package:new_mee/social-post/all-posts/all-posts-model.dart';
+import '../../index.dart';
+import '../all-posts/all-posts-model.dart';
 import '../all-saved-posts/all-saved-posts-controller.dart';
 import 'share-post-controller.dart';
 import '../../themes/theme.dart';
 import 'package:flutter/material.dart';
 import 'share-post-model.dart';
-import '../../../themes/app-bar-widget.dart';
-import '../../../themes/left-drawer.dart';
-import '../../../themes/loading-spinner.dart';
-import 'package:new_mee/user-profile/profile-controller.dart';
+import '../../user-profile/profile-controller.dart';
 
 class sharedPostsByUserWidget extends StatefulWidget {
   const sharedPostsByUserWidget({Key key}) : super(key: key);

@@ -5,12 +5,7 @@ import 'package:firebase_storage/firebase_storage.dart';
 import 'package:new_mee/admin-functions/post-management/edit-post/edit-post-controller.dart';
 import 'package:new_mee/themes/theme.dart';
 import 'package:flutter/material.dart';
-import 'package:new_mee/home/home-view.dart';
-import '../../../themes/alert-popup.dart';
-import '../../../themes/app-bar-widget.dart';
-import '../../../themes/custom-button-widget.dart';
-import '../../../themes/left-drawer.dart';
-import '../../../themes/theme.dart';
+import '../../../index.dart';
 
 class updateImagePostWidget extends StatefulWidget {
   final String id, downloadURL;

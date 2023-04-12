@@ -1,23 +1,10 @@
-import 'dart:convert';
 import 'package:flutter_html/flutter_html.dart';
-import 'package:new_mee/admin-functions/post-management/add-post/add-post-view.dart';
-import 'package:new_mee/admin-functions/post-management/all-management-posts/all-management-posts-controller.dart';
-import 'package:new_mee/social-post/all-posts/all-posts-model.dart';
-import 'package:new_mee/user-profile/profile-controller.dart';
+import '../../../index.dart';
+import 'all-management-posts-controller.dart';
+import '../../../social-post/all-posts/all-posts-model.dart';
+import '../../../user-profile/profile-controller.dart';
 import 'package:flutter/material.dart';
-
-import 'package:new_mee/home/home-view.dart';
-import 'package:new_mee/social-post/single-post/single-post-view.dart';
-import '../../../themes/alert-popup.dart';
-import '../../../themes/app-bar-widget.dart';
-import '../../../themes/custom-button-widget.dart';
-import '../../../themes/floating-button-widget.dart';
-import '../../../themes/left-drawer.dart';
-import '../../../themes/loading-spinner.dart';
-import '../../../themes/snack-bar-widget.dart';
 import '../../../themes/theme.dart';
-import '../../../themes/theme.dart';
-import '../edit-post/edit-post-view.dart';
 
 class PostsManagementWidget extends StatefulWidget {
   const PostsManagementWidget({Key key}) : super(key: key);

@@ -1,19 +1,9 @@
-import 'package:new_mee/authentification/create-account/create-account-controller.dart';
-import 'package:new_mee/home/home-view.dart';
-import 'package:new_mee/themes/label-row.dart';
-import 'package:new_mee/themes/text-field.dart';
-import 'package:new_mee/user-profile/profile-controller.dart';
-import '../../../authentification/login/login-view.dart';
-import '../../../themes/alert-popup.dart';
-import '../../../themes/app-bar-widget.dart';
-import '../../../themes/custom-button-widget.dart';
-import '../../../themes/left-drawer.dart';
-import '../../../themes/theme.dart';
+import '../../../authentification/create-account/create-account-controller.dart';
 import '../../../index.dart';
-import 'package:new_mee/user-profile/profile-model.dart';
+import '../../../user-profile/profile-controller.dart';
 import '../../../themes/theme.dart';
+import '../../../user-profile/profile-model.dart';
 import 'package:flutter/material.dart';
-import 'package:string_validator/string_validator.dart';
 import '../all-users/all-users-controller.dart';
 
 class addUserWidget extends StatefulWidget {
