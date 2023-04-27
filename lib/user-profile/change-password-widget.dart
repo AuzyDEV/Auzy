@@ -50,10 +50,7 @@ class _changePasswordWidgetState extends State<changePasswordWidget> {
                 if (snapshot.hasData) {
                   return Column(
                     mainAxisSize: MainAxisSize.max,
-                    children: [
-                      Padding(
-                        padding: EdgeInsetsDirectional.fromSTEB(0, 0, 0, 0),
-                        child: Form(
+                    children: [Form(
                           key: formKey,
                           autovalidateMode: AutovalidateMode.always,
                           child: Column(
@@ -65,42 +62,25 @@ class _changePasswordWidgetState extends State<changePasswordWidget> {
                                 child: Column(
                                   mainAxisSize: MainAxisSize.max,
                                   children: [
-                                    Padding(
-                                      padding: EdgeInsetsDirectional.fromSTEB(
-                                          16, 20, 16, 0),
-                                      child: LabeledRowWidget(text: 'Password'),
-                                    ),
-                                    Padding(
-                                      padding: EdgeInsetsDirectional.fromSTEB(
-                                          16, 10, 16, 0),
-                                      child: TextFormFieldWidget(
-                                        controller: passwordController,
-                                        isRequired: true,
-                                        obscureText: !passwordVisibility,
-                                      ),
+                                    LabeledRowWidget(text: 'Password'),
+                                    TextFormFieldWidget(
+                                      controller: passwordController,
+                                      isRequired: true,
+                                      obscureText: !passwordVisibility,
                                     ),
                                   ],
                                 ),
                               ),
-                              Padding(
-                                padding: EdgeInsetsDirectional.fromSTEB(
-                                    16, 20, 16, 0),
-                                child:
-                                    LabeledRowWidget(text: 'Confirm password'),
-                              ),
-                              Padding(
-                                padding: EdgeInsetsDirectional.fromSTEB(
-                                    16, 10, 16, 10),
-                                child: TextFormFieldWidget(
-                                  controller: passwordController1,
-                                  isRequired: true,
-                                  validator: (value) => value.isEmpty
-                                      ? 'Field is required'
-                                      : (value != passwordController.text
-                                          ? 'Please confirm your password'
-                                          : null),
-                                  obscureText: !passwordVisibility1,
-                                ),
+                              LabeledRowWidget(text: 'Confirm password'),
+                              TextFormFieldWidget(
+                                controller: passwordController1,
+                                isRequired: true,
+                                validator: (value) => value.isEmpty
+                                    ? 'Field is required'
+                                    : (value != passwordController.text
+                                        ? 'Please confirm your password'
+                                        : null),
+                                obscureText: !passwordVisibility1,
                               ),
                               Column(
                                 mainAxisSize: MainAxisSize.max,
@@ -174,7 +154,7 @@ class _changePasswordWidgetState extends State<changePasswordWidget> {
                             ],
                           ),
                         ),
-                      ),
+                      
                     ],
                   );
                 } else if (snapshot.hasError) {

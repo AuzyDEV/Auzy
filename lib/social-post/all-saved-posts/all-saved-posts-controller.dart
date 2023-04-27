@@ -12,7 +12,6 @@ class SavedPostMan {
   Future<bool> DeleteSavedPost(String id) async {
     final http.Response response = await http
         .delete(Uri.parse('http://127.0.0.1:3000/api/savedpost/${id}'));
-
     if (response.statusCode == 200) {
       return true;
     } else {
@@ -27,7 +26,7 @@ class SavedPostMan {
       final parsed = jsonDecode(response.body);
       //print(parsed["posts"]);
       //print(parsed);
-      var data = parsed["posts"];
+      var data = parsed["message"]["posts"];
       //print(data);
       return data.map<savedPost>((json) => savedPost.fromMaq(json)).toList();
     } else {
@@ -35,7 +34,7 @@ class SavedPostMan {
     }
   }
 
-  Future<bool> SavePost(String postId, String postTitle,  postContenu,
+  Future<bool> SavePost(String postId, String postTitle, postContenu,
       String date, String uname, String uphoto, String currentUserId) async {
     final response = await http.post(
       Uri.parse('http://127.0.0.1:3000/api/savepost'),
@@ -68,7 +67,7 @@ class SavedPostMan {
 
     if (response.statusCode == 200) {
       final data = jsonDecode(response.body);
-      int nbr = data["count"];
+      int nbr = data["message"]["count"];
       //print(nbr);
       return nbr;
     } else {

@@ -2,8 +2,7 @@ import 'package:firebase_auth/firebase_auth.dart';
 import 'package:http/http.dart' as http;
 import 'dart:convert';
 import 'dart:async';
-
-import 'package:new_mee/social-post/all-posts/all-posts-model.dart';
+import 'package:skeleton/social-post/all-posts/all-posts-model.dart';
 
 class PostMan {
   final FirebaseAuth _auth = FirebaseAuth.instance;
@@ -14,9 +13,8 @@ class PostMan {
     final response =
         await http.get(Uri.parse('http://127.0.0.1:3000/api/posts'));
     if (response.statusCode == 200) {
-      // List<dynamic> body = jsonDecode(response.body);
-      List body = jsonDecode(response.body);
-      //print(body);
+      var jsonData = jsonDecode(response.body);
+      List body = jsonData["message"];
       for (int i = 0; i < body.length; i++) {
         Postslist.add(new Post.fromMapi(body[i]));
       }

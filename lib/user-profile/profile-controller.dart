@@ -1,11 +1,8 @@
-import 'package:google_sign_in/google_sign_in.dart';
 import 'package:http/http.dart' as http;
 import 'dart:convert';
 import 'dart:async';
 import 'package:firebase_auth/firebase_auth.dart';
-import 'package:flutter_facebook_auth/flutter_facebook_auth.dart';
-import 'package:dart_ipify/dart_ipify.dart';
-import 'package:new_mee/user-profile/profile-model.dart';
+import 'package:skeleton/user-profile/profile-model.dart';
 
 class ProfilingMan {
   final FirebaseAuth _auth = FirebaseAuth.instance;
@@ -16,13 +13,16 @@ class ProfilingMan {
         await http.get(Uri.parse('http://127.0.0.1:3000/api/currentuser'));
     if (response.statusCode == 200) {
       final data = jsonDecode(response.body);
-      String uid = data[0]['uid'];
+      String uid = data["message"][0]['uid'];
+      print(data[0]);
       //return User.fromMapp(data[0]);
       final response1 = await http
           .get(Uri.parse('http://127.0.0.1:3000/api/userinfos/${uid}'));
       if (response1.statusCode == 200) {
         final data1 = jsonDecode(response1.body);
-        return User.fromMapp(data1[0]);
+        final dataa1 = data1["message"][0];
+        print(dataa1);
+        return User.fromMapp(dataa1);
       } else {
         throw Exception("Failed to get infos");
       }
@@ -36,15 +36,15 @@ class ProfilingMan {
         await http.get(Uri.parse('http://127.0.0.1:3000/api/currentuser'));
     if (response.statusCode == 200) {
       final data = jsonDecode(response.body);
-      String uid = data[0]['uid'];
+      String uid = data["message"][0]['uid'];
       //return User.fromMapp(data[0]);
       final response1 =
           await http.get(Uri.parse('http://127.0.0.1:3000/api/userole/${uid}'));
       if (response1.statusCode == 200) {
         final data1 = jsonDecode(response1.body);
-        //print(data1[0]);
-        role = data1[0];
-        return data1[0];
+        role = data1["message"][0];
+        print(role);
+        return role;
       } else {
         throw Exception("Failed to get infos");
       }
@@ -58,7 +58,7 @@ class ProfilingMan {
         await http.get(Uri.parse('http://127.0.0.1:3000/api/currentuser'));
     if (response.statusCode == 200) {
       final data = jsonDecode(response.body);
-      String uid = data[0]['uid'];
+      String uid = data["message"][0]['uid'];
       //return User.fromMapp(data[0]);
       return uid;
     } else {
@@ -71,7 +71,7 @@ class ProfilingMan {
         await http.get(Uri.parse('http://127.0.0.1:3000/api/currentuser'));
     if (response.statusCode == 200) {
       final data = jsonDecode(response.body);
-      String uid = data[0]['uid'];
+      String uid = data["message"][0]['uid'];
       print(data[0]['uid']);
       //User.fromMapp(data[0]);
       final http.Response response1 = await http
@@ -102,7 +102,7 @@ class ProfilingMan {
     );
     if (response.statusCode == 200) {
       final data = jsonDecode(response.body);
-      print(data);
+      print(data["message"]);
       return true;
     } else {
       return false;
@@ -133,7 +133,7 @@ class ProfilingMan {
         await http.get(Uri.parse('http://127.0.0.1:3000/api/currentuser'));
     if (response.statusCode == 200) {
       final data = jsonDecode(response.body);
-      String uid = data[0]['uid'];
+      String uid = data["message"][0]['uid'];
       //return User.fromMapp(data[0]);
       final response1 = await http.put(
           Uri.parse('http://127.0.0.1:3000/api/blocuser/${uid}'),

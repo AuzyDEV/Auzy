@@ -111,29 +111,17 @@ class _ProfillWidgetState extends State<ProfillWidget> {
                                   endIndent: 20,
                                   indent: 20,
                                 ),
-                                Padding(
-                                  padding: EdgeInsetsDirectional.fromSTEB(
-                                      8, 0, 8, 8),
-                                  child: TextFormFieldWidget(
-                                    hintText: '${snapshot.data.id}',
-                                    readOnly: true,
-                                  ),
+                                TextFormFieldWidget(
+                                  hintText: '${snapshot.data.id}',
+                                  readOnly: true,
                                 ),
-                                Padding(
-                                  padding: EdgeInsetsDirectional.fromSTEB(
-                                      8, 8, 8, 8),
-                                  child: TextFormFieldWidget(
-                                    hintText: '${snapshot.data.email}',
-                                    readOnly: true,
-                                  ),
+                                TextFormFieldWidget(
+                                  hintText: '${snapshot.data.email}',
+                                  readOnly: true,
                                 ),
-                                Padding(
-                                  padding: EdgeInsetsDirectional.fromSTEB(
-                                      8, 8, 8, 8),
-                                  child: TextFormFieldWidget(
-                                    hintText: '${snapshot.data.photoURL}',
-                                    readOnly: true,
-                                  ),
+                                TextFormFieldWidget(
+                                  hintText: '${snapshot.data.photoURL}',
+                                  readOnly: true,
                                 ),
                                 Padding(
                                   padding: EdgeInsetsDirectional.fromSTEB(

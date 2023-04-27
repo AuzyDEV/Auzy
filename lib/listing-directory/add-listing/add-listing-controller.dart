@@ -31,7 +31,7 @@ class DBDoctorMan {
     );
     if (response.statusCode == 201) {
       final data = jsonDecode(response.body);
-      String doctorId = data["id"];
+      String doctorId = data["message"]["id"];
       return doctorId;
     } else {
       throw Exception("Failed to get infos");

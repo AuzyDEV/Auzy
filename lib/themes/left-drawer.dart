@@ -45,6 +45,28 @@ class _DrawerrState extends State<Drawerr> {
             Row(
               mainAxisSize: MainAxisSize.max,
               children: [
+                /*FutureBuilder<User>(
+                    future: _futureUser,
+                    builder: (context, snapshot) {
+                      if (snapshot.hasData) {
+                        Expanded(
+                            child: UserAccountsDrawerHeader(
+                          accountName: Text('hhh'),
+                          accountEmail: Text('jjjjjj'),
+                          currentAccountPicture: CircleAvatar(
+                            backgroundImage: NetworkImage(
+                                'https://www.google.com/url?sa=i&url=https%3A%2F%2Funsplash.com%2Ffr%2Fs%2Fphotos%2Fphoto&psig=AOvVaw3Rh8PKbXAZj4ukN_pFVKyf&ust=1681985591971000&source=images&cd=vfe&ved=0CBEQjRxqFwoTCNDxguzatf4CFQAAAAAdAAAAABAU'),
+                          ),
+                          decoration: BoxDecoration(
+                            color: Colors.blue,
+                          ),
+                        ));
+                      } else if (snapshot.hasError) {
+                        return Text("${snapshot.error}");
+                      }
+
+                      return Center(child: const CircularProgressIndicator());
+                    })*/
                 Expanded(
                   child: Container(
                     height: 130,

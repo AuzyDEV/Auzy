@@ -22,67 +22,69 @@ class _ReusableDropdownState extends State<ReusableDropdown> {
 
   @override
   Widget build(BuildContext context) {
-    return DropdownButtonFormField<String>(
-      value: dropdownValue,
-      items: widget.items.map((String item) {
-        return DropdownMenuItem<String>(
-          value: item,
-          child: Text(item),
-        );
-      }).toList(),
-      onChanged: widget.onChanged != null
-          ? (String value) {
-              setState(() {
-                dropdownValue = value;
-              });
-              widget.onChanged(value);
-            }
-          : null,
-      decoration: InputDecoration(
-        errorStyle: FlutterAppTheme.of(context).bodyText1.override(
-              fontFamily: 'Roboto',
-              color: Colors.red,
-              fontWeight: FontWeight.normal,
+    return Padding(
+        padding: EdgeInsetsDirectional.fromSTEB(16, 10, 16, 0),
+        child: DropdownButtonFormField<String>(
+          value: dropdownValue,
+          items: widget.items.map((String item) {
+            return DropdownMenuItem<String>(
+              value: item,
+              child: Text(item),
+            );
+          }).toList(),
+          onChanged: widget.onChanged != null
+              ? (String value) {
+                  setState(() {
+                    dropdownValue = value;
+                  });
+                  widget.onChanged(value);
+                }
+              : null,
+          decoration: InputDecoration(
+            errorStyle: FlutterAppTheme.of(context).bodyText1.override(
+                  fontFamily: 'Roboto',
+                  color: Colors.red,
+                  fontWeight: FontWeight.normal,
+                ),
+            focusedErrorBorder: OutlineInputBorder(
+              borderSide: BorderSide(
+                color: Colors.red,
+                width: 1,
+              ),
+              borderRadius: BorderRadius.circular(8),
             ),
-        focusedErrorBorder: OutlineInputBorder(
-          borderSide: BorderSide(
-            color: Colors.red,
-            width: 1,
+            errorBorder: OutlineInputBorder(
+              borderSide: BorderSide(
+                color: Colors.red,
+                width: 1,
+              ),
+              borderRadius: BorderRadius.circular(8),
+            ),
+            enabledBorder: OutlineInputBorder(
+              borderSide: BorderSide(
+                color: Color(0x988B97A2),
+                width: 1,
+              ),
+              borderRadius: BorderRadius.circular(8),
+            ),
+            focusedBorder: OutlineInputBorder(
+              borderSide: BorderSide(
+                color: Color(0x988B97A2),
+                width: 1,
+              ),
+              borderRadius: BorderRadius.circular(8),
+            ),
+            contentPadding: EdgeInsetsDirectional.fromSTEB(12, 0, 12, 0),
           ),
-          borderRadius: BorderRadius.circular(8),
-        ),
-        errorBorder: OutlineInputBorder(
-          borderSide: BorderSide(
-            color: Colors.red,
-            width: 1,
+          elevation: 2,
+          style: TextStyle(
+            color: Colors.black,
+            fontSize: 16,
           ),
-          borderRadius: BorderRadius.circular(8),
-        ),
-        enabledBorder: OutlineInputBorder(
-          borderSide: BorderSide(
-            color: Color(0x988B97A2),
-            width: 1,
-          ),
-          borderRadius: BorderRadius.circular(8),
-        ),
-        focusedBorder: OutlineInputBorder(
-          borderSide: BorderSide(
-            color: Color(0x988B97A2),
-            width: 1,
-          ),
-          borderRadius: BorderRadius.circular(8),
-        ),
-        contentPadding: EdgeInsetsDirectional.fromSTEB(12, 0, 12, 0),
-      ),
-      elevation: 2,
-      style: TextStyle(
-        color: Colors.black,
-        fontSize: 16,
-      ),
-      isDense: true,
-      iconSize: 18.0,
-      iconEnabledColor: Colors.grey,
-      validator: (value) => value == null ? 'Field is required' : null,
-    );
+          isDense: true,
+          iconSize: 18.0,
+          iconEnabledColor: Colors.grey,
+          validator: (value) => value == null ? 'Field is required' : null,
+        ));
   }
 }

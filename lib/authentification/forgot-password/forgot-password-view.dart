@@ -114,24 +114,11 @@ class _ForgetpasswordWidgetState extends State<ForgetpasswordWidget> {
                 child: Column(
                   mainAxisSize: MainAxisSize.max,
                   children: [
-                    Padding(
-                      padding: EdgeInsetsDirectional.fromSTEB(16, 25, 16, 0),
-                      child: Row(
-                        mainAxisSize: MainAxisSize.max,
-                        mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                        children: [
-                          LabeledRowWidget(text: 'Email'),
-                        ],
-                      ),
-                    ),
-                    Padding(
-                      padding: EdgeInsetsDirectional.fromSTEB(16, 10, 16, 0),
-                      child: TextFormFieldWidget(
-                        controller: emailAddressController,
-                        isRequired: true,
-                        isEmail: true,
-                      
-                      ),
+                    LabeledRowWidget(text: 'Email'),
+                    TextFormFieldWidget(
+                      controller: emailAddressController,
+                      isRequired: true,
+                      isEmail: true,
                     ),
                     Padding(
                         padding: EdgeInsetsDirectional.fromSTEB(16, 30, 16, 0),
@@ -154,7 +141,7 @@ class _ForgetpasswordWidgetState extends State<ForgetpasswordWidget> {
                                               title: "Succes",
                                               content: "$response",
                                               actions: [
-                                                ElevatedButton(
+                                                TextButton(
                                                   child: Text("Ok"),
                                                   onPressed: () {
                                                     Navigator.of(context).pop();

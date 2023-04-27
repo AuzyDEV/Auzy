@@ -7,6 +7,7 @@ import '../../themes/theme.dart';
 import 'package:flutter/material.dart';
 import 'share-post-model.dart';
 import '../../user-profile/profile-controller.dart';
+import 'package:flutter_html/flutter_html.dart';
 
 class sharedPostsByUserWidget extends StatefulWidget {
   const sharedPostsByUserWidget({Key key}) : super(key: key);
@@ -351,15 +352,14 @@ class _sharedPostsByUserWidgetState extends State<sharedPostsByUserWidget> {
                                                     ),
                                                   ),
                                                   Padding(
-                                                    padding:
-                                                        EdgeInsetsDirectional
-                                                            .fromSTEB(
-                                                                0, 5, 2, 0),
-                                                    child:
-                                                        getTextSpanFromRichTextJson(
-                                                            snapshot.data[index]
-                                                                .postContenu),
-                                                  )
+                                                      padding:
+                                                          EdgeInsetsDirectional
+                                                              .fromSTEB(
+                                                                  0, 5, 2, 0),
+                                                      child: Html(
+                                                          data: snapshot
+                                                              .data[index]
+                                                              .postContenu))
                                                 ],
                                               ))),
                                       Divider(

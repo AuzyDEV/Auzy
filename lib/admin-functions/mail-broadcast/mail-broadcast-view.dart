@@ -1,5 +1,5 @@
 import '../../index.dart';
-import '../../../themes/theme.dart';
+import 'package:skeleton/themes/theme.dart';
 import 'package:flutter/material.dart';
 import 'mail-broadcast-controller.dart';
 
@@ -39,97 +39,82 @@ class _announcementWidgetState extends State<announcementWidget> {
         body: Column(
           mainAxisSize: MainAxisSize.max,
           children: [
-            Padding(
-              padding: EdgeInsetsDirectional.fromSTEB(0, 0, 0, 0),
-              child: Form(
-                key: formKey,
-                autovalidateMode: AutovalidateMode.always,
-                child: Column(
-                  mainAxisSize: MainAxisSize.max,
-                  children: [
-                    Padding(
-                      padding: EdgeInsetsDirectional.fromSTEB(0, 0, 0, 0),
-                      child: Column(
-                        mainAxisSize: MainAxisSize.max,
-                        children: [
-                          Padding(
-                              padding:
-                                  EdgeInsetsDirectional.fromSTEB(16, 20, 16, 0),
-                              child: LabeledRowWidget(text: 'Message')),
-                          Padding(
-                            padding:
-                                EdgeInsetsDirectional.fromSTEB(16, 10, 16, 0),
-                            child: TextFormFieldWidget(
-                              maxLines: 8,
-                              controller: messageController,
-                              isRequired: true,
-                            ),
-                          ),
-                        ],
+            Form(
+              key: formKey,
+              autovalidateMode: AutovalidateMode.always,
+              child: Column(
+                mainAxisSize: MainAxisSize.max,
+                children: [
+                  Column(
+                    mainAxisSize: MainAxisSize.max,
+                    children: [
+                      LabeledRowWidget(text: 'Message'),
+                      TextFormFieldWidget(
+                        maxLines: 8,
+                        controller: messageController,
+                        isRequired: true,
                       ),
-                    ),
-                    Column(
-                      mainAxisSize: MainAxisSize.max,
-                      children: [
-                        Padding(
-                            padding:
-                                EdgeInsetsDirectional.fromSTEB(16, 30, 16, 10),
-                            child: Row(children: [
-                              Expanded(
-                                child: Padding(
-                                  padding: EdgeInsetsDirectional.fromSTEB(
-                                      0, 0, 0, 0),
-                                  child: buttonWidget(
-                                    onPressed: () async {
-                                      if (formKey.currentState.validate()) {
-                                        bool response =
-                                            await Annapi.sendBroadcastEmail(
-                                                messageController.text);
-                                        response == true
-                                            ? showDialog(
-                                                context: context,
-                                                builder:
-                                                    (BuildContext context) {
-                                                  return alertDialogWidget(
-                                                    title: "Succes!",
-                                                    content:
-                                                        "Email was sent successfully",
-                                                    actions: [
-                                                      TextButton(
-                                                        child: Text("Ok"),
-                                                        onPressed: () async {
-                                                          await Navigator.push(
-                                                            context,
-                                                            MaterialPageRoute(
-                                                              builder: (context) =>
-                                                                  HomeWidget(),
-                                                            ),
-                                                          );
-                                                        },
-                                                      )
-                                                    ],
-                                                  );
-                                                })
-                                            : showDialog(
-                                                context: context,
-                                                builder:
-                                                    (BuildContext context) {
-                                                  return alertDialogWidget(
-                                                    title: "Succes!",
-                                                    content: "$response",
-                                                  );
-                                                });
-                                      }
-                                    },
-                                    text: 'send',
-                                  ),
+                    ],
+                  ),
+                  Column(
+                    mainAxisSize: MainAxisSize.max,
+                    children: [
+                      Padding(
+                          padding:
+                              EdgeInsetsDirectional.fromSTEB(16, 30, 16, 10),
+                          child: Row(children: [
+                            Expanded(
+                              child: Padding(
+                                padding:
+                                    EdgeInsetsDirectional.fromSTEB(0, 0, 0, 0),
+                                child: buttonWidget(
+                                  onPressed: () async {
+                                    if (formKey.currentState.validate()) {
+                                      bool response =
+                                          await Annapi.sendBroadcastEmail(
+                                              messageController.text);
+                                      response == true
+                                          ? showDialog(
+                                              context: context,
+                                              builder: (BuildContext context) {
+                                                return alertDialogWidget(
+                                                  title: "Succes!",
+                                                  content:
+                                                      "Email was sent successfully",
+                                                  actions: [
+                                                    TextButton(
+                                                      child: Text("Ok"),
+                                                      onPressed: () async {
+                                                        await Navigator.push(
+                                                          context,
+                                                          MaterialPageRoute(
+                                                            builder: (context) =>
+                                                                HomeWidget(),
+                                                          ),
+                                                        );
+                                                      },
+                                                    )
+                                                  ],
+                                                );
+                                              })
+                                          : showDialog(
+                                              context: context,
+                                              builder: (BuildContext context) {
+                                                return alertDialogWidget(
+                                                  title: "Succes!",
+                                                  content: "$response",
+                                                );
+                                              });
+                                    }
+                                  },
+                                  text: 'send',
                                 ),
                               ),
-                            ])),
-                      ],
-                    ),
-                  ],
-                ),
+                            ),
+                          ])),
+                    ],
+                  ),
+                ],
               ),
             ),
           ],

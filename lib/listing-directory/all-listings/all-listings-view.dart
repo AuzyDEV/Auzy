@@ -82,29 +82,20 @@ class _AllListingsWidgetState extends State<AllListingsWidget> {
           children: [
             Align(
               alignment: AlignmentDirectional(0.5, 6.41),
-              child: Padding(
-                padding: EdgeInsetsDirectional.fromSTEB(20, 0, 20, 0),
-                child: Column(
-                  mainAxisSize: MainAxisSize.max,
-                  mainAxisAlignment: MainAxisAlignment.center,
-                  children: [
-                    Padding(
-                      padding: EdgeInsetsDirectional.fromSTEB(0, 15, 0, 15),
-                      child: Padding(
-                        padding: EdgeInsetsDirectional.fromSTEB(5, 0, 0, 2),
-                        child: TextFormFieldWidget(
-                          onChanged: (value) {
-                            setState(() {
-                              searchString = value.toLowerCase();
-                            });
-                          },
-                          hintText: "Search for doctors",
-                          controller: SearchtextController,
-                        ),
-                      ),
-                    ),
-                  ],
-                ),
+              child: Column(
+                mainAxisSize: MainAxisSize.max,
+                mainAxisAlignment: MainAxisAlignment.center,
+                children: [
+                  TextFormFieldWidget(
+                    onChanged: (value) {
+                      setState(() {
+                        searchString = value.toLowerCase();
+                      });
+                    },
+                    hintText: "Search for doctors",
+                    controller: SearchtextController,
+                  ),
+                ],
               ),
             ),
             RefreshIndicator(

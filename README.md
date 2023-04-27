@@ -1,4 +1,4 @@
-# NewMee
+# Skeleton
 
 A new Flutter project.
 

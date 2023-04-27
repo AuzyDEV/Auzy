@@ -72,215 +72,149 @@ class _addListingWidgetState extends State<addListingWidget> {
             child: Column(
           mainAxisSize: MainAxisSize.max,
           children: [
-            Padding(
-              padding: EdgeInsetsDirectional.fromSTEB(0, 0, 0, 0),
-              child: Form(
-                key: formKey,
-                autovalidateMode: AutovalidateMode.always,
-                child: Column(
-                  mainAxisSize: MainAxisSize.max,
-                  children: [
-                    Padding(
-                      padding: EdgeInsetsDirectional.fromSTEB(0, 0, 0, 0),
-                      child: Column(
-                        mainAxisSize: MainAxisSize.max,
-                        children: [
-                          Padding(
-                            padding:
-                                EdgeInsetsDirectional.fromSTEB(16, 20, 16, 0),
-                            child: LabeledRowWidget(text: 'First Name'),
-                          ),
-                          Padding(
-                            padding:
-                                EdgeInsetsDirectional.fromSTEB(16, 10, 16, 0),
-                            child: TextFormFieldWidget(
-                              controller: firstNameController,
-                              isRequired: true,
-                              isString: true,
-                            ),
-                          ),
-                          Padding(
-                            padding:
-                                EdgeInsetsDirectional.fromSTEB(16, 20, 16, 0),
-                            child: LabeledRowWidget(text: 'Last Name'),
-                          ),
-                          Padding(
-                            padding:
-                                EdgeInsetsDirectional.fromSTEB(16, 10, 16, 0),
-                            child: TextFormFieldWidget(
-                              controller: lastNameController,
-                              isRequired: true,
-                              isString: true,
-                            ),
-                          ),
-                          Padding(
-                            padding:
-                                EdgeInsetsDirectional.fromSTEB(16, 20, 16, 0),
-                            child: LabeledRowWidget(text: 'Speciality'),
-                          ),
-                          Padding(
-                              padding:
-                                  EdgeInsetsDirectional.fromSTEB(16, 10, 16, 0),
-                              child: Row(
-                                  mainAxisSize: MainAxisSize.max,
-                                  children: [
-                                    Expanded(
-                                        child: ReusableDropdown(
-                                      items: specialties,
-                                      onChanged: (value) {
-                                        dropDownValue = value;
-                                      },
-                                    )),
-                                  ])),
-                          Padding(
-                            padding:
-                                EdgeInsetsDirectional.fromSTEB(16, 20, 16, 0),
-                            child: LabeledRowWidget(text: 'Adress'),
-                          ),
-                          Padding(
-                            padding:
-                                EdgeInsetsDirectional.fromSTEB(16, 10, 16, 0),
-                            child: TextFormFieldWidget(
-                              controller: addressController,
-                              maxLines: 2,
-                              isRequired: true,
-                            ),
-                          ),
-                          Padding(
-                            padding:
-                                EdgeInsetsDirectional.fromSTEB(16, 20, 16, 0),
-                            child: LabeledRowWidget(text: 'Email'),
-                          ),
-                          Padding(
-                            padding:
-                                EdgeInsetsDirectional.fromSTEB(16, 10, 16, 0),
-                            child: TextFormFieldWidget(
-                              controller: emailController,
-                              isRequired: true,
-                              isEmail: true,
-                            ),
-                          ),
-                          Padding(
-                            padding:
-                                EdgeInsetsDirectional.fromSTEB(16, 20, 16, 0),
-                            child: LabeledRowWidget(text: 'Phone number'),
-                          ),
-                          Padding(
-                            padding:
-                                EdgeInsetsDirectional.fromSTEB(16, 10, 16, 0),
-                            child: TextFormFieldWidget(
-                              controller: phoneNumberController,
-                              isRequired: true,
-                              isNumeric: true,
-                            ),
-                          ),
-                          Padding(
-                            padding:
-                                EdgeInsetsDirectional.fromSTEB(16, 20, 16, 0),
-                            child: LabeledRowWidget(text: 'Select photo'),
-                          ),
-                          Padding(
-                            padding:
-                                EdgeInsetsDirectional.fromSTEB(16, 10, 16, 0),
-                            child: Column(
-                              mainAxisAlignment: MainAxisAlignment.center,
-                              children: [
-                                Text(fileName),
-                                ElevatedButton(
-                                  onPressed: (() {
-                                    InputElement inputElement =
-                                        FileUploadInputElement();
-                                    inputElement.click();
-
-                                    inputElement.onChange.listen((e) {
-                                      final files = inputElement.files;
-                                      if (files.length == 1) {
-                                        final file = files[0];
-                                        fileName = file.name;
-                                        final reader = FileReader();
-                                        reader.readAsArrayBuffer(file);
-                                        reader.onLoadEnd.listen((e) {
-                                          setState(() {
-                                            fileContents = reader.result;
-                                          });
-                                        });
-                                      }
-                                    });
-                                  }),
-                                  child: Text("Pick an image"),
-                                ),
-                              ],
-                            ),
-                          ),
-                        ],
+            Form(
+              key: formKey,
+              autovalidateMode: AutovalidateMode.always,
+              child: Column(
+                mainAxisSize: MainAxisSize.max,
+                children: [
+                  Column(
+                    mainAxisSize: MainAxisSize.max,
+                    children: [
+                      LabeledRowWidget(text: 'First Name'),
+                      TextFormFieldWidget(
+                        controller: firstNameController,
+                        isRequired: true,
+                        isString: true,
                       ),
-                    ),
-                    Column(
-                      mainAxisSize: MainAxisSize.max,
-                      children: [
-                        Padding(
-                            padding:
-                                EdgeInsetsDirectional.fromSTEB(16, 30, 16, 10),
-                            child: Row(children: [
-                              Expanded(
-                                child: Padding(
-                                  padding: EdgeInsetsDirectional.fromSTEB(
-                                      0, 0, 0, 0),
-                                  child: buttonWidget(
-                                    onPressed: () async {
-                                      if (formKey.currentState.validate()) {
-                                        String response =
-                                            await apiDBDoctor.addNewListing(
-                                                firstNameController.text,
-                                                lastNameController.text,
-                                                dropDownValue,
-                                                emailController.text,
-                                                phoneNumberController.text,
-                                                addressController.text);
+                      LabeledRowWidget(text: 'Last Name'),
+                      TextFormFieldWidget(
+                        controller: lastNameController,
+                        isRequired: true,
+                        isString: true,
+                      ),
+                      LabeledRowWidget(text: 'Speciality'),
+                      Row(mainAxisSize: MainAxisSize.max, children: [
+                        Expanded(
+                            child: ReusableDropdown(
+                          items: specialties,
+                          onChanged: (value) {
+                            dropDownValue = value;
+                          },
+                        )),
+                      ]),
+                      LabeledRowWidget(text: 'Adress'),
+                      TextFormFieldWidget(
+                        controller: addressController,
+                        maxLines: 2,
+                        isRequired: true,
+                      ),
+                      LabeledRowWidget(text: 'Email'),
+                      TextFormFieldWidget(
+                        controller: emailController,
+                        isRequired: true,
+                        isEmail: true,
+                      ),
+                      LabeledRowWidget(text: 'Phone number'),
+                      TextFormFieldWidget(
+                        controller: phoneNumberController,
+                        isRequired: true,
+                        isNumeric: true,
+                      ),
+                      LabeledRowWidget(text: 'Select photo'),
+                      Padding(
+                        padding: EdgeInsetsDirectional.fromSTEB(16, 10, 16, 0),
+                        child: Column(
+                          mainAxisAlignment: MainAxisAlignment.center,
+                          children: [
+                            Text(fileName),
+                            ElevatedButton(
+                              onPressed: (() {
+                                InputElement inputElement =
+                                    FileUploadInputElement();
+                                inputElement.click();
 
-                                        await FirebaseStorage.instance
-                                            .ref('doctors/$response/$fileName')
-                                            .putData(fileContents);
-                                        showDialog(
-                                            context: context,
-                                            builder: (BuildContext context) {
-                                              return alertDialogWidget(
-                                                title: "Succes!",
-                                                content:
-                                                    "Doctor was added successfully",
-                                                actions: [
-                                                  TextButton(
-                                                    child: Text("Ok"),
-                                                    onPressed: () async {
-                                                      await Navigator.push(
-                                                        context,
-                                                        MaterialPageRoute(
-                                                          builder: (context) =>
-                                                              HomeWidget(),
-                                                        ),
-                                                      );
-                                                    },
-                                                  )
-                                                ],
-                                              );
-                                            });
-                                      }
-                                    },
-                                    text: 'save',
-                                  ),
+                                inputElement.onChange.listen((e) {
+                                  final files = inputElement.files;
+                                  if (files.length == 1) {
+                                    final file = files[0];
+                                    fileName = file.name;
+                                    final reader = FileReader();
+                                    reader.readAsArrayBuffer(file);
+                                    reader.onLoadEnd.listen((e) {
+                                      setState(() {
+                                        fileContents = reader.result;
+                                      });
+                                    });
+                                  }
+                                });
+                              }),
+                              child: Text("Pick an image"),
+                            ),
+                          ],
+                        ),
+                      ),
+                    ],
+                  ),
+                  Column(
+                    mainAxisSize: MainAxisSize.max,
+                    children: [
+                      Padding(
+                          padding:
+                              EdgeInsetsDirectional.fromSTEB(16, 30, 16, 10),
+                          child: Row(children: [
+                            Expanded(
+                              child: Padding(
+                                padding:
+                                    EdgeInsetsDirectional.fromSTEB(0, 0, 0, 0),
+                                child: buttonWidget(
+                                  onPressed: () async {
+                                    if (formKey.currentState.validate()) {
+                                      String response =
+                                          await apiDBDoctor.addNewListing(
+                                              firstNameController.text,
+                                              lastNameController.text,
+                                              dropDownValue,
+                                              emailController.text,
+                                              phoneNumberController.text,
+                                              addressController.text);
+
+                                      await FirebaseStorage.instance
+                                          .ref('doctors/$response/$fileName')
+                                          .putData(fileContents);
+                                      showDialog(
+                                          context: context,
+                                          builder: (BuildContext context) {
+                                            return alertDialogWidget(
+                                              title: "Succes!",
+                                              content:
+                                                  "Doctor was added successfully",
+                                              actions: [
+                                                TextButton(
+                                                  child: Text("Ok"),
+                                                  onPressed: () async {
+                                                    await Navigator.push(
+                                                      context,
+                                                      MaterialPageRoute(
+                                                        builder: (context) =>
+                                                            HomeWidget(),
+                                                      ),
+                                                    );
+                                                  },
+                                                )
+                                              ],
+                                            );
+                                          });
+                                    }
+                                  },
+                                  text: 'save',
                                 ),
                               ),
-                            ])),
-                        Divider(
-                          thickness: 1,
-                          indent: 50,
-                          endIndent: 50,
-                          color: Colors.grey[300],
-                        ),
-                      ],
-                    ),
-                  ],
-                ),
+                            ),
+                          ])),
+                    ],
+                  ),
+                ],
               ),
             ),
           ],

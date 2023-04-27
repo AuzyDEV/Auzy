@@ -204,7 +204,7 @@ class _postsForUsersWidgetState extends State<postsForUsersWidget> {
                                                                                             await Navigator.push(
                                                                                               context,
                                                                                               MaterialPageRoute(
-                                                                                                builder: (context) => savedPostsForUsersWidget(),
+                                                                                                builder: (context) => HomeWidget(),
                                                                                               ),
                                                                                             );
                                                                                           },
@@ -293,19 +293,16 @@ class _postsForUsersWidgetState extends State<postsForUsersWidget> {
                                                                             ),
                                                                           ),
                                                                           Padding(
-                                                                              padding: EdgeInsetsDirectional.fromSTEB(0, 5, 2, 0),
-                                                                              child: Text(snapshot.data[index].contenu)
-                                                                              //getTextSpanFromRichTextJson(snapshot.data[index].contenu),
-                                                                              //Html(data: "${snapshot.data[index].contenu}"),
-                                                                              // Html(data: HtmlUnescape().convert(snapshot.data[index].contenu)),
-                                                                              ),
-                                                                          Padding(
-                                                                              padding: EdgeInsetsDirectional.fromSTEB(0, 5, 2, 0),
-                                                                              child: Text(htmlText)
-                                                                              //getTextSpanFromRichTextJson(snapshot.data[index].contenu),
-                                                                              //Html(data: "${snapshot.data[index].contenu}"),
-                                                                              // Html(data: HtmlUnescape().convert(snapshot.data[index].contenu)),
-                                                                              ),
+                                                                            padding: EdgeInsetsDirectional.fromSTEB(
+                                                                                0,
+                                                                                5,
+                                                                                2,
+                                                                                0),
+                                                                            child: //Text(snapshot.data[index].contenu)
+                                                                                //getTextSpanFromRichTextJson(snapshot.data[index].contenu),
+                                                                                Html(data: "${snapshot.data[index].contenu}"),
+                                                                            // Html(data: HtmlUnescape().convert(snapshot.data[index].contenu)),
+                                                                          ),
                                                                           Row(
                                                                               mainAxisAlignment: MainAxisAlignment.start,
                                                                               children: [
@@ -708,47 +705,44 @@ class _postsForUsersWidgetState extends State<postsForUsersWidget> {
                                                                                   ),
                                                                                   child: Column(
                                                                                     children: [
-                                                                                      Padding(
-                                                                                        padding: EdgeInsetsDirectional.fromSTEB(0, 0, 0, 0),
-                                                                                        child: Row(
-                                                                                          mainAxisSize: MainAxisSize.max,
-                                                                                          children: [
-                                                                                            Expanded(
-                                                                                                child: Row(
-                                                                                              children: [
-                                                                                                Card(
-                                                                                                  clipBehavior: Clip.antiAliasWithSaveLayer,
-                                                                                                  color: FlutterAppTheme.of(context).primaryColor,
-                                                                                                  shape: RoundedRectangleBorder(
-                                                                                                    borderRadius: BorderRadius.circular(20),
-                                                                                                  ),
-                                                                                                  child: Padding(
-                                                                                                    padding: EdgeInsetsDirectional.fromSTEB(1, 1, 1, 1),
-                                                                                                    child: Container(
-                                                                                                      width: 40,
-                                                                                                      height: 40,
-                                                                                                      clipBehavior: Clip.antiAlias,
-                                                                                                      decoration: BoxDecoration(
-                                                                                                        shape: BoxShape.circle,
-                                                                                                      ),
-                                                                                                      child: Image.network(
-                                                                                                        '${snapshot.data[index].adminPhoto}',
-                                                                                                        fit: BoxFit.cover,
-                                                                                                      ),
+                                                                                      Row(
+                                                                                        mainAxisSize: MainAxisSize.max,
+                                                                                        children: [
+                                                                                          Expanded(
+                                                                                              child: Row(
+                                                                                            children: [
+                                                                                              Card(
+                                                                                                clipBehavior: Clip.antiAliasWithSaveLayer,
+                                                                                                color: FlutterAppTheme.of(context).primaryColor,
+                                                                                                shape: RoundedRectangleBorder(
+                                                                                                  borderRadius: BorderRadius.circular(20),
+                                                                                                ),
+                                                                                                child: Padding(
+                                                                                                  padding: EdgeInsetsDirectional.fromSTEB(1, 1, 1, 1),
+                                                                                                  child: Container(
+                                                                                                    width: 40,
+                                                                                                    height: 40,
+                                                                                                    clipBehavior: Clip.antiAlias,
+                                                                                                    decoration: BoxDecoration(
+                                                                                                      shape: BoxShape.circle,
+                                                                                                    ),
+                                                                                                    child: Image.network(
+                                                                                                      '${snapshot.data[index].adminPhoto}',
+                                                                                                      fit: BoxFit.cover,
                                                                                                     ),
                                                                                                   ),
                                                                                                 ),
-                                                                                                Padding(
-                                                                                                  padding: EdgeInsetsDirectional.fromSTEB(12, 0, 0, 0),
-                                                                                                  child: Text(
-                                                                                                    '${snapshot.data[index].adminName}',
-                                                                                                    style: FlutterAppTheme.of(context).bodyText1,
-                                                                                                  ),
+                                                                                              ),
+                                                                                              Padding(
+                                                                                                padding: EdgeInsetsDirectional.fromSTEB(12, 0, 0, 0),
+                                                                                                child: Text(
+                                                                                                  '${snapshot.data[index].adminName}',
+                                                                                                  style: FlutterAppTheme.of(context).bodyText1,
                                                                                                 ),
-                                                                                              ],
-                                                                                            )),
-                                                                                          ],
-                                                                                        ),
+                                                                                              ),
+                                                                                            ],
+                                                                                          )),
+                                                                                        ],
                                                                                       ),
                                                                                       Padding(
                                                                                         padding: EdgeInsetsDirectional.fromSTEB(0, 4, 0, 4),
@@ -793,33 +787,8 @@ class _postsForUsersWidgetState extends State<postsForUsersWidget> {
                                                                                         padding: EdgeInsetsDirectional.fromSTEB(0, 5, 2, 0),
                                                                                         child: Html(data: snapshot.data[index].postContenu),
                                                                                       ),
-                                                                                      Row(mainAxisAlignment: MainAxisAlignment.start, children: [
-                                                                                        GestureDetector(
-                                                                                          child: Text(
-                                                                                            "See all",
-                                                                                            style: TextStyle(
-                                                                                              color: FlutterAppTheme.of(context).tertiaryColor,
-                                                                                              decoration: TextDecoration.underline,
-                                                                                            ),
-                                                                                          ),
-                                                                                          onTap: () {
-                                                                                            Navigator.push(
-                                                                                              context,
-                                                                                              MaterialPageRoute(builder: (context) => postDetailsWidget(id: snapshot.data[index].id)),
-                                                                                            );
-                                                                                          },
-                                                                                        ),
-                                                                                      ]),
                                                                                     ],
                                                                                   ))),
-                                                                          Padding(
-                                                                              padding: EdgeInsetsDirectional.fromSTEB(0, 8, 2, 0),
-                                                                              child: Divider(
-                                                                                color: FlutterAppTheme.of(context).Grey,
-                                                                                thickness: 1,
-                                                                                endIndent: 50,
-                                                                                indent: 50,
-                                                                              )),
                                                                         ],
                                                                       ),
                                                                     )));

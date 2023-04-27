@@ -22,6 +22,7 @@ class ForgetPasswordMan {
       }),
     );
     final data = jsonDecode(response.body);
+    print(data["message"]);
     return data['message'];
   }
 }

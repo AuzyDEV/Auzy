@@ -46,74 +46,56 @@ class _addListingCategoryWidgetState extends State<addListingCategoryWidget> {
         body: SingleChildScrollView(
             child: Column(
           mainAxisSize: MainAxisSize.max,
-          children: [
-            Padding(
-              padding: EdgeInsetsDirectional.fromSTEB(0, 0, 0, 0),
-              child: Form(
+          children: [ Form(
                 key: formKey,
                 autovalidateMode: AutovalidateMode.always,
                 child: Column(
                   mainAxisSize: MainAxisSize.max,
                   children: [
-                    Padding(
-                      padding: EdgeInsetsDirectional.fromSTEB(0, 0, 0, 0),
-                      child: Column(
-                        mainAxisSize: MainAxisSize.max,
-                        children: [
-                          Padding(
-                            padding:
-                                EdgeInsetsDirectional.fromSTEB(16, 20, 16, 0),
-                            child: LabeledRowWidget(text: 'Name'),
-                          ),
-                          Padding(
-                            padding:
-                                EdgeInsetsDirectional.fromSTEB(16, 10, 16, 0),
-                            child: TextFormFieldWidget(
-                              controller: NameController,
-                              isRequired: true,
-                              isString: true,
-                            ),
-                          ),
-                          Padding(
-                            padding:
-                                EdgeInsetsDirectional.fromSTEB(16, 20, 16, 0),
-                            child: LabeledRowWidget(text: 'Select photo'),
-                          ),
-                          Padding(
-                            padding:
-                                EdgeInsetsDirectional.fromSTEB(16, 10, 16, 0),
-                            child: Column(
-                              mainAxisAlignment: MainAxisAlignment.center,
-                              children: [
-                                Text(fileName),
-                                ElevatedButton(
-                                  onPressed: (() {
-                                    InputElement inputElement =
-                                        FileUploadInputElement();
-                                    inputElement.click();
+                    Column(
+                      mainAxisSize: MainAxisSize.max,
+                      children: [
+                        LabeledRowWidget(text: 'Name'),
+                        TextFormFieldWidget(
+                          controller: NameController,
+                          isRequired: true,
+                          isString: true,
+                        ),
+                        LabeledRowWidget(text: 'Select photo'),
+                        Padding(
+                          padding:
+                              EdgeInsetsDirectional.fromSTEB(16, 10, 16, 0),
+                          child: Column(
+                            mainAxisAlignment: MainAxisAlignment.center,
+                            children: [
+                              Text(fileName),
+                              ElevatedButton(
+                                onPressed: (() {
+                                  InputElement inputElement =
+                                      FileUploadInputElement();
+                                  inputElement.click();
 
-                                    inputElement.onChange.listen((e) {
-                                      final files = inputElement.files;
-                                      if (files.length == 1) {
-                                        final file = files[0];
-                                        fileName = file.name;
-                                        final reader = FileReader();
-                                        reader.readAsArrayBuffer(file);
-                                        reader.onLoadEnd.listen((e) {
-                                          setState(() {
-                                            fileContents = reader.result;
-                                          });
+                                  inputElement.onChange.listen((e) {
+                                    final files = inputElement.files;
+                                    if (files.length == 1) {
+                                      final file = files[0];
+                                      fileName = file.name;
+                                      final reader = FileReader();
+                                      reader.readAsArrayBuffer(file);
+                                      reader.onLoadEnd.listen((e) {
+                                        setState(() {
+                                          fileContents = reader.result;
                                         });
-                                      }
-                                    });
-                                  }),
-                                  child: Text("Pick an image"),
-                                ),
-                              ],
-                            ),
+                                      });
+                                    }
+                                  });
+                                }),
+                                child: Text("Pick an image"),
+                              ),
+                            ],
                           ),
-                        ],
-                      ),
+                        ),
+                      ],
                     ),
                     Column(
                       mainAxisSize: MainAxisSize.max,
@@ -173,7 +155,7 @@ class _addListingCategoryWidgetState extends State<addListingCategoryWidget> {
                   ],
                 ),
               ),
-            ),
+            
           ],
         )));
   }

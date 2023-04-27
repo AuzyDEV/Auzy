@@ -1,5 +1,5 @@
 import 'dart:convert';
-import 'package:new_mee/user-profile/profile-controller.dart';
+import 'package:skeleton/user-profile/profile-controller.dart';
 import 'all-saved-posts-controller.dart';
 import '../../../themes/theme.dart';
 import '../../index.dart';

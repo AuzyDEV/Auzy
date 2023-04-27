@@ -1,12 +1,8 @@
-import 'package:google_sign_in/google_sign_in.dart';
 import 'package:http/http.dart' as http;
 import 'dart:convert';
 import 'dart:async';
 import 'package:firebase_auth/firebase_auth.dart';
-import 'package:flutter_facebook_auth/flutter_facebook_auth.dart';
-import 'package:dart_ipify/dart_ipify.dart';
-
-import 'package:new_mee/user-profile/profile-model.dart';
+import 'package:skeleton/user-profile/profile-model.dart';
 
 class ProfilUserMan {
   final FirebaseAuth _auth = FirebaseAuth.instance;
@@ -19,7 +15,7 @@ class ProfilUserMan {
     if (response.statusCode == 200) {
       final data = jsonDecode(response.body);
       //print(data[0]["ipadress"]);
-      return User.fromMapp(data[0]);
+      return User.fromMapp(data["message"][0]);
     } else {
       throw Exception("Failed to load infos");
     }
@@ -30,7 +26,7 @@ class ProfilUserMan {
         Uri.parse('http://127.0.0.1:3000/api/userinfoswithipadress/${id}'));
     if (response.statusCode == 200) {
       final data = jsonDecode(response.body);
-      return data[0]["ipadress"];
+      return data["message"][0]["ipadress"];
     } else {
       throw Exception("Failed to load infos");
     }

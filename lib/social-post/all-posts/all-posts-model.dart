@@ -1,6 +1,5 @@
 import 'dart:convert';
-
-import 'package:new_mee/social-post/all-posts/file-model.dart';
+import 'package:skeleton/social-post/all-posts/file-model.dart';
 import '../../utils/util.dart';
 
 List<Post> postFromJson(String str) =>

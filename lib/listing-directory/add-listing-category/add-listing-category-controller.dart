@@ -2,8 +2,6 @@ import 'dart:convert';
 import 'package:http/http.dart' as http;
 import 'dart:async';
 import 'package:firebase_auth/firebase_auth.dart';
-import 'package:new_mee/listing-directory/add-listing-category/add-listing-category-model.dart';
-import '../single-listing/single-listing-model.dart';
 
 class ListingCtegoryMan {
   final FirebaseAuth _auth = FirebaseAuth.instance;
@@ -21,11 +19,11 @@ class ListingCtegoryMan {
     );
     if (response.statusCode == 201) {
       final data = jsonDecode(response.body);
-      String listingCategoryId = data["id"];
+      String listingCategoryId = data["message"]["id"];
+      print(listingCategoryId);
       return listingCategoryId;
     } else {
       throw Exception("Failed to get infos");
     }
   }
-
 }

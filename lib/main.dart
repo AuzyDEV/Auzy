@@ -6,21 +6,16 @@ import 'firebase_options.dart';
 
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
-
   await FlutterAppTheme.initialize();
-
-  //intialize firebase
   await Firebase.initializeApp(
     options: DefaultFirebaseOptions.currentPlatform,
   );
-
   runApp(MyApp());
 }
 
 class MyApp extends StatefulWidget {
   @override
   State<MyApp> createState() => _MyAppState();
-
   static _MyAppState of(BuildContext context) =>
       context.findAncestorStateOfType<_MyAppState>();
 }

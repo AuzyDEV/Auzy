@@ -3,7 +3,7 @@ import 'package:http/http.dart' as http;
 import 'dart:convert';
 import 'dart:async';
 
-import 'package:new_mee/social-post/all-posts/all-posts-model.dart';
+import 'package:skeleton/social-post/all-posts/all-posts-model.dart';
 
 class AddPostMan {
   final FirebaseAuth _auth = FirebaseAuth.instance;
@@ -27,8 +27,8 @@ class AddPostMan {
     if (response.statusCode == 201) {
       final data = jsonDecode(response.body);
       //print(data);
-      print(data["id"]);
-      String PostId = data["id"];
+      print(data["message"]["id"]);
+      String PostId = data["message"]["id"];
       return PostId;
     } else {
       throw Exception("Failed to get infos");

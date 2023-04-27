@@ -1,6 +1,5 @@
 import 'dart:convert';
-
-import 'package:new_mee/social-post/all-posts/file-model.dart';
+import 'package:skeleton/social-post/all-posts/file-model.dart';
 
 List<ListingModel> ListingModelFromJson(String str) => List<ListingModel>.from(
     json.decode(str).map((x) => ListingModel.fromMap(x)));

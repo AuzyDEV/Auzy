@@ -1,12 +1,8 @@
-import 'package:google_sign_in/google_sign_in.dart';
 import 'package:http/http.dart' as http;
 import 'dart:convert';
 import 'dart:async';
 import 'package:firebase_auth/firebase_auth.dart';
-import 'package:flutter_facebook_auth/flutter_facebook_auth.dart';
-import 'package:dart_ipify/dart_ipify.dart';
-
-import 'package:new_mee/user-profile/profile-model.dart';
+import 'package:skeleton/user-profile/profile-model.dart';
 
 class UserMan {
   final FirebaseAuth _auth = FirebaseAuth.instance;
@@ -18,8 +14,8 @@ class UserMan {
     Userslist = new List<User>();
     final response = await http.get(Uri.parse('http://127.0.0.1:3000/api/get'));
     if (response.statusCode == 200) {
-      // List<dynamic> body = jsonDecode(response.body);
-      List body = jsonDecode(response.body);
+      var jsonData = jsonDecode(response.body);
+      List body = jsonData["message"];
       for (int i = 0; i < body.length; i++) {
         Userslist.add(new User.fromMappp(body[i]));
       }
@@ -131,10 +127,7 @@ class UserMan {
         await http.get(Uri.parse('http://localhost:3000/api/usersrole'));
     if (response.statusCode == 200) {
       final parsed = jsonDecode(response.body);
-      //print(parsed["posts"]);
-      //print(parsed);
-      var data = parsed["users"];
-      //print(data);
+      var data = parsed["message"]["users"];
       return data.map<User>((json) => User.fromMapy(json)).toList();
     } else {
       throw Exception("Failed to get saved post's list");

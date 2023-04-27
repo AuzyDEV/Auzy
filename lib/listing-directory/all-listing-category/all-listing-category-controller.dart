@@ -14,7 +14,8 @@ class CategoryListingCtegoryMan {
     if (response.statusCode == 200) {
       final parsed = jsonDecode(response.body);
       //print(parsed["posts"]);
-      final data = parsed["listCollections"];
+      final data = parsed["message"]["listCollections"];
+      print(data);
       return data
           .map<ListingCtegoryModel>((json) => ListingCtegoryModel.fromMap(json))
           .toList();

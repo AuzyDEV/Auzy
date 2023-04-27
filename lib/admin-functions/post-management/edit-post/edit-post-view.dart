@@ -53,118 +53,97 @@ class _editPostDetailsWidgetState extends State<editPostDetailsWidget> {
           child: Column(
         mainAxisSize: MainAxisSize.max,
         children: [
-          Padding(
-            padding: EdgeInsetsDirectional.fromSTEB(0, 0, 0, 0),
-            child: Form(
-              key: formKey,
-              autovalidateMode: AutovalidateMode.always,
-              child: Column(
-                mainAxisSize: MainAxisSize.max,
-                children: [
-                  Padding(
-                    padding: EdgeInsetsDirectional.fromSTEB(0, 0, 0, 0),
-                    child: Column(
-                      mainAxisSize: MainAxisSize.max,
-                      children: [
-                        Padding(
-                          padding:
-                              EdgeInsetsDirectional.fromSTEB(16, 20, 16, 0),
-                          child: LabeledRowWidget(text: 'Post\'s title'),
-                        ),
-                        Padding(
-                          padding:
-                              EdgeInsetsDirectional.fromSTEB(16, 10, 16, 0),
-                          child: TextFormFieldWidget(
-                            controller: titleController,
-                            isRequired: true,
-                          ),
-                        ),
-                        Padding(
-                            padding:
-                                EdgeInsetsDirectional.fromSTEB(16, 20, 16, 0),
-                            child: LabeledRowWidget(text: 'Post\'s contenu')),
-                        Padding(
-                          padding:
-                              EdgeInsetsDirectional.fromSTEB(16, 20, 16, 0),
-                          child: Column(
-                            children: [
-                              HtmlEditor(
-                                controller: controller, //required
-                                htmlEditorOptions: HtmlEditorOptions(
-                                  hint: "Your text here...",
-                                  initialText: "text content initial, if any",
-                                ),
-                              ),
-                            ],
-                          ),
-                        ),
-                      ],
+          Form(
+            key: formKey,
+            autovalidateMode: AutovalidateMode.always,
+            child: Column(
+              mainAxisSize: MainAxisSize.max,
+              children: [
+                Column(
+                  mainAxisSize: MainAxisSize.max,
+                  children: [
+                    LabeledRowWidget(text: 'Post\'s title'),
+                    TextFormFieldWidget(
+                      controller: titleController,
+                      isRequired: true,
                     ),
-                  ),
-                  Column(
-                    mainAxisSize: MainAxisSize.max,
-                    children: [
-                      Padding(
-                          padding:
-                              EdgeInsetsDirectional.fromSTEB(16, 30, 16, 10),
-                          child: Row(children: [
-                            Expanded(
-                              child: Padding(
-                                padding:
-                                    EdgeInsetsDirectional.fromSTEB(0, 0, 0, 0),
-                                child: buttonWidget(
-                                  onPressed: () async {
-                                    String text = await controller.getText();
-                                    if (formKey.currentState.validate()) {
-                                      bool response =
-                                          await apiPost.UpdatePostInfos(
-                                              widget.id,
-                                              titleController.text,
-                                              text);
-                                      print(response);
-                                      response == true
-                                          ? showDialog(
-                                              context: context,
-                                              builder: (BuildContext context) {
-                                                return alertDialogWidget(
-                                                  title: "Succes!",
-                                                  content:
-                                                      "updating infos completed successfully!",
-                                                  actions: [
-                                                    TextButton(
-                                                      child: Text("Ok"),
-                                                      onPressed: () async {
-                                                        await Navigator.push(
-                                                          context,
-                                                          MaterialPageRoute(
-                                                            builder: (context) =>
-                                                                HomeWidget(),
-                                                          ),
-                                                        );
-                                                      },
-                                                    )
-                                                  ],
-                                                );
-                                              })
-                                          : showDialog(
-                                              context: context,
-                                              builder: (BuildContext context) {
-                                                return alertDialogWidget(
-                                                  title: "Error",
-                                                  content: "$response",
-                                                );
-                                              });
-                                    }
-                                  },
-                                  text: 'submit',
-                                ),
+                    LabeledRowWidget(text: 'Post\'s contenu'),
+                    Padding(
+                      padding: EdgeInsetsDirectional.fromSTEB(16, 20, 16, 0),
+                      child: Column(
+                        children: [
+                          HtmlEditor(
+                            controller: controller, //required
+                            htmlEditorOptions: HtmlEditorOptions(
+                              hint: "Your text here...",
+                              initialText: "text content initial, if any",
+                            ),
+                          ),
+                        ],
+                      ),
+                    ),
+                  ],
+                ),
+                Column(
+                  mainAxisSize: MainAxisSize.max,
+                  children: [
+                    Padding(
+                        padding: EdgeInsetsDirectional.fromSTEB(16, 30, 16, 10),
+                        child: Row(children: [
+                          Expanded(
+                            child: Padding(
+                              padding:
+                                  EdgeInsetsDirectional.fromSTEB(0, 0, 0, 0),
+                              child: buttonWidget(
+                                onPressed: () async {
+                                  String text = await controller.getText();
+                                  if (formKey.currentState.validate()) {
+                                    bool response =
+                                        await apiPost.UpdatePostInfos(widget.id,
+                                            titleController.text, text);
+                                    print(response);
+                                    response == true
+                                        ? showDialog(
+                                            context: context,
+                                            builder: (BuildContext context) {
+                                              return alertDialogWidget(
+                                                title: "Succes!",
+                                                content:
+                                                    "updating infos completed successfully!",
+                                                actions: [
+                                                  TextButton(
+                                                    child: Text("Ok"),
+                                                    onPressed: () async {
+                                                      await Navigator.push(
+                                                        context,
+                                                        MaterialPageRoute(
+                                                          builder: (context) =>
+                                                              PostsManagementWidget(),
+                                                        ),
+                                                      );
+                                                    },
+                                                  )
+                                                ],
+                                              );
+                                            })
+                                        : showDialog(
+                                            context: context,
+                                            builder: (BuildContext context) {
+                                              return alertDialogWidget(
+                                                title: "Error",
+                                                content: "$response",
+                                              );
+                                            });
+                                  }
+                                },
+                                text: 'submit',
                               ),
                             ),
-                          ])),
-                    ],
-                  ),
-                ],
-              ),
+                          ),
+                        ])),
+                  ],
+                ),
+              ],
             ),
           ),
         ],

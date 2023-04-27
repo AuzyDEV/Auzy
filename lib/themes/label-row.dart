@@ -12,7 +12,10 @@ class LabeledRowWidget extends StatelessWidget {
       mainAxisSize: MainAxisSize.max,
       mainAxisAlignment: MainAxisAlignment.spaceBetween,
       children: [
-        Text(
+          Padding(
+                              padding:
+                                  EdgeInsetsDirectional.fromSTEB(16, 20, 16, 0),
+       child: Text(
           '$text*',
           style: FlutterAppTheme.of(context).bodyText2.override(
                 fontFamily: 'Roboto',
@@ -21,6 +24,7 @@ class LabeledRowWidget extends StatelessWidget {
                 fontWeight: FontWeight.bold,
               ),
         ),
+          ),
       ],
     );
   }

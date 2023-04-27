@@ -1,6 +1,6 @@
 import '../../../themes/theme.dart';
-import 'package:new_mee/user-profile/profile-controller.dart';
-import 'package:new_mee/user-profile/profile-model.dart';
+import 'package:skeleton/user-profile/profile-controller.dart';
+import 'package:skeleton/user-profile/profile-model.dart';
 import 'package:flutter/material.dart';
 import '../index.dart';
 

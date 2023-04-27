@@ -79,162 +79,139 @@ class _addNewPostWidgetState extends State<addNewPostWidget> {
                     return Column(
                       mainAxisSize: MainAxisSize.max,
                       children: [
-                        Padding(
-                          padding: EdgeInsetsDirectional.fromSTEB(0, 0, 0, 0),
-                          child: Form(
-                            key: formKey,
-                            autovalidateMode: AutovalidateMode.always,
-                            child: Column(
-                              mainAxisSize: MainAxisSize.max,
-                              children: [
-                                Padding(
-                                  padding: EdgeInsetsDirectional.fromSTEB(
-                                      0, 0, 0, 0),
-                                  child: Column(
-                                    mainAxisSize: MainAxisSize.max,
-                                    children: [
-                                      Padding(
-                                        padding: EdgeInsetsDirectional.fromSTEB(
-                                            16, 20, 16, 0),
-                                        child: LabeledRowWidget(text: 'Title'),
-                                      ),
-                                      Padding(
-                                        padding: EdgeInsetsDirectional.fromSTEB(
-                                            16, 10, 16, 0),
-                                        child: TextFormFieldWidget(
-                                          controller: titleController,
-                                          isRequired: true,
-                                        ),
-                                      ),
-                                      Padding(
-                                        padding: EdgeInsetsDirectional.fromSTEB(
-                                            16, 20, 16, 0),
-                                        child: LabeledRowWidget(text: 'Text'),
-                                      ),
-                                    ],
-                                  ),
-                                ),
-                                Padding(
-                                    padding: EdgeInsetsDirectional.fromSTEB(
-                                        16, 20, 16, 0),
-                                    child: Column(children: [
-                                      HtmlEditor(
-                                        controller: controller, //required
-                                        htmlEditorOptions: HtmlEditorOptions(
-                                          hint: "Your text here...",
-                                          initialText:
-                                              "text content initial, if any",
-                                        ),
-                                      ),
-                                    ])),
-                                Column(
-                                  mainAxisAlignment: MainAxisAlignment.center,
-                                  children: [
-                                    Text(fileName),
-                                    ElevatedButton(
-                                      onPressed: (() {
-                                        InputElement inputElement =
-                                            FileUploadInputElement();
-                                        inputElement.click();
-
-                                        inputElement.onChange.listen((e) {
-                                          final files = inputElement.files;
-                                          if (files.length == 1) {
-                                            final file = files[0];
-                                            fileName = file.name;
-                                            final reader = FileReader();
-                                            reader.readAsArrayBuffer(file);
-                                            reader.onLoadEnd.listen((e) {
-                                              setState(() {
-                                                fileContents = reader.result;
-                                              });
-                                            });
-                                          }
-                                        });
-                                      }),
-                                      child: Text("Pick a file"),
-                                    ),
-                                  ],
-                                ),
-                                Column(
+                        Form(
+                          key: formKey,
+                          autovalidateMode: AutovalidateMode.always,
+                          child: Column(
+                            mainAxisSize: MainAxisSize.max,
+                            children: [
+                              Padding(
+                                padding:
+                                    EdgeInsetsDirectional.fromSTEB(0, 0, 0, 0),
+                                child: Column(
                                   mainAxisSize: MainAxisSize.max,
                                   children: [
-                                    Padding(
-                                        padding: EdgeInsetsDirectional.fromSTEB(
-                                            16, 30, 16, 10),
-                                        child: Row(children: [
-                                          Expanded(
-                                            child: Padding(
-                                              padding: EdgeInsetsDirectional
-                                                  .fromSTEB(0, 0, 0, 0),
-                                              child: buttonWidget(
-                                                onPressed: () async {
-                                                  String text = await controller
-                                                      .getText();
-                                                  if (formKey.currentState
-                                                      .validate()) {
-                                                    String response =
-                                                        await apiPost.addNewPost(
-                                                            titleController
-                                                                .text,
-                                                            text,
-                                                            snapshot.data.id,
-                                                            snapshot.data
-                                                                .displayName,
-                                                            snapshot
-                                                                .data.photoURL);
-
-                                                    await FirebaseStorage
-                                                        .instance
-                                                        .ref(
-                                                            'posts/$response/$fileName')
-                                                        .putData(fileContents);
-
-                                                    showDialog(
-                                                        context: context,
-                                                        builder: (BuildContext
-                                                            context) {
-                                                          return alertDialogWidget(
-                                                            title: "Succes!",
-                                                            content:
-                                                                "Post was added successfully",
-                                                            actions: [
-                                                              TextButton(
-                                                                child:
-                                                                    Text("Ok"),
-                                                                onPressed:
-                                                                    () async {
-                                                                  await Navigator
-                                                                      .push(
-                                                                    context,
-                                                                    MaterialPageRoute(
-                                                                      builder:
-                                                                          (context) =>
-                                                                              HomeWidget(),
-                                                                    ),
-                                                                  );
-                                                                },
-                                                              )
-                                                            ],
-                                                          );
-                                                        });
-                                                  }
-                                                },
-                                                text: 'send',
-                                              ),
-                                            ),
-                                          ),
-                                        ])),
-                                    Divider(
-                                      thickness: 1,
-                                      indent: 50,
-                                      endIndent: 50,
-                                      color: Colors.grey[300],
+                                    LabeledRowWidget(text: 'Title'),
+                                    TextFormFieldWidget(
+                                      controller: titleController,
+                                      isRequired: true,
                                     ),
+                                    LabeledRowWidget(text: 'Text'),
                                   ],
                                 ),
-                              ],
-                            ),
+                              ),
+                              Padding(
+                                  padding: EdgeInsetsDirectional.fromSTEB(
+                                      16, 20, 16, 0),
+                                  child: Column(children: [
+                                    HtmlEditor(
+                                      controller: controller, //required
+                                      htmlEditorOptions: HtmlEditorOptions(
+                                        hint: "Your text here...",
+                                        initialText:
+                                            "text content initial, if any",
+                                      ),
+                                    ),
+                                  ])),
+                              Column(
+                                mainAxisAlignment: MainAxisAlignment.center,
+                                children: [
+                                  Text(fileName),
+                                  ElevatedButton(
+                                    onPressed: (() {
+                                      InputElement inputElement =
+                                          FileUploadInputElement();
+                                      inputElement.click();
+
+                                      inputElement.onChange.listen((e) {
+                                        final files = inputElement.files;
+                                        if (files.length == 1) {
+                                          final file = files[0];
+                                          fileName = file.name;
+                                          final reader = FileReader();
+                                          reader.readAsArrayBuffer(file);
+                                          reader.onLoadEnd.listen((e) {
+                                            setState(() {
+                                              fileContents = reader.result;
+                                            });
+                                          });
+                                        }
+                                      });
+                                    }),
+                                    child: Text("Pick a file"),
+                                  ),
+                                ],
+                              ),
+                              Column(
+                                mainAxisSize: MainAxisSize.max,
+                                children: [
+                                  Padding(
+                                      padding: EdgeInsetsDirectional.fromSTEB(
+                                          16, 30, 16, 10),
+                                      child: Row(children: [
+                                        Expanded(
+                                          child: Padding(
+                                            padding:
+                                                EdgeInsetsDirectional.fromSTEB(
+                                                    0, 0, 0, 0),
+                                            child: buttonWidget(
+                                              onPressed: () async {
+                                                String text =
+                                                    await controller.getText();
+                                                if (formKey.currentState
+                                                    .validate()) {
+                                                  String response =
+                                                      await apiPost.addNewPost(
+                                                          titleController.text,
+                                                          text,
+                                                          snapshot.data.id,
+                                                          snapshot
+                                                              .data.displayName,
+                                                          snapshot
+                                                              .data.photoURL);
+
+                                                  await FirebaseStorage.instance
+                                                      .ref(
+                                                          'posts/$response/$fileName')
+                                                      .putData(fileContents);
+
+                                                  showDialog(
+                                                      context: context,
+                                                      builder: (BuildContext
+                                                          context) {
+                                                        return alertDialogWidget(
+                                                          title: "Succes!",
+                                                          content:
+                                                              "Post was added successfully",
+                                                          actions: [
+                                                            TextButton(
+                                                              child: Text("Ok"),
+                                                              onPressed:
+                                                                  () async {
+                                                                await Navigator
+                                                                    .push(
+                                                                  context,
+                                                                  MaterialPageRoute(
+                                                                    builder:
+                                                                        (context) =>
+                                                                            HomeWidget(),
+                                                                  ),
+                                                                );
+                                                              },
+                                                            )
+                                                          ],
+                                                        );
+                                                      });
+                                                }
+                                              },
+                                              text: 'send',
+                                            ),
+                                          ),
+                                        ),
+                                      ])),
+                                ],
+                              ),
+                            ],
                           ),
                         ),
                       ],

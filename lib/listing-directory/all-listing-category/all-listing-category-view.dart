@@ -1,8 +1,12 @@
-import 'package:new_mee/listing-directory/add-listing-category/add-listing-category-model.dart';
-import 'package:new_mee/listing-directory/all-listing-category/all-listing-category-controller.dart';
+import 'package:skeleton/admin-functions/user-management/all-users/all-users-controller.dart';
+import 'package:skeleton/admin-functions/user-management/profil-user/profil-user-controller.dart';
+import 'package:skeleton/listing-directory/add-listing-category/add-listing-category-model.dart';
+import 'package:skeleton/listing-directory/all-listing-category/all-listing-category-controller.dart';
 import '../../../themes/theme.dart';
 import '../../index.dart';
 import 'package:flutter/material.dart';
+
+import '../../user-profile/profile-controller.dart';
 
 class SpecialitiesWidget extends StatefulWidget {
   const SpecialitiesWidget({Key key}) : super(key: key);
@@ -15,11 +19,24 @@ class _SpecialitiesWidgetState extends State<SpecialitiesWidget> {
   final scaffoldKey = GlobalKey<ScaffoldState>();
   final _unfocusNode = FocusNode();
   Future<List<ListingCtegoryModel>> _futureCategory;
+  String _futureRoleValue;
+  ProfilingMan apiUser = ProfilingMan();
   CategoryListingCtegoryMan api = CategoryListingCtegoryMan();
-  
+  Future<String> _getCurrentUserRole() async {
+    return apiUser.GetCurrentUserRole();
+  }
+
+  void _getFutureRoleValue() async {
+    String value = await _getCurrentUserRole();
+    setState(() {
+      _futureRoleValue = value;
+    });
+  }
+
   @override
   void initState() {
     super.initState();
+    _getFutureRoleValue();
     _futureCategory = api.getAllListingCtegories();
   }
 
@@ -38,6 +55,18 @@ class _SpecialitiesWidgetState extends State<SpecialitiesWidget> {
           preferredSize: const Size.fromHeight(60),
           child: appbar(text: 'Categories'),
         ),
+        floatingActionButton: _futureRoleValue == "admin"
+            ? floatingActionButtonWidget(
+                onPressed: () async {
+                  await Navigator.push(
+                    context,
+                    MaterialPageRoute(
+                        builder: (context) => addListingCategoryWidget()),
+                  );
+                },
+                icon: Icons.add,
+              )
+            : null,
         drawer: Drawerr(),
         body: SingleChildScrollView(
             child: Column(
