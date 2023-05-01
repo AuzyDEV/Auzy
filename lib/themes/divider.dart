@@ -1,20 +1,36 @@
 import 'package:flutter/material.dart';
 
 class CustomDivider extends StatelessWidget {
+  final double height;
   final Color color;
   final double thickness;
-  final double height;
+  final double indent;
+  final double endIndent;
 
-  CustomDivider({this.color = Colors.grey, this.thickness = 1.0, this.height = 16.0});
+  const CustomDivider(
+      {Key key,
+      this.height,
+      this.thickness,
+      this.color,
+      this.indent,
+      this.endIndent})
+      : super(key: key);
 
   @override
   Widget build(BuildContext context) {
     return Container(
       height: height,
-      child: Divider(
-        color: color,
-        thickness: thickness,
+      decoration: BoxDecoration(
+        border: Border(
+          bottom: BorderSide(
+            color: color,
+            width: 1 ?? thickness,
+          ),
+        ),
       ),
+      color: Colors.grey ?? color,
+      margin:
+          EdgeInsetsDirectional.only(start: 50 ?? indent, end: 50 ?? endIndent),
     );
   }
 }

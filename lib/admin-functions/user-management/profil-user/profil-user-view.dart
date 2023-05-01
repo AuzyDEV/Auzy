@@ -1,3 +1,5 @@
+import 'package:skeleton/themes/divider.dart';
+
 import '../../../index.dart';
 import 'profil-user-controller.dart';
 import '../../../themes/theme.dart';
@@ -104,12 +106,6 @@ class _ProfillWidgetState extends State<ProfillWidget> {
                                           fontWeight: FontWeight.bold,
                                           color: FlutterAppTheme.of(context)
                                               .TextColor)),
-                                ),
-                                Divider(
-                                  height: 40,
-                                  color: Colors.grey[50],
-                                  endIndent: 20,
-                                  indent: 20,
                                 ),
                                 TextFormFieldWidget(
                                   hintText: '${snapshot.data.id}',

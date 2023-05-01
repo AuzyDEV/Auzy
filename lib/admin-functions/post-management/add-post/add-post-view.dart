@@ -158,12 +158,16 @@ class _addNewPostWidgetState extends State<addNewPostWidget> {
                                               onPressed: () async {
                                                 String text =
                                                     await controller.getText();
+                                                String test = text.substring(
+                                                    1, text.length - 1);
+                                                print(text.substring(
+                                                    1, text.length - 1));
                                                 if (formKey.currentState
                                                     .validate()) {
                                                   String response =
                                                       await apiPost.addNewPost(
                                                           titleController.text,
-                                                          text,
+                                                          test,
                                                           snapshot.data.id,
                                                           snapshot
                                                               .data.displayName,

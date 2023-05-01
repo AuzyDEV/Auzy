@@ -118,7 +118,7 @@ class _editPostDetailsWidgetState extends State<editPostDetailsWidget> {
                                                         context,
                                                         MaterialPageRoute(
                                                           builder: (context) =>
-                                                              PostsManagementWidget(),
+                                                              HomeWidget(),
                                                         ),
                                                       );
                                                     },

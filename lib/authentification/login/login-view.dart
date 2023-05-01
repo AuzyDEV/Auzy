@@ -32,7 +32,7 @@ class _SigninWidgetWidgetState extends State<SigninWidget> {
   Widget build(BuildContext context) {
     return Scaffold(
       key: scaffoldKey,
-      body: Container(
+      body: SingleChildScrollView(
         child: Column(
           mainAxisSize: MainAxisSize.max,
           mainAxisAlignment: MainAxisAlignment.spaceEvenly,
@@ -212,20 +212,71 @@ class _SigninWidgetWidgetState extends State<SigninWidget> {
                           ],
                         ),
                       ),
-                      Padding(
-                        padding: EdgeInsetsDirectional.fromSTEB(8, 8, 8, 8),
-                        child: Row(
-                          mainAxisSize: MainAxisSize.max,
-                          mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                          children: [
-                            InkWell(
-                              onTap: () async {
-                                var result = api.signInWithGoogle();
-                                if (result != null) {
-                                  print(result);
-                                }
-                              },
-                              child: Container(
+                      /*   Padding(
+                          padding: EdgeInsetsDirectional.fromSTEB(8, 8, 8, 8),
+                          child: Row(
+                            mainAxisSize: MainAxisSize.max,
+                            mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                            children: [
+                              InkWell(
+                                onTap: () async {
+                                  var result = api.signInWithGoogle();
+                                  if (result != null) {
+                                    print(result);
+                                  }
+                                },
+                                child: Container(
+                                  width: 50,
+                                  height: 50,
+                                  decoration: BoxDecoration(
+                                    color: Color(0xFF090F13),
+                                    boxShadow: [
+                                      BoxShadow(
+                                        blurRadius: 5,
+                                        color: Color(0x3314181B),
+                                        offset: Offset(0, 2),
+                                      )
+                                    ],
+                                    shape: BoxShape.circle,
+                                  ),
+                                  alignment: AlignmentDirectional(0, 0),
+                                  child: Icon(
+                                    Icons.email,
+                                    color: Colors.white,
+                                    size: 24,
+                                  ),
+                                ),
+                              ),
+                              InkWell(
+                                onTap: () async {
+                                  var result = api.facebookSignin();
+                                  if (result != null) {
+                                    print(result);
+                                  }
+                                },
+                                child: Container(
+                                  width: 50,
+                                  height: 50,
+                                  decoration: BoxDecoration(
+                                    color: Color(0xFF090F13),
+                                    boxShadow: [
+                                      BoxShadow(
+                                        blurRadius: 5,
+                                        color: Color(0x3314181B),
+                                        offset: Offset(0, 2),
+                                      )
+                                    ],
+                                    shape: BoxShape.circle,
+                                  ),
+                                  alignment: AlignmentDirectional(0, 0),
+                                  child: Icon(
+                                    Icons.facebook,
+                                    color: Colors.white,
+                                    size: 24,
+                                  ),
+                                ),
+                              ),
+                              Container(
                                 width: 50,
                                 height: 50,
                                 decoration: BoxDecoration(
@@ -241,65 +292,15 @@ class _SigninWidgetWidgetState extends State<SigninWidget> {
                                 ),
                                 alignment: AlignmentDirectional(0, 0),
                                 child: Icon(
-                                  Icons.email,
+                                  Icons.phone_sharp,
                                   color: Colors.white,
                                   size: 24,
                                 ),
                               ),
-                            ),
-                            InkWell(
-                              onTap: () async {
-                                var result = api.facebookSignin();
-                                if (result != null) {
-                                  print(result);
-                                }
-                              },
-                              child: Container(
-                                width: 50,
-                                height: 50,
-                                decoration: BoxDecoration(
-                                  color: Color(0xFF090F13),
-                                  boxShadow: [
-                                    BoxShadow(
-                                      blurRadius: 5,
-                                      color: Color(0x3314181B),
-                                      offset: Offset(0, 2),
-                                    )
-                                  ],
-                                  shape: BoxShape.circle,
-                                ),
-                                alignment: AlignmentDirectional(0, 0),
-                                child: Icon(
-                                  Icons.facebook,
-                                  color: Colors.white,
-                                  size: 24,
-                                ),
-                              ),
-                            ),
-                            Container(
-                              width: 50,
-                              height: 50,
-                              decoration: BoxDecoration(
-                                color: Color(0xFF090F13),
-                                boxShadow: [
-                                  BoxShadow(
-                                    blurRadius: 5,
-                                    color: Color(0x3314181B),
-                                    offset: Offset(0, 2),
-                                  )
-                                ],
-                                shape: BoxShape.circle,
-                              ),
-                              alignment: AlignmentDirectional(0, 0),
-                              child: Icon(
-                                Icons.phone_sharp,
-                                color: Colors.white,
-                                size: 24,
-                              ),
-                            ),
-                          ],
+                            ],
+                          ),
                         ),
-                      ),
+                      */
                       Padding(
                         padding: EdgeInsetsDirectional.fromSTEB(20, 12, 20, 12),
                         child: Row(
