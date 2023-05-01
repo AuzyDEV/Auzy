@@ -160,20 +160,18 @@ class _addNewPostWidgetState extends State<addNewPostWidget> {
                                                     await controller.getText();
                                                 String test = text.substring(
                                                     1, text.length - 1);
-                                                print(text.substring(
-                                                    1, text.length - 1));
+                                                print(text.toString());
                                                 if (formKey.currentState
                                                     .validate()) {
                                                   String response =
                                                       await apiPost.addNewPost(
                                                           titleController.text,
-                                                          test,
+                                                          text.toString(),
                                                           snapshot.data.id,
                                                           snapshot
                                                               .data.displayName,
                                                           snapshot
                                                               .data.photoURL);
-
                                                   await FirebaseStorage.instance
                                                       .ref(
                                                           'posts/$response/$fileName')
