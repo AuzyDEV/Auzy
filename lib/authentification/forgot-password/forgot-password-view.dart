@@ -31,7 +31,7 @@ class _ForgetpasswordWidgetState extends State<ForgetpasswordWidget> {
       key: scaffoldKey,
       body: GestureDetector(
         onTap: () => FocusScope.of(context).unfocus(),
-        child: SingleChildScrollView(
+        child: Container(
           child: Column(
             mainAxisSize: MainAxisSize.max,
             mainAxisAlignment: MainAxisAlignment.start,

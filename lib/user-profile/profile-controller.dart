@@ -14,14 +14,11 @@ class ProfilingMan {
     if (response.statusCode == 200) {
       final data = jsonDecode(response.body);
       String uid = data["message"][0]['uid'];
-      print(data[0]);
-      //return User.fromMapp(data[0]);
       final response1 = await http
           .get(Uri.parse('http://127.0.0.1:3000/api/userinfos/${uid}'));
       if (response1.statusCode == 200) {
         final data1 = jsonDecode(response1.body);
         final dataa1 = data1["message"][0];
-        print(dataa1);
         return User.fromMapp(dataa1);
       } else {
         throw Exception("Failed to get infos");
@@ -43,7 +40,6 @@ class ProfilingMan {
       if (response1.statusCode == 200) {
         final data1 = jsonDecode(response1.body);
         role = data1["message"][0];
-        print(role);
         return role;
       } else {
         throw Exception("Failed to get infos");

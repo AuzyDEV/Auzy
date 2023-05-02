@@ -49,6 +49,7 @@ class _editPostDetailsWidgetState extends State<editPostDetailsWidget> {
         preferredSize: const Size.fromHeight(60),
         child: appbar(text: 'Edit Post'),
       ),
+      drawer: Drawerr(),
       body: SingleChildScrollView(
           child: Column(
         mainAxisSize: MainAxisSize.max,
@@ -76,7 +77,6 @@ class _editPostDetailsWidgetState extends State<editPostDetailsWidget> {
                             controller: controller, //required
                             htmlEditorOptions: HtmlEditorOptions(
                               hint: "Your text here...",
-                              initialText: "text content initial, if any",
                             ),
                           ),
                         ],
@@ -102,38 +102,31 @@ class _editPostDetailsWidgetState extends State<editPostDetailsWidget> {
                                         await apiPost.UpdatePostInfos(widget.id,
                                             titleController.text, text);
                                     print(response);
-                                    response == true
-                                        ? showDialog(
-                                            context: context,
-                                            builder: (BuildContext context) {
-                                              return alertDialogWidget(
-                                                title: "Succes!",
-                                                content:
-                                                    "updating infos completed successfully!",
-                                                actions: [
-                                                  TextButton(
-                                                    child: Text("Ok"),
-                                                    onPressed: () async {
-                                                      await Navigator.push(
-                                                        context,
-                                                        MaterialPageRoute(
-                                                          builder: (context) =>
-                                                              HomeWidget(),
-                                                        ),
-                                                      );
-                                                    },
-                                                  )
-                                                ],
-                                              );
-                                            })
-                                        : showDialog(
-                                            context: context,
-                                            builder: (BuildContext context) {
-                                              return alertDialogWidget(
-                                                title: "Error",
-                                                content: "$response",
-                                              );
-                                            });
+                                    if (response == true) {
+                                      Navigator.push(
+                                        context,
+                                        MaterialPageRoute(
+                                          builder: (context) =>
+                                              PostsManagementWidget(),
+                                        ),
+                                      );
+                                      ScaffoldMessenger.of(context)
+                                          .showSnackBar(
+                                        SnackbarWidget(
+                                          content: Text(
+                                            'Successfully post updated!',
+                                          ),
+                                        ),
+                                      );
+                                    } else
+                                      showDialog(
+                                          context: context,
+                                          builder: (BuildContext context) {
+                                            return alertDialogWidget(
+                                              title: "Error",
+                                              content: "$response",
+                                            );
+                                          });
                                   }
                                 },
                                 text: 'submit',

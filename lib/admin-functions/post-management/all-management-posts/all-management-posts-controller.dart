@@ -26,7 +26,6 @@ class PostMan {
   Future<bool> deletePost(String id) async {
     final http.Response response =
         await http.delete(Uri.parse('http://127.0.0.1:3000/api/post/${id}'));
-
     if (response.statusCode == 200) {
       return true;
     } else {

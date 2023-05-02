@@ -43,6 +43,7 @@ class _changePasswordWidgetState extends State<changePasswordWidget> {
         preferredSize: const Size.fromHeight(60),
         child: appbar(text: 'Edit profil'),
       ),
+      drawer: Drawerr(),
       body: SingleChildScrollView(
           child: FutureBuilder<User>(
               future: _futureUser,

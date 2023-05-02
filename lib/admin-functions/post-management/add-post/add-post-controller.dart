@@ -18,7 +18,7 @@ class AddPostMan {
       },
       body: jsonEncode(<String, String>{
         'title': title,
-        'contenu': jsonEncode(contenu),
+        'contenu': contenu,
         'uid': uid,
         'uname': uname,
         'uphoto': uphoto,
@@ -26,7 +26,6 @@ class AddPostMan {
     );
     if (response.statusCode == 201) {
       final data = jsonDecode(response.body);
-      //print(data);
       print(data["message"]["id"]);
       String PostId = data["message"]["id"];
       return PostId;

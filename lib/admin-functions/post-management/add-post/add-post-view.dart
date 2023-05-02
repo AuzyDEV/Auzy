@@ -176,34 +176,21 @@ class _addNewPostWidgetState extends State<addNewPostWidget> {
                                                       .ref(
                                                           'posts/$response/$fileName')
                                                       .putData(fileContents);
-
-                                                  showDialog(
-                                                      context: context,
-                                                      builder: (BuildContext
-                                                          context) {
-                                                        return alertDialogWidget(
-                                                          title: "Succes!",
-                                                          content:
-                                                              "Post was added successfully",
-                                                          actions: [
-                                                            TextButton(
-                                                              child: Text("Ok"),
-                                                              onPressed:
-                                                                  () async {
-                                                                await Navigator
-                                                                    .push(
-                                                                  context,
-                                                                  MaterialPageRoute(
-                                                                    builder:
-                                                                        (context) =>
-                                                                            HomeWidget(),
-                                                                  ),
-                                                                );
-                                                              },
-                                                            )
-                                                          ],
-                                                        );
-                                                      });
+                                                  Navigator.push(
+                                                    context,
+                                                    MaterialPageRoute(
+                                                      builder: (context) =>
+                                                          PostsManagementWidget(),
+                                                    ),
+                                                  );
+                                                  ScaffoldMessenger.of(context)
+                                                      .showSnackBar(
+                                                    SnackbarWidget(
+                                                      content: Text(
+                                                        'Post added successfully!',
+                                                      ),
+                                                    ),
+                                                  );
                                                 }
                                               },
                                               text: 'send',

@@ -167,14 +167,15 @@ class _PostsManagementWidgetState extends State<PostsManagementWidget>
                 _createTitleCell(e.title.toString()),
                 DataCell(
                   Container(
-                    width: 400,
-                    height: 50,
+                    width: 500,
+                    height: 100,
                     child: Html(
                       data: e.contenu.toString(),
                     ),
                   ),
-                  //  Html(data: e.contenu.toString()),
                 ),
+                //  Html(data: e.contenu.toString()),
+
                 _createTitleCell(e.date.toString()),
                 DataCell(
                   Padding(

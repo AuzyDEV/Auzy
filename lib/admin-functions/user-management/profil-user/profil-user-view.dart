@@ -51,6 +51,7 @@ class _ProfillWidgetState extends State<ProfillWidget> {
         preferredSize: const Size.fromHeight(60),
         child: appbar(text: ' User profil'),
       ),
+      drawer: Drawerr(),
       body: SingleChildScrollView(
           child: FutureBuilder<User>(
               future: _futureUser,
