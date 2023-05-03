@@ -1,5 +1,6 @@
 import '../../admin-functions/user-management/all-users/all-users-controller.dart';
 import '../../index.dart';
+import '../../themes/custom-button.dart';
 import '../../user-profile/profile-controller.dart';
 import 'share-post-controller.dart';
 import '../../../themes/theme.dart';
@@ -273,7 +274,7 @@ class _UsersListForPostsWidgetState extends State<UsersListForPostsWidget> {
                                             padding:
                                                 EdgeInsetsDirectional.fromSTEB(
                                                     16, 0, 16, 0),
-                                            child: buttonWidget(
+                                            child: CustomButton(
                                               onPressed: () async {
                                                 bool response =
                                                     await sharedpostapi

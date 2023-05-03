@@ -153,7 +153,6 @@ class _SigninWidgetWidgetState extends State<SigninWidget> {
                                 padding:
                                     EdgeInsetsDirectional.fromSTEB(0, 0, 0, 0),
                                 child: CustomButton(
-                                  color: Color(0xFF9457FB),
                                   onPressed: () async {
                                     if (formKey.currentState.validate()) {
                                       String response = await api.signinUser(

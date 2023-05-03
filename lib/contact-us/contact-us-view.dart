@@ -2,6 +2,7 @@ import 'package:intl_phone_number_input/intl_phone_number_input.dart';
 import '../index.dart';
 import '../../themes/theme.dart';
 import 'package:flutter/material.dart';
+import '../themes/custom-button.dart';
 import 'contact-us-controller.dart';
 
 class contactUsWidget extends StatefulWidget {
@@ -117,7 +118,7 @@ class _contactUsWidgetState extends State<contactUsWidget> {
                             child: Padding(
                               padding:
                                   EdgeInsetsDirectional.fromSTEB(0, 0, 0, 0),
-                              child: buttonWidget(
+                              child: CustomButton(
                                 onPressed: () async {
                                   if (formKey.currentState.validate()) {
                                     bool response =

@@ -1,5 +1,6 @@
 import '../../../authentification/create-account/create-account-controller.dart';
 import '../../../index.dart';
+import '../../../themes/custom-button.dart';
 import '../../../user-profile/profile-controller.dart';
 import '../../../themes/theme.dart';
 import '../../../user-profile/profile-model.dart';
@@ -104,7 +105,7 @@ class _addUserWidgetState extends State<addUserWidget> {
                               child: Padding(
                                 padding:
                                     EdgeInsetsDirectional.fromSTEB(0, 0, 0, 0),
-                                child: buttonWidget(
+                                child: CustomButton(
                                   onPressed: () async {
                                     if (formKey.currentState.validate()) {
                                       String response =

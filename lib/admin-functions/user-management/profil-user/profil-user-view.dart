@@ -1,4 +1,5 @@
 import '../../../index.dart';
+import '../../../themes/custom-button.dart';
 import 'profil-user-controller.dart';
 import '../../../themes/theme.dart';
 import '../../../user-profile/profile-model.dart';
@@ -125,7 +126,7 @@ class _ProfillWidgetState extends State<ProfillWidget> {
                                     mainAxisSize: MainAxisSize.max,
                                     mainAxisAlignment: MainAxisAlignment.center,
                                     children: [
-                                      buttonWidget(
+                                      CustomButton(
                                         onPressed: () async {
                                           await showModalBottomSheet(
                                             isScrollControlled: true,

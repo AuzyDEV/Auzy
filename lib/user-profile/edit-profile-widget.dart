@@ -1,4 +1,5 @@
 import '../index.dart';
+import '../themes/custom-button.dart';
 import 'profile-controller.dart';
 import 'profile-model.dart';
 import '../../themes/theme.dart';
@@ -109,7 +110,7 @@ class _editprofilWidgetState extends State<editprofilWidget> {
                                           padding:
                                               EdgeInsetsDirectional.fromSTEB(
                                                   0, 0, 0, 0),
-                                          child: buttonWidget(
+                                          child: CustomButton(
                                             onPressed: () async {
                                               if (formKey.currentState
                                                   .validate()) {

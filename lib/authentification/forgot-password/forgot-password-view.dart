@@ -1,4 +1,5 @@
 import '../../index.dart';
+import '../../themes/custom-button.dart';
 import 'forgot-password-controller.dart';
 import '../../../themes/theme.dart';
 import 'package:flutter/material.dart';
@@ -122,7 +123,7 @@ class _ForgetpasswordWidgetState extends State<ForgetpasswordWidget> {
                         padding: EdgeInsetsDirectional.fromSTEB(16, 30, 16, 0),
                         child: Row(children: [
                           Expanded(
-                            child: buttonWidget(
+                            child: CustomButton(
                               onPressed: () async {
                                 clickCount = clickCount + 1;
                                 if (formKey.currentState.validate()) {

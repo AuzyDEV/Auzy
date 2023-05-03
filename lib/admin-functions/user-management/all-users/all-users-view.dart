@@ -1,4 +1,5 @@
 import '../../../index.dart';
+import '../../../themes/custom-button.dart';
 import '../../../user-profile/profile-model.dart';
 import '../../../themes/theme.dart';
 import 'package:flutter/material.dart';
@@ -118,7 +119,7 @@ class _UsersWidgetState extends State<UsersWidget>
                             child: Padding(
                               padding:
                                   EdgeInsetsDirectional.fromSTEB(0, 0, 0, 0),
-                              child: buttonWidget(
+                              child: CustomButton(
                                 onPressed: () async {
                                   var confirmDialogResponse = await showDialog<
                                           bool>(

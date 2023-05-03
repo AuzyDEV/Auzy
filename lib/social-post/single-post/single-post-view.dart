@@ -1,6 +1,7 @@
 import 'dart:convert';
 import 'package:flutter_html/flutter_html.dart';
 import '../../index.dart';
+import '../../themes/custom-button.dart';
 import '../../user-profile/profile-controller.dart';
 import '../all-posts/all-posts-model.dart';
 import 'single-post-controller.dart';
@@ -282,7 +283,7 @@ class _postDetailsWidgetState extends State<postDetailsWidget> {
                             children: [
                               if (_futureStringValue == "admin")
                                 Expanded(
-                                  child: buttonWidget(
+                                  child: CustomButton(
                                     onPressed: () async {
                                       Navigator.push(
                                         context,

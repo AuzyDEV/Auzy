@@ -798,8 +798,6 @@ class _postsForUsersWidgetState extends State<postsForUsersWidget> {
                                                       } else if (snapshot
                                                           .hasError) {
                                                         return Text(
-                                                            '${snapshot.error}');
-                                                        /*return Text(
                                                             'No shared posts with you',
                                                             textAlign: TextAlign
                                                                 .center,
@@ -814,7 +812,6 @@ class _postsForUsersWidgetState extends State<postsForUsersWidget> {
                                                                       FontWeight
                                                                           .bold,
                                                                 ));
-                                                    */
                                                       }
                                                       return Center(
                                                         child:

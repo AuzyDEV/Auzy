@@ -1,4 +1,5 @@
 import '../index.dart';
+import '../themes/custom-button.dart';
 import 'profile-model.dart';
 import '../../themes/theme.dart';
 import 'package:flutter/material.dart';
@@ -95,7 +96,7 @@ class _changePasswordWidgetState extends State<changePasswordWidget> {
                                             padding:
                                                 EdgeInsetsDirectional.fromSTEB(
                                                     0, 0, 0, 0),
-                                            child: buttonWidget(
+                                            child: CustomButton(
                                               onPressed: () async {
                                                 if (formKey.currentState
                                                     .validate()) {

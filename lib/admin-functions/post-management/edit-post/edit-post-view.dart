@@ -1,4 +1,5 @@
 import '../../../index.dart';
+import '../../../themes/custom-button.dart';
 import 'edit-post-controller.dart';
 import '../../../themes/theme.dart';
 import 'package:html_editor_enhanced/html_editor.dart';
@@ -94,7 +95,7 @@ class _editPostDetailsWidgetState extends State<editPostDetailsWidget> {
                             child: Padding(
                               padding:
                                   EdgeInsetsDirectional.fromSTEB(0, 0, 0, 0),
-                              child: buttonWidget(
+                              child: CustomButton(
                                 onPressed: () async {
                                   String text = await controller.getText();
                                   if (formKey.currentState.validate()) {

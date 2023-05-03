@@ -1,6 +1,7 @@
 import '../../index.dart';
 import 'package:skeleton/themes/theme.dart';
 import 'package:flutter/material.dart';
+import '../../themes/custom-button.dart';
 import 'mail-broadcast-controller.dart';
 
 class announcementWidget extends StatefulWidget {
@@ -67,7 +68,7 @@ class _announcementWidgetState extends State<announcementWidget> {
                               child: Padding(
                                 padding:
                                     EdgeInsetsDirectional.fromSTEB(0, 0, 0, 0),
-                                child: buttonWidget(
+                                child: CustomButton(
                                   onPressed: () async {
                                     if (formKey.currentState.validate()) {
                                       bool response =

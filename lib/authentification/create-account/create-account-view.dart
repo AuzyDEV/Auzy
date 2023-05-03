@@ -1,4 +1,5 @@
 import '../../index.dart';
+import '../../themes/custom-button.dart';
 import 'create-account-controller.dart';
 import '../../../themes/theme.dart';
 import 'package:flutter/material.dart';
@@ -137,7 +138,7 @@ class _CreateAccountWidgetState extends State<CreateAccountWidget> {
                               child: Padding(
                                 padding:
                                     EdgeInsetsDirectional.fromSTEB(0, 0, 0, 0),
-                                child: buttonWidget(
+                                child: CustomButton(
                                   onPressed: () async {
                                     if (formKey.currentState.validate()) {
                                       String response = await api.signupUser(

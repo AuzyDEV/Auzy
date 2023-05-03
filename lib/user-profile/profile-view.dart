@@ -1,5 +1,6 @@
 import '../authentification/login/login-controller.dart';
 import '../index.dart';
+import '../themes/custom-button.dart';
 import 'profile-controller.dart';
 import 'profile-model.dart';
 import '../../themes/theme.dart';
@@ -588,7 +589,7 @@ class _MyprofilWidgetState extends State<MyprofilWidget> {
                         mainAxisSize: MainAxisSize.max,
                         mainAxisAlignment: MainAxisAlignment.center,
                         children: [
-                          buttonWidget(
+                          CustomButton(
                             onPressed: () async {
                               bool response = await sapi.LogoutUser();
                               if (response)

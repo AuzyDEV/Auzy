@@ -2,6 +2,7 @@ import 'dart:html';
 import 'dart:typed_data';
 import 'package:firebase_storage/firebase_storage.dart';
 import '../../../index.dart';
+import '../../../themes/custom-button.dart';
 import 'add-post-controller.dart';
 import '../../../user-profile/profile-controller.dart';
 import '../../../themes/theme.dart';
@@ -154,12 +155,10 @@ class _addNewPostWidgetState extends State<addNewPostWidget> {
                                             padding:
                                                 EdgeInsetsDirectional.fromSTEB(
                                                     0, 0, 0, 0),
-                                            child: buttonWidget(
+                                            child: CustomButton(
                                               onPressed: () async {
                                                 String text =
                                                     await controller.getText();
-                                                String test = text.substring(
-                                                    1, text.length - 1);
                                                 print(text.toString());
                                                 if (formKey.currentState
                                                     .validate()) {

@@ -6,6 +6,7 @@ import 'package:skeleton/themes/divider.dart';
 import 'package:skeleton/themes/theme.dart';
 import 'package:flutter/material.dart';
 import '../../../index.dart';
+import '../../../themes/custom-button.dart';
 
 class updateImagePostWidget extends StatefulWidget {
   final String id, downloadURL;
@@ -104,7 +105,7 @@ class _updateImagePostWidgetState extends State<updateImagePostWidget> {
                               child: Padding(
                                 padding:
                                     EdgeInsetsDirectional.fromSTEB(0, 0, 0, 0),
-                                child: buttonWidget(
+                                child: CustomButton(
                                   onPressed: () async {
                                     if (formKey.currentState.validate()) {
                                       bool response = await api
