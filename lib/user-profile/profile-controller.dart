@@ -9,17 +9,17 @@ class ProfilingMan {
   static String role;
 
   Future<User> GetCurrentUser() async {
-    final response =
+    final response1 =
         await http.get(Uri.parse('http://127.0.0.1:3000/api/currentuser'));
-    if (response.statusCode == 200) {
-      final data = jsonDecode(response.body);
-      String uid = data["message"][0]['uid'];
-      final response1 = await http
-          .get(Uri.parse('http://127.0.0.1:3000/api/userinfos/${uid}'));
-      if (response1.statusCode == 200) {
-        final data1 = jsonDecode(response1.body);
-        final dataa1 = data1["message"][0];
-        return User.fromMapp(dataa1);
+    if (response1.statusCode == 200) {
+      final currentUser = jsonDecode(response1.body);
+      String userId = currentUser["message"][0]['uid'];
+      final response2 = await http
+          .get(Uri.parse('http://127.0.0.1:3000/api/userinfos/${userId}'));
+      if (response2.statusCode == 200) {
+        final currentUserDetails = jsonDecode(response2.body);
+        final currentUserDetail = currentUserDetails["message"][0];
+        return User.fromMapp(currentUserDetail);
       } else {
         throw Exception("Failed to get infos");
       }
@@ -29,17 +29,16 @@ class ProfilingMan {
   }
 
   Future<String> GetCurrentUserRole() async {
-    final response =
+    final response1 =
         await http.get(Uri.parse('http://127.0.0.1:3000/api/currentuser'));
-    if (response.statusCode == 200) {
-      final data = jsonDecode(response.body);
-      String uid = data["message"][0]['uid'];
-      //return User.fromMapp(data[0]);
-      final response1 =
-          await http.get(Uri.parse('http://127.0.0.1:3000/api/userole/${uid}'));
-      if (response1.statusCode == 200) {
-        final data1 = jsonDecode(response1.body);
-        role = data1["message"][0];
+    if (response1.statusCode == 200) {
+      final currentUser = jsonDecode(response1.body);
+      String userId = currentUser["message"][0]['uid'];
+      final response2 = await http
+          .get(Uri.parse('http://127.0.0.1:3000/api/userole/${userId}'));
+      if (response2.statusCode == 200) {
+        final currentUserRole = jsonDecode(response2.body);
+        role = currentUserRole["message"][0];
         return role;
       } else {
         throw Exception("Failed to get infos");
@@ -55,7 +54,6 @@ class ProfilingMan {
     if (response.statusCode == 200) {
       final data = jsonDecode(response.body);
       String uid = data["message"][0]['uid'];
-      //return User.fromMapp(data[0]);
       return uid;
     } else {
       throw Exception("Failed to load infos");

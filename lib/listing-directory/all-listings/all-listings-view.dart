@@ -38,7 +38,7 @@ class _AllListingsWidgetState extends State<AllListingsWidget> {
 
   Future<void> _refreshList() async {
     setState(() {
-      futureDoctor = apiDBDoctor.getAllDoctorsWithSpeciality(widget.speciality);
+      futureDoctor = apiDBDoctor.getAllListingsWithCategories(widget.speciality);
     });
   }
 
@@ -46,7 +46,7 @@ class _AllListingsWidgetState extends State<AllListingsWidget> {
   void initState() {
     super.initState();
     _getFutureRoleValue();
-    futureDoctor = apiDBDoctor.getAllDoctorsWithSpeciality(widget.speciality);
+    futureDoctor = apiDBDoctor.getAllListingsWithCategories(widget.speciality);
     SearchtextController = TextEditingController();
   }
 

@@ -25,10 +25,9 @@ class AddPostMan {
       }),
     );
     if (response.statusCode == 201) {
-      final data = jsonDecode(response.body);
-      print(data["message"]["id"]);
-      String PostId = data["message"]["id"];
-      return PostId;
+      final post = jsonDecode(response.body);
+      String postId = post["message"]["id"];
+      return postId;
     } else {
       throw Exception("Failed to get infos");
     }

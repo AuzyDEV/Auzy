@@ -204,7 +204,7 @@ class _postsForUsersWidgetState extends State<postsForUsersWidget> {
                                                                                             await Navigator.push(
                                                                                               context,
                                                                                               MaterialPageRoute(
-                                                                                                builder: (context) => HomeWidget(),
+                                                                                                builder: (context) => postsForUsersWidget(),
                                                                                               ),
                                                                                             );
                                                                                           },
@@ -298,10 +298,13 @@ class _postsForUsersWidgetState extends State<postsForUsersWidget> {
                                                                                 5,
                                                                                 2,
                                                                                 0),
-                                                                            child: //Text(snapshot.data[index].contenu)
-                                                                                //getTextSpanFromRichTextJson(snapshot.data[index].contenu),
-                                                                                Html(data: "${snapshot.data[index].contenu}"),
-                                                                            // Html(data: HtmlUnescape().convert(snapshot.data[index].contenu)),
+                                                                            child:
+                                                                                Html(data: "${snapshot.data[index].contenu}", style: {
+                                                                              '#': Style(
+                                                                                maxLines: 3,
+                                                                                textOverflow: TextOverflow.ellipsis,
+                                                                              ),
+                                                                            }),
                                                                           ),
                                                                           Row(
                                                                               mainAxisAlignment: MainAxisAlignment.start,
@@ -795,6 +798,8 @@ class _postsForUsersWidgetState extends State<postsForUsersWidget> {
                                                       } else if (snapshot
                                                           .hasError) {
                                                         return Text(
+                                                            '${snapshot.error}');
+                                                        /*return Text(
                                                             'No shared posts with you',
                                                             textAlign: TextAlign
                                                                 .center,
@@ -809,6 +814,7 @@ class _postsForUsersWidgetState extends State<postsForUsersWidget> {
                                                                       FontWeight
                                                                           .bold,
                                                                 ));
+                                                    */
                                                       }
                                                       return Center(
                                                         child:

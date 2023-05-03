@@ -13,10 +13,10 @@ class PostMan {
     final response =
         await http.get(Uri.parse('http://127.0.0.1:3000/api/posts'));
     if (response.statusCode == 200) {
-      var jsonData = jsonDecode(response.body);
-      List body = jsonData["message"];
-      for (int i = 0; i < body.length; i++) {
-        Postslist.add(new Post.fromMapi(body[i]));
+      var posts = jsonDecode(response.body);
+      List postsList = posts["message"];
+      for (int i = 0; i < postsList.length; i++) {
+        Postslist.add(new Post.fromMapi(postsList[i]));
       }
     } else {
       throw Exception("Failed to upload posts list");

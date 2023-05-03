@@ -1,10 +1,7 @@
-import 'package:google_sign_in/google_sign_in.dart';
 import 'package:http/http.dart' as http;
 import 'dart:convert';
 import 'dart:async';
 import 'package:firebase_auth/firebase_auth.dart';
-import 'package:flutter_facebook_auth/flutter_facebook_auth.dart';
-import 'package:dart_ipify/dart_ipify.dart';
 
 class ForgetPasswordMan {
   final FirebaseAuth _auth = FirebaseAuth.instance;
@@ -21,8 +18,7 @@ class ForgetPasswordMan {
         'email': email,
       }),
     );
-    final data = jsonDecode(response.body);
-    print(data["message"]);
-    return data['message'];
+    final responseMessage = jsonDecode(response.body);
+    return responseMessage['message'];
   }
 }

@@ -21,8 +21,7 @@ class _DoctorprofileWidgetState extends State<DoctorprofileWidget> {
   @override
   void initState() {
     super.initState();
-    _futureDoctor = apiDB.getDoctorDetails(widget.id);
-    print(widget.id);
+    _futureDoctor = apiDB.getListingDetails(widget.id);
   }
 
   @override

@@ -12,11 +12,11 @@ class MessageMan {
     final response =
         await http.get(Uri.parse('http://127.0.0.1:3000/api/currentuser'));
     if (response.statusCode == 200) {
-      final data = jsonDecode(response.body);
+      final user = jsonDecode(response.body);
       final newMessage = Message(
-        idUser: data[0]['uid'],
-        urlAvatar: data[0]['photoURL'],
-        username: data[0]['displayName'],
+        idUser: user[0]['uid'],
+        urlAvatar: user[0]['photoURL'],
+        username: user[0]['displayName'],
         message: message,
         createdAt: DateTime.now(),
       );
@@ -36,24 +36,12 @@ class MessageMan {
         await http.get(Uri.parse('http://localhost:3000/api/msg/${idUser}'));
 
     if (response.statusCode == 200) {
-      final parsed = jsonDecode(response.body);
-      print(parsed);
-      return parsed.map<Message>((json) => Message.fromJson(json)).toList();
+      final messages = jsonDecode(response.body);
+      return messages.map<Message>((json) => Message.fromJson(json)).toList();
     } else {
       throw Exception("Failed to get children's list");
     }
   }
 
-  Future<int> getNbrMessages(String id) async {
-    final response =
-        await http.get(Uri.parse('http://127.0.0.1:3000/api/nbr/${id}'));
 
-    if (response.statusCode == 200) {
-      final data = jsonDecode(response.body);
-      int nbr = data["length"];
-      return nbr;
-    } else {
-      throw Exception("Failed to get children's list");
-    }
-  }
 }

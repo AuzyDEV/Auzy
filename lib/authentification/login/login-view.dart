@@ -1,4 +1,5 @@
 import '../../index.dart';
+import '../../themes/custom-button.dart';
 import 'login-controller.dart';
 import '../../../themes/theme.dart';
 import 'package:flutter/material.dart';
@@ -151,7 +152,8 @@ class _SigninWidgetWidgetState extends State<SigninWidget> {
                               child: Padding(
                                 padding:
                                     EdgeInsetsDirectional.fromSTEB(0, 0, 0, 0),
-                                child: buttonWidget(
+                                child: CustomButton(
+                                  color: Color(0xFF9457FB),
                                   onPressed: () async {
                                     if (formKey.currentState.validate()) {
                                       String response = await api.signinUser(

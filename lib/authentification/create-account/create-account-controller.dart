@@ -14,9 +14,6 @@ class CreateAccountMan {
     final ipv4 = await Ipify.ipv4();
     final http.Response response =
         await http.get(Uri.parse('http://127.0.0.1:3000/api/ipadress'));
-    print(response.body);
-    final data1 = jsonDecode(response.body);
-
     if (response.statusCode == 200) {
       final response1 = await http.post(
         Uri.parse('http://127.0.0.1:3000/api/register'),
@@ -31,8 +28,8 @@ class CreateAccountMan {
           'ipadress': ipv4,
         }),
       );
-      final data = jsonDecode(response1.body);
-      return data['message'];
+      final userData = jsonDecode(response1.body);
+      return userData['message'];
     }
   }
 }

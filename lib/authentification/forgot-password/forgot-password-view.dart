@@ -14,8 +14,6 @@ class _ForgetpasswordWidgetState extends State<ForgetpasswordWidget> {
   TextEditingController emailAddressController;
   final scaffoldKey = GlobalKey<ScaffoldState>();
   final formKey = GlobalKey<FormState>();
-  static final RegExp emailReg = RegExp(
-      r"^[a-zA-Z0-9.a-zA-Z0-9.!#$%&'*+-/=?^_`{|}~]+@[a-zA-Z0-9]+\.[a-zA-Z]+");
   String response;
   int clickCount = 0;
   ForgetPasswordMan api = ForgetPasswordMan();

@@ -18,9 +18,8 @@ class ListingCtegoryMan {
           <String, String>{'Name': Name, 'collectionName': "listingCategory"}),
     );
     if (response.statusCode == 201) {
-      final data = jsonDecode(response.body);
-      String listingCategoryId = data["message"]["id"];
-      print(listingCategoryId);
+      final listingCategory = jsonDecode(response.body);
+      String listingCategoryId = listingCategory["message"]["id"];
       return listingCategoryId;
     } else {
       throw Exception("Failed to get infos");

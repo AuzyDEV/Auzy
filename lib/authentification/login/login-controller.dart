@@ -23,9 +23,8 @@ class SigninMan {
         'password': password,
       }),
     );
-    final data = jsonDecode(response.body);
-    //print(data);
-    return data['message'];
+    final user = jsonDecode(response.body);
+    return user['message'];
   }
 
   Future<String> SigninWithFacebook() async {
@@ -35,12 +34,11 @@ class SigninMan {
         'Content-Type': 'application/json; charset=UTF-8',
       },
     );
-    final data = jsonDecode(response.body);
+    final user = jsonDecode(response.body);
     if (response.statusCode == 200) {
-      print(data['message']);
-      return data['message'];
+      return user['message'];
     } else {
-      return data['message'];
+      return user['message'];
     }
   }
 

@@ -12,10 +12,8 @@ class SinglePostMan {
     final response =
         await http.get(Uri.parse('http://127.0.0.1:3000/api/post/${id}'));
     if (response.statusCode == 200) {
-      final data = jsonDecode(response.body);
-      //print(Post.fromMappp(data[0]));
-      print(data["message"]);
-      return Post.fromMaq(data["message"]);
+      final postDetails = jsonDecode(response.body);
+      return Post.fromMaq(postDetails["message"]);
     } else {
       throw Exception("Failed to load infos");
     }

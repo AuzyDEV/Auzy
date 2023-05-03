@@ -1,5 +1,3 @@
-import 'package:skeleton/themes/divider.dart';
-
 import '../../../index.dart';
 import 'profil-user-controller.dart';
 import '../../../themes/theme.dart';

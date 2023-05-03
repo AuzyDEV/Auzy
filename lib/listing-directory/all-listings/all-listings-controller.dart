@@ -7,15 +7,14 @@ import '../single-listing/single-listing-model.dart';
 class AllListingsMan {
   final FirebaseAuth _auth = FirebaseAuth.instance;
 
-  Future<List<ListingModel>> getAllDoctors() async {
+  Future<List<ListingModel>> getAllListings() async {
     String collectionName = "doctors";
     final response = await http
         .get(Uri.parse('http://127.0.0.1:3000/api/DB/${collectionName}'));
     if (response.statusCode == 200) {
-      final parsed = jsonDecode(response.body);
-      //print(parsed["posts"]);
-      final data = parsed["message"]["listCollections"];
-      return data
+      final listings = jsonDecode(response.body);
+      final allListings = listings["message"]["listCollections"];
+      return allListings
           .map<ListingModel>((json) => ListingModel.fromMap(json))
           .toList();
     } else {
@@ -23,16 +22,15 @@ class AllListingsMan {
     }
   }
 
-  Future<List<ListingModel>> getAllDoctorsWithSpeciality(
+  Future<List<ListingModel>> getAllListingsWithCategories(
       String speciality) async {
     String collectionName = "doctors";
     final response = await http.get(Uri.parse(
         'http://127.0.0.1:3000/api/DataB/${collectionName}/${speciality}'));
     if (response.statusCode == 200) {
-      final parsed = jsonDecode(response.body);
-      //print(parsed["posts"]);
-      final data = parsed["message"]["listCollections"];
-      return data
+      final listings = jsonDecode(response.body);
+      final allListings = listings["message"]["listCollections"];
+      return allListings
           .map<ListingModel>((json) => ListingModel.fromMap(json))
           .toList();
     } else {

@@ -11,15 +11,14 @@ class PostsUserMan {
     final response1 =
         await http.get(Uri.parse('http://127.0.0.1:3000/api/currentuser'));
     if (response1.statusCode == 200) {
-      final data1 = jsonDecode(response1.body);
-      String uid = data1["message"][0]['uid'];
-      final response =
-          await http.get(Uri.parse('http://localhost:3000/api/saved/${uid}'));
-      if (response.statusCode == 200) {
-        final parsed = jsonDecode(response.body);
-        //print(parsed["posts"]);
-        final data = parsed["message"]["posts"];
-        return data.map<Post>((json) => Post.fromMapy(json)).toList();
+      final userId = jsonDecode(response1.body);
+      String uid = userId["message"][0]['uid'];
+      final response2 =
+          await http.get(Uri.parse('http://localhost:3000/api/posts/${uid}'));
+      if (response2.statusCode == 200) {
+        final posts = jsonDecode(response2.body);
+        final postsList = posts["message"]["posts"];
+        return postsList.map<Post>((json) => Post.fromMapy(json)).toList();
       } else {
         throw Exception("Failed to get post's list");
       }

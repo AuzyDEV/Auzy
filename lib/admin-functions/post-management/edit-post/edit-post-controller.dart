@@ -12,10 +12,8 @@ class EditPostMan {
     final response =
         await http.get(Uri.parse('http://127.0.0.1:3000/api/post/${id}'));
     if (response.statusCode == 200) {
-      final data = jsonDecode(response.body);
-      print(data[0]);
-      //print(Post.fromMappp(data[0]));
-      return Post.fromMaq(data);
+      final post = jsonDecode(response.body);
+      return Post.fromMaq(post);
     } else {
       throw Exception("Failed to load infos");
     }
@@ -33,8 +31,6 @@ class EditPostMan {
       }),
     );
     if (response.statusCode == 200) {
-      final data = jsonDecode(response.body);
-      print(data);
       return true;
     } else {
       return false;

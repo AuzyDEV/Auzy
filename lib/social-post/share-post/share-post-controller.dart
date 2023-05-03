@@ -35,8 +35,6 @@ class sharedPostMan {
       }),
     );
     if (response.statusCode == 201) {
-      final data = jsonDecode(response.body);
-      print(data);
       return true;
     } else if (response.statusCode == 404) {
       return false;
@@ -47,16 +45,14 @@ class sharedPostMan {
     final response1 =
         await http.get(Uri.parse('http://127.0.0.1:3000/api/currentuser'));
     if (response1.statusCode == 200) {
-      final data1 = jsonDecode(response1.body);
-      String uid = data1["message"][0]['uid'];
-
+      final user = jsonDecode(response1.body);
+      String userId = user["message"][0]['uid'];
       final response = await http
-          .get(Uri.parse('http://localhost:3000/api/sharedposts/${uid}'));
+          .get(Uri.parse('http://localhost:3000/api/sharedposts/${userId}'));
       if (response.statusCode == 200) {
-        final parsed = jsonDecode(response.body);
-        var data = parsed["sharedposts"];
-
-        return data
+        final sharedPosts = jsonDecode(response.body);
+        var sharedPostsList = sharedPosts["message"]["sharedposts"];
+        return sharedPostsList
             .map<sharedPost>((json) => sharedPost.fromMap(json))
             .toList();
       } else {

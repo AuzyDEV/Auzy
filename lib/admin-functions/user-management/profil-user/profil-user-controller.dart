@@ -13,9 +13,8 @@ class ProfilUserMan {
     final response = await http.get(
         Uri.parse('http://127.0.0.1:3000/api/userinfoswithipadress/${id}'));
     if (response.statusCode == 200) {
-      final data = jsonDecode(response.body);
-      //print(data[0]["ipadress"]);
-      return User.fromMapp(data["message"][0]);
+      final userData = jsonDecode(response.body);
+      return User.fromMapp(userData["message"][0]);
     } else {
       throw Exception("Failed to load infos");
     }
@@ -25,8 +24,8 @@ class ProfilUserMan {
     final response = await http.get(
         Uri.parse('http://127.0.0.1:3000/api/userinfoswithipadress/${id}'));
     if (response.statusCode == 200) {
-      final data = jsonDecode(response.body);
-      return data["message"][0]["ipadress"];
+      final userDataWithIp = jsonDecode(response.body);
+      return userDataWithIp["message"][0]["ipadress"];
     } else {
       throw Exception("Failed to load infos");
     }

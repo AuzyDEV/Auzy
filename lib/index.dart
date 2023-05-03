@@ -1,4 +1,4 @@
-// Export pages
+// Export widgets
 export 'admin-functions/mail-broadcast/mail-broadcast-view.dart'
     show announcementWidget;
 export 'admin-functions/post-management/add-post/add-post-view.dart'

@@ -10,14 +10,13 @@ class UserMan {
   static String role;
 
   Future<List> GetAllUsers() async {
-    // ignore: deprecated_member_use
     Userslist = new List<User>();
     final response = await http.get(Uri.parse('http://127.0.0.1:3000/api/get'));
     if (response.statusCode == 200) {
-      var jsonData = jsonDecode(response.body);
-      List body = jsonData["message"];
-      for (int i = 0; i < body.length; i++) {
-        Userslist.add(new User.fromMappp(body[i]));
+      var users = jsonDecode(response.body);
+      List usersList = users["message"];
+      for (int i = 0; i < usersList.length; i++) {
+        Userslist.add(new User.fromMappp(usersList[i]));
       }
     } else {
       throw Exception("Failed to upload product list");
@@ -29,9 +28,9 @@ class UserMan {
         await http.get(Uri.parse('http://127.0.0.1:3000/api/getnumberofusers'));
 
     if (response.statusCode == 200) {
-      final data = jsonDecode(response.body);
-      int nbr = data["count"];
-      return nbr;
+      final numberUsers = jsonDecode(response.body);
+      int numberOfUsers = numberUsers["count"];
+      return numberOfUsers;
     } else {
       throw Exception("Failed to get children's list");
     }
@@ -40,7 +39,6 @@ class UserMan {
   Future<bool> deleteUser(String id) async {
     final http.Response response = await http
         .delete(Uri.parse('http://127.0.0.1:3000/api/userinfo/${id}'));
-
     if (response.statusCode == 200) {
       return true;
     } else {
@@ -51,7 +49,6 @@ class UserMan {
   Future<bool> deleteAllUsers() async {
     final http.Response response = await http
         .delete(Uri.parse('http://127.0.0.1:3000/api/deleteallusers'));
-
     if (response.statusCode == 200) {
       return true;
     } else {
@@ -73,8 +70,6 @@ class UserMan {
       }),
     );
     if (response.statusCode == 200) {
-      final data = jsonDecode(response.body);
-      print(data);
       return true;
     } else {
       return false;
@@ -85,8 +80,8 @@ class UserMan {
     final response = await http.get(Uri.parse('http://127.0.0.1:3000/api/get'));
 
     if (response.statusCode == 200) {
-      final parsed = jsonDecode(response.body);
-      return parsed.map<User>((json) => User.fromMapp(json)).toList();
+      final usersList = jsonDecode(response.body);
+      return usersList.map<User>((json) => User.fromMapp(json)).toList();
     } else {
       throw Exception("Failed to get children's list");
     }
@@ -99,8 +94,6 @@ class UserMan {
           'Content-Type': 'application/json; charset=UTF-8',
         });
     if (response.statusCode == 200) {
-      final data = jsonDecode(response.body);
-      print(data);
       return true;
     } else {
       return false;
@@ -114,8 +107,6 @@ class UserMan {
           'Content-Type': 'application/json; charset=UTF-8',
         });
     if (response.statusCode == 200) {
-      final data = jsonDecode(response.body);
-      print(data);
       return true;
     } else {
       return false;
@@ -126,9 +117,9 @@ class UserMan {
     final response =
         await http.get(Uri.parse('http://localhost:3000/api/usersrole'));
     if (response.statusCode == 200) {
-      final parsed = jsonDecode(response.body);
-      var data = parsed["message"]["users"];
-      return data.map<User>((json) => User.fromMapy(json)).toList();
+      final listUsersRole = jsonDecode(response.body);
+      var usersRoles = listUsersRole["message"]["users"];
+      return usersRoles.map<User>((json) => User.fromMapy(json)).toList();
     } else {
       throw Exception("Failed to get saved post's list");
     }

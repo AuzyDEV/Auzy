@@ -21,8 +21,6 @@ class EmailMan {
       }),
     );
     if (response.statusCode == 200) {
-      final data = jsonDecode(response.body);
-      print(data);
       return true;
     } else {
       return false;

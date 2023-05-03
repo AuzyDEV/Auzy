@@ -12,11 +12,9 @@ class CategoryListingCtegoryMan {
     final response = await http
         .get(Uri.parse('http://127.0.0.1:3000/api/DB/${collectionName}'));
     if (response.statusCode == 200) {
-      final parsed = jsonDecode(response.body);
-      //print(parsed["posts"]);
-      final data = parsed["message"]["listCollections"];
-      print(data);
-      return data
+      final listingCategories = jsonDecode(response.body);
+      final listCategory = listingCategories["message"]["listCollections"];
+      return listCategory
           .map<ListingCtegoryModel>((json) => ListingCtegoryModel.fromMap(json))
           .toList();
     } else {
