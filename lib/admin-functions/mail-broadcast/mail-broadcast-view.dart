@@ -1,7 +1,6 @@
 import '../../index.dart';
 import 'package:skeleton/themes/theme.dart';
 import 'package:flutter/material.dart';
-import '../../themes/custom-button.dart';
 import 'mail-broadcast-controller.dart';
 
 class announcementWidget extends StatefulWidget {
@@ -15,7 +14,7 @@ class _announcementWidgetState extends State<announcementWidget> {
   TextEditingController messageController;
   final scaffoldKey = GlobalKey<ScaffoldState>();
   final formKey = GlobalKey<FormState>();
-  AnnoucementMan Annapi = AnnoucementMan();
+  AnnoucementMan announcementServices = AnnoucementMan();
   @override
   void initState() {
     super.initState();
@@ -72,7 +71,7 @@ class _announcementWidgetState extends State<announcementWidget> {
                                   onPressed: () async {
                                     if (formKey.currentState.validate()) {
                                       bool response =
-                                          await Annapi.sendBroadcastEmail(
+                                          await announcementServices.sendBroadcastEmail(
                                               messageController.text);
                                       response == true
                                           ? showDialog(

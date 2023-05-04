@@ -1,6 +1,5 @@
 import '../authentification/login/login-controller.dart';
 import '../index.dart';
-import '../themes/custom-button.dart';
 import 'profile-controller.dart';
 import 'profile-model.dart';
 import '../../themes/theme.dart';
@@ -16,13 +15,13 @@ class MyprofilWidget extends StatefulWidget {
 
 class _MyprofilWidgetState extends State<MyprofilWidget> {
   final scaffoldKey = GlobalKey<ScaffoldState>();
-  ProfilingMan api = ProfilingMan();
-  SigninMan sapi = SigninMan();
+  ProfilingMan profilingUserServices = ProfilingMan();
+  SigninMan signinUserServices = SigninMan();
   Future<User> _futureUser;
   @override
   void initState() {
     super.initState();
-    _futureUser = api.GetCurrentUser();
+    _futureUser = profilingUserServices.GetCurrentUser();
   }
 
   @override
@@ -394,7 +393,8 @@ class _MyprofilWidgetState extends State<MyprofilWidget> {
                                                       ),
                                                       TextButton(
                                                         onPressed: () => {
-                                                          api.BlockCurrentUser(),
+                                                          profilingUserServices
+                                                              .BlockCurrentUser(),
                                                           Navigator.push(
                                                             context,
                                                             MaterialPageRoute(
@@ -502,7 +502,8 @@ class _MyprofilWidgetState extends State<MyprofilWidget> {
                                                       ),
                                                       ElevatedButton(
                                                         onPressed: () => {
-                                                          api.DeleteCurrentUser(),
+                                                          profilingUserServices
+                                                              .DeleteCurrentUser(),
                                                           Navigator.push(
                                                             context,
                                                             MaterialPageRoute(
@@ -591,7 +592,8 @@ class _MyprofilWidgetState extends State<MyprofilWidget> {
                         children: [
                           CustomButton(
                             onPressed: () async {
-                              bool response = await sapi.LogoutUser();
+                              bool response =
+                                  await signinUserServices.LogoutUser();
                               if (response)
                                 await Navigator.push(
                                   context,

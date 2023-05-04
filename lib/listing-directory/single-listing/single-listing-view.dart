@@ -16,12 +16,12 @@ class _DoctorprofileWidgetState extends State<DoctorprofileWidget> {
   final scaffoldKey = GlobalKey<ScaffoldState>();
   final _unfocusNode = FocusNode();
   Future<ListingModel> _futureDoctor;
-  SingleListingMan apiDB = SingleListingMan();
+  SingleListingMan singleListingServices = SingleListingMan();
 
   @override
   void initState() {
     super.initState();
-    _futureDoctor = apiDB.getListingDetails(widget.id);
+    _futureDoctor = singleListingServices.getListingDetails(widget.id);
   }
 
   @override

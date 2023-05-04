@@ -2,7 +2,6 @@ import 'dart:html';
 import 'dart:typed_data';
 import 'package:firebase_storage/firebase_storage.dart';
 import '../../../index.dart';
-import '../../../themes/custom-button.dart';
 import 'add-post-controller.dart';
 import '../../../user-profile/profile-controller.dart';
 import '../../../themes/theme.dart';
@@ -22,37 +21,18 @@ class _addNewPostWidgetState extends State<addNewPostWidget> {
   TextEditingController TextController;
   final scaffoldKey = GlobalKey<ScaffoldState>();
   final formKey = GlobalKey<FormState>();
-  ProfilingMan apiUser = ProfilingMan();
+  ProfilingMan userServices = ProfilingMan();
   Future<User> _futureUser;
-  AddPostMan apiPost = AddPostMan();
-  File _selectedFile;
+  AddPostMan addPostServices = AddPostMan();
   String fileName = "No file selected";
   Uint8List fileContents;
   HtmlEditorController controller = HtmlEditorController();
-  void _pickFile() {
-    InputElement inputElement = FileUploadInputElement();
-    inputElement.click();
-
-    inputElement.onChange.listen((e) {
-      final files = inputElement.files;
-      if (files.length == 1) {
-        final file = files[0];
-        fileName = file.name;
-        final reader = FileReader();
-        reader.readAsArrayBuffer(file);
-        reader.onLoadEnd.listen((e) {
-          setState(() {
-            fileContents = reader.result;
-          });
-        });
-      }
-    });
-  }
+ 
 
   @override
   void initState() {
     super.initState();
-    _futureUser = apiUser.GetCurrentUser();
+    _futureUser = userServices.GetCurrentUser();
     titleController = TextEditingController();
     TextController = TextEditingController();
   }
@@ -159,11 +139,10 @@ class _addNewPostWidgetState extends State<addNewPostWidget> {
                                               onPressed: () async {
                                                 String text =
                                                     await controller.getText();
-                                                print(text.toString());
                                                 if (formKey.currentState
                                                     .validate()) {
                                                   String response =
-                                                      await apiPost.addNewPost(
+                                                      await addPostServices.addNewPost(
                                                           titleController.text,
                                                           text.toString(),
                                                           snapshot.data.id,

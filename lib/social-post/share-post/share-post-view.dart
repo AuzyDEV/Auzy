@@ -20,14 +20,13 @@ class sharedPostsByUserWidget extends StatefulWidget {
 class _sharedPostsByUserWidgetState extends State<sharedPostsByUserWidget> {
   final scaffoldKey = GlobalKey<ScaffoldState>();
   Future<List<Post>> futurePost;
-  SavedPostMan apisavedpost = SavedPostMan();
-  ProfilingMan apiUser = ProfilingMan();
+  ProfilingMan profilingUserServices = ProfilingMan();
   String _CurrentUserId;
   int number;
-  sharedPostMan sharedpostapi = sharedPostMan();
+  sharedPostMan sharedPostsServices = sharedPostMan();
 
   Future<String> _getCurrentUserId() async {
-    return apiUser.GetIDCurrentUser();
+    return profilingUserServices.GetIDCurrentUser();
   }
 
   void _getFutureStringValue() async {
@@ -126,7 +125,7 @@ class _sharedPostsByUserWidgetState extends State<sharedPostsByUserWidget> {
             Padding(
                 padding: EdgeInsetsDirectional.fromSTEB(8, 0, 8, 0),
                 child: FutureBuilder<List<sharedPost>>(
-                    future: sharedpostapi.getAllSharedPostsByCurrentUserId(),
+                    future: sharedPostsServices.getAllSharedPostsByCurrentUserId(),
                     builder: (context, snapshot) {
                       if (snapshot.hasData) {
                         return ListView.builder(

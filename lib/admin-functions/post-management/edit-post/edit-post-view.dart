@@ -1,5 +1,4 @@
 import '../../../index.dart';
-import '../../../themes/custom-button.dart';
 import 'edit-post-controller.dart';
 import '../../../themes/theme.dart';
 import 'package:html_editor_enhanced/html_editor.dart';
@@ -26,8 +25,7 @@ class _editPostDetailsWidgetState extends State<editPostDetailsWidget> {
   bool passwordVisibility;
   final scaffoldKey = GlobalKey<ScaffoldState>();
   final formKey = GlobalKey<FormState>();
-  EditPostMan apiPost = EditPostMan();
-  Future<User> _futureUser;
+  EditPostMan editPostServices = EditPostMan();
   @override
   void initState() {
     super.initState();
@@ -100,9 +98,8 @@ class _editPostDetailsWidgetState extends State<editPostDetailsWidget> {
                                   String text = await controller.getText();
                                   if (formKey.currentState.validate()) {
                                     bool response =
-                                        await apiPost.UpdatePostInfos(widget.id,
+                                        await editPostServices.UpdatePostInfos(widget.id,
                                             titleController.text, text);
-                                    print(response);
                                     if (response == true) {
                                       Navigator.push(
                                         context,

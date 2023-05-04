@@ -18,11 +18,11 @@ class _HomeWidgetState extends State<HomeWidget> {
   final TextEditingController _controller = TextEditingController();
 
   Future<User> _futureUser;
-  ProfilingMan api = ProfilingMan();
+  ProfilingMan profilingUserServives = ProfilingMan();
   @override
   void initState() {
     super.initState();
-    _futureUser = api.GetCurrentUser();
+    _futureUser = profilingUserServives.GetCurrentUser();
   }
 
   @override

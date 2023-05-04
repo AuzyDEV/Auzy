@@ -20,24 +20,23 @@ class _PostsManagementWidgetState extends State<PostsManagementWidget>
   String _searchResult = '';
   int _currentSortColumn = 0;
   bool _isSortAsc = true;
-  PostMan api = PostMan();
-  ProfilingMan apiUser = ProfilingMan();
-  bool _isEditMode = false;
+  PostMan postServices = PostMan();
+  ProfilingMan userServices = ProfilingMan();
   String role;
   TextEditingController searchController = TextEditingController();
   Future<List<Post>> _futurePosts;
   void _loadData() async {
-    await api.GetAllPostsManagement();
+    await postServices.GetAllPostsManagement();
   }
 
   Future<void> _refreshList() async {
     setState(() {
-      _futurePosts = api.GetAllPostsManagement();
+      _futurePosts = postServices.GetAllPostsManagement();
     });
   }
 
   Future<String> _getCurrentUserRole() async {
-    this.role = await apiUser.GetCurrentUserRole();
+    this.role = await userServices.GetCurrentUserRole();
   }
 
   @override
@@ -233,7 +232,7 @@ class _PostsManagementWidgetState extends State<PostsManagementWidget>
                                               ),
                                               TextButton(
                                                 onPressed: () => {
-                                                  api.deletePost(
+                                                  postServices.deletePost(
                                                       e.id.toString()),
                                                   Navigator.push(
                                                     context,
@@ -340,7 +339,7 @@ class _PostsManagementWidgetState extends State<PostsManagementWidget>
                                                     ),
                                                     TextButton(
                                                       onPressed: () => {
-                                                        api.HidePost(
+                                                        postServices.HidePost(
                                                             e.id.toString()),
                                                         Navigator.push(
                                                           context,
@@ -412,7 +411,7 @@ class _PostsManagementWidgetState extends State<PostsManagementWidget>
                                                     ),
                                                     TextButton(
                                                       onPressed: () => {
-                                                        api.RestorePost(
+                                                        postServices.RestorePost(
                                                             e.id.toString()),
                                                         Navigator.push(
                                                           context,
@@ -470,8 +469,7 @@ class _PostsManagementWidgetState extends State<PostsManagementWidget>
   }
 
   DataCell _createTitleCell(bookTitle) {
-    return DataCell(_isEditMode == true
-        ? TextFormField(initialValue: bookTitle, style: TextStyle(fontSize: 14))
-        : Text(bookTitle));
+    return DataCell(
+        TextFormField(initialValue: bookTitle, style: TextStyle(fontSize: 14)));
   }
 }

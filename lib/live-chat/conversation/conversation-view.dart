@@ -17,12 +17,12 @@ class ChatPage extends StatefulWidget {
 }
 
 class _ChatPageState extends State<ChatPage> {
-  ProfilingMan api = ProfilingMan();
+  ProfilingMan profilingUserServices = ProfilingMan();
   Future<User> _futureUser;
   @override
   void initState() {
     super.initState();
-    _futureUser = api.GetCurrentUser();
+    _futureUser = profilingUserServices.GetCurrentUser();
   }
 
   @override

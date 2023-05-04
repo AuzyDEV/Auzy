@@ -2,7 +2,6 @@ import 'dart:html';
 import 'dart:typed_data';
 import 'package:firebase_storage/firebase_storage.dart';
 import '../../index.dart';
-import '../../themes/custom-button.dart';
 import 'add-listing-category-controller.dart';
 import '../../../themes/theme.dart';
 import 'package:flutter/material.dart';
@@ -22,7 +21,7 @@ class _addListingCategoryWidgetState extends State<addListingCategoryWidget> {
   final scaffoldKey = GlobalKey<ScaffoldState>();
   final formKey = GlobalKey<FormState>();
   Uint8List fileContents;
-  ListingCtegoryMan api = ListingCtegoryMan();
+  ListingCtegoryMan listingCategoriesServives = ListingCtegoryMan();
   @override
   void initState() {
     super.initState();
@@ -113,7 +112,7 @@ class _addListingCategoryWidgetState extends State<addListingCategoryWidget> {
                                     onPressed: () async {
                                       if (formKey.currentState.validate()) {
                                         String response =
-                                            await api.addNewListingCategory(
+                                            await listingCategoriesServives.addNewListingCategory(
                                           NameController.text,
                                         );
 

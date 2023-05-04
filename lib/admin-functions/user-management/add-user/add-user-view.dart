@@ -1,6 +1,5 @@
 import '../../../authentification/create-account/create-account-controller.dart';
 import '../../../index.dart';
-import '../../../themes/custom-button.dart';
 import '../../../user-profile/profile-controller.dart';
 import '../../../themes/theme.dart';
 import '../../../user-profile/profile-model.dart';
@@ -21,14 +20,9 @@ class _addUserWidgetState extends State<addUserWidget> {
   TextEditingController passwordController;
   bool passwordVisibility;
   final scaffoldKey = GlobalKey<ScaffoldState>();
-  static final RegExp emailReg = RegExp(
-      r"^[a-zA-Z0-9.a-zA-Z0-9.!#$%&'*+-/=?^_`{|}~]+@[a-zA-Z0-9]+\.[a-zA-Z]+");
   final formKey = GlobalKey<FormState>();
-  bool futurepost;
-  UserMan api = UserMan();
-  ProfilingMan apii = ProfilingMan();
-  CreateAccountMan apiAuth = CreateAccountMan();
-  bool switchListTileValue;
+  ProfilingMan profilingServices = ProfilingMan();
+  CreateAccountMan signinUserServices = CreateAccountMan();
   Future<User> _futureUser;
   @override
   void initState() {
@@ -38,7 +32,7 @@ class _addUserWidgetState extends State<addUserWidget> {
     passwordController = TextEditingController();
     photourlController = TextEditingController();
     passwordVisibility = false;
-    _futureUser = apii.GetCurrentUser();
+    _futureUser = profilingServices.GetCurrentUser();
   }
 
   @override
@@ -109,12 +103,11 @@ class _addUserWidgetState extends State<addUserWidget> {
                                   onPressed: () async {
                                     if (formKey.currentState.validate()) {
                                       String response =
-                                          await apiAuth.signupUser(
+                                          await signinUserServices.signupUser(
                                               emailAddressController.text,
                                               passwordController.text,
                                               fullnameController.text,
                                               photourlController.text);
-                                      print(response);
                                       response ==
                                               "User registred & email send successfully"
                                           ? showDialog(

@@ -1,5 +1,3 @@
-import 'package:skeleton/admin-functions/user-management/all-users/all-users-controller.dart';
-import 'package:skeleton/admin-functions/user-management/profil-user/profil-user-controller.dart';
 import 'package:skeleton/listing-directory/add-listing-category/add-listing-category-model.dart';
 import 'package:skeleton/listing-directory/all-listing-category/all-listing-category-controller.dart';
 import '../../../themes/theme.dart';
@@ -20,10 +18,10 @@ class _SpecialitiesWidgetState extends State<SpecialitiesWidget> {
   final _unfocusNode = FocusNode();
   Future<List<ListingCtegoryModel>> _futureCategory;
   String _futureRoleValue;
-  ProfilingMan apiUser = ProfilingMan();
-  CategoryListingCtegoryMan api = CategoryListingCtegoryMan();
+  ProfilingMan profilingUserServices = ProfilingMan();
+  CategoryListingCtegoryMan categoryListingsServices = CategoryListingCtegoryMan();
   Future<String> _getCurrentUserRole() async {
-    return apiUser.GetCurrentUserRole();
+    return profilingUserServices.GetCurrentUserRole();
   }
 
   void _getFutureRoleValue() async {
@@ -37,7 +35,7 @@ class _SpecialitiesWidgetState extends State<SpecialitiesWidget> {
   void initState() {
     super.initState();
     _getFutureRoleValue();
-    _futureCategory = api.getAllListingCtegories();
+    _futureCategory = categoryListingsServices.getAllListingCtegories();
   }
 
   @override

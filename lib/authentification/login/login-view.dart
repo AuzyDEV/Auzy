@@ -1,5 +1,4 @@
 import '../../index.dart';
-import '../../themes/custom-button.dart';
 import 'login-controller.dart';
 import '../../../themes/theme.dart';
 import 'package:flutter/material.dart';
@@ -16,11 +15,8 @@ class _SigninWidgetWidgetState extends State<SigninWidget> {
   TextEditingController passwordController;
   bool passwordVisibility;
   final scaffoldKey = GlobalKey<ScaffoldState>();
-  static final RegExp emailReg = RegExp(
-      r"^[a-zA-Z0-9.a-zA-Z0-9.!#$%&'*+-/=?^_`{|}~]+@[a-zA-Z0-9]+\.[a-zA-Z]+");
   final formKey = GlobalKey<FormState>();
-  String response1;
-  SigninMan api = SigninMan();
+  SigninMan signinUserServices = SigninMan();
   @override
   void initState() {
     super.initState();
@@ -155,7 +151,7 @@ class _SigninWidgetWidgetState extends State<SigninWidget> {
                                 child: CustomButton(
                                   onPressed: () async {
                                     if (formKey.currentState.validate()) {
-                                      String response = await api.signinUser(
+                                      String response = await signinUserServices.signinUser(
                                         emailAddressController.text,
                                         passwordController.text,
                                       );
@@ -221,9 +217,8 @@ class _SigninWidgetWidgetState extends State<SigninWidget> {
                           children: [
                             InkWell(
                               onTap: () async {
-                                var result = api.signInWithGoogle();
+                                var result = signinUserServices.signInWithGoogle();
                                 if (result != null) {
-                                  print(result);
                                 }
                               },
                               child: Container(
@@ -239,9 +234,8 @@ class _SigninWidgetWidgetState extends State<SigninWidget> {
                             ),
                             InkWell(
                               onTap: () async {
-                                var result = api.facebookSignin();
+                                var result = signinUserServices.facebookSignin();
                                 if (result != null) {
-                                  print(result);
                                 }
                               },
                               child: Container(

@@ -18,12 +18,12 @@ class _chatcopyWidgetState extends State<chatcopyWidget> {
   TextEditingController textController;
   Future<List<User>> futurePost;
   String value, value1;
-  UserMan api = UserMan();
+  UserMan userServices = UserMan();
   @override
   void initState() {
     super.initState();
     textController = TextEditingController();
-    futurePost = api.GetAllUsersForChats();
+    futurePost = userServices.GetAllUsersForChats();
   }
 
   @override

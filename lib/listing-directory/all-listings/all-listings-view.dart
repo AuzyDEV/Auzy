@@ -16,14 +16,10 @@ class AllListingsWidget extends StatefulWidget {
 class _AllListingsWidgetState extends State<AllListingsWidget> {
   final scaffoldKey = GlobalKey<ScaffoldState>();
   Future<List<ListingModel>> futureDoctor;
-  AllListingsMan apiDBDoctor = AllListingsMan();
+  AllListingsMan listingsServices = AllListingsMan();
   String searchString = "";
   TextEditingController SearchtextController;
   String _futureRoleValue;
-
-  Future<String> _getCurrentUserId() async {
-    return apiUser.GetIDCurrentUser();
-  }
 
   Future<String> _getCurrentUserRole() async {
     return apiUser.GetCurrentUserRole();
@@ -38,7 +34,7 @@ class _AllListingsWidgetState extends State<AllListingsWidget> {
 
   Future<void> _refreshList() async {
     setState(() {
-      futureDoctor = apiDBDoctor.getAllListingsWithCategories(widget.speciality);
+      futureDoctor = listingsServices.getAllListingsWithCategories(widget.speciality);
     });
   }
 
@@ -46,7 +42,7 @@ class _AllListingsWidgetState extends State<AllListingsWidget> {
   void initState() {
     super.initState();
     _getFutureRoleValue();
-    futureDoctor = apiDBDoctor.getAllListingsWithCategories(widget.speciality);
+    futureDoctor = listingsServices.getAllListingsWithCategories(widget.speciality);
     SearchtextController = TextEditingController();
   }
 

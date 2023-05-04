@@ -69,3 +69,4 @@ export 'themes/loading-spinner.dart' show CircularProgressIndicatorWidget;
 export 'themes/modal-bottom.dart' show ShowIpAdressWidget;
 export 'themes/snack-bar-widget.dart' show SnackbarWidget;
 export 'themes/text-field.dart' show TextFormFieldWidget;
+export 'themes/custom-button.dart' show CustomButton;

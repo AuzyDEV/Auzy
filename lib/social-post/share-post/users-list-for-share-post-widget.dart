@@ -1,6 +1,5 @@
 import '../../admin-functions/user-management/all-users/all-users-controller.dart';
 import '../../index.dart';
-import '../../themes/custom-button.dart';
 import '../../user-profile/profile-controller.dart';
 import 'share-post-controller.dart';
 import '../../../themes/theme.dart';
@@ -30,19 +29,18 @@ class _UsersListForPostsWidgetState extends State<UsersListForPostsWidget> {
   final scaffoldKey = GlobalKey<ScaffoldState>();
   TextEditingController textController;
   Future<List<User>> futurePost;
-  String value, value1;
-  UserMan api = UserMan();
-  ProfilingMan apii = ProfilingMan();
+  UserMan userServices = UserMan();
+  ProfilingMan profilingUserServices = ProfilingMan();
   int selectedCard1 = -1;
   String idSharedUser;
   Future<User> _futureUser;
-  sharedPostMan sharedpostapi = sharedPostMan();
+  sharedPostMan sharedPostsServices = sharedPostMan();
   @override
   void initState() {
     super.initState();
     textController = TextEditingController();
-    _futureUser = apii.GetCurrentUser();
-    futurePost = api.getAllUsersRole();
+    _futureUser = profilingUserServices.GetCurrentUser();
+    futurePost = userServices.getAllUsersRole();
   }
 
   @override
@@ -277,7 +275,7 @@ class _UsersListForPostsWidgetState extends State<UsersListForPostsWidget> {
                                             child: CustomButton(
                                               onPressed: () async {
                                                 bool response =
-                                                    await sharedpostapi
+                                                    await sharedPostsServices
                                                         .SharePost(
                                                             widget.postId,
                                                             widget.Postcontenu,

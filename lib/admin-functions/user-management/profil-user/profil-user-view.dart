@@ -1,5 +1,4 @@
 import '../../../index.dart';
-import '../../../themes/custom-button.dart';
 import 'profil-user-controller.dart';
 import '../../../themes/theme.dart';
 import '../../../user-profile/profile-model.dart';
@@ -19,10 +18,8 @@ class _ProfillWidgetState extends State<ProfillWidget> {
   TextEditingController photoURLtextController;
   bool switchListTileValue;
   final scaffoldKey = GlobalKey<ScaffoldState>();
-  ProfilUserMan api = ProfilUserMan();
+  ProfilUserMan profilingUserServices = ProfilUserMan();
   Future<User> _futureUser;
-  String a;
-  String ipadress;
 
   @override
   void initState() {
@@ -30,7 +27,7 @@ class _ProfillWidgetState extends State<ProfillWidget> {
     idtextController = TextEditingController();
     fullnameController = TextEditingController();
     photoURLtextController = TextEditingController();
-    _futureUser = api.GetUser(widget.id);
+    _futureUser = profilingUserServices.GetUser(widget.id);
   }
 
   @override

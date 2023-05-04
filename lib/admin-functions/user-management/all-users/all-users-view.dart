@@ -19,17 +19,17 @@ class _UsersWidgetState extends State<UsersWidget>
   String _searchResult = '';
   int _currentSortColumn = 0;
   bool _isSortAsc = true;
-  UserMan api = UserMan();
+  UserMan userServices = UserMan();
   bool _isEditMode = false;
   Future<List<User>> _futureUsers;
   TextEditingController searchController = TextEditingController();
   void _loadData() async {
-    await api.GetAllUsers();
+    await userServices.GetAllUsers();
   }
 
   Future<void> _refreshList() async {
     setState(() {
-      _futureUsers = api.GetAllUsers();
+      _futureUsers = userServices.GetAllUsers();
     });
   }
 
@@ -84,8 +84,6 @@ class _UsersWidgetState extends State<UsersWidget>
                                 e.email.contains(_searchResult.toLowerCase()) ||
                                 e.displayName.contains(
                                     _searchResult.toLowerCase())).toList();
-                            //print(empsFiltered);
-                            //print(_searchResult);
                           });
                         }),
                     trailing: IconButton(
@@ -137,7 +135,7 @@ class _UsersWidgetState extends State<UsersWidget>
                                               ),
                                               TextButton(
                                                 onPressed: () => {
-                                                  api.deleteAllUsers(),
+                                                  userServices.deleteAllUsers(),
                                                   Navigator.push(
                                                     context,
                                                     MaterialPageRoute(
@@ -277,7 +275,7 @@ class _UsersWidgetState extends State<UsersWidget>
                                               ),
                                               TextButton(
                                                 onPressed: () => {
-                                                  api.deleteUser(
+                                                  userServices.deleteUser(
                                                       e.id.toString()),
                                                   Navigator.push(
                                                     context,
@@ -382,7 +380,7 @@ class _UsersWidgetState extends State<UsersWidget>
                                                     ),
                                                     TextButton(
                                                       onPressed: () => {
-                                                        api.BlockUser(
+                                                        userServices.BlockUser(
                                                             e.id.toString()),
                                                         Navigator.push(
                                                           context,
@@ -454,7 +452,7 @@ class _UsersWidgetState extends State<UsersWidget>
                                                     ),
                                                     TextButton(
                                                       onPressed: () => {
-                                                        api.RestoreUser(
+                                                        userServices.RestoreUser(
                                                             e.id.toString()),
                                                         Navigator.push(
                                                           context,

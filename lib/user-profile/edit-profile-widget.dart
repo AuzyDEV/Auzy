@@ -1,5 +1,4 @@
 import '../index.dart';
-import '../themes/custom-button.dart';
 import 'profile-controller.dart';
 import 'profile-model.dart';
 import '../../themes/theme.dart';
@@ -22,11 +21,9 @@ class _editprofilWidgetState extends State<editprofilWidget> {
   TextEditingController passwordController;
   bool passwordVisibility;
   final scaffoldKey = GlobalKey<ScaffoldState>();
-  static final RegExp emailReg = RegExp(
-      r"^[a-zA-Z0-9.a-zA-Z0-9.!#$%&'*+-/=?^_`{|}~]+@[a-zA-Z0-9]+\.[a-zA-Z]+");
   final formKey = GlobalKey<FormState>();
   bool futurepost;
-  ProfilingMan api = ProfilingMan();
+  ProfilingMan profilingUserServices = ProfilingMan();
   bool switchListTileValue;
   Future<User> _futureUser;
   @override
@@ -39,8 +36,7 @@ class _editprofilWidgetState extends State<editprofilWidget> {
     photourlController = TextEditingController();
     photourlController.text = widget.photourl.toString();
     passwordVisibility = false;
-    _futureUser = api.GetCurrentUser();
-    print(widget.name);
+    _futureUser = profilingUserServices.GetCurrentUser();
   }
 
   @override
@@ -115,14 +111,15 @@ class _editprofilWidgetState extends State<editprofilWidget> {
                                               if (formKey.currentState
                                                   .validate()) {
                                                 bool response =
-                                                    await api.UpdateprofilUser(
-                                                        widget.id,
-                                                        emailAddressController
-                                                            .text,
-                                                        fullnameController.text,
-                                                        photourlController
-                                                            .text);
-                                                print(response);
+                                                    await profilingUserServices
+                                                        .UpdateprofilUser(
+                                                            widget.id,
+                                                            emailAddressController
+                                                                .text,
+                                                            fullnameController
+                                                                .text,
+                                                            photourlController
+                                                                .text);
                                                 response == true
                                                     ? showDialog(
                                                         context: context,

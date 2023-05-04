@@ -1,7 +1,6 @@
 import 'dart:convert';
 import 'package:flutter_html/flutter_html.dart';
 import '../../index.dart';
-import '../../themes/custom-button.dart';
 import '../../user-profile/profile-controller.dart';
 import '../all-posts/all-posts-model.dart';
 import 'single-post-controller.dart';
@@ -20,8 +19,8 @@ class _postDetailsWidgetState extends State<postDetailsWidget> {
   final scaffoldKey = GlobalKey<ScaffoldState>();
   Future<Post> _futurePost;
   String _futureStringValue;
-  SinglePostMan apiPost = SinglePostMan();
-  ProfilingMan apiUser = ProfilingMan();
+  SinglePostMan singlePostServices = SinglePostMan();
+  ProfilingMan profilingUserServices = ProfilingMan();
   Text getTextSpanFromRichTextJson(String jsonString) {
     final parsedJson = json.decode(jsonString);
     final List<dynamic> textObjects = parsedJson as List<dynamic>;
@@ -83,9 +82,11 @@ class _postDetailsWidgetState extends State<postDetailsWidget> {
       TextSpan(children: textSpans),
     );
   }
+
   Future<String> _getCurrentUserRole() async {
-    return apiUser.GetCurrentUserRole();
+    return profilingUserServices.GetCurrentUserRole();
   }
+
   void _getFutureStringValue() async {
     String value = await _getCurrentUserRole();
     setState(() {
@@ -97,8 +98,7 @@ class _postDetailsWidgetState extends State<postDetailsWidget> {
   void initState() {
     super.initState();
     _getFutureStringValue();
-    _futurePost = apiPost.getPostDetails(widget.id);
-    print(widget.id);
+    _futurePost = singlePostServices.getPostDetails(widget.id);
   }
 
   @override
@@ -186,10 +186,7 @@ class _postDetailsWidgetState extends State<postDetailsWidget> {
                                                         .whiteColor,
                                                     size: 24,
                                                   ),
-                                                  onPressed: () {
-                                                    print(
-                                                        'IconButton pressed ...');
-                                                  },
+                                                  onPressed: () {},
                                                 ),
                                               ),
                                               Card(
@@ -216,10 +213,7 @@ class _postDetailsWidgetState extends State<postDetailsWidget> {
                                                         .whiteColor,
                                                     size: 24,
                                                   ),
-                                                  onPressed: () {
-                                                    print(
-                                                        'IconButton pressed ...');
-                                                  },
+                                                  onPressed: () {},
                                                 ),
                                               ),
                                             ],

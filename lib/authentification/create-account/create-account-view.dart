@@ -1,5 +1,4 @@
 import '../../index.dart';
-import '../../themes/custom-button.dart';
 import 'create-account-controller.dart';
 import '../../../themes/theme.dart';
 import 'package:flutter/material.dart';
@@ -20,7 +19,7 @@ class _CreateAccountWidgetState extends State<CreateAccountWidget> {
   final scaffoldKey = GlobalKey<ScaffoldState>();
   final formKey = GlobalKey<FormState>();
   bool futurepost;
-  CreateAccountMan api = CreateAccountMan();
+  CreateAccountMan createAccountUserServices = CreateAccountMan();
 
   @override
   void initState() {
@@ -141,12 +140,11 @@ class _CreateAccountWidgetState extends State<CreateAccountWidget> {
                                 child: CustomButton(
                                   onPressed: () async {
                                     if (formKey.currentState.validate()) {
-                                      String response = await api.signupUser(
+                                      String response = await createAccountUserServices.signupUser(
                                           emailAddressController.text,
                                           passwordController.text,
                                           fullnameController.text,
                                           photourlController.text);
-                                      print(response);
                                       response ==
                                               "User registred & email send successfully"
                                           ? showDialog(

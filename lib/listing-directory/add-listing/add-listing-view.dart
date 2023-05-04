@@ -3,7 +3,6 @@ import 'dart:typed_data';
 import 'package:firebase_storage/firebase_storage.dart';
 import '../../index.dart';
 import '../../../themes/theme.dart';
-import '../../themes/custom-button.dart';
 import 'add-listing-controller.dart';
 import 'package:flutter/material.dart';
 
@@ -26,7 +25,7 @@ class _addListingWidgetState extends State<addListingWidget> {
   final formKey = GlobalKey<FormState>();
   String dropDownValue;
   Uint8List fileContents;
-  DBDoctorMan apiDBDoctor = DBDoctorMan();
+  DBDoctorMan listingServices = DBDoctorMan();
   List<String> specialties = [
     "Neurologist",
     "Psychiatrist",
@@ -172,7 +171,7 @@ class _addListingWidgetState extends State<addListingWidget> {
                                   onPressed: () async {
                                     if (formKey.currentState.validate()) {
                                       String response =
-                                          await apiDBDoctor.addNewListing(
+                                          await listingServices.addNewListing(
                                               firstNameController.text,
                                               lastNameController.text,
                                               dropDownValue,

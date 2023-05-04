@@ -52,9 +52,9 @@ class ProfilingMan {
     final response =
         await http.get(Uri.parse('http://127.0.0.1:3000/api/currentuser'));
     if (response.statusCode == 200) {
-      final data = jsonDecode(response.body);
-      String uid = data["message"][0]['uid'];
-      return uid;
+      final currentUser = jsonDecode(response.body);
+      String userId = currentUser["message"][0]['uid'];
+      return userId;
     } else {
       throw Exception("Failed to load infos");
     }
@@ -64,13 +64,10 @@ class ProfilingMan {
     final response =
         await http.get(Uri.parse('http://127.0.0.1:3000/api/currentuser'));
     if (response.statusCode == 200) {
-      final data = jsonDecode(response.body);
-      String uid = data["message"][0]['uid'];
-      print(data[0]['uid']);
-      //User.fromMapp(data[0]);
+      final currentUser = jsonDecode(response.body);
+      String userId = currentUser["message"][0]['uid'];
       final http.Response response1 = await http
-          .delete(Uri.parse('http://127.0.0.1:3000/api/userinfo/${uid}'));
-
+          .delete(Uri.parse('http://127.0.0.1:3000/api/userinfo/${userId}'));
       if (response1.statusCode == 200) {
         return true;
       } else {
@@ -95,8 +92,6 @@ class ProfilingMan {
       }),
     );
     if (response.statusCode == 200) {
-      final data = jsonDecode(response.body);
-      print(data["message"]);
       return true;
     } else {
       return false;
@@ -114,8 +109,6 @@ class ProfilingMan {
       }),
     );
     if (response.statusCode == 200) {
-      final data = jsonDecode(response.body);
-      print(data);
       return true;
     } else {
       return false;
@@ -126,17 +119,14 @@ class ProfilingMan {
     final response =
         await http.get(Uri.parse('http://127.0.0.1:3000/api/currentuser'));
     if (response.statusCode == 200) {
-      final data = jsonDecode(response.body);
-      String uid = data["message"][0]['uid'];
-      //return User.fromMapp(data[0]);
+      final currentUser = jsonDecode(response.body);
+      String userId = currentUser["message"][0]['uid'];
       final response1 = await http.put(
-          Uri.parse('http://127.0.0.1:3000/api/blocuser/${uid}'),
+          Uri.parse('http://127.0.0.1:3000/api/blocuser/${userId}'),
           headers: <String, String>{
             'Content-Type': 'application/json; charset=UTF-8',
           });
       if (response1.statusCode == 200) {
-        final data1 = jsonDecode(response1.body);
-        print(data1);
         return true;
       } else {
         return false;

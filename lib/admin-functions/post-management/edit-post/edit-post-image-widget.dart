@@ -6,7 +6,6 @@ import 'package:skeleton/themes/divider.dart';
 import 'package:skeleton/themes/theme.dart';
 import 'package:flutter/material.dart';
 import '../../../index.dart';
-import '../../../themes/custom-button.dart';
 
 class updateImagePostWidget extends StatefulWidget {
   final String id, downloadURL;
@@ -23,10 +22,9 @@ class _updateImagePostWidgetState extends State<updateImagePostWidget> {
   final scaffoldKey = GlobalKey<ScaffoldState>();
   final formKey = GlobalKey<FormState>();
   Uint8List fileContents;
-  EditPostMan api = EditPostMan();
+  EditPostMan editPostService = EditPostMan();
   @override
   void initState() {
-    print(widget.id);
   }
 
   @override
@@ -108,7 +106,7 @@ class _updateImagePostWidgetState extends State<updateImagePostWidget> {
                                 child: CustomButton(
                                   onPressed: () async {
                                     if (formKey.currentState.validate()) {
-                                      bool response = await api
+                                      bool response = await editPostService
                                           .deleteFilePostFromDownloadURL(
                                               widget.downloadURL);
                                       print(response);

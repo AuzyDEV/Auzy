@@ -1,5 +1,4 @@
 import '../index.dart';
-import '../themes/custom-button.dart';
 import 'profile-model.dart';
 import '../../themes/theme.dart';
 import 'package:flutter/material.dart';
@@ -18,7 +17,7 @@ class _changePasswordWidgetState extends State<changePasswordWidget> {
   bool passwordVisibility, passwordVisibility1;
   final scaffoldKey = GlobalKey<ScaffoldState>();
   final formKey = GlobalKey<FormState>();
-  ProfilingMan api = ProfilingMan();
+  ProfilingMan profilingUserServices = ProfilingMan();
   Future<User> _futureUser;
   @override
   void initState() {
@@ -27,7 +26,7 @@ class _changePasswordWidgetState extends State<changePasswordWidget> {
     passwordController1 = TextEditingController();
     passwordVisibility = false;
     passwordVisibility1 = false;
-    _futureUser = api.GetCurrentUser();
+    _futureUser = profilingUserServices.GetCurrentUser();
   }
 
   @override
@@ -101,10 +100,9 @@ class _changePasswordWidgetState extends State<changePasswordWidget> {
                                                 if (formKey.currentState
                                                     .validate()) {
                                                   bool response =
-                                                      await api.ChangePassword(
+                                                      await profilingUserServices.ChangePassword(
                                                           passwordController
                                                               .text);
-                                                  print(response);
                                                   response == true
                                                       ? showDialog(
                                                           context: context,

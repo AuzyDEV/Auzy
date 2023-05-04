@@ -17,14 +17,12 @@ class savedPostsForUsersWidget extends StatefulWidget {
 class _savedPostsForUsersWidgetState extends State<savedPostsForUsersWidget> {
   final scaffoldKey = GlobalKey<ScaffoldState>();
   Future<List<savedPost>> futurePost;
-  SavedPostMan apiSavedPost = SavedPostMan();
-  ProfilingMan apiUser = ProfilingMan();
+  SavedPostMan savedPostsServices = SavedPostMan();
+  ProfilingMan profilingUserServices = ProfilingMan();
   String _CurrentUserId;
-  int n;
-  SavedPostMan apisavedpost = SavedPostMan();
 
   Future<String> _getCurrentUserId() async {
-    return apiUser.GetIDCurrentUser();
+    return profilingUserServices.GetIDCurrentUser();
   }
 
   Text getTextSpanFromRichTextJson(String jsonString) {
@@ -125,7 +123,7 @@ class _savedPostsForUsersWidgetState extends State<savedPostsForUsersWidget> {
                 padding: EdgeInsetsDirectional.fromSTEB(8, 0, 8, 0),
                 child: FutureBuilder<List<savedPost>>(
                     future:
-                        apiSavedPost.getAllSavedPostsForUsers(_CurrentUserId),
+                        savedPostsServices.getAllSavedPostsForUsers(_CurrentUserId),
                     builder: (context, snapshot) {
                       if (snapshot.hasData) {
                         return ListView.builder(
@@ -197,10 +195,8 @@ class _savedPostsForUsersWidgetState extends State<savedPostsForUsersWidget> {
                                                   size: 20,
                                                 ),
                                                 onPressed: () async {
-                                                  print(
-                                                      snapshot.data[index].id);
                                                   bool response =
-                                                      await apisavedpost
+                                                      await savedPostsServices
                                                           .DeleteSavedPost(
                                                               snapshot
                                                                   .data[index]

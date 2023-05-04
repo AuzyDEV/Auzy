@@ -21,18 +21,15 @@ class postsForUsersWidget extends StatefulWidget {
 class _postsForUsersWidgetState extends State<postsForUsersWidget> {
   final scaffoldKey = GlobalKey<ScaffoldState>();
   Future<List<Post>> futurePost;
-  PostsUserMan apiPost = PostsUserMan();
-  SavedPostMan apisavedpost = SavedPostMan();
-  ProfilingMan apiUser = ProfilingMan();
+  PostsUserMan postsServices = PostsUserMan();
+  ProfilingMan profilingUserServices = ProfilingMan();
   String _CurrentUserId;
   Future<List<savedPost>> futureSavedPost;
-  SavedPostMan apiSavedPost = SavedPostMan();
-  sharedPostMan sharedpostapi = sharedPostMan();
-  String htmlText =
-      "<h2><span style=\"background-color: rgb(255, 255, 255);\"><font color=\"#e91e63\" style=\"\" size=\"3\">Summer</font></span><span style=\"color: rgb(77, 81, 86); font-size: 14px; background-color: rgb(255, 255, 255);\"> is the <u>hottest</u> of the </span><span style=\"font-size: 14px; background-color: rgb(255, 255, 255);\"><font color=\"#fe1616\">four</font></span><span style=\"color: rgb(77, 81, 86); font-size: 14px; background-color: rgb(255, 255, 255);\"> temperate seasons, occurring after spring and before autumn. At or </span><span style=\"color: rgb(77, 81, 86); font-size: 14px; background-color: rgb(255, 235, 59);\">centred</span><span style=\"color: rgb(77, 81, 86); font-size: 14px; background-color: rgb(255, 255, 255);\"> on the summer solstice, daylight hours are longest and darkness hours are shortest, with day length decreasing as the season progresses after the solstice.</span></h2>";
-  int number;
+  SavedPostMan savedPostsServices = SavedPostMan();
+  sharedPostMan sharedPostsServices = sharedPostMan();
+
   Future<String> _getCurrentUserId() async {
-    return apiUser.GetIDCurrentUser();
+    return profilingUserServices.GetIDCurrentUser();
   }
 
   void _getFutureStringValue() async {
@@ -42,18 +39,12 @@ class _postsForUsersWidgetState extends State<postsForUsersWidget> {
     });
   }
 
-  Future<void> _refreshListPosts() async {
-    setState(() {
-      futurePost = apiPost.getAllPostsForUsers();
-    });
-  }
-
   @override
   void initState() {
     super.initState();
     _getFutureStringValue();
 
-    futurePost = apiPost.getAllPostsForUsers();
+    futurePost = postsServices.getAllPostsForUsers();
   }
 
   @override
@@ -199,8 +190,7 @@ class _postsForUsersWidgetState extends State<postsForUsersWidget> {
                                                                                             size: 23,
                                                                                           ),
                                                                                           onPressed: () async {
-                                                                                            bool response = await apisavedpost.SavePost(snapshot.data[index].id, snapshot.data[index].title, snapshot.data[index].contenu, snapshot.data[index].date, snapshot.data[index].uname, snapshot.data[index].uphoto, _CurrentUserId);
-                                                                                            print(response);
+                                                                                            bool response = await savedPostsServices.SavePost(snapshot.data[index].id, snapshot.data[index].title, snapshot.data[index].contenu, snapshot.data[index].date, snapshot.data[index].uname, snapshot.data[index].uphoto, _CurrentUserId);
                                                                                             await Navigator.push(
                                                                                               context,
                                                                                               MaterialPageRoute(
@@ -318,8 +308,6 @@ class _postsForUsersWidgetState extends State<postsForUsersWidget> {
                                                                                     ),
                                                                                   ),
                                                                                   onTap: () {
-                                                                                    print(htmlText);
-                                                                                    print(snapshot.data[index].contenu);
                                                                                     Navigator.push(
                                                                                       context,
                                                                                       MaterialPageRoute(builder: (context) => postDetailsWidget(id: snapshot.data[index].id)),
@@ -390,7 +378,7 @@ class _postsForUsersWidgetState extends State<postsForUsersWidget> {
                                                       .fromSTEB(8, 0, 8, 0),
                                                   child: FutureBuilder<
                                                           List<savedPost>>(
-                                                      future: apiSavedPost
+                                                      future: savedPostsServices
                                                           .getAllSavedPostsForUsers(
                                                               _CurrentUserId),
                                                       builder:
@@ -468,8 +456,7 @@ class _postsForUsersWidgetState extends State<postsForUsersWidget> {
                                                                                         size: 23,
                                                                                       ),
                                                                                       onPressed: () async {
-                                                                                        print(snapshot.data[index].id);
-                                                                                        bool response = await apisavedpost.DeleteSavedPost(snapshot.data[index].id);
+                                                                                        bool response = await savedPostsServices.DeleteSavedPost(snapshot.data[index].id);
                                                                                         if (response == true)
                                                                                           Navigator.push(
                                                                                             context,
@@ -480,7 +467,7 @@ class _postsForUsersWidgetState extends State<postsForUsersWidget> {
                                                                                         ScaffoldMessenger.of(context).showSnackBar(
                                                                                           SnackbarWidget(
                                                                                               content: Text(
-                                                                                            'Successfully save deleted!',
+                                                                                            'Successfully saved post deleted!',
                                                                                           )),
                                                                                         );
                                                                                       },
@@ -606,7 +593,7 @@ class _postsForUsersWidgetState extends State<postsForUsersWidget> {
                                                     .fromSTEB(8, 0, 8, 0),
                                                 child: FutureBuilder<
                                                         List<sharedPost>>(
-                                                    future: sharedpostapi
+                                                    future: sharedPostsServices
                                                         .getAllSharedPostsByCurrentUserId(),
                                                     builder:
                                                         (context, snapshot) {

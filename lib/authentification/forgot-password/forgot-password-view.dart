@@ -1,5 +1,4 @@
 import '../../index.dart';
-import '../../themes/custom-button.dart';
 import 'forgot-password-controller.dart';
 import '../../../themes/theme.dart';
 import 'package:flutter/material.dart';
@@ -17,7 +16,7 @@ class _ForgetpasswordWidgetState extends State<ForgetpasswordWidget> {
   final formKey = GlobalKey<FormState>();
   String response;
   int clickCount = 0;
-  ForgetPasswordMan api = ForgetPasswordMan();
+  ForgetPasswordMan forgetPasswordUserServices = ForgetPasswordMan();
   @override
   void initState() {
     super.initState();
@@ -127,9 +126,8 @@ class _ForgetpasswordWidgetState extends State<ForgetpasswordWidget> {
                               onPressed: () async {
                                 clickCount = clickCount + 1;
                                 if (formKey.currentState.validate()) {
-                                  response = await api.resetpasswordUser(
+                                  response = await forgetPasswordUserServices.resetpasswordUser(
                                       emailAddressController.text);
-                                  print(response);
                                 }
                                 if (clickCount < 4) {
                                   response == "email reset password send!"
