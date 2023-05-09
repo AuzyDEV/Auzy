@@ -161,8 +161,8 @@ class _postsForUsersWidgetState extends State<postsForUsersWidget> {
                                                                                           decoration: BoxDecoration(
                                                                                             shape: BoxShape.circle,
                                                                                           ),
-                                                                                          child: Image.network(
-                                                                                            '${snapshot.data[index].uphoto}',
+                                                                                          child: Image.asset(
+                                                                                            "../../assets/images/user.png",
                                                                                             fit: BoxFit.cover,
                                                                                           ),
                                                                                         ),
@@ -181,12 +181,12 @@ class _postsForUsersWidgetState extends State<postsForUsersWidget> {
                                                                                     ? Padding(
                                                                                         padding: EdgeInsetsDirectional.fromSTEB(12, 0, 0, 0),
                                                                                         child: FlutterFlowIconButton(
-                                                                                          borderColor: FlutterAppTheme.of(context).TransparentColor,
+                                                                                          borderColor: Colors.transparent,
                                                                                           borderRadius: 30,
                                                                                           buttonSize: 46,
                                                                                           icon: Icon(
                                                                                             Icons.bookmark_outline_outlined,
-                                                                                            color: FlutterAppTheme.of(context).Grey,
+                                                                                            color: Colors.grey,
                                                                                             size: 23,
                                                                                           ),
                                                                                           onPressed: () async {
@@ -203,7 +203,7 @@ class _postsForUsersWidgetState extends State<postsForUsersWidget> {
                                                                                     : Padding(
                                                                                         padding: EdgeInsetsDirectional.fromSTEB(12, 0, 0, 0),
                                                                                         child: FlutterFlowIconButton(
-                                                                                          borderColor: FlutterAppTheme.of(context).TransparentColor,
+                                                                                          borderColor: Colors.transparent,
                                                                                           borderRadius: 30,
                                                                                           buttonSize: 46,
                                                                                           icon: Icon(
@@ -250,7 +250,7 @@ class _postsForUsersWidgetState extends State<postsForUsersWidget> {
                                                                                       padding: EdgeInsetsDirectional.fromSTEB(4, 0, 0, 0),
                                                                                       child: Icon(
                                                                                         Icons.favorite_border_outlined,
-                                                                                        color: FlutterAppTheme.of(context).Grey,
+                                                                                        color: Colors.grey,
                                                                                         size: 24,
                                                                                       ),
                                                                                     ),
@@ -274,7 +274,7 @@ class _postsForUsersWidgetState extends State<postsForUsersWidget> {
                                                                                     },
                                                                                     child: Icon(
                                                                                       Icons.ios_share_sharp,
-                                                                                      color: FlutterAppTheme.of(context).Grey,
+                                                                                      color: Colors.grey,
                                                                                       size: 23,
                                                                                     ),
                                                                                   ),
@@ -303,7 +303,7 @@ class _postsForUsersWidgetState extends State<postsForUsersWidget> {
                                                                                   child: Text(
                                                                                     "See all",
                                                                                     style: TextStyle(
-                                                                                      color: FlutterAppTheme.of(context).tertiaryColor,
+                                                                                      color: Colors.blue,
                                                                                       decoration: TextDecoration.underline,
                                                                                     ),
                                                                                   ),
@@ -427,8 +427,8 @@ class _postsForUsersWidgetState extends State<postsForUsersWidget> {
                                                                                     decoration: BoxDecoration(
                                                                                       shape: BoxShape.circle,
                                                                                     ),
-                                                                                    child: Image.network(
-                                                                                      '${snapshot.data[index].uphoto}',
+                                                                                    child: Image.asset(
+                                                                                      "../../assets/images/user.png",
                                                                                       fit: BoxFit.cover,
                                                                                     ),
                                                                                   ),
@@ -447,7 +447,7 @@ class _postsForUsersWidgetState extends State<postsForUsersWidget> {
                                                                                       ),
                                                                                     ),
                                                                                     FlutterFlowIconButton(
-                                                                                      borderColor: FlutterAppTheme.of(context).TransparentColor,
+                                                                                      borderColor: Colors.transparent,
                                                                                       borderRadius: 30,
                                                                                       buttonSize: 46,
                                                                                       icon: Icon(
@@ -533,7 +533,7 @@ class _postsForUsersWidgetState extends State<postsForUsersWidget> {
                                                                                 child: Text(
                                                                                   "See all",
                                                                                   style: TextStyle(
-                                                                                    color: FlutterAppTheme.of(context).tertiaryColor,
+                                                                                    color: Colors.blue,
                                                                                     decoration: TextDecoration.underline,
                                                                                   ),
                                                                                 ),
@@ -648,8 +648,8 @@ class _postsForUsersWidgetState extends State<postsForUsersWidget> {
                                                                                       decoration: BoxDecoration(
                                                                                         shape: BoxShape.circle,
                                                                                       ),
-                                                                                      child: Image.network(
-                                                                                        '${snapshot.data[index].currentUserphoto}',
+                                                                                      child: Image.asset(
+                                                                                        "../../assets/images/user.png",
                                                                                         fit: BoxFit.cover,
                                                                                       ),
                                                                                     ),
@@ -716,8 +716,8 @@ class _postsForUsersWidgetState extends State<postsForUsersWidget> {
                                                                                                     decoration: BoxDecoration(
                                                                                                       shape: BoxShape.circle,
                                                                                                     ),
-                                                                                                    child: Image.network(
-                                                                                                      '${snapshot.data[index].adminPhoto}',
+                                                                                                    child: Image.asset(
+                                                                                                      "../../assets/images/user.png",
                                                                                                       fit: BoxFit.cover,
                                                                                                     ),
                                                                                                   ),

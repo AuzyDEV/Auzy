@@ -114,8 +114,8 @@ class _HomeWidgetState extends State<HomeWidget> {
                                                     borderRadius:
                                                         BorderRadius.circular(
                                                             10),
-                                                    child: Image.network(
-                                                      '${snapshot.data.photoURL}',
+                                                    child: Image.asset(
+                                                    "../assets/images/user.png",
                                                       width: 70,
                                                       height: 70,
                                                       fit: BoxFit.cover,

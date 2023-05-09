@@ -56,7 +56,8 @@ class ChatHeaderWidget extends StatelessWidget {
                         },
                         child: CircleAvatar(
                           radius: 24,
-                          backgroundImage: NetworkImage(user.photoURL),
+                          backgroundImage:
+                              AssetImage("../../assets/images/user.png"),
                         ),
                       ),
                     );

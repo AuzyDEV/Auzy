@@ -22,6 +22,17 @@ class UserMan {
       throw Exception("Failed to upload product list");
     }
   }
+   Future<List<User>> getAllUsersNew() async {
+    final response =
+        await http.get(Uri.parse('http://127.0.0.1:3000/api/get'));
+    if (response.statusCode == 200) {
+      final listings = jsonDecode(response.body);
+      final allListings = listings["message"];
+      return allListings.map<User>((json) => User.fromMappp(json)).toList();
+    } else {
+      throw Exception("Failed to get post's list");
+    }
+  }
 
   Future<int> CountNumberOfUsers() async {
     final response =
@@ -81,7 +92,8 @@ class UserMan {
 
     if (response.statusCode == 200) {
       final usersList = jsonDecode(response.body);
-      return usersList.map<User>((json) => User.fromMapp(json)).toList();
+      final users = usersList["message"];
+      return users.map<User>((json) => User.fromMapp(json)).toList();
     } else {
       throw Exception("Failed to get children's list");
     }

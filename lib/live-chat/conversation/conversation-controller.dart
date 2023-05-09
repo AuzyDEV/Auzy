@@ -14,9 +14,9 @@ class MessageMan {
     if (response.statusCode == 200) {
       final user = jsonDecode(response.body);
       final newMessage = Message(
-        idUser: user[0]['uid'],
-        urlAvatar: user[0]['photoURL'],
-        username: user[0]['displayName'],
+        idUser: user["message"][0]['uid'],
+        urlAvatar: user["message"][0]['photoURL'],
+        username: user["message"][0]['displayName'],
         message: message,
         createdAt: DateTime.now(),
       );
@@ -42,6 +42,4 @@ class MessageMan {
       throw Exception("Failed to get children's list");
     }
   }
-
-
 }

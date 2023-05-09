@@ -19,7 +19,8 @@ class _SpecialitiesWidgetState extends State<SpecialitiesWidget> {
   Future<List<ListingCtegoryModel>> _futureCategory;
   String _futureRoleValue;
   ProfilingMan profilingUserServices = ProfilingMan();
-  CategoryListingCtegoryMan categoryListingsServices = CategoryListingCtegoryMan();
+  CategoryListingCtegoryMan categoryListingsServices =
+      CategoryListingCtegoryMan();
   Future<String> _getCurrentUserRole() async {
     return profilingUserServices.GetCurrentUserRole();
   }
@@ -80,7 +81,7 @@ class _SpecialitiesWidgetState extends State<SpecialitiesWidget> {
                     crossAxisAlignment: CrossAxisAlignment.start,
                     children: [
                       Text(
-                        'Health Professional\'s \nSpecialities',
+                        'Health Professional\'s Specialities',
                         style: FlutterAppTheme.of(context).bodyText1.override(
                               fontFamily: 'Open Sans',
                               fontSize: 20,
@@ -106,9 +107,8 @@ class _SpecialitiesWidgetState extends State<SpecialitiesWidget> {
                               gridDelegate:
                                   SliverGridDelegateWithFixedCrossAxisCount(
                                 crossAxisCount: 3,
-                                crossAxisSpacing: 10,
-                                mainAxisSpacing: 0,
-                                childAspectRatio: 0.7,
+                                crossAxisSpacing: 0,
+                                mainAxisSpacing: 3,
                               ),
                               shrinkWrap: true,
                               scrollDirection: Axis.vertical,

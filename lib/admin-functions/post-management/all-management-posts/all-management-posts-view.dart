@@ -163,7 +163,7 @@ class _PostsManagementWidgetState extends State<PostsManagementWidget>
               }),
               cells: [
                 DataCell(Text('#' + e.id.toString())),
-                _createTitleCell(e.title.toString()),
+                DataCell(Text(e.title.toString())),
                 DataCell(
                   Container(
                     width: 500,
@@ -173,9 +173,7 @@ class _PostsManagementWidgetState extends State<PostsManagementWidget>
                     ),
                   ),
                 ),
-                //  Html(data: e.contenu.toString()),
-
-                _createTitleCell(e.date.toString()),
+                DataCell(Text(e.date.toString())),
                 DataCell(
                   Padding(
                       padding: EdgeInsetsDirectional.fromSTEB(0, 8, 10, 8),
@@ -411,8 +409,9 @@ class _PostsManagementWidgetState extends State<PostsManagementWidget>
                                                     ),
                                                     TextButton(
                                                       onPressed: () => {
-                                                        postServices.RestorePost(
-                                                            e.id.toString()),
+                                                        postServices
+                                                            .RestorePost(e.id
+                                                                .toString()),
                                                         Navigator.push(
                                                           context,
                                                           MaterialPageRoute(

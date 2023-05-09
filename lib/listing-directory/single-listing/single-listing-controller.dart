@@ -14,6 +14,7 @@ class SingleListingMan {
 
     if (response.statusCode == 200) {
       final listingDetails = jsonDecode(response.body);
+      print(listingDetails["listings"]);
       return ListingModel.fromMaq(listingDetails);
     } else {
       throw Exception("Failed to load infos");

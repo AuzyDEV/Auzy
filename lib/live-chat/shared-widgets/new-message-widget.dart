@@ -27,6 +27,7 @@ class _NewMessageWidgetState extends State<NewMessageWidget> {
   @override
   void initState() {
     super.initState();
+    print(widget.idUser);
     isShowSticker = false;
   }
 

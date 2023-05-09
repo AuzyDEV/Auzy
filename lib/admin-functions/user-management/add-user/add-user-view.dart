@@ -104,10 +104,10 @@ class _addUserWidgetState extends State<addUserWidget> {
                                     if (formKey.currentState.validate()) {
                                       String response =
                                           await signinUserServices.signupUser(
-                                              emailAddressController.text,
-                                              passwordController.text,
-                                              fullnameController.text,
-                                              photourlController.text);
+                                        emailAddressController.text,
+                                        passwordController.text,
+                                        fullnameController.text,
+                                      );
                                       response ==
                                               "User registred & email send successfully"
                                           ? showDialog(

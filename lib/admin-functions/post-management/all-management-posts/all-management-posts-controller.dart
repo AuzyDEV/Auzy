@@ -23,6 +23,18 @@ class PostMan {
     }
   }
 
+  Future<List<Post>> getAllListingsNew() async {
+    final response =
+        await http.get(Uri.parse('http://127.0.0.1:3000/api/postsnew'));
+    if (response.statusCode == 200) {
+      final listings = jsonDecode(response.body);
+      final allListings = listings["message"]["listCollections"];
+      return allListings.map<Post>((json) => Post.fromMapis(json)).toList();
+    } else {
+      throw Exception("Failed to get post's list");
+    }
+  }
+
   Future<bool> deletePost(String id) async {
     final http.Response response =
         await http.delete(Uri.parse('http://127.0.0.1:3000/api/post/${id}'));

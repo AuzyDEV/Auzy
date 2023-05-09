@@ -1,4 +1,3 @@
-
 import '../../admin-functions/user-management/all-users/all-users-controller.dart';
 import '../../index.dart';
 import '../../../themes/theme.dart';
@@ -189,9 +188,8 @@ class _chatcopyWidgetState extends State<chatcopyWidget> {
                                                           leading: CircleAvatar(
                                                             radius: 25,
                                                             backgroundImage:
-                                                                NetworkImage(
-                                                                    users[index]
-                                                                        .photoURL),
+                                                                AssetImage(
+                                                                    "../assets/images/user.png"),
                                                           ),
                                                           title: Text(
                                                               users[index]

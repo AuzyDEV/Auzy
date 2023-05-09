@@ -71,6 +71,7 @@ class _UsersListForPostsWidgetState extends State<UsersListForPostsWidget> {
                             children: [
                               TextFormFieldWidget(
                                 controller: textController,
+                                hintText: "Search for users ...",
                                 isRequired: true,
                                 onChanged: (value) {
                                   setState(() {
@@ -141,8 +142,8 @@ class _UsersListForPostsWidgetState extends State<UsersListForPostsWidget> {
                                                                           Clip
                                                                               .antiAliasWithSaveLayer,
                                                                       color: selectedCard1 == index
-                                                                          ? FlutterAppTheme.of(context)
-                                                                              .secondaryColor
+                                                                          ? Colors
+                                                                              .green
                                                                           : FlutterAppTheme.of(context)
                                                                               .whiteColor,
                                                                       elevation:
@@ -161,7 +162,7 @@ class _UsersListForPostsWidgetState extends State<UsersListForPostsWidget> {
                                                                         decoration:
                                                                             BoxDecoration(
                                                                           color: selectedCard1 == index
-                                                                              ? FlutterAppTheme.of(context).secondaryColor
+                                                                              ? Colors.green
                                                                               : FlutterAppTheme.of(context).whiteColor,
                                                                           boxShadow: [
                                                                             BoxShadow(
@@ -189,8 +190,8 @@ class _UsersListForPostsWidgetState extends State<UsersListForPostsWidget> {
                                                                             children: [
                                                                               ClipRRect(
                                                                                 borderRadius: BorderRadius.circular(26),
-                                                                                child: Image.network(
-                                                                                  "${users[index].photoURL}",
+                                                                                child: Image.asset(
+                                                                                  "../../assets/images/user.png",
                                                                                   width: 45,
                                                                                   height: 45,
                                                                                   fit: BoxFit.cover,

@@ -30,8 +30,7 @@ class ProfileHeaderWidget extends StatelessWidget {
                     overflow: TextOverflow.ellipsis,
                   ),
                 ),
-            
-               SizedBox(width: 4),
+                SizedBox(width: 4),
               ],
             )
           ],

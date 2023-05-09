@@ -13,7 +13,6 @@ class CreateAccountWidget extends StatefulWidget {
 class _CreateAccountWidgetState extends State<CreateAccountWidget> {
   TextEditingController emailAddressController;
   TextEditingController fullnameController;
-  TextEditingController photourlController;
   TextEditingController passwordController;
   bool passwordVisibility;
   final scaffoldKey = GlobalKey<ScaffoldState>();
@@ -27,7 +26,6 @@ class _CreateAccountWidgetState extends State<CreateAccountWidget> {
     emailAddressController = TextEditingController();
     fullnameController = TextEditingController();
     passwordController = TextEditingController();
-    photourlController = TextEditingController();
     passwordVisibility = false;
   }
 
@@ -105,11 +103,7 @@ class _CreateAccountWidgetState extends State<CreateAccountWidget> {
                           isRequired: true,
                           isString: true,
                         ),
-                        LabeledRowWidget(text: 'Photo url'),
-                        TextFormFieldWidget(
-                          controller: photourlController,
-                          isRequired: true,
-                        ),
+                     
                         LabeledRowWidget(text: 'Email'),
                         TextFormFieldWidget(
                           controller: emailAddressController,
@@ -140,11 +134,13 @@ class _CreateAccountWidgetState extends State<CreateAccountWidget> {
                                 child: CustomButton(
                                   onPressed: () async {
                                     if (formKey.currentState.validate()) {
-                                      String response = await createAccountUserServices.signupUser(
-                                          emailAddressController.text,
-                                          passwordController.text,
-                                          fullnameController.text,
-                                          photourlController.text);
+                                      String response =
+                                          await createAccountUserServices
+                                              .signupUser(
+                                                  emailAddressController.text,
+                                                  passwordController.text,
+                                                  fullnameController.text);
+                                      print(response);
                                       response ==
                                               "User registred & email send successfully"
                                           ? showDialog(

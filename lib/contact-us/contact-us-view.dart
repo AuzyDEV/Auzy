@@ -21,8 +21,8 @@ class _contactUsWidgetState extends State<contactUsWidget> {
   final formKey = GlobalKey<FormState>();
   EmailMan contactsUsServices = EmailMan();
   bool switchListTileValue;
-  String initialCountry = 'NG';
-  PhoneNumber number = PhoneNumber(isoCode: 'NG');
+  String initialCountry = 'TN';
+  PhoneNumber number = PhoneNumber(isoCode: 'TN');
   @override
   void initState() {
     super.initState();
@@ -76,13 +76,11 @@ class _contactUsWidgetState extends State<contactUsWidget> {
                     Padding(
                       padding: EdgeInsetsDirectional.fromSTEB(16, 10, 16, 0),
                       child: InternationalPhoneNumberInput(
-                        onInputChanged: (PhoneNumber number) {
-                        },
+                        onInputChanged: (PhoneNumber number) {},
                         cursorColor: Color(0xFF9457FB),
                         validator: (value) =>
                             value.isEmpty ? 'Field is required' : null,
-                        onInputValidated: (bool value) {
-                        },
+                        onInputValidated: (bool value) {},
                         selectorConfig: SelectorConfig(
                           selectorType: PhoneInputSelectorType.BOTTOM_SHEET,
                         ),
@@ -116,8 +114,8 @@ class _contactUsWidgetState extends State<contactUsWidget> {
                               child: CustomButton(
                                 onPressed: () async {
                                   if (formKey.currentState.validate()) {
-                                    bool response =
-                                        await contactsUsServices.ContactUsWithEmail(
+                                    bool response = await contactsUsServices
+                                        .ContactUsWithEmail(
                                             emailAddressController.text,
                                             fullnameController.text,
                                             mobilecontroller.text,

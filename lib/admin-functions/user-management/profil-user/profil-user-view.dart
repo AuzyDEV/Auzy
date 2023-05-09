@@ -88,8 +88,8 @@ class _ProfillWidgetState extends State<ProfillWidget> {
                                       decoration: BoxDecoration(
                                         shape: BoxShape.circle,
                                       ),
-                                      child: Image.network(
-                                          '${snapshot.data.photoURL}',
+                                      child: Image.asset(
+                                          "../../assets/images/user.png",
                                           fit: BoxFit.cover),
                                     ),
                                   ),
@@ -110,10 +110,6 @@ class _ProfillWidgetState extends State<ProfillWidget> {
                                 ),
                                 TextFormFieldWidget(
                                   hintText: '${snapshot.data.email}',
-                                  readOnly: true,
-                                ),
-                                TextFormFieldWidget(
-                                  hintText: '${snapshot.data.photoURL}',
                                   readOnly: true,
                                 ),
                                 Padding(

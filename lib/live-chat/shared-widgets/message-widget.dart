@@ -1,4 +1,3 @@
-
 import 'package:flutter/material.dart';
 import '../../index.dart';
 import '../../themes/theme.dart';
@@ -32,7 +31,8 @@ class MessageWidget extends StatelessWidget {
               );
             },
             child: CircleAvatar(
-                radius: 16, backgroundImage: NetworkImage(message.urlAvatar)),
+                radius: 16,
+                backgroundImage: AssetImage("../../assets/images/user.png")),
           ),
         Column(
           children: [

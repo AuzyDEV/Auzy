@@ -112,6 +112,21 @@ class Post {
       visibility: (json["visibility"] ?? '').toString(),
     );
   }
+  factory Post.fromMapis(Map<String, dynamic> json) {
+    return Post(
+      id: (json["id"] ?? ''),
+      title: (json["data"]["title"] ?? ''),
+      contenu: (json["data"]["contenu"] ?? ''),
+      date: DateTime.fromMillisecondsSinceEpoch(
+              (json["data"]["date"]["seconds"] * 1000 +
+                  json["data"]["date"]["nanoseconds"] ~/ 1000000))
+          .toString(),
+      uname: (json["data"]["uname"] ?? ''),
+      uphoto: (json["data"]["uphoto"] ?? ''),
+      visibility: (json["data"]["visibility"] ?? '').toString(),
+      files: List<File>.from(json["files"].map((x) => File.fromMap(x))),
+    );
+  }
   static Post fromJson(Map<String, dynamic> json) => Post(
         id: (json["uid"] ?? ''),
         title: (json["title"] ?? ''),

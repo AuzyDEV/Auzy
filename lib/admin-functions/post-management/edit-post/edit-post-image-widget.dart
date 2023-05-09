@@ -145,7 +145,7 @@ class _updateImagePostWidgetState extends State<updateImagePostWidget> {
                               ),
                             ),
                           ])),
-                     CustomDivider()
+                     
                     ],
                   ),
                 ],
