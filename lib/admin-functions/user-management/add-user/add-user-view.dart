@@ -16,7 +16,6 @@ class addUserWidget extends StatefulWidget {
 class _addUserWidgetState extends State<addUserWidget> {
   TextEditingController emailAddressController;
   TextEditingController fullnameController;
-  TextEditingController photourlController;
   TextEditingController passwordController;
   bool passwordVisibility;
   final scaffoldKey = GlobalKey<ScaffoldState>();
@@ -30,7 +29,6 @@ class _addUserWidgetState extends State<addUserWidget> {
     emailAddressController = TextEditingController();
     fullnameController = TextEditingController();
     passwordController = TextEditingController();
-    photourlController = TextEditingController();
     passwordVisibility = false;
     _futureUser = profilingServices.GetCurrentUser();
   }
@@ -67,11 +65,6 @@ class _addUserWidgetState extends State<addUserWidget> {
                         controller: fullnameController,
                         isRequired: true,
                         isString: true,
-                      ),
-                      LabeledRowWidget(text: 'Photo url'),
-                      TextFormFieldWidget(
-                        controller: photourlController,
-                        isRequired: true,
                       ),
                       LabeledRowWidget(text: 'Email'),
                       TextFormFieldWidget(

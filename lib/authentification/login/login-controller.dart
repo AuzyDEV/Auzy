@@ -45,7 +45,6 @@ class SigninMan {
   Future<bool> LogoutUser() async {
     final http.Response response =
         await http.get(Uri.parse('http://127.0.0.1:3000/api/logout'));
-
     if (response.statusCode == 200) {
       return true;
     } else {

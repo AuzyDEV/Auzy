@@ -301,7 +301,7 @@ class _postsForUsersWidgetState extends State<postsForUsersWidget> {
                                                                               children: [
                                                                                 GestureDetector(
                                                                                   child: Text(
-                                                                                    "See all",
+                                                                                    "Read more",
                                                                                     style: TextStyle(
                                                                                       color: Colors.blue,
                                                                                       decoration: TextDecoration.underline,
@@ -531,7 +531,7 @@ class _postsForUsersWidgetState extends State<postsForUsersWidget> {
                                                                             children: [
                                                                               GestureDetector(
                                                                                 child: Text(
-                                                                                  "See all",
+                                                                                  "Read more",
                                                                                   style: TextStyle(
                                                                                     color: Colors.blue,
                                                                                     decoration: TextDecoration.underline,

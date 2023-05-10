@@ -16,6 +16,8 @@ class SpecialitiesWidget extends StatefulWidget {
 class _SpecialitiesWidgetState extends State<SpecialitiesWidget> {
   final scaffoldKey = GlobalKey<ScaffoldState>();
   final _unfocusNode = FocusNode();
+  String searchString = "";
+  TextEditingController SearchtextController;
   Future<List<ListingCtegoryModel>> _futureCategory;
   String _futureRoleValue;
   ProfilingMan profilingUserServices = ProfilingMan();
@@ -35,6 +37,7 @@ class _SpecialitiesWidgetState extends State<SpecialitiesWidget> {
   @override
   void initState() {
     super.initState();
+    SearchtextController = TextEditingController();
     _getFutureRoleValue();
     _futureCategory = categoryListingsServices.getAllListingCtegories();
   }
@@ -71,7 +74,7 @@ class _SpecialitiesWidgetState extends State<SpecialitiesWidget> {
             child: Column(
           children: [
             Padding(
-              padding: EdgeInsetsDirectional.fromSTEB(16, 25, 16, 25),
+              padding: EdgeInsetsDirectional.fromSTEB(16, 25, 16, 0),
               child: Row(
                 mainAxisSize: MainAxisSize.max,
                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
@@ -88,6 +91,24 @@ class _SpecialitiesWidgetState extends State<SpecialitiesWidget> {
                             ),
                       ),
                     ],
+                  ),
+                ],
+              ),
+            ),
+            Align(
+              alignment: AlignmentDirectional(0.5, 6.41),
+              child: Column(
+                mainAxisSize: MainAxisSize.max,
+                mainAxisAlignment: MainAxisAlignment.center,
+                children: [
+                  TextFormFieldWidget(
+                    onChanged: (value) {
+                      setState(() {
+                        searchString = value.toLowerCase();
+                      });
+                    },
+                    hintText: "Search... ",
+                    controller: SearchtextController,
                   ),
                 ],
               ),
@@ -113,74 +134,82 @@ class _SpecialitiesWidgetState extends State<SpecialitiesWidget> {
                               shrinkWrap: true,
                               scrollDirection: Axis.vertical,
                               itemBuilder: (BuildContext context, int index) {
-                                return InkWell(
-                                  onTap: () async {
-                                    await Navigator.push(
-                                      context,
-                                      MaterialPageRoute(
-                                        builder: (context) => AllListingsWidget(
-                                          speciality:
-                                              "${snapshot.data[index].Name}",
+                                if (snapshot.data[index].Name
+                                    .toLowerCase()
+                                    .contains(searchString))
+                                  return InkWell(
+                                    onTap: () async {
+                                      await Navigator.push(
+                                        context,
+                                        MaterialPageRoute(
+                                          builder: (context) =>
+                                              AllListingsWidget(
+                                            speciality:
+                                                "${snapshot.data[index].Name}",
+                                          ),
                                         ),
-                                      ),
-                                    );
-                                  },
-                                  child: Column(
-                                    mainAxisSize: MainAxisSize.max,
-                                    children: [
-                                      Container(
-                                        width: 75,
-                                        height: 75,
-                                        decoration: BoxDecoration(
-                                          color: Color(0xFFF1F4F8),
-                                          shape: BoxShape.circle,
-                                        ),
-                                        child: Column(
-                                          mainAxisSize: MainAxisSize.max,
-                                          mainAxisAlignment:
-                                              MainAxisAlignment.center,
-                                          children: [
-                                            Image.network(
-                                              '${snapshot.data[index].files[0].downloadURL}',
-                                              width: 40,
-                                              height: 40,
-                                              fit: BoxFit.cover,
-                                            ),
-                                          ],
-                                        ),
-                                      ),
-                                      Padding(
-                                        padding: EdgeInsetsDirectional.fromSTEB(
-                                            0, 10, 0, 0),
-                                        child: Row(
-                                          mainAxisSize: MainAxisSize.max,
-                                          mainAxisAlignment:
-                                              MainAxisAlignment.center,
-                                          children: [
-                                            Expanded(
-                                              child: Text(
-                                                '${snapshot.data[index].Name}',
-                                                textAlign: TextAlign.center,
-                                                style:
-                                                    FlutterAppTheme.of(context)
-                                                        .bodyText1
-                                                        .override(
-                                                          fontFamily: 'Roboto',
-                                                          color: FlutterAppTheme
-                                                                  .of(context)
-                                                              .secondaryText,
-                                                          fontSize: 13,
-                                                          fontWeight:
-                                                              FontWeight.normal,
-                                                        ),
+                                      );
+                                    },
+                                    child: Column(
+                                      mainAxisSize: MainAxisSize.max,
+                                      children: [
+                                        Container(
+                                          width: 75,
+                                          height: 75,
+                                          decoration: BoxDecoration(
+                                            color: Color(0xFFF1F4F8),
+                                            shape: BoxShape.circle,
+                                          ),
+                                          child: Column(
+                                            mainAxisSize: MainAxisSize.max,
+                                            mainAxisAlignment:
+                                                MainAxisAlignment.center,
+                                            children: [
+                                              Image.network(
+                                                '${snapshot.data[index].files[0].downloadURL}',
+                                                width: 40,
+                                                height: 40,
+                                                fit: BoxFit.cover,
                                               ),
-                                            )
-                                          ],
+                                            ],
+                                          ),
                                         ),
-                                      ),
-                                    ],
-                                  ),
-                                );
+                                        Padding(
+                                          padding:
+                                              EdgeInsetsDirectional.fromSTEB(
+                                                  0, 10, 0, 0),
+                                          child: Row(
+                                            mainAxisSize: MainAxisSize.max,
+                                            mainAxisAlignment:
+                                                MainAxisAlignment.center,
+                                            children: [
+                                              Expanded(
+                                                child: Text(
+                                                  '${snapshot.data[index].Name}',
+                                                  textAlign: TextAlign.center,
+                                                  style: FlutterAppTheme.of(
+                                                          context)
+                                                      .bodyText1
+                                                      .override(
+                                                        fontFamily: 'Roboto',
+                                                        color:
+                                                            FlutterAppTheme.of(
+                                                                    context)
+                                                                .secondaryText,
+                                                        fontSize: 13,
+                                                        fontWeight:
+                                                            FontWeight.normal,
+                                                      ),
+                                                ),
+                                              )
+                                            ],
+                                          ),
+                                        ),
+                                      ],
+                                    ),
+                                  );
+                                else
+                                  return Container();
                               },
                             )));
                   } else if (snapshot.hasError) {
