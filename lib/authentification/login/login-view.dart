@@ -1,4 +1,5 @@
 import '../../index.dart';
+import '../../themes/password-text-field.dart';
 import 'login-controller.dart';
 import '../../../themes/theme.dart';
 import 'package:flutter/material.dart';
@@ -97,11 +98,14 @@ class _SigninWidgetWidgetState extends State<SigninWidget> {
                           isEmail: true,
                         ),
                         LabeledRowWidget(text: 'Password'),
-                        TextFormFieldWidget(
+                        PasswordFormField(
+                          controller: passwordController,
+                        ),
+                        /* TextFormFieldWidget(
                           controller: passwordController,
                           isRequired: true,
                           obscureText: !passwordVisibility,
-                        ),
+                        ),*/
                       ],
                     ),
                     Padding(
@@ -253,16 +257,6 @@ class _SigninWidgetWidgetState extends State<SigninWidget> {
                                     color: Colors.black,
                                     size: 24,
                                   ),
-                                ),
-                              ),
-                              Container(
-                                width: 50,
-                                height: 50,
-                                alignment: AlignmentDirectional(0, 0),
-                                child: Icon(
-                                  Icons.phone_sharp,
-                                  color: Colors.black,
-                                  size: 24,
                                 ),
                               ),
                             ],

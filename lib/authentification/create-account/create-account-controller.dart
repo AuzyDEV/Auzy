@@ -28,6 +28,7 @@ class CreateAccountMan {
       }),
     );
     final userData = jsonDecode(response1.body);
+    print(userData['message']);
     return userData['message'];
   }
 }

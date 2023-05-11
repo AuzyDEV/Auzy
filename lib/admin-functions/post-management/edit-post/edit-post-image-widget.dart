@@ -24,8 +24,7 @@ class _updateImagePostWidgetState extends State<updateImagePostWidget> {
   Uint8List fileContents;
   EditPostMan editPostService = EditPostMan();
   @override
-  void initState() {
-  }
+  void initState() {}
 
   @override
   void dispose() {
@@ -60,7 +59,12 @@ class _updateImagePostWidgetState extends State<updateImagePostWidget> {
                         child: Column(
                           mainAxisAlignment: MainAxisAlignment.center,
                           children: [
-                            Text(fileName),
+                            Text(
+                              fileName ?? 'No file chosen',
+                              style: TextStyle(
+                                fontWeight: FontWeight.bold,
+                              ),
+                            ),
                             ElevatedButton(
                               onPressed: (() {
                                 InputElement inputElement =
@@ -106,38 +110,50 @@ class _updateImagePostWidgetState extends State<updateImagePostWidget> {
                                 child: CustomButton(
                                   onPressed: () async {
                                     if (formKey.currentState.validate()) {
-                                      bool response = await editPostService
-                                          .deleteFilePostFromDownloadURL(
-                                              widget.downloadURL);
-                                      print(response);
-                                      if (response == true) {
-                                        await FirebaseStorage.instance
-                                            .ref('posts/${widget.id}/$fileName')
-                                            .putData(fileContents);
+                                      if (fileContents == null) {
+                                        ScaffoldMessenger.of(context)
+                                            .showSnackBar(
+                                          SnackbarWidget(
+                                            content: Text(
+                                              'Please select a file!',
+                                            ),
+                                          ),
+                                        );
+                                      } else {
+                                        bool response = await editPostService
+                                            .deleteFilePostFromDownloadURL(
+                                                widget.downloadURL);
+                                        print(response);
+                                        if (response == true) {
+                                          await FirebaseStorage.instance
+                                              .ref(
+                                                  'posts/${widget.id}/$fileName')
+                                              .putData(fileContents);
+                                        }
+                                        showDialog(
+                                            context: context,
+                                            builder: (BuildContext context) {
+                                              return alertDialogWidget(
+                                                title: "Succes!",
+                                                content:
+                                                    "post\'s image was updated successfully",
+                                                actions: [
+                                                  TextButton(
+                                                    child: Text("Ok"),
+                                                    onPressed: () async {
+                                                      await Navigator.push(
+                                                        context,
+                                                        MaterialPageRoute(
+                                                          builder: (context) =>
+                                                              HomeWidget(),
+                                                        ),
+                                                      );
+                                                    },
+                                                  )
+                                                ],
+                                              );
+                                            });
                                       }
-                                      showDialog(
-                                          context: context,
-                                          builder: (BuildContext context) {
-                                            return alertDialogWidget(
-                                              title: "Succes!",
-                                              content:
-                                                  "post\'s image was updated successfully",
-                                              actions: [
-                                                TextButton(
-                                                  child: Text("Ok"),
-                                                  onPressed: () async {
-                                                    await Navigator.push(
-                                                      context,
-                                                      MaterialPageRoute(
-                                                        builder: (context) =>
-                                                            HomeWidget(),
-                                                      ),
-                                                    );
-                                                  },
-                                                )
-                                              ],
-                                            );
-                                          });
                                     }
                                   },
                                   text: 'send',
@@ -145,7 +161,6 @@ class _updateImagePostWidgetState extends State<updateImagePostWidget> {
                               ),
                             ),
                           ])),
-                     
                     ],
                   ),
                 ],

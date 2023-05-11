@@ -166,7 +166,7 @@ class _HomeWidgetState extends State<HomeWidget> {
                                                 Row(
                                                   children: [
                                                     Text(
-                                                      "Find your doctor",
+                                                      "Find a doctor",
                                                       style: FlutterAppTheme.of(
                                                               context)
                                                           .bodyText1
@@ -785,16 +785,13 @@ class _HomeWidgetState extends State<HomeWidget> {
                                                                                     ],
                                                                                   ),
                                                                                 ),
-                                                                                Padding(
-                                                                                  padding: EdgeInsetsDirectional.fromSTEB(0, 4, 0, 4),
-                                                                                  child: ClipRRect(
-                                                                                    borderRadius: BorderRadius.circular(8),
-                                                                                    child: Image.network(
-                                                                                      '${snapshot.data[index].downloadURL}',
-                                                                                      width: 350,
-                                                                                      height: 300,
-                                                                                      fit: BoxFit.cover,
-                                                                                    ),
+                                                                                ClipRRect(
+                                                                                  borderRadius: BorderRadius.circular(8),
+                                                                                  child: Image.network(
+                                                                                    '${snapshot.data[index].downloadURL}',
+                                                                                    width: 350,
+                                                                                    height: 300,
+                                                                                    fit: BoxFit.cover,
                                                                                   ),
                                                                                 ),
                                                                                 Padding(

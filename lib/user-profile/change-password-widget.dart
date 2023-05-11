@@ -1,4 +1,5 @@
 import '../index.dart';
+import '../themes/password-text-field.dart';
 import 'profile-model.dart';
 import '../../themes/theme.dart';
 import 'package:flutter/material.dart';
@@ -51,110 +52,107 @@ class _changePasswordWidgetState extends State<changePasswordWidget> {
                 if (snapshot.hasData) {
                   return Column(
                     mainAxisSize: MainAxisSize.max,
-                    children: [Form(
-                          key: formKey,
-                          autovalidateMode: AutovalidateMode.always,
-                          child: Column(
-                            mainAxisSize: MainAxisSize.max,
-                            children: [
-                              Padding(
-                                padding:
-                                    EdgeInsetsDirectional.fromSTEB(0, 0, 0, 0),
-                                child: Column(
-                                  mainAxisSize: MainAxisSize.max,
-                                  children: [
-                                    LabeledRowWidget(text: 'Password'),
-                                    TextFormFieldWidget(
-                                      controller: passwordController,
-                                      isRequired: true,
-                                      obscureText: !passwordVisibility,
-                                    ),
-                                  ],
-                                ),
-                              ),
-                              LabeledRowWidget(text: 'Confirm password'),
-                              TextFormFieldWidget(
-                                controller: passwordController1,
-                                isRequired: true,
-                                validator: (value) => value.isEmpty
-                                    ? 'Field is required'
-                                    : (value != passwordController.text
-                                        ? 'Please confirm your password'
-                                        : null),
-                                obscureText: !passwordVisibility1,
-                              ),
-                              Column(
+                    children: [
+                      Form(
+                        key: formKey,
+                        autovalidateMode: AutovalidateMode.always,
+                        child: Column(
+                          mainAxisSize: MainAxisSize.max,
+                          children: [
+                            Padding(
+                              padding:
+                                  EdgeInsetsDirectional.fromSTEB(0, 0, 0, 0),
+                              child: Column(
                                 mainAxisSize: MainAxisSize.max,
                                 children: [
-                                  Padding(
-                                      padding: EdgeInsetsDirectional.fromSTEB(
-                                          16, 30, 16, 10),
-                                      child: Row(children: [
-                                        Expanded(
-                                          child: Padding(
-                                            padding:
-                                                EdgeInsetsDirectional.fromSTEB(
-                                                    0, 0, 0, 0),
-                                            child: CustomButton(
-                                              onPressed: () async {
-                                                if (formKey.currentState
-                                                    .validate()) {
-                                                  bool response =
-                                                      await profilingUserServices.ChangePassword(
-                                                          passwordController
-                                                              .text);
-                                                  response == true
-                                                      ? showDialog(
-                                                          context: context,
-                                                          builder: (BuildContext
-                                                              context) {
-                                                            return alertDialogWidget(
-                                                              title: "Succes!",
-                                                              content:
-                                                                  "updating infos completed successfully!",
-                                                              actions: [
-                                                                TextButton(
-                                                                  child: Text(
-                                                                      "Ok"),
-                                                                  onPressed:
-                                                                      () async {
-                                                                    await Navigator
-                                                                        .push(
-                                                                      context,
-                                                                      MaterialPageRoute(
-                                                                        builder:
-                                                                            (context) =>
-                                                                                HomeWidget(),
-                                                                      ),
-                                                                    );
-                                                                  },
-                                                                )
-                                                              ],
-                                                            );
-                                                          })
-                                                      : showDialog(
-                                                          context: context,
-                                                          builder: (BuildContext
-                                                              context) {
-                                                            return alertDialogWidget(
-                                                              title: "Error!",
-                                                              content:
-                                                                  "$response",
-                                                            );
-                                                          });
-                                                }
-                                              },
-                                              text: 'submit',
-                                            ),
-                                          ),
-                                        ),
-                                      ])),
+                                  LabeledRowWidget(text: 'Password'),
+                                  PasswordFormField(
+                                    controller: passwordController,
+                                  ),
                                 ],
                               ),
-                            ],
-                          ),
+                            ),
+                            LabeledRowWidget(text: 'Confirm password'),
+                            PasswordFormField(
+                              controller: passwordController1,
+                              validator: (value) => value.isEmpty
+                                  ? 'Field is required'
+                                  : (value != passwordController.text
+                                      ? 'Please confirm your password'
+                                      : null),
+                            ),
+                            Column(
+                              mainAxisSize: MainAxisSize.max,
+                              children: [
+                                Padding(
+                                    padding: EdgeInsetsDirectional.fromSTEB(
+                                        16, 30, 16, 10),
+                                    child: Row(children: [
+                                      Expanded(
+                                        child: Padding(
+                                          padding:
+                                              EdgeInsetsDirectional.fromSTEB(
+                                                  0, 0, 0, 0),
+                                          child: CustomButton(
+                                            onPressed: () async {
+                                              if (formKey.currentState
+                                                  .validate()) {
+                                                bool response =
+                                                    await profilingUserServices
+                                                        .ChangePassword(
+                                                            passwordController
+                                                                .text);
+                                                response == true
+                                                    ? showDialog(
+                                                        context: context,
+                                                        builder: (BuildContext
+                                                            context) {
+                                                          return alertDialogWidget(
+                                                            title: "Succes!",
+                                                            content:
+                                                                "updating infos completed successfully!",
+                                                            actions: [
+                                                              TextButton(
+                                                                child:
+                                                                    Text("Ok"),
+                                                                onPressed:
+                                                                    () async {
+                                                                  await Navigator
+                                                                      .push(
+                                                                    context,
+                                                                    MaterialPageRoute(
+                                                                      builder:
+                                                                          (context) =>
+                                                                              HomeWidget(),
+                                                                    ),
+                                                                  );
+                                                                },
+                                                              )
+                                                            ],
+                                                          );
+                                                        })
+                                                    : showDialog(
+                                                        context: context,
+                                                        builder: (BuildContext
+                                                            context) {
+                                                          return alertDialogWidget(
+                                                            title: "Error!",
+                                                            content:
+                                                                "$response",
+                                                          );
+                                                        });
+                                              }
+                                            },
+                                            text: 'submit',
+                                          ),
+                                        ),
+                                      ),
+                                    ])),
+                              ],
+                            ),
+                          ],
                         ),
-                      
+                      ),
                     ],
                   );
                 } else if (snapshot.hasError) {

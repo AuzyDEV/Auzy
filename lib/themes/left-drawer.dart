@@ -3,6 +3,7 @@ import '../admin-functions/post-management/all-management-posts/all-management-p
 import '../admin-functions/user-management/all-users/all-users-new.dart';
 import '../authentification/login/login-controller.dart';
 import '../index.dart';
+import '../listing-directory/all-listing-category/all-listing-category-for-admin.dart';
 import '../user-profile/profile-model.dart';
 import '../user-profile/profile-controller.dart';
 import '../themes/theme.dart';
@@ -130,7 +131,7 @@ class _DrawerrState extends State<Drawerr> {
                                                     color: FlutterAppTheme.of(
                                                             context)
                                                         .primaryColor,
-                                                    fontSize: 14,
+                                                    fontSize: 12,
                                                     fontWeight: FontWeight.w800,
                                                   ),
                                             ),
@@ -302,10 +303,27 @@ class _DrawerrState extends State<Drawerr> {
                       ),
                     );
                   }),
+            if (_futureStringValue == "admin")
+              _createDrawerItem(
+                  icon: Icons.list,
+                  text: 'Listing Categ Management',
+                  isSelected: selectedIndex == 10,
+                  onTap: () {
+                    setState(() {
+                      selectedIndex = 10;
+                    });
+
+                    Navigator.push(
+                      context,
+                      MaterialPageRoute(
+                        builder: (context) => ListingCategoryForAdmin(),
+                      ),
+                    );
+                  }),
             _createDrawerItem(
               icon: Icons.logout_outlined,
               text: 'Logout',
-              isSelected: selectedIndex == 10,
+              isSelected: selectedIndex == 11,
               onTap: () async {
                 bool response = await sapi.LogoutUser();
                 if (response)
@@ -316,7 +334,7 @@ class _DrawerrState extends State<Drawerr> {
                     ),
                   );
                 setState(() {
-                  selectedIndex = 10;
+                  selectedIndex = 11;
                 });
               },
             ),

@@ -33,12 +33,13 @@ class ListingModel {
   }
   factory ListingModel.fromMaq(Map<String, dynamic> json) {
     return ListingModel(
-      firstName: (json["data"]["firstName"] ?? ''),
-      lastName: (json["data"]["lastName"] ?? ''),
-      speciality: (json["data"]["speciality"] ?? ''),
-      email: (json["data"]["email"] ?? ''),
-      phoneNumber: (json["data"]["phoneNumber"] ?? ''),
-      Adress: (json["data"]["Adress"] ?? ''),
+      id: (json["combinedData"]["id"]),
+      firstName: (json["combinedData"]["data"]["firstName"] ?? ''),
+      lastName: (json["combinedData"]["data"]["lastName"] ?? ''),
+      speciality: (json["combinedData"]["data"]["speciality"] ?? ''),
+      email: (json["combinedData"]["data"]["email"] ?? ''),
+      phoneNumber: (json["combinedData"]["data"]["phoneNumber"] ?? ''),
+      Adress: (json["combinedData"]["data"]["Adress"] ?? ''),
       files: List<File>.from(json["files"].map((x) => File.fromMaq(x))),
     );
   }

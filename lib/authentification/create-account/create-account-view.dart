@@ -1,4 +1,10 @@
+import 'dart:html';
+import 'dart:typed_data';
+
+import 'package:firebase_storage/firebase_storage.dart';
+
 import '../../index.dart';
+import '../../themes/password-text-field.dart';
 import 'create-account-controller.dart';
 import '../../../themes/theme.dart';
 import 'package:flutter/material.dart';
@@ -15,6 +21,9 @@ class _CreateAccountWidgetState extends State<CreateAccountWidget> {
   TextEditingController fullnameController;
   TextEditingController passwordController;
   bool passwordVisibility;
+  String fileName = "No file selected";
+  String errorText;
+  Uint8List fileContents;
   final scaffoldKey = GlobalKey<ScaffoldState>();
   final formKey = GlobalKey<FormState>();
   bool futurepost;
@@ -103,7 +112,6 @@ class _CreateAccountWidgetState extends State<CreateAccountWidget> {
                           isRequired: true,
                           isString: true,
                         ),
-                     
                         LabeledRowWidget(text: 'Email'),
                         TextFormFieldWidget(
                           controller: emailAddressController,
@@ -111,11 +119,47 @@ class _CreateAccountWidgetState extends State<CreateAccountWidget> {
                           isEmail: true,
                         ),
                         LabeledRowWidget(text: 'Password'),
-                        TextFormFieldWidget(
+                        PasswordFormField(
                           controller: passwordController,
-                          isRequired: true,
-                          isPassword: true,
-                          obscureText: !passwordVisibility,
+                        ),
+                        Column(
+                          mainAxisAlignment: MainAxisAlignment.center,
+                          children: [
+                            Text(
+                              fileName ?? 'No file chosen',
+                              style: TextStyle(
+                                fontWeight: FontWeight.bold,
+                              ),
+                            ),
+                            ElevatedButton(
+                              onPressed: (() {
+                                InputElement inputElement =
+                                    FileUploadInputElement();
+                                inputElement.click();
+                                inputElement.onChange.listen((e) {
+                                  final files = inputElement.files;
+                                  if (files.length == 1) {
+                                    final file = files[0];
+                                    fileName = file.name;
+                                    final reader = FileReader();
+                                    reader.readAsArrayBuffer(file);
+                                    reader.onLoadEnd.listen((e) {
+                                      setState(() {
+                                        fileContents = reader.result;
+                                      });
+                                    });
+                                  } else {
+                                    setState(() {
+                                      fileName = null;
+                                      fileContents = null;
+                                      errorText = 'Please choose a file';
+                                    });
+                                  }
+                                });
+                              }),
+                              child: Text("Pick a file"),
+                            ),
+                          ],
                         ),
                       ],
                     ),
@@ -134,46 +178,50 @@ class _CreateAccountWidgetState extends State<CreateAccountWidget> {
                                 child: CustomButton(
                                   onPressed: () async {
                                     if (formKey.currentState.validate()) {
-                                      String response =
-                                          await createAccountUserServices
-                                              .signupUser(
-                                                  emailAddressController.text,
-                                                  passwordController.text,
-                                                  fullnameController.text);
-                                      print(response);
-                                      response ==
-                                              "User registred & email send successfully"
-                                          ? showDialog(
-                                              context: context,
-                                              builder: (BuildContext context) {
-                                                return alertDialogWidget(
-                                                  title: "Succes!",
-                                                  content:
-                                                      "Registration completed successfully! please check your email to verify your email adress",
-                                                  actions: [
-                                                    TextButton(
-                                                      child: Text("Ok"),
-                                                      onPressed: () async {
-                                                        await Navigator.push(
-                                                          context,
-                                                          MaterialPageRoute(
-                                                            builder: (context) =>
-                                                                SigninWidget(),
-                                                          ),
-                                                        );
-                                                      },
-                                                    )
-                                                  ],
-                                                );
-                                              })
-                                          : showDialog(
-                                              context: context,
-                                              builder: (BuildContext context) {
-                                                return alertDialogWidget(
-                                                  title: "Error!",
-                                                  content: "$response",
-                                                );
-                                              });
+                                      if (fileContents == null) {
+                                        ScaffoldMessenger.of(context)
+                                            .showSnackBar(
+                                          SnackbarWidget(
+                                            content: Text(
+                                              'Please select a file!',
+                                            ),
+                                          ),
+                                        );
+                                      } else {
+                                        String response =
+                                            await createAccountUserServices
+                                                .signupUser(
+                                                    emailAddressController.text,
+                                                    passwordController.text,
+                                                    fullnameController.text);
+
+                                        await FirebaseStorage.instance
+                                            .ref('posts/$response/$fileName')
+                                            .putData(fileContents);
+                                        showDialog(
+                                            context: context,
+                                            builder: (BuildContext context) {
+                                              return alertDialogWidget(
+                                                title: "Succes!",
+                                                content:
+                                                    "Registration completed successfully! please check your email to verify your email adress",
+                                                actions: [
+                                                  TextButton(
+                                                    child: Text("Ok"),
+                                                    onPressed: () async {
+                                                      await Navigator.push(
+                                                        context,
+                                                        MaterialPageRoute(
+                                                          builder: (context) =>
+                                                              SigninWidget(),
+                                                        ),
+                                                      );
+                                                    },
+                                                  )
+                                                ],
+                                              );
+                                            });
+                                      }
                                     }
                                   },
                                   text: 'create',

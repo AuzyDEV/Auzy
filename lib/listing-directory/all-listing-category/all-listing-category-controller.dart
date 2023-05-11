@@ -11,6 +11,7 @@ class CategoryListingCtegoryMan {
     String collectionName = "listingCategory";
     final response = await http
         .get(Uri.parse('http://127.0.0.1:3000/api/DB/${collectionName}'));
+    print(response.statusCode);
     if (response.statusCode == 200) {
       final listingCategories = jsonDecode(response.body);
       final listCategory = listingCategories["message"]["listCollections"];

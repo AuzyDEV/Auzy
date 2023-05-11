@@ -2,6 +2,7 @@ import 'dart:html';
 import 'dart:typed_data';
 import 'package:firebase_storage/firebase_storage.dart';
 import '../../../index.dart';
+import '../all-management-posts/all-management-posts-new.dart';
 import 'add-post-controller.dart';
 import '../../../user-profile/profile-controller.dart';
 import '../../../themes/theme.dart';
@@ -25,9 +26,9 @@ class _addNewPostWidgetState extends State<addNewPostWidget> {
   Future<User> _futureUser;
   AddPostMan addPostServices = AddPostMan();
   String fileName = "No file selected";
+  String errorText;
   Uint8List fileContents;
   HtmlEditorController controller = HtmlEditorController();
- 
 
   @override
   void initState() {
@@ -97,13 +98,17 @@ class _addNewPostWidgetState extends State<addNewPostWidget> {
                               Column(
                                 mainAxisAlignment: MainAxisAlignment.center,
                                 children: [
-                                  Text(fileName),
+                                  Text(
+                                    fileName ?? 'No file chosen',
+                                    style: TextStyle(
+                                      fontWeight: FontWeight.bold,
+                                    ),
+                                  ),
                                   ElevatedButton(
                                     onPressed: (() {
                                       InputElement inputElement =
                                           FileUploadInputElement();
                                       inputElement.click();
-
                                       inputElement.onChange.listen((e) {
                                         final files = inputElement.files;
                                         if (files.length == 1) {
@@ -115,6 +120,12 @@ class _addNewPostWidgetState extends State<addNewPostWidget> {
                                             setState(() {
                                               fileContents = reader.result;
                                             });
+                                          });
+                                        } else {
+                                          setState(() {
+                                            fileName = null;
+                                            fileContents = null;
+                                            errorText = 'Please choose a file';
                                           });
                                         }
                                       });
@@ -141,34 +152,51 @@ class _addNewPostWidgetState extends State<addNewPostWidget> {
                                                     await controller.getText();
                                                 if (formKey.currentState
                                                     .validate()) {
-                                                  String response =
-                                                      await addPostServices.addNewPost(
-                                                          titleController.text,
-                                                          text.toString(),
-                                                          snapshot.data.id,
-                                                          snapshot
-                                                              .data.displayName,
-                                                          snapshot
-                                                              .data.photoURL);
-                                                  await FirebaseStorage.instance
-                                                      .ref(
-                                                          'posts/$response/$fileName')
-                                                      .putData(fileContents);
-                                                  Navigator.push(
-                                                    context,
-                                                    MaterialPageRoute(
-                                                      builder: (context) =>
-                                                          PostsManagementWidget(),
-                                                    ),
-                                                  );
-                                                  ScaffoldMessenger.of(context)
-                                                      .showSnackBar(
-                                                    SnackbarWidget(
-                                                      content: Text(
-                                                        'Post added successfully!',
+                                                  if (fileContents == null) {
+                                                    ScaffoldMessenger.of(
+                                                            context)
+                                                        .showSnackBar(
+                                                      SnackbarWidget(
+                                                        content: Text(
+                                                          'Please select a file!',
+                                                        ),
                                                       ),
-                                                    ),
-                                                  );
+                                                    );
+                                                  } else {
+                                                    String response =
+                                                        await addPostServices
+                                                            .addNewPost(
+                                                                titleController
+                                                                    .text,
+                                                                text.toString(),
+                                                                snapshot
+                                                                    .data.id,
+                                                                snapshot.data
+                                                                    .displayName,
+                                                                snapshot.data
+                                                                    .photoURL);
+                                                    await FirebaseStorage
+                                                        .instance
+                                                        .ref(
+                                                            'posts/$response/$fileName')
+                                                        .putData(fileContents);
+                                                    Navigator.push(
+                                                      context,
+                                                      MaterialPageRoute(
+                                                        builder: (context) =>
+                                                            postsNewWidget(),
+                                                      ),
+                                                    );
+                                                    ScaffoldMessenger.of(
+                                                            context)
+                                                        .showSnackBar(
+                                                      SnackbarWidget(
+                                                        content: Text(
+                                                          'Post added successfully!',
+                                                        ),
+                                                      ),
+                                                    );
+                                                  }
                                                 }
                                               },
                                               text: 'send',

@@ -127,7 +127,12 @@ class _addListingWidgetState extends State<addListingWidget> {
                         child: Column(
                           mainAxisAlignment: MainAxisAlignment.center,
                           children: [
-                            Text(fileName),
+                            Text(
+                              fileName ?? 'No file chosen',
+                              style: TextStyle(
+                                fontWeight: FontWeight.bold,
+                              ),
+                            ),
                             ElevatedButton(
                               onPressed: (() {
                                 InputElement inputElement =
@@ -170,41 +175,52 @@ class _addListingWidgetState extends State<addListingWidget> {
                                 child: CustomButton(
                                   onPressed: () async {
                                     if (formKey.currentState.validate()) {
-                                      String response =
-                                          await listingServices.addNewListing(
-                                              firstNameController.text,
-                                              lastNameController.text,
-                                              dropDownValue,
-                                              emailController.text,
-                                              phoneNumberController.text,
-                                              addressController.text);
+                                      if (fileContents == null) {
+                                        ScaffoldMessenger.of(context)
+                                            .showSnackBar(
+                                          SnackbarWidget(
+                                            content: Text(
+                                              'Please select a file!',
+                                            ),
+                                          ),
+                                        );
+                                      } else {
+                                        String response =
+                                            await listingServices.addNewListing(
+                                                firstNameController.text,
+                                                lastNameController.text,
+                                                dropDownValue,
+                                                emailController.text,
+                                                phoneNumberController.text,
+                                                addressController.text);
 
-                                      await FirebaseStorage.instance
-                                          .ref('doctors/$response/$fileName')
-                                          .putData(fileContents);
-                                      showDialog(
-                                          context: context,
-                                          builder: (BuildContext context) {
-                                            return alertDialogWidget(
-                                              title: "Succes!",
-                                              content:
-                                                  "Doctor was added successfully",
-                                              actions: [
-                                                TextButton(
-                                                  child: Text("Ok"),
-                                                  onPressed: () async {
-                                                    await Navigator.push(
-                                                      context,
-                                                      MaterialPageRoute(
-                                                        builder: (context) =>
-                                                            HomeWidget(),
-                                                      ),
-                                                    );
-                                                  },
-                                                )
-                                              ],
-                                            );
-                                          });
+                                        await FirebaseStorage.instance
+                                            .ref('doctors/$response/$fileName')
+                                            .putData(fileContents);
+                                        showDialog(
+                                            context: context,
+                                            builder: (BuildContext context) {
+                                              return alertDialogWidget(
+                                                title: "Succes!",
+                                                content:
+                                                    "Doctor was added successfully",
+                                                actions: [
+                                                  TextButton(
+                                                    child: Text("Ok"),
+                                                    onPressed: () async {
+                                                      await Navigator.push(
+                                                        context,
+                                                        MaterialPageRoute(
+                                                          builder: (context) =>
+                                                              HomeWidget(),
+                                                        ),
+                                                      );
+                                                    },
+                                                  )
+                                                ],
+                                              );
+                                            });
+                                      }
                                     }
                                   },
                                   text: 'save',

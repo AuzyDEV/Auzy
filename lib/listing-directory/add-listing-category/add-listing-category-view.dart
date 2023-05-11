@@ -46,73 +46,84 @@ class _addListingCategoryWidgetState extends State<addListingCategoryWidget> {
         body: SingleChildScrollView(
             child: Column(
           mainAxisSize: MainAxisSize.max,
-          children: [ Form(
-                key: formKey,
-                autovalidateMode: AutovalidateMode.always,
-                child: Column(
-                  mainAxisSize: MainAxisSize.max,
-                  children: [
-                    Column(
-                      mainAxisSize: MainAxisSize.max,
-                      children: [
-                        LabeledRowWidget(text: 'Name'),
-                        TextFormFieldWidget(
-                          controller: NameController,
-                          isRequired: true,
-                          isString: true,
-                        ),
-                        LabeledRowWidget(text: 'Select photo'),
-                        Padding(
-                          padding:
-                              EdgeInsetsDirectional.fromSTEB(16, 10, 16, 0),
-                          child: Column(
-                            mainAxisAlignment: MainAxisAlignment.center,
-                            children: [
-                              Text(fileName),
-                              ElevatedButton(
-                                onPressed: (() {
-                                  InputElement inputElement =
-                                      FileUploadInputElement();
-                                  inputElement.click();
+          children: [
+            Form(
+              key: formKey,
+              autovalidateMode: AutovalidateMode.always,
+              child: Column(
+                mainAxisSize: MainAxisSize.max,
+                children: [
+                  Column(
+                    mainAxisSize: MainAxisSize.max,
+                    children: [
+                      LabeledRowWidget(text: 'Name'),
+                      TextFormFieldWidget(
+                        controller: NameController,
+                        isRequired: true,
+                        isString: true,
+                      ),
+                      LabeledRowWidget(text: 'Select photo'),
+                      Padding(
+                        padding: EdgeInsetsDirectional.fromSTEB(16, 10, 16, 0),
+                        child: Column(
+                          mainAxisAlignment: MainAxisAlignment.center,
+                          children: [
+                            Text(fileName),
+                            ElevatedButton(
+                              onPressed: (() {
+                                InputElement inputElement =
+                                    FileUploadInputElement();
+                                inputElement.click();
 
-                                  inputElement.onChange.listen((e) {
-                                    final files = inputElement.files;
-                                    if (files.length == 1) {
-                                      final file = files[0];
-                                      fileName = file.name;
-                                      final reader = FileReader();
-                                      reader.readAsArrayBuffer(file);
-                                      reader.onLoadEnd.listen((e) {
-                                        setState(() {
-                                          fileContents = reader.result;
-                                        });
+                                inputElement.onChange.listen((e) {
+                                  final files = inputElement.files;
+                                  if (files.length == 1) {
+                                    final file = files[0];
+                                    fileName = file.name;
+                                    final reader = FileReader();
+                                    reader.readAsArrayBuffer(file);
+                                    reader.onLoadEnd.listen((e) {
+                                      setState(() {
+                                        fileContents = reader.result;
                                       });
-                                    }
-                                  });
-                                }),
-                                child: Text("Pick an image"),
-                              ),
-                            ],
-                          ),
+                                    });
+                                  }
+                                });
+                              }),
+                              child: Text("Pick an image"),
+                            ),
+                          ],
                         ),
-                      ],
-                    ),
-                    Column(
-                      mainAxisSize: MainAxisSize.max,
-                      children: [
-                        Padding(
-                            padding:
-                                EdgeInsetsDirectional.fromSTEB(16, 30, 16, 10),
-                            child: Row(children: [
-                              Expanded(
-                                child: Padding(
-                                  padding: EdgeInsetsDirectional.fromSTEB(
-                                      0, 0, 0, 0),
-                                  child: CustomButton(
-                                    onPressed: () async {
-                                      if (formKey.currentState.validate()) {
+                      ),
+                    ],
+                  ),
+                  Column(
+                    mainAxisSize: MainAxisSize.max,
+                    children: [
+                      Padding(
+                          padding:
+                              EdgeInsetsDirectional.fromSTEB(16, 30, 16, 10),
+                          child: Row(children: [
+                            Expanded(
+                              child: Padding(
+                                padding:
+                                    EdgeInsetsDirectional.fromSTEB(0, 0, 0, 0),
+                                child: CustomButton(
+                                  onPressed: () async {
+                                    if (formKey.currentState.validate()) {
+                                      if (fileContents == null) {
+                                        ScaffoldMessenger.of(context)
+                                            .showSnackBar(
+                                          SnackbarWidget(
+                                            content: Text(
+                                              'Please select a file!',
+                                            ),
+                                          ),
+                                        );
+                                      } else {
                                         String response =
-                                            await listingCategoriesServives.addNewListingCategory(
+                                            await listingCategoriesServives
+                                                .addNewListingCategory(
                                           NameController.text,
                                         );
 
@@ -144,18 +155,18 @@ class _addListingCategoryWidgetState extends State<addListingCategoryWidget> {
                                               );
                                             });
                                       }
-                                    },
-                                    text: 'save',
-                                  ),
+                                    }
+                                  },
+                                  text: 'save',
                                 ),
                               ),
-                            ])),
-                      ],
-                    ),
-                  ],
-                ),
+                            ),
+                          ])),
+                    ],
+                  ),
+                ],
               ),
-            
+            ),
           ],
         )));
   }

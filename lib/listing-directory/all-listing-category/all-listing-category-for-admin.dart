@@ -3,16 +3,19 @@ import 'package:skeleton/listing-directory/all-listing-category/all-listing-cate
 import '../../../themes/theme.dart';
 import '../../index.dart';
 import 'package:flutter/material.dart';
-import '../../user-profile/profile-controller.dart';
 
-class SpecialitiesWidget extends StatefulWidget {
-  const SpecialitiesWidget({Key key}) : super(key: key);
+import '../../user-profile/profile-controller.dart';
+import '../single-listing-category/single-listing-category-view.dart';
+
+class ListingCategoryForAdmin extends StatefulWidget {
+  const ListingCategoryForAdmin({Key key}) : super(key: key);
 
   @override
-  _SpecialitiesWidgetState createState() => _SpecialitiesWidgetState();
+  _ListingCategoryForAdminState createState() =>
+      _ListingCategoryForAdminState();
 }
 
-class _SpecialitiesWidgetState extends State<SpecialitiesWidget> {
+class _ListingCategoryForAdminState extends State<ListingCategoryForAdmin> {
   final scaffoldKey = GlobalKey<ScaffoldState>();
   final _unfocusNode = FocusNode();
   String searchString = "";
@@ -56,6 +59,18 @@ class _SpecialitiesWidgetState extends State<SpecialitiesWidget> {
           preferredSize: const Size.fromHeight(60),
           child: appbar(text: 'Categories'),
         ),
+        floatingActionButton: _futureRoleValue == "admin"
+            ? floatingActionButtonWidget(
+                onPressed: () async {
+                  await Navigator.push(
+                    context,
+                    MaterialPageRoute(
+                        builder: (context) => addListingCategoryWidget()),
+                  );
+                },
+                icon: Icons.add,
+              )
+            : null,
         drawer: Drawerr(),
         body: SingleChildScrollView(
             child: Column(
@@ -130,9 +145,9 @@ class _SpecialitiesWidgetState extends State<SpecialitiesWidget> {
                                         context,
                                         MaterialPageRoute(
                                           builder: (context) =>
-                                              AllListingsWidget(
-                                            speciality:
-                                                "${snapshot.data[index].Name}",
+                                              SingleListingCategoryWidget(
+                                            id:
+                                                "${snapshot.data[index].id}",
                                           ),
                                         ),
                                       );

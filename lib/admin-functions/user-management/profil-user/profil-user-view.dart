@@ -104,9 +104,15 @@ class _ProfillWidgetState extends State<ProfillWidget> {
                                           color: FlutterAppTheme.of(context)
                                               .TextColor)),
                                 ),
+                                LabeledRowWidget(
+                                  text: "User id: ",
+                                ),
                                 TextFormFieldWidget(
                                   hintText: '${snapshot.data.id}',
                                   readOnly: true,
+                                ),
+                                LabeledRowWidget(
+                                  text: "User email: ",
                                 ),
                                 TextFormFieldWidget(
                                   hintText: '${snapshot.data.email}',
