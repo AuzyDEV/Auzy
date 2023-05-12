@@ -2,7 +2,6 @@ import 'dart:html';
 import 'dart:typed_data';
 import 'package:firebase_storage/firebase_storage.dart';
 import 'package:skeleton/admin-functions/post-management/edit-post/edit-post-controller.dart';
-import 'package:skeleton/themes/divider.dart';
 import 'package:skeleton/themes/theme.dart';
 import 'package:flutter/material.dart';
 import '../../../index.dart';
@@ -113,11 +112,11 @@ class _updateImagePostWidgetState extends State<updateImagePostWidget> {
                                       if (fileContents == null) {
                                         ScaffoldMessenger.of(context)
                                             .showSnackBar(
-                                          SnackbarWidget(
-                                            content: Text(
-                                              'Please select a file!',
-                                            ),
-                                          ),
+                                         SnackBar(
+                                          content:
+                                              Text('Please select a file!'),
+                                          backgroundColor: Colors.red,
+                                        )
                                         );
                                       } else {
                                         bool response = await editPostService

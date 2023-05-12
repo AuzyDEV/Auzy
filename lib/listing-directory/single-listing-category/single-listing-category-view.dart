@@ -1,9 +1,7 @@
 import '../../../index.dart';
 import '../../../themes/theme.dart';
 import 'package:flutter/material.dart';
-
 import '../add-listing-category/add-listing-category-model.dart';
-import '../all-listing-category/all-listing-category-for-admin.dart';
 import '../edit-listing-category/edit-listing-category-view.dart';
 import 'single-listing-category-controller.dart';
 
@@ -129,7 +127,8 @@ class _SingleListingCategoryWidgetState
                                             MaterialPageRoute(
                                               builder: (context) =>
                                                   editListingCategoryWidget(
-                                                      id: snapshot.data.id, name: snapshot.data.Name),
+                                                      id: snapshot.data.id,
+                                                      name: snapshot.data.Name),
                                             ),
                                           );
                                         },
@@ -220,9 +219,10 @@ class _SingleListingCategoryWidgetState
                 } else if (snapshot.hasError) {
                   return Text("${snapshot.error}");
                 }
-
-                // By default, show a loading spinner.
-                return Center(child: const CircularProgressIndicatorWidget());
+                return Padding(
+                  padding: EdgeInsetsDirectional.fromSTEB(0, 280, 0, 0),
+                  child: CircularProgressIndicatorWidget(),
+                );
               })),
     );
   }

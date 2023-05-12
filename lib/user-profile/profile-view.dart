@@ -638,7 +638,9 @@ class _MyprofilWidgetState extends State<MyprofilWidget> {
                   } else if (snapshot.hasError) {
                     return Text("${snapshot.error}");
                   }
-                  return Center(child: CircularProgressIndicatorWidget());
+                  return Padding(
+                      padding: EdgeInsetsDirectional.fromSTEB(0, 300, 0, 0),
+                      child: CircularProgressIndicatorWidget());
                 })
           ]),
         ));

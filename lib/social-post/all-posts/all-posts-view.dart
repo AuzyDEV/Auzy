@@ -351,10 +351,16 @@ class _postsForUsersWidgetState extends State<postsForUsersWidget> {
                                                                               .bold,
                                                                     ));
                                                           }
-                                                          return Center(
-                                                            child:
-                                                                const CircularProgressIndicatorWidget(),
-                                                          );
+                                                          return Padding(
+                                                              padding:
+                                                                  EdgeInsetsDirectional
+                                                                      .fromSTEB(
+                                                                          0,
+                                                                          280,
+                                                                          0,
+                                                                          0),
+                                                              child:
+                                                                  const CircularProgressIndicatorWidget());
                                                         }))),
                                       ],
                                     ),
@@ -568,7 +574,14 @@ class _postsForUsersWidgetState extends State<postsForUsersWidget> {
                                                                             .bold,
                                                                   ));
                                                         }
-                                                        return Center(
+                                                        return Padding(
+                                                            padding:
+                                                                EdgeInsetsDirectional
+                                                                    .fromSTEB(
+                                                                        0,
+                                                                        280,
+                                                                        0,
+                                                                        0),
                                                             child:
                                                                 const CircularProgressIndicatorWidget());
                                                       }))),
@@ -800,10 +813,16 @@ class _postsForUsersWidgetState extends State<postsForUsersWidget> {
                                                                           .bold,
                                                                 ));
                                                       }
-                                                      return Center(
-                                                        child:
-                                                            const CircularProgressIndicatorWidget(),
-                                                      );
+                                                      return Padding(
+                                                          padding:
+                                                              EdgeInsetsDirectional
+                                                                  .fromSTEB(
+                                                                      0,
+                                                                      280,
+                                                                      0,
+                                                                      0),
+                                                          child:
+                                                              const CircularProgressIndicatorWidget());
                                                     }))),
                                       ],
                                     ),

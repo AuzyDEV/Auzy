@@ -249,17 +249,15 @@ class _UsersListForPostsWidgetState extends State<UsersListForPostsWidget> {
                                                         .hasError) {
                                                       return Text("no users!");
                                                     }
-                                                    return Column(
-                                                      mainAxisAlignment:
-                                                          MainAxisAlignment
-                                                              .center,
-                                                      children: [
-                                                        Center(
-                                                          child:
-                                                              CircularProgressIndicatorWidget(),
-                                                        )
-                                                      ],
-                                                    );
+                                                    return Padding(
+                                                        padding:
+                                                            EdgeInsetsDirectional
+                                                                .fromSTEB(0,
+                                                                    300, 0, 0),
+                                                        child:
+                                                            const CircularProgressIndicatorWidget(
+                                                                color: Colors
+                                                                    .white));
                                                   },
                                                 ),
                                               ),
@@ -345,7 +343,8 @@ class _UsersListForPostsWidgetState extends State<UsersListForPostsWidget> {
                         return Text("${snapshot1.error}");
                       }
 
-                      return Center(
+                      return Padding(
+                          padding: EdgeInsetsDirectional.fromSTEB(0, 300, 0, 0),
                           child: const CircularProgressIndicatorWidget());
                     }),
               )

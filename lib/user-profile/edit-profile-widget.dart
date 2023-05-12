@@ -177,7 +177,9 @@ class _editprofilWidgetState extends State<editprofilWidget> {
                   return Text("${snapshot.error}");
                 }
 
-                return Center(child: const CircularProgressIndicatorWidget());
+                return Padding(
+                    padding: EdgeInsetsDirectional.fromSTEB(0, 300, 0, 0),
+                    child: const CircularProgressIndicatorWidget());
               })),
     );
   }

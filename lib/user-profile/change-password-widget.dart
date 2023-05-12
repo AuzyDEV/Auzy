@@ -1,5 +1,4 @@
 import '../index.dart';
-import '../themes/password-text-field.dart';
 import 'profile-model.dart';
 import '../../themes/theme.dart';
 import 'package:flutter/material.dart';
@@ -159,7 +158,9 @@ class _changePasswordWidgetState extends State<changePasswordWidget> {
                   return Text("${snapshot.error}");
                 }
 
-                return Center(child: const CircularProgressIndicatorWidget());
+                return Padding(
+                    padding: EdgeInsetsDirectional.fromSTEB(0, 300, 0, 0),
+                    child: const CircularProgressIndicatorWidget());
               })),
     );
   }

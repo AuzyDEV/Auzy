@@ -113,13 +113,11 @@ class _addListingCategoryWidgetState extends State<addListingCategoryWidget> {
                                     if (formKey.currentState.validate()) {
                                       if (fileContents == null) {
                                         ScaffoldMessenger.of(context)
-                                            .showSnackBar(
-                                          SnackbarWidget(
-                                            content: Text(
-                                              'Please select a file!',
-                                            ),
-                                          ),
-                                        );
+                                            .showSnackBar(SnackBar(
+                                          content:
+                                              Text('Please select a file!'),
+                                          backgroundColor: Colors.red,
+                                        ));
                                       } else {
                                         String response =
                                             await listingCategoriesServives

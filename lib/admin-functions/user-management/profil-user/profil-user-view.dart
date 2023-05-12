@@ -162,8 +162,10 @@ class _ProfillWidgetState extends State<ProfillWidget> {
                   return Text("${snapshot.error}");
                 }
 
-                // By default, show a loading spinner.
-                return Center(child: const CircularProgressIndicatorWidget());
+                return Padding(
+                  padding: EdgeInsetsDirectional.fromSTEB(0, 280, 0, 0),
+                  child: CircularProgressIndicatorWidget(),
+                );
               })),
     );
   }

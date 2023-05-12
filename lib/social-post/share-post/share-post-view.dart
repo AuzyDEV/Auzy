@@ -1,7 +1,5 @@
-import 'dart:convert';
 import '../../index.dart';
 import '../all-posts/all-posts-model.dart';
-import '../all-saved-posts/all-saved-posts-controller.dart';
 import 'share-post-controller.dart';
 import '../../themes/theme.dart';
 import 'package:flutter/material.dart';
@@ -36,68 +34,6 @@ class _sharedPostsByUserWidgetState extends State<sharedPostsByUserWidget> {
     });
   }
 
-  Text getTextSpanFromRichTextJson(String jsonString) {
-    final parsedJson = json.decode(jsonString);
-    final List<dynamic> textObjects = parsedJson as List<dynamic>;
-    final List<TextSpan> textSpans = [];
-
-    for (final textObject in textObjects) {
-      final String text = textObject['insert'];
-      final Map<String, dynamic> attributes = textObject['attributes'] ?? {};
-
-      // Determine which styles should be applied based on the attributes
-      final bool isBold = attributes['bold'] ?? false;
-      final bool isItalic = attributes['italic'] ?? false;
-      final bool isUnderline = attributes['underline'] ?? false;
-      final bool isStrikethrough = attributes['strike'] ?? false;
-      final int headerLevel = attributes['header'] ?? 0;
-      final String fontColor = attributes['color'] ?? '';
-      final double fontSize = attributes['size'] ?? 14.0;
-
-      // Create a TextStyle with the appropriate styles
-      final TextStyle textStyle = TextStyle(
-        fontWeight: isBold ? FontWeight.bold : FontWeight.normal,
-        fontStyle: isItalic ? FontStyle.italic : FontStyle.normal,
-        decoration: isUnderline
-            ? TextDecoration.underline
-            : isStrikethrough
-                ? TextDecoration.lineThrough
-                : TextDecoration.none,
-        fontSize: fontSize,
-        color: fontColor.isNotEmpty
-            ? Color(
-                int.parse(fontColor.substring(1, 7), radix: 16) + 0xFF000000)
-            : null,
-      );
-
-      // Create a TextSpan for the current object
-      final TextSpan textSpan = TextSpan(text: text, style: textStyle);
-
-      // If this object represents a header, wrap the TextSpan in a header widget
-      if (headerLevel > 0) {
-        textSpans.add(
-            TextSpan(text: '\n', style: TextStyle(height: 0.0, fontSize: 1.0)));
-        textSpans.add(
-          TextSpan(
-            text: text,
-            style: textStyle.copyWith(
-              fontSize: headerLevel == 1 ? 24.0 : 20.0,
-              fontWeight: FontWeight.bold,
-            ),
-          ),
-        );
-        textSpans.add(
-            TextSpan(text: '\n', style: TextStyle(height: 0.0, fontSize: 1.0)));
-      } else {
-        textSpans.add(textSpan);
-      }
-    }
-
-    return Text.rich(
-      TextSpan(children: textSpans),
-    );
-  }
-
   @override
   void initState() {
     super.initState();
@@ -125,7 +61,8 @@ class _sharedPostsByUserWidgetState extends State<sharedPostsByUserWidget> {
             Padding(
                 padding: EdgeInsetsDirectional.fromSTEB(8, 0, 8, 0),
                 child: FutureBuilder<List<sharedPost>>(
-                    future: sharedPostsServices.getAllSharedPostsByCurrentUserId(),
+                    future:
+                        sharedPostsServices.getAllSharedPostsByCurrentUserId(),
                     builder: (context, snapshot) {
                       if (snapshot.hasData) {
                         return ListView.builder(
@@ -380,9 +317,9 @@ class _sharedPostsByUserWidgetState extends State<sharedPostsByUserWidget> {
                                       fontWeight: FontWeight.bold,
                                     ));
                       }
-                      return Center(
-                        child: const CircularProgressIndicatorWidget(),
-                      );
+                      return Padding(
+                          padding: EdgeInsetsDirectional.fromSTEB(0, 300, 0, 0),
+                          child: const CircularProgressIndicatorWidget());
                     }))
           ],
         ),

@@ -7,13 +7,13 @@ import 'package:dart_ipify/dart_ipify.dart';
 class CreateAccountMan {
   final FirebaseAuth _auth = FirebaseAuth.instance;
 
-  Future<String> signupUser(
+  Future<Map<String, String>> signupUser(
     String email,
     String password,
     String displayName,
   ) async {
     final ipv4 = await Ipify.ipv4();
-    final response1 = await http.post(
+    final response = await http.post(
       Uri.parse('http://127.0.0.1:3000/api/register'),
       headers: <String, String>{
         'Content-Type': 'application/json; charset=UTF-8',
@@ -27,8 +27,9 @@ class CreateAccountMan {
         'ipadress': ipv4,
       }),
     );
-    final userData = jsonDecode(response1.body);
-    print(userData['message']);
-    return userData['message'];
+    final userData = jsonDecode(response.body);
+    final res = userData["message"];
+    final createdAccount = res.cast<String, String>();
+    return createdAccount;
   }
 }

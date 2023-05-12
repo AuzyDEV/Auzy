@@ -487,11 +487,10 @@ class _DoctorprofileWidgetState extends State<DoctorprofileWidget> {
                     } else if (snapshot.hasError) {
                       return Text("${snapshot.error}");
                     }
-
-                    return Center(
-                        child: const CircularProgressIndicator(
-                      color: Color(0xFF9457FB),
-                    ));
+                    return Padding(
+                      padding: EdgeInsetsDirectional.fromSTEB(0, 280, 0, 0),
+                      child: CircularProgressIndicatorWidget(),
+                    );
                   })),
         ),
       ),

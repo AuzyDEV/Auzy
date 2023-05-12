@@ -2,7 +2,6 @@ import 'dart:html';
 import 'dart:typed_data';
 import 'package:firebase_storage/firebase_storage.dart';
 import '../../../index.dart';
-import '../all-management-posts/all-management-posts-new.dart';
 import 'add-post-controller.dart';
 import '../../../user-profile/profile-controller.dart';
 import '../../../themes/theme.dart';
@@ -156,11 +155,11 @@ class _addNewPostWidgetState extends State<addNewPostWidget> {
                                                     ScaffoldMessenger.of(
                                                             context)
                                                         .showSnackBar(
-                                                      SnackbarWidget(
-                                                        content: Text(
-                                                          'Please select a file!',
-                                                        ),
-                                                      ),
+                                                     SnackBar(
+                                          content:
+                                              Text('Please select a file!'),
+                                          backgroundColor: Colors.red,
+                                        )
                                                     );
                                                   } else {
                                                     String response =
@@ -215,7 +214,7 @@ class _addNewPostWidgetState extends State<addNewPostWidget> {
                     return Text("${snapshot.error}");
                   }
 
-                  return Center(child: const CircularProgressIndicatorWidget());
+                  return Center(child: const CircularProgressIndicatorWidget(color: Colors.white,));
                 })));
   }
 }

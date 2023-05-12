@@ -1,4 +1,3 @@
-import 'dart:convert';
 import 'package:flutter_html/flutter_html.dart';
 import '../../index.dart';
 import '../../user-profile/profile-controller.dart';
@@ -171,7 +170,9 @@ class _postDetailsWidgetState extends State<postDetailsWidget> {
                     return Text("${snapshot.error}");
                   }
 
-                  return Center(child: const CircularProgressIndicatorWidget());
+                   return Padding(
+                    padding: EdgeInsetsDirectional.fromSTEB(0, 300, 0, 0),
+                    child: const CircularProgressIndicatorWidget());
                 })));
   }
 }

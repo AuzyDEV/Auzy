@@ -1,5 +1,4 @@
 import 'package:flutter_html/flutter_html.dart';
-
 import '../../../themes/theme.dart';
 import 'package:skeleton/user-profile/profile-controller.dart';
 import 'package:skeleton/user-profile/profile-model.dart';
@@ -890,9 +889,14 @@ class _HomeWidgetState extends State<HomeWidget> {
                                                                                     fontWeight: FontWeight.bold,
                                                                                   ));
                                                                         }
-                                                                        return Center(
+                                                                        return Padding(
+                                                                          padding: EdgeInsetsDirectional.fromSTEB(
+                                                                              0,
+                                                                              110,
+                                                                              0,
+                                                                              0),
                                                                           child:
-                                                                              const CircularProgressIndicatorWidget(),
+                                                                              CircularProgressIndicatorWidget(),
                                                                         );
                                                                       }))),
                                                         ],
@@ -906,9 +910,11 @@ class _HomeWidgetState extends State<HomeWidget> {
                                 return Text("${snapshot.error}");
                               }
 
-                              return Center(
-                                  child:
-                                      const CircularProgressIndicatorWidget());
+                              return Padding(
+                                  padding: EdgeInsetsDirectional.fromSTEB(
+                                      0, 200, 0, 0),
+                                  child: const CircularProgressIndicatorWidget(
+                                      color: Colors.white));
                             }),
                       )
                     ],

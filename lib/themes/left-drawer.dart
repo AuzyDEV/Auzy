@@ -146,7 +146,9 @@ class _DrawerrState extends State<Drawerr> {
                               }
 
                               return Center(
-                                  child: const CircularProgressIndicator());
+                                  child: const CircularProgressIndicatorWidget(
+                                color: Colors.white,
+                              ));
                             }),
                       ),
                       Divider()

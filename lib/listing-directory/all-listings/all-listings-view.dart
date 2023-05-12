@@ -34,7 +34,8 @@ class _AllListingsWidgetState extends State<AllListingsWidget> {
 
   Future<void> _refreshList() async {
     setState(() {
-      futureDoctor = listingsServices.getAllListingsWithCategories(widget.speciality);
+      futureDoctor =
+          listingsServices.getAllListingsWithCategories(widget.speciality);
     });
   }
 
@@ -42,7 +43,8 @@ class _AllListingsWidgetState extends State<AllListingsWidget> {
   void initState() {
     super.initState();
     _getFutureRoleValue();
-    futureDoctor = listingsServices.getAllListingsWithCategories(widget.speciality);
+    futureDoctor =
+        listingsServices.getAllListingsWithCategories(widget.speciality);
     SearchtextController = TextEditingController();
   }
 
@@ -393,8 +395,10 @@ class _AllListingsWidgetState extends State<AllListingsWidget> {
                                           fontWeight: FontWeight.bold,
                                         )));
                           }
-                          return const CircularProgressIndicator(
-                            color: Color(0xFF9457FB),
+                          return Padding(
+                            padding:
+                                EdgeInsetsDirectional.fromSTEB(0, 280, 0, 0),
+                            child: CircularProgressIndicatorWidget(),
                           );
                         }))),
           ],

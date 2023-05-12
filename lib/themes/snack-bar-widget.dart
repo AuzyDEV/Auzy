@@ -16,6 +16,7 @@ class _SnackbarWidgetState extends State<SnackbarWidget> {
     return SnackBar(
       content: widget.content,
       duration: Duration(milliseconds: 3000),
+      backgroundColor: Colors.deepOrange,
     );
   }
 }

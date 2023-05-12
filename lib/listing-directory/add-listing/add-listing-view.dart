@@ -178,11 +178,11 @@ class _addListingWidgetState extends State<addListingWidget> {
                                       if (fileContents == null) {
                                         ScaffoldMessenger.of(context)
                                             .showSnackBar(
-                                          SnackbarWidget(
-                                            content: Text(
-                                              'Please select a file!',
-                                            ),
-                                          ),
+                                       SnackBar(
+                                          content:
+                                              Text('Please select a file!'),
+                                          backgroundColor: Colors.red,
+                                        )
                                         );
                                       } else {
                                         String response =

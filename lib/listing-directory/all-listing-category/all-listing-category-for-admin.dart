@@ -3,9 +3,7 @@ import 'package:skeleton/listing-directory/all-listing-category/all-listing-cate
 import '../../../themes/theme.dart';
 import '../../index.dart';
 import 'package:flutter/material.dart';
-
 import '../../user-profile/profile-controller.dart';
-import '../single-listing-category/single-listing-category-view.dart';
 
 class ListingCategoryForAdmin extends StatefulWidget {
   const ListingCategoryForAdmin({Key key}) : super(key: key);
@@ -146,8 +144,7 @@ class _ListingCategoryForAdminState extends State<ListingCategoryForAdmin> {
                                         MaterialPageRoute(
                                           builder: (context) =>
                                               SingleListingCategoryWidget(
-                                            id:
-                                                "${snapshot.data[index].id}",
+                                            id: "${snapshot.data[index].id}",
                                           ),
                                         ),
                                       );
@@ -219,7 +216,10 @@ class _ListingCategoryForAdminState extends State<ListingCategoryForAdmin> {
                       child: Text("no data"),
                     );
                   }
-                  return Center(child: CircularProgressIndicator());
+                  return Padding(
+                    padding: EdgeInsetsDirectional.fromSTEB(0, 280, 0, 0),
+                    child: CircularProgressIndicatorWidget(),
+                  );
                 }),
           ],
         )));

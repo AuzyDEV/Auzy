@@ -2,7 +2,6 @@ import '../../../index.dart';
 import 'edit-post-controller.dart';
 import '../../../themes/theme.dart';
 import 'package:html_editor_enhanced/html_editor.dart';
-import '../../../user-profile/profile-model.dart';
 import 'package:flutter/material.dart';
 
 class editPostDetailsWidget extends StatefulWidget {

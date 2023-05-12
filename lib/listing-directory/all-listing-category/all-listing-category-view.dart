@@ -204,7 +204,10 @@ class _SpecialitiesWidgetState extends State<SpecialitiesWidget> {
                       child: Text("no data"),
                     );
                   }
-                  return Center(child: CircularProgressIndicator());
+                  return Padding(
+                    padding: EdgeInsetsDirectional.fromSTEB(0, 280, 0, 0),
+                    child: CircularProgressIndicatorWidget(),
+                  );
                 }),
           ],
         )));

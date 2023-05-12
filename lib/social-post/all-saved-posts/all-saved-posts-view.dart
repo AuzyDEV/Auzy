@@ -274,7 +274,9 @@ class _savedPostsForUsersWidgetState extends State<savedPostsForUsersWidget> {
                                       fontWeight: FontWeight.bold,
                                     ));
                       }
-                      return const CircularProgressIndicatorWidget();
+                        return Padding(
+                    padding: EdgeInsetsDirectional.fromSTEB(0, 280, 0, 0),
+                    child: const CircularProgressIndicatorWidget());
                     }))
           ],
         ),

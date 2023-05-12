@@ -1,17 +1,9 @@
 import 'package:flutter_html/flutter_html.dart';
-import '../../../home/home-view.dart';
+import '../../../index.dart';
 import '../../../social-post/all-posts/all-posts-model.dart';
-import '../../../social-post/single-post/single-post-view.dart';
-import '../../../themes/alert-popup.dart';
-import '../../../themes/app-bar-widget.dart';
-import '../../../themes/floating-button-widget.dart';
-import '../../../themes/left-drawer.dart';
-import '../../../themes/snack-bar-widget.dart';
-import '../../../themes/text-field.dart';
 import '../../../themes/theme.dart';
 import 'package:flutter/material.dart';
-import '../add-post/add-post-view.dart';
-import '../edit-post/edit-post-view.dart';
+import '../../../user-profile/profile-controller.dart';
 import 'all-management-posts-controller.dart';
 
 class postsNewWidget extends StatefulWidget {
@@ -29,6 +21,7 @@ class _postsNewWidgetState extends State<postsNewWidget> {
   String searchString = "";
   TextEditingController SearchtextController;
   String _futureRoleValue;
+  ProfilingMan apiUser = ProfilingMan();
 
   Future<String> _getCurrentUserRole() async {
     return apiUser.GetCurrentUserRole();
@@ -671,9 +664,10 @@ class _postsNewWidgetState extends State<postsNewWidget> {
                                           fontWeight: FontWeight.bold,
                                         )));*/
                           }
-                          return const CircularProgressIndicator(
-                            color: Color(0xFF9457FB),
-                          );
+                          return Padding(
+                      padding: EdgeInsetsDirectional.fromSTEB(0, 280, 0, 0),
+                      child: CircularProgressIndicatorWidget(),
+                    );
                         }))),
           ],
         ),

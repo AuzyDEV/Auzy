@@ -22,9 +22,9 @@ class UserMan {
       throw Exception("Failed to upload product list");
     }
   }
-   Future<List<User>> getAllUsersNew() async {
-    final response =
-        await http.get(Uri.parse('http://127.0.0.1:3000/api/get'));
+
+  Future<List<User>> getAllUsersNew() async {
+    final response = await http.get(Uri.parse('http://127.0.0.1:3000/api/get'));
     if (response.statusCode == 200) {
       final listings = jsonDecode(response.body);
       final allListings = listings["message"];

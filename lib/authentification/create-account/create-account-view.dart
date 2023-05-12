@@ -1,10 +1,7 @@
 import 'dart:html';
 import 'dart:typed_data';
-
 import 'package:firebase_storage/firebase_storage.dart';
-
 import '../../index.dart';
-import '../../themes/password-text-field.dart';
 import 'create-account-controller.dart';
 import '../../../themes/theme.dart';
 import 'package:flutter/material.dart';
@@ -180,47 +177,68 @@ class _CreateAccountWidgetState extends State<CreateAccountWidget> {
                                     if (formKey.currentState.validate()) {
                                       if (fileContents == null) {
                                         ScaffoldMessenger.of(context)
-                                            .showSnackBar(
-                                          SnackbarWidget(
-                                            content: Text(
-                                              'Please select a file!',
-                                            ),
-                                          ),
-                                        );
+                                            .showSnackBar(SnackBar(
+                                          content:
+                                              Text('Please select a file!'),
+                                          backgroundColor: Colors.red,
+                                        ));
                                       } else {
-                                        String response =
+                                        Map<String, String> response =
                                             await createAccountUserServices
                                                 .signupUser(
                                                     emailAddressController.text,
                                                     passwordController.text,
                                                     fullnameController.text);
+                                        String result = response['result'];
 
-                                        await FirebaseStorage.instance
-                                            .ref('posts/$response/$fileName')
-                                            .putData(fileContents);
-                                        showDialog(
-                                            context: context,
-                                            builder: (BuildContext context) {
-                                              return alertDialogWidget(
-                                                title: "Succes!",
-                                                content:
-                                                    "Registration completed successfully! please check your email to verify your email adress",
-                                                actions: [
-                                                  TextButton(
-                                                    child: Text("Ok"),
-                                                    onPressed: () async {
-                                                      await Navigator.push(
-                                                        context,
-                                                        MaterialPageRoute(
-                                                          builder: (context) =>
-                                                              SigninWidget(),
-                                                        ),
-                                                      );
-                                                    },
-                                                  )
-                                                ],
-                                              );
-                                            });
+                                        if (result ==
+                                            "User registred & email send successfully") {
+                                          String uid = response['data'];
+                                          await FirebaseStorage.instance
+                                              .ref('users/$uid/$fileName')
+                                              .putData(fileContents);
+                                          showDialog(
+                                              context: context,
+                                              builder: (BuildContext context) {
+                                                return alertDialogWidget(
+                                                  title: "Succes!",
+                                                  content:
+                                                      "Registration completed successfully! please check your email to verify your email adress",
+                                                  actions: [
+                                                    TextButton(
+                                                      child: Text("Ok"),
+                                                      onPressed: () async {
+                                                        await Navigator.push(
+                                                          context,
+                                                          MaterialPageRoute(
+                                                            builder: (context) =>
+                                                                SigninWidget(),
+                                                          ),
+                                                        );
+                                                      },
+                                                    )
+                                                  ],
+                                                );
+                                              });
+                                        } else {
+                                          showDialog(
+                                              context: context,
+                                              builder: (BuildContext context) {
+                                                return alertDialogWidget(
+                                                  title: "Error!",
+                                                  content: "$result",
+                                                  actions: [
+                                                    TextButton(
+                                                      child: Text("Ok"),
+                                                      onPressed: () async {
+                                                        await Navigator.pop(
+                                                            context);
+                                                      },
+                                                    )
+                                                  ],
+                                                );
+                                              });
+                                        }
                                       }
                                     }
                                   },
