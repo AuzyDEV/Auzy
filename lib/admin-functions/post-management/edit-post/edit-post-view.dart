@@ -47,7 +47,6 @@ class _editPostDetailsWidgetState extends State<editPostDetailsWidget> {
         preferredSize: const Size.fromHeight(60),
         child: appbar(text: 'Edit Post'),
       ),
-      drawer: Drawerr(),
       body: SingleChildScrollView(
           child: Column(
         mainAxisSize: MainAxisSize.max,
@@ -97,8 +96,10 @@ class _editPostDetailsWidgetState extends State<editPostDetailsWidget> {
                                   String text = await controller.getText();
                                   if (formKey.currentState.validate()) {
                                     bool response =
-                                        await editPostServices.UpdatePostInfos(widget.id,
-                                            titleController.text, text);
+                                        await editPostServices.UpdatePostInfos(
+                                            widget.id,
+                                            titleController.text,
+                                            text);
                                     if (response == true) {
                                       Navigator.push(
                                         context,

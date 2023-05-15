@@ -1,9 +1,6 @@
 import 'package:flutter/material.dart';
-import '../admin-functions/post-management/all-management-posts/all-management-posts-new.dart';
-import '../admin-functions/user-management/all-users/all-users-new.dart';
 import '../authentification/login/login-controller.dart';
 import '../index.dart';
-import '../listing-directory/all-listing-category/all-listing-category-for-admin.dart';
 import '../user-profile/profile-model.dart';
 import '../user-profile/profile-controller.dart';
 import '../themes/theme.dart';
@@ -110,7 +107,7 @@ class _DrawerrState extends State<Drawerr> {
                                             style: FlutterAppTheme.of(context)
                                                 .title1
                                                 .override(
-                                                  fontFamily: 'Lexend Deca',
+                                                  fontFamily: 'Roboto',
                                                   color: FlutterAppTheme.of(
                                                           context)
                                                       .blackColor,
@@ -127,11 +124,11 @@ class _DrawerrState extends State<Drawerr> {
                                               style: FlutterAppTheme.of(context)
                                                   .title1
                                                   .override(
-                                                    fontFamily: 'Lexend Deca',
+                                                    fontFamily: 'Roboto',
                                                     color: FlutterAppTheme.of(
                                                             context)
                                                         .primaryColor,
-                                                    fontSize: 12,
+                                                    fontSize: 15,
                                                     fontWeight: FontWeight.w800,
                                                   ),
                                             ),
@@ -147,7 +144,7 @@ class _DrawerrState extends State<Drawerr> {
 
                               return Center(
                                   child: const CircularProgressIndicatorWidget(
-                                color: Colors.white,
+                                color: Colors.transparent,
                               ));
                             }),
                       ),

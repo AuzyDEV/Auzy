@@ -56,7 +56,7 @@ class _MyprofilWidgetState extends State<MyprofilWidget> {
                                 width: MediaQuery.of(context).size.width,
                                 decoration: BoxDecoration(
                                   color: FlutterAppTheme.of(context)
-                                      .secondaryBackground,
+                                      .TransparentColor,
                                 ),
                                 child: Column(
                                   mainAxisSize: MainAxisSize.max,

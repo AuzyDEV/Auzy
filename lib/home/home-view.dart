@@ -188,13 +188,7 @@ class _HomeWidgetState extends State<HomeWidget> {
                                                           child: Container(
                                                               width: double
                                                                   .infinity,
-                                                              height: 150,
-                                                              decoration:
-                                                                  BoxDecoration(
-                                                                color: FlutterAppTheme.of(
-                                                                        context)
-                                                                    .primaryBtnText,
-                                                              ),
+                                                              height: 140,
                                                               child: ListView(
                                                                 padding:
                                                                     EdgeInsets
@@ -225,9 +219,7 @@ class _HomeWidgetState extends State<HomeWidget> {
                                                                           50,
                                                                       decoration:
                                                                           BoxDecoration(
-                                                                        color: FlutterAppTheme.of(context)
-                                                                            .primaryBtnText,
-                                                                      ),
+                                                                              color: Colors.transparent),
                                                                       child:
                                                                           Column(
                                                                         mainAxisSize:
@@ -314,8 +306,8 @@ class _HomeWidgetState extends State<HomeWidget> {
                                                                           50,
                                                                       decoration:
                                                                           BoxDecoration(
-                                                                        color: FlutterAppTheme.of(context)
-                                                                            .primaryBtnText,
+                                                                        color: Colors
+                                                                            .transparent,
                                                                       ),
                                                                       child:
                                                                           Column(
@@ -403,8 +395,8 @@ class _HomeWidgetState extends State<HomeWidget> {
                                                                           50,
                                                                       decoration:
                                                                           BoxDecoration(
-                                                                        color: FlutterAppTheme.of(context)
-                                                                            .primaryBtnText,
+                                                                        color: Colors
+                                                                            .transparent,
                                                                       ),
                                                                       child:
                                                                           Column(
@@ -492,8 +484,8 @@ class _HomeWidgetState extends State<HomeWidget> {
                                                                           50,
                                                                       decoration:
                                                                           BoxDecoration(
-                                                                        color: FlutterAppTheme.of(context)
-                                                                            .primaryBtnText,
+                                                                        color: Colors
+                                                                            .transparent,
                                                                       ),
                                                                       child:
                                                                           Column(
@@ -581,8 +573,8 @@ class _HomeWidgetState extends State<HomeWidget> {
                                                                           50,
                                                                       decoration:
                                                                           BoxDecoration(
-                                                                        color: FlutterAppTheme.of(context)
-                                                                            .primaryBtnText,
+                                                                        color: Colors
+                                                                            .transparent,
                                                                       ),
                                                                       child:
                                                                           Column(
@@ -914,7 +906,7 @@ class _HomeWidgetState extends State<HomeWidget> {
                                   padding: EdgeInsetsDirectional.fromSTEB(
                                       0, 200, 0, 0),
                                   child: const CircularProgressIndicatorWidget(
-                                      color: Colors.white));
+                                      color: Colors.transparent));
                             }),
                       )
                     ],

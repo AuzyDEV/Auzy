@@ -69,6 +69,7 @@ dependencies:
   flutter_html: ^3.0.0-alpha.6
   html_unescape: ^2.0.0
   timeago: 3.1.0
+  system_theme: ^2.1.0
 dev_dependencies:
 
   flutter_test:

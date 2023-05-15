@@ -289,7 +289,7 @@ class _postsForUsersWidgetState extends State<postsForUsersWidget> {
                                                                                 2,
                                                                                 0),
                                                                             child:
-                                                                                Html(data: "${snapshot.data[index].contenu}", style: {
+                                                                                Html(data: snapshot.data[index].contenu, style: {
                                                                               '#': Style(
                                                                                 maxLines: 3,
                                                                                 textOverflow: TextOverflow.ellipsis,
@@ -334,7 +334,7 @@ class _postsForUsersWidgetState extends State<postsForUsersWidget> {
                                                           } else if (snapshot
                                                               .hasError) {
                                                             return Text(
-                                                                '${snapshot.error}',
+                                                                'There is no posts',
                                                                 textAlign:
                                                                     TextAlign
                                                                         .center,
@@ -342,6 +342,9 @@ class _postsForUsersWidgetState extends State<postsForUsersWidget> {
                                                                         context)
                                                                     .bodyText2
                                                                     .override(
+                                                                      color: FlutterAppTheme.of(
+                                                                              context)
+                                                                          .LightDarkTextColor,
                                                                       fontFamily:
                                                                           'Roboto',
                                                                       fontSize:
@@ -565,6 +568,9 @@ class _postsForUsersWidgetState extends State<postsForUsersWidget> {
                                                                       .of(context)
                                                                   .bodyText2
                                                                   .override(
+                                                                    color: FlutterAppTheme.of(
+                                                                            context)
+                                                                        .LightDarkTextColor,
                                                                     fontFamily:
                                                                         'Roboto',
                                                                     fontSize:
@@ -805,6 +811,9 @@ class _postsForUsersWidgetState extends State<postsForUsersWidget> {
                                                                     .of(context)
                                                                 .bodyText2
                                                                 .override(
+                                                                  color: FlutterAppTheme.of(
+                                                                          context)
+                                                                      .LightDarkTextColor,
                                                                   fontFamily:
                                                                       'Roboto',
                                                                   fontSize: 17,

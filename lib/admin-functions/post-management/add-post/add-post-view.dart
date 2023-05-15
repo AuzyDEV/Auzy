@@ -51,7 +51,6 @@ class _addNewPostWidgetState extends State<addNewPostWidget> {
           preferredSize: const Size.fromHeight(60),
           child: appbar(text: 'New Post'),
         ),
-        drawer: Drawerr(),
         body: SingleChildScrollView(
             child: FutureBuilder<User>(
                 future: _futureUser,
@@ -94,6 +93,10 @@ class _addNewPostWidgetState extends State<addNewPostWidget> {
                                       ),
                                     ),
                                   ])),
+                                     Padding(
+                          padding:
+                              EdgeInsetsDirectional.fromSTEB(16, 10, 16, 0),
+                          child: 
                               Column(
                                 mainAxisAlignment: MainAxisAlignment.center,
                                 children: [
@@ -133,7 +136,7 @@ class _addNewPostWidgetState extends State<addNewPostWidget> {
                                   ),
                                 ],
                               ),
-                              Column(
+                            ),  Column(
                                 mainAxisSize: MainAxisSize.max,
                                 children: [
                                   Padding(

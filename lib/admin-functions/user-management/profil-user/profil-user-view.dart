@@ -105,14 +105,14 @@ class _ProfillWidgetState extends State<ProfillWidget> {
                                               .TextColor)),
                                 ),
                                 LabeledRowWidget(
-                                  text: "User id: ",
+                                  text: "User id ",
                                 ),
                                 TextFormFieldWidget(
                                   hintText: '${snapshot.data.id}',
                                   readOnly: true,
                                 ),
                                 LabeledRowWidget(
-                                  text: "User email: ",
+                                  text: "User email ",
                                 ),
                                 TextFormFieldWidget(
                                   hintText: '${snapshot.data.email}',

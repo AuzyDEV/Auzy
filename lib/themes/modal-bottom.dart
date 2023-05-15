@@ -38,6 +38,7 @@ class _ShowIpAdressWidgetState extends State<ShowIpAdressWidget> {
                       '${snapshot.data}',
                       textAlign: TextAlign.center,
                       style: FlutterAppTheme.of(context).bodyText1.override(
+                        color:FlutterAppTheme.of(context).primaryColor ,
                             fontFamily: 'Roboto',
                             fontSize: 20,
                             fontWeight: FontWeight.bold,

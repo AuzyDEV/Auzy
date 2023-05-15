@@ -18,26 +18,14 @@ class _SpecialitiesWidgetState extends State<SpecialitiesWidget> {
   String searchString = "";
   TextEditingController SearchtextController;
   Future<List<ListingCtegoryModel>> _futureCategory;
-  String _futureRoleValue;
   ProfilingMan profilingUserServices = ProfilingMan();
   CategoryListingCtegoryMan categoryListingsServices =
       CategoryListingCtegoryMan();
-  Future<String> _getCurrentUserRole() async {
-    return profilingUserServices.GetCurrentUserRole();
-  }
-
-  void _getFutureRoleValue() async {
-    String value = await _getCurrentUserRole();
-    setState(() {
-      _futureRoleValue = value;
-    });
-  }
 
   @override
   void initState() {
     super.initState();
     SearchtextController = TextEditingController();
-    _getFutureRoleValue();
     _futureCategory = categoryListingsServices.getAllListingCtegories();
   }
 

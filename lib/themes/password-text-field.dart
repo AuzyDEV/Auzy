@@ -55,6 +55,10 @@ class _PasswordFormFieldState extends State<PasswordFormField> {
           onChanged: widget.onChanged,
           autovalidateMode: AutovalidateMode.onUserInteraction,
           cursorColor: FlutterAppTheme.of(context).primaryColor,
+          style: FlutterAppTheme.of(context).bodyText1.override(
+              fontFamily: 'Roboto',
+              color: Colors.black,
+              fontWeight: FontWeight.normal),
           decoration: InputDecoration(
             labelText: widget.labelText,
             hintText: widget.hintText,
@@ -101,6 +105,7 @@ class _PasswordFormFieldState extends State<PasswordFormField> {
             fillColor: Colors.white,
             contentPadding: EdgeInsetsDirectional.fromSTEB(20, 16, 20, 16),
             suffixIcon: IconButton(
+              iconSize: 23,
               icon: Icon(
                 _obscureText ? Icons.visibility_off : Icons.visibility,
               ),
@@ -117,6 +122,7 @@ class _PasswordFormFieldState extends State<PasswordFormField> {
                 if (value == null || value.isEmpty) {
                   return 'Field is required';
                 }
+
                 return null;
               },
         ));

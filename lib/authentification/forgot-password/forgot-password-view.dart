@@ -46,7 +46,7 @@ class _ForgetpasswordWidgetState extends State<ForgetpasswordWidget> {
                       },
                       child: Icon(
                         Icons.arrow_back_ios_new_outlined,
-                        color: FlutterAppTheme.of(context).AppBarPrimaryColor,
+                        color: FlutterAppTheme.of(context).LightDarkTextColor,
                         size: 24,
                       ),
                     ),

@@ -17,9 +17,12 @@ abstract class FlutterAppTheme {
             : ThemeMode.light;
   }
 
-  static void saveThemeMode(ThemeMode mode) => mode == ThemeMode.system
-      ? _prefs?.remove(kThemeModeKey)
-      : _prefs?.setBool(kThemeModeKey, mode == ThemeMode.dark);
+  static void saveThemeMode(ThemeMode mode) {
+    print(ThemeMode.system);
+    mode == ThemeMode.system
+        ? _prefs?.remove(kThemeModeKey)
+        : _prefs?.setBool(kThemeModeKey, mode == ThemeMode.dark);
+  }
 
   static FlutterAppTheme of(BuildContext context) =>
       Theme.of(context).brightness == Brightness.dark
@@ -52,6 +55,8 @@ abstract class FlutterAppTheme {
   Color primaryBtnText;
   Color lineColor;
   Color TextColor;
+  Color LightDarkTextColor;
+  Color MenuItemColorDrawer;
 
   TextStyle get title1 => GoogleFonts.getFont(
         'Poppins',
@@ -102,6 +107,8 @@ class LightModeTheme extends FlutterAppTheme {
   Color secondaryColor = const Color(0x369457FB);
   Color tertiaryColor = const Color(0xFF009FFF);
   Color TextColor = const Color(0xFF101213);
+  Color LightDarkTextColor = Colors.black54;
+  Color MenuItemColorDrawer = Color(0xFF616A6B);
   // colors
   Color whiteColor = const Color(0xFFFFFFFF);
   Color blackColor = Colors.black;
@@ -130,7 +137,8 @@ class LightModeTheme extends FlutterAppTheme {
 }
 
 class DarkModeTheme extends FlutterAppTheme {
-  Color primaryColor = const Color(0xFF4B39EF);
+  Color LightDarkTextColor = Colors.white;
+  Color primaryColor = const Color(0xFF9457FB);
   Color secondaryColor = const Color(0xFF39D2C0);
   Color tertiaryColor = const Color(0xFFEE8B60);
   Color alternate = const Color(0xFFFF5963);
@@ -138,9 +146,11 @@ class DarkModeTheme extends FlutterAppTheme {
   Color secondaryBackground = const Color(0xFF101213);
   Color primaryText = const Color(0xFFFFFFFF);
   Color secondaryText = const Color(0xFF95A1AC);
-
+  Color ButtonPrimaryColor = const Color(0xFFFFFFFF);
   Color primaryBtnText = Color(0xFFFFFFFF);
   Color lineColor = Color(0xFF22282F);
+  Color MenuItemColorDrawer = Colors.white;
+  Color TransparentColor = Colors.transparent;
 }
 
 extension TextStyleHelper on TextStyle {

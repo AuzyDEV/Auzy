@@ -1,12 +1,9 @@
 import 'dart:convert';
 import 'package:http/http.dart' as http;
 import 'dart:async';
-import 'package:firebase_auth/firebase_auth.dart';
 import '../single-listing/single-listing-model.dart';
 
 class AllListingsMan {
-  final FirebaseAuth _auth = FirebaseAuth.instance;
-
   Future<List<ListingModel>> getAllListings() async {
     String collectionName = "doctors";
     final response = await http
@@ -37,6 +34,4 @@ class AllListingsMan {
       throw Exception("Failed to get post's list");
     }
   }
-
-
 }

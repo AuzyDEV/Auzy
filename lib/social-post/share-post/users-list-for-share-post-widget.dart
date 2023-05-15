@@ -142,8 +142,8 @@ class _UsersListForPostsWidgetState extends State<UsersListForPostsWidget> {
                                                                           Clip
                                                                               .antiAliasWithSaveLayer,
                                                                       color: selectedCard1 == index
-                                                                          ? Colors
-                                                                              .green
+                                                                          ? Colors.green[
+                                                                              200]
                                                                           : FlutterAppTheme.of(context)
                                                                               .whiteColor,
                                                                       elevation:
@@ -162,7 +162,7 @@ class _UsersListForPostsWidgetState extends State<UsersListForPostsWidget> {
                                                                         decoration:
                                                                             BoxDecoration(
                                                                           color: selectedCard1 == index
-                                                                              ? Colors.green
+                                                                              ? Colors.green[200]
                                                                               : FlutterAppTheme.of(context).whiteColor,
                                                                           boxShadow: [
                                                                             BoxShadow(
@@ -207,7 +207,7 @@ class _UsersListForPostsWidgetState extends State<UsersListForPostsWidget> {
                                                                                     children: [
                                                                                       Text(
                                                                                         "${users[index].displayName}",
-                                                                                        style: FlutterAppTheme.of(context).bodyText1.override(fontFamily: 'Roboto', fontSize: 18, fontWeight: FontWeight.w500),
+                                                                                        style: FlutterAppTheme.of(context).bodyText1.override(color: FlutterAppTheme.of(context).LightDarkTextColor, fontFamily: 'Roboto', fontSize: 18, fontWeight: FontWeight.w500),
                                                                                       ),
                                                                                       Padding(
                                                                                         padding: EdgeInsetsDirectional.fromSTEB(0, 5, 0, 0),
@@ -216,7 +216,7 @@ class _UsersListForPostsWidgetState extends State<UsersListForPostsWidget> {
                                                                                           children: [
                                                                                             Text(
                                                                                               '${users[index].email}',
-                                                                                              style: FlutterAppTheme.of(context).bodyText2.override(fontFamily: 'Roboto', fontSize: 12, fontWeight: FontWeight.normal),
+                                                                                              style: FlutterAppTheme.of(context).bodyText2.override(color: FlutterAppTheme.of(context).LightDarkTextColor, fontFamily: 'Roboto', fontSize: 12, fontWeight: FontWeight.normal),
                                                                                             ),
                                                                                           ],
                                                                                         ),
@@ -254,10 +254,9 @@ class _UsersListForPostsWidgetState extends State<UsersListForPostsWidget> {
                                                             EdgeInsetsDirectional
                                                                 .fromSTEB(0,
                                                                     300, 0, 0),
-                                                        child:
-                                                            const CircularProgressIndicatorWidget(
-                                                                color: Colors
-                                                                    .white));
+                                                        child: const CircularProgressIndicatorWidget(
+                                                            color: Colors
+                                                                .transparent));
                                                   },
                                                 ),
                                               ),

@@ -52,7 +52,7 @@ class _SigninWidgetWidgetState extends State<SigninWidget> {
                       },
                       child: Icon(
                         Icons.arrow_back_ios_new,
-                        color: FlutterAppTheme.of(context).AppBarPrimaryColor,
+                        color: FlutterAppTheme.of(context).LightDarkTextColor,
                         size: 24,
                       ),
                     ),

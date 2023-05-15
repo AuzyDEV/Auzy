@@ -40,7 +40,7 @@ class _HomeWithButtomNavBarWidgetState
   ];
   final List<Widget> _pagesAdmin = [
     HomeWidget(),
-    PostsManagementWidget(),
+    postsNewWidget(),
     SpecialitiesWidget(),
     MyprofilWidget()
   ];

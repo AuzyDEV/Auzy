@@ -67,6 +67,15 @@ class _changePasswordWidgetState extends State<changePasswordWidget> {
                                   LabeledRowWidget(text: 'Password'),
                                   PasswordFormField(
                                     controller: passwordController,
+                                    validator: (value) {
+                                      if (value == null || value.isEmpty) {
+                                        return 'Field is required';
+                                      }
+                                      if (value.length < 6) {
+                                        return 'Requires at least 6 characters.';
+                                      }
+                                      return null;
+                                    },
                                   ),
                                 ],
                               ),

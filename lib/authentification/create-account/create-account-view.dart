@@ -56,7 +56,7 @@ class _CreateAccountWidgetState extends State<CreateAccountWidget> {
                     },
                     child: Icon(
                       Icons.arrow_back_ios_new_outlined,
-                      color: Color(0xff132137),
+                      color: FlutterAppTheme.of(context).LightDarkTextColor,
                       size: 24,
                     ),
                   ),
@@ -118,45 +118,59 @@ class _CreateAccountWidgetState extends State<CreateAccountWidget> {
                         LabeledRowWidget(text: 'Password'),
                         PasswordFormField(
                           controller: passwordController,
+                          validator: (value) {
+                            if (value == null || value.isEmpty) {
+                              return 'Field is required';
+                            }
+                            if (value.length < 6) {
+                              return 'Requires at least 6 characters.';
+                            }
+                            return null;
+                          },
                         ),
-                        Column(
-                          mainAxisAlignment: MainAxisAlignment.center,
-                          children: [
-                            Text(
-                              fileName ?? 'No file chosen',
-                              style: TextStyle(
-                                fontWeight: FontWeight.bold,
+                        LabeledRowWidget(text: 'Select photo'),
+                        Padding(
+                          padding:
+                              EdgeInsetsDirectional.fromSTEB(16, 10, 16, 0),
+                          child: Column(
+                            mainAxisAlignment: MainAxisAlignment.center,
+                            children: [
+                              Text(
+                                fileName ?? 'No file chosen',
+                                style: TextStyle(
+                                  fontWeight: FontWeight.bold,
+                                ),
                               ),
-                            ),
-                            ElevatedButton(
-                              onPressed: (() {
-                                InputElement inputElement =
-                                    FileUploadInputElement();
-                                inputElement.click();
-                                inputElement.onChange.listen((e) {
-                                  final files = inputElement.files;
-                                  if (files.length == 1) {
-                                    final file = files[0];
-                                    fileName = file.name;
-                                    final reader = FileReader();
-                                    reader.readAsArrayBuffer(file);
-                                    reader.onLoadEnd.listen((e) {
-                                      setState(() {
-                                        fileContents = reader.result;
+                              ElevatedButton(
+                                onPressed: (() {
+                                  InputElement inputElement =
+                                      FileUploadInputElement();
+                                  inputElement.click();
+                                  inputElement.onChange.listen((e) {
+                                    final files = inputElement.files;
+                                    if (files.length == 1) {
+                                      final file = files[0];
+                                      fileName = file.name;
+                                      final reader = FileReader();
+                                      reader.readAsArrayBuffer(file);
+                                      reader.onLoadEnd.listen((e) {
+                                        setState(() {
+                                          fileContents = reader.result;
+                                        });
                                       });
-                                    });
-                                  } else {
-                                    setState(() {
-                                      fileName = null;
-                                      fileContents = null;
-                                      errorText = 'Please choose a file';
-                                    });
-                                  }
-                                });
-                              }),
-                              child: Text("Pick a file"),
-                            ),
-                          ],
+                                    } else {
+                                      setState(() {
+                                        fileName = null;
+                                        fileContents = null;
+                                        errorText = 'Please choose a file';
+                                      });
+                                    }
+                                  });
+                                }),
+                                child: Text("Pick a file"),
+                              ),
+                            ],
+                          ),
                         ),
                       ],
                     ),

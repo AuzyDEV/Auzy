@@ -19,26 +19,14 @@ class _ListingCategoryForAdminState extends State<ListingCategoryForAdmin> {
   String searchString = "";
   TextEditingController SearchtextController;
   Future<List<ListingCtegoryModel>> _futureCategory;
-  String _futureRoleValue;
   ProfilingMan profilingUserServices = ProfilingMan();
   CategoryListingCtegoryMan categoryListingsServices =
       CategoryListingCtegoryMan();
-  Future<String> _getCurrentUserRole() async {
-    return profilingUserServices.GetCurrentUserRole();
-  }
-
-  void _getFutureRoleValue() async {
-    String value = await _getCurrentUserRole();
-    setState(() {
-      _futureRoleValue = value;
-    });
-  }
 
   @override
   void initState() {
     super.initState();
     SearchtextController = TextEditingController();
-    _getFutureRoleValue();
     _futureCategory = categoryListingsServices.getAllListingCtegories();
   }
 
@@ -57,18 +45,16 @@ class _ListingCategoryForAdminState extends State<ListingCategoryForAdmin> {
           preferredSize: const Size.fromHeight(60),
           child: appbar(text: 'Categories'),
         ),
-        floatingActionButton: _futureRoleValue == "admin"
-            ? floatingActionButtonWidget(
-                onPressed: () async {
-                  await Navigator.push(
-                    context,
-                    MaterialPageRoute(
-                        builder: (context) => addListingCategoryWidget()),
-                  );
-                },
-                icon: Icons.add,
-              )
-            : null,
+        floatingActionButton: floatingActionButtonWidget(
+          onPressed: () async {
+            await Navigator.push(
+              context,
+              MaterialPageRoute(
+                  builder: (context) => addListingCategoryWidget()),
+            );
+          },
+          icon: Icons.add,
+        ),
         drawer: Drawerr(),
         body: SingleChildScrollView(
             child: Column(
