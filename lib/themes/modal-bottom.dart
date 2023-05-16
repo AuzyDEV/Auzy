@@ -1,4 +1,5 @@
 import '../admin-functions/user-management/profil-user/profil-user-controller.dart';
+import '../index.dart';
 import '../themes/theme.dart';
 import 'package:flutter/material.dart';
 
@@ -24,9 +25,6 @@ class _ShowIpAdressWidgetState extends State<ShowIpAdressWidget> {
     return Container(
         width: double.infinity,
         height: double.infinity,
-        decoration: BoxDecoration(
-          color: FlutterAppTheme.of(context).whiteColor,
-        ),
         child: FutureBuilder<String>(
             future: _futureUser,
             builder: (context, snapshot) {
@@ -38,7 +36,7 @@ class _ShowIpAdressWidgetState extends State<ShowIpAdressWidget> {
                       '${snapshot.data}',
                       textAlign: TextAlign.center,
                       style: FlutterAppTheme.of(context).bodyText1.override(
-                        color:FlutterAppTheme.of(context).primaryColor ,
+                            color: Colors.black,
                             fontFamily: 'Roboto',
                             fontSize: 20,
                             fontWeight: FontWeight.bold,
@@ -49,7 +47,7 @@ class _ShowIpAdressWidgetState extends State<ShowIpAdressWidget> {
               } else if (snapshot.hasError) {
                 return Text("${snapshot.error}");
               }
-              return Center(child: const CircularProgressIndicator());
+              return Center(child: CircularProgressIndicatorWidget());
             }));
   }
 }

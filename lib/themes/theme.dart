@@ -145,12 +145,19 @@ class DarkModeTheme extends FlutterAppTheme {
   Color primaryBackground = const Color(0xFF1A1F24);
   Color secondaryBackground = const Color(0xFF101213);
   Color primaryText = const Color(0xFFFFFFFF);
-  Color secondaryText = const Color(0xFF95A1AC);
+  Color secondaryText = const Color(0xFFFFFFFF);
   Color ButtonPrimaryColor = const Color(0xFFFFFFFF);
   Color primaryBtnText = Color(0xFFFFFFFF);
-  Color lineColor = Color(0xFF22282F);
+  Color lineColor = Color(0xFFFFFFFF);
   Color MenuItemColorDrawer = Colors.white;
-  Color TransparentColor = Colors.transparent;
+  Color TransparentColor = Color.fromARGB(0, 250, 152, 152);
+  Color lightGrey = Colors.grey[100];
+  Color lightRed = Colors.red[50];
+  Color LightBlue = Colors.blue[50];
+  Color Orange = const Color.fromARGB(255, 214, 116, 36);
+  Color LightOrange = Color.fromARGB(214, 241, 228, 200);
+  Color Green = Colors.green;
+  Color LightGreen = Colors.green[50];
 }
 
 extension TextStyleHelper on TextStyle {

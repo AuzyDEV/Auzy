@@ -1,10 +1,8 @@
 import 'dart:convert';
 import 'package:http/http.dart' as http;
 import 'dart:async';
-import 'package:firebase_auth/firebase_auth.dart';
 
 class ListingCtegoryMan {
-  final FirebaseAuth _auth = FirebaseAuth.instance;
 
   Future<String> addNewListingCategory(
     String Name,

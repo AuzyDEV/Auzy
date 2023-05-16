@@ -1,4 +1,3 @@
-import 'package:firebase_auth/firebase_auth.dart';
 import 'package:http/http.dart' as http;
 import '../all-posts/all-posts-model.dart';
 import 'dart:convert';
@@ -6,7 +5,6 @@ import 'dart:async';
 import 'all-saved-posts-model.dart';
 
 class SavedPostMan {
-  final FirebaseAuth _auth = FirebaseAuth.instance;
   static List<Post> Postslist;
 
   Future<bool> DeleteSavedPost(String id) async {

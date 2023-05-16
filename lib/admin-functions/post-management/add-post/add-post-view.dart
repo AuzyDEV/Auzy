@@ -46,7 +46,6 @@ class _addNewPostWidgetState extends State<addNewPostWidget> {
   Widget build(BuildContext context) {
     return Scaffold(
         key: scaffoldKey,
-        backgroundColor: FlutterAppTheme.of(context).whiteColor,
         appBar: PreferredSize(
           preferredSize: const Size.fromHeight(60),
           child: appbar(text: 'New Post'),
@@ -93,50 +92,51 @@ class _addNewPostWidgetState extends State<addNewPostWidget> {
                                       ),
                                     ),
                                   ])),
-                                     Padding(
-                          padding:
-                              EdgeInsetsDirectional.fromSTEB(16, 10, 16, 0),
-                          child: 
-                              Column(
-                                mainAxisAlignment: MainAxisAlignment.center,
-                                children: [
-                                  Text(
-                                    fileName ?? 'No file chosen',
-                                    style: TextStyle(
-                                      fontWeight: FontWeight.bold,
+                              Padding(
+                                padding: EdgeInsetsDirectional.fromSTEB(
+                                    16, 10, 16, 0),
+                                child: Column(
+                                  mainAxisAlignment: MainAxisAlignment.center,
+                                  children: [
+                                    Text(
+                                      fileName ?? 'No file chosen',
+                                      style: TextStyle(
+                                        fontWeight: FontWeight.bold,
+                                      ),
                                     ),
-                                  ),
-                                  ElevatedButton(
-                                    onPressed: (() {
-                                      InputElement inputElement =
-                                          FileUploadInputElement();
-                                      inputElement.click();
-                                      inputElement.onChange.listen((e) {
-                                        final files = inputElement.files;
-                                        if (files.length == 1) {
-                                          final file = files[0];
-                                          fileName = file.name;
-                                          final reader = FileReader();
-                                          reader.readAsArrayBuffer(file);
-                                          reader.onLoadEnd.listen((e) {
-                                            setState(() {
-                                              fileContents = reader.result;
+                                    ElevatedButton(
+                                      onPressed: (() {
+                                        InputElement inputElement =
+                                            FileUploadInputElement();
+                                        inputElement.click();
+                                        inputElement.onChange.listen((e) {
+                                          final files = inputElement.files;
+                                          if (files.length == 1) {
+                                            final file = files[0];
+                                            fileName = file.name;
+                                            final reader = FileReader();
+                                            reader.readAsArrayBuffer(file);
+                                            reader.onLoadEnd.listen((e) {
+                                              setState(() {
+                                                fileContents = reader.result;
+                                              });
                                             });
-                                          });
-                                        } else {
-                                          setState(() {
-                                            fileName = null;
-                                            fileContents = null;
-                                            errorText = 'Please choose a file';
-                                          });
-                                        }
-                                      });
-                                    }),
-                                    child: Text("Pick a file"),
-                                  ),
-                                ],
+                                          } else {
+                                            setState(() {
+                                              fileName = null;
+                                              fileContents = null;
+                                              errorText =
+                                                  'Please choose a file';
+                                            });
+                                          }
+                                        });
+                                      }),
+                                      child: Text("Pick a file"),
+                                    ),
+                                  ],
+                                ),
                               ),
-                            ),  Column(
+                              Column(
                                 mainAxisSize: MainAxisSize.max,
                                 children: [
                                   Padding(
@@ -157,13 +157,12 @@ class _addNewPostWidgetState extends State<addNewPostWidget> {
                                                   if (fileContents == null) {
                                                     ScaffoldMessenger.of(
                                                             context)
-                                                        .showSnackBar(
-                                                     SnackBar(
-                                          content:
-                                              Text('Please select a file!'),
-                                          backgroundColor: Colors.red,
-                                        )
-                                                    );
+                                                        .showSnackBar(SnackBar(
+                                                      content: Text(
+                                                          'Please select a file!'),
+                                                      backgroundColor:
+                                                          Colors.red,
+                                                    ));
                                                   } else {
                                                     String response =
                                                         await addPostServices
@@ -217,7 +216,10 @@ class _addNewPostWidgetState extends State<addNewPostWidget> {
                     return Text("${snapshot.error}");
                   }
 
-                  return Center(child: const CircularProgressIndicatorWidget(color: Colors.white,));
+                  return Center(
+                      child: const CircularProgressIndicatorWidget(
+                    color: Colors.transparent,
+                  ));
                 })));
   }
 }

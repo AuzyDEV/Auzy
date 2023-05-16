@@ -1,10 +1,8 @@
 import 'package:http/http.dart' as http;
 import 'dart:convert';
 import 'dart:async';
-import 'package:firebase_auth/firebase_auth.dart';
 
 class AnnoucementMan {
-  final FirebaseAuth _auth = FirebaseAuth.instance;
 
   Future<bool> sendBroadcastEmail(String message) async {
     final response = await http.post(

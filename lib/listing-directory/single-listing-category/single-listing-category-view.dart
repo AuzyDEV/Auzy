@@ -104,107 +104,117 @@ class _SingleListingCategoryWidgetState
                                           color: FlutterAppTheme.of(context)
                                               .TextColor)),
                                 ),
-                                TextFormFieldWidget(
-                                  hintText: '${snapshot.data.Name}',
-                                  readOnly: true,
+                                LabeledRowWidget(
+                                  text: "Speciality id",
                                 ),
                                 TextFormFieldWidget(
                                   hintText: '${snapshot.data.id}',
                                   readOnly: true,
                                 ),
+                                LabeledRowWidget(
+                                  text: "Speciality Name",
+                                ),
+                                TextFormFieldWidget(
+                                  hintText: '${snapshot.data.Name}',
+                                  readOnly: true,
+                                ),
                                 Padding(
                                   padding: EdgeInsetsDirectional.fromSTEB(
-                                      0, 20, 0, 0),
+                                      16, 20, 16, 0),
                                   child: Row(
                                     mainAxisSize: MainAxisSize.max,
                                     mainAxisAlignment: MainAxisAlignment.center,
                                     children: [
-                                      CustomButton(
-                                        color: Colors.green,
-                                        onPressed: () async {
-                                          Navigator.push(
-                                            context,
-                                            MaterialPageRoute(
-                                              builder: (context) =>
-                                                  editListingCategoryWidget(
-                                                      id: snapshot.data.id,
-                                                      name: snapshot.data.Name),
-                                            ),
-                                          );
-                                        },
-                                        text: 'update speciality',
+                                      Expanded(
+                                        child: CustomButton(
+                                          color: Colors.green,
+                                          onPressed: () async {
+                                            Navigator.push(
+                                              context,
+                                              MaterialPageRoute(
+                                                builder: (context) =>
+                                                    editListingCategoryWidget(
+                                                        id: snapshot.data.id,
+                                                        name:
+                                                            snapshot.data.Name),
+                                              ),
+                                            );
+                                          },
+                                          text: 'update speciality',
+                                        ),
                                       ),
                                     ],
                                   ),
                                 ),
                                 Padding(
                                   padding: EdgeInsetsDirectional.fromSTEB(
-                                      0, 10, 0, 0),
+                                      16, 10, 16, 0),
                                   child: Row(
                                     mainAxisSize: MainAxisSize.max,
                                     mainAxisAlignment: MainAxisAlignment.center,
                                     children: [
-                                      CustomButton(
-                                        color: Colors.red,
-                                        onPressed: () async {
-                                          var confirmDialogResponse =
-                                              await showDialog<bool>(
-                                                    context: context,
-                                                    builder:
-                                                        (alertDialogContext) {
-                                                      return alertDialogWidget(
-                                                        title:
-                                                            'Delete Speciality',
-                                                        content:
-                                                            'Are you sure to delete this Speciality ?',
-                                                        actions: [
-                                                          TextButton(
-                                                            onPressed: () =>
-                                                                Navigator.pop(
-                                                                    alertDialogContext,
-                                                                    false),
-                                                            child:
-                                                                Text('Cancel'),
-                                                          ),
-                                                          TextButton(
-                                                            onPressed: () => {
-                                                              print(snapshot
-                                                                  .data.id
-                                                                  .toString()),
-                                                              singleCategoryMan
-                                                                  .deleteListingCategory(
-                                                                      snapshot
-                                                                          .data
-                                                                          .id
-                                                                          .toString()),
-                                                              Navigator.push(
-                                                                context,
-                                                                MaterialPageRoute(
-                                                                  builder:
-                                                                      (context) =>
-                                                                          ListingCategoryForAdmin(),
+                                      Expanded(
+                                        child: CustomButton(
+                                          color: Colors.red,
+                                          onPressed: () async {
+                                            var confirmDialogResponse =
+                                                await showDialog<bool>(
+                                                      context: context,
+                                                      builder:
+                                                          (alertDialogContext) {
+                                                        return alertDialogWidget(
+                                                          title:
+                                                              'Delete Speciality',
+                                                          content:
+                                                              'Are you sure to delete this Speciality ?',
+                                                          actions: [
+                                                            TextButton(
+                                                              onPressed: () =>
+                                                                  Navigator.pop(
+                                                                      alertDialogContext,
+                                                                      false),
+                                                              child: Text(
+                                                                  'Cancel'),
+                                                            ),
+                                                            TextButton(
+                                                              onPressed: () => {
+                                                                print(snapshot
+                                                                    .data.id
+                                                                    .toString()),
+                                                                singleCategoryMan
+                                                                    .deleteListingCategory(
+                                                                        snapshot
+                                                                            .data
+                                                                            .id
+                                                                            .toString()),
+                                                                Navigator.push(
+                                                                  context,
+                                                                  MaterialPageRoute(
+                                                                    builder:
+                                                                        (context) =>
+                                                                            ListingCategoryForAdmin(),
+                                                                  ),
                                                                 ),
-                                                              ),
-                                                              ScaffoldMessenger
-                                                                      .of(
-                                                                          context)
-                                                                  .showSnackBar(
-                                                                      SnackbarWidget(
-                                                                          content:
-                                                                              Text(
-                                                                'Successfully Speciality deleted!',
-                                                              ))),
-                                                            },
-                                                            child:
-                                                                Text('Confirm'),
-                                                          ),
-                                                        ],
-                                                      );
-                                                    },
-                                                  ) ??
-                                                  false;
-                                        },
-                                        text: 'Delete speciality',
+                                                                ScaffoldMessenger.of(
+                                                                        context)
+                                                                    .showSnackBar(
+                                                                        SnackbarWidget(
+                                                                            content:
+                                                                                Text(
+                                                                  'Successfully Speciality deleted!',
+                                                                ))),
+                                                              },
+                                                              child: Text(
+                                                                  'Confirm'),
+                                                            ),
+                                                          ],
+                                                        );
+                                                      },
+                                                    ) ??
+                                                    false;
+                                          },
+                                          text: 'Delete speciality',
+                                        ),
                                       ),
                                     ],
                                   ),

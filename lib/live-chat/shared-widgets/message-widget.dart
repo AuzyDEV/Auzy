@@ -41,9 +41,8 @@ class MessageWidget extends StatelessWidget {
               margin: EdgeInsets.all(16),
               constraints: BoxConstraints(maxWidth: 140),
               decoration: BoxDecoration(
-                color: isMe
-                    ? FlutterAppTheme.of(context).lightGrey
-                    : Theme.of(context).colorScheme.secondary,
+                color:
+                    isMe ? FlutterAppTheme.of(context).lightGrey : Colors.blue,
                 borderRadius: isMe
                     ? borderRadius
                         .subtract(BorderRadius.only(bottomRight: radius))

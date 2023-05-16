@@ -1,11 +1,8 @@
 import 'dart:convert';
 import 'package:http/http.dart' as http;
 import 'dart:async';
-import 'package:firebase_auth/firebase_auth.dart';
-import '../single-listing/single-listing-model.dart';
 
 class DBDoctorMan {
-  final FirebaseAuth _auth = FirebaseAuth.instance;
 
   Future<String> addNewListing(
       String firstName,

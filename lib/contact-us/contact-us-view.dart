@@ -85,7 +85,9 @@ class _contactUsWidgetState extends State<contactUsWidget> {
                           selectorType: PhoneInputSelectorType.BOTTOM_SHEET,
                         ),
                         ignoreBlank: false,
-                        selectorTextStyle: TextStyle(color: Colors.black),
+                        selectorTextStyle: TextStyle(
+                            color:
+                                FlutterAppTheme.of(context).LightDarkTextColor),
                         initialValue: number,
                         textFieldController: mobilecontroller,
                         formatInput: true,

@@ -226,11 +226,6 @@ class _postsNewWidgetState extends State<postsNewWidget> {
                                                           borderRadius:
                                                               BorderRadius
                                                                   .circular(8),
-                                                          border: Border.all(
-                                                            color:
-                                                                Colors.blue[50],
-                                                            width: 0,
-                                                          ),
                                                         ),
                                                         child: Padding(
                                                           padding:
@@ -314,15 +309,6 @@ class _postsNewWidgetState extends State<postsNewWidget> {
                                                                 BorderRadius
                                                                     .circular(
                                                                         8),
-                                                            border: Border.all(
-                                                              color: Color
-                                                                  .fromARGB(
-                                                                      255,
-                                                                      245,
-                                                                      210,
-                                                                      207),
-                                                              width: 0,
-                                                            ),
                                                           ),
                                                           child: Padding(
                                                             padding:
@@ -473,13 +459,6 @@ class _postsNewWidgetState extends State<postsNewWidget> {
                                                                       BorderRadius
                                                                           .circular(
                                                                               8),
-                                                                  border: Border
-                                                                      .all(
-                                                                    color: Colors
-                                                                            .red[
-                                                                        100],
-                                                                    width: 0,
-                                                                  ),
                                                                 ),
                                                                 child: Padding(
                                                                   padding: EdgeInsetsDirectional
@@ -611,10 +590,7 @@ class _postsNewWidgetState extends State<postsNewWidget> {
                                                     child: Text(
                                                       "See all",
                                                       style: TextStyle(
-                                                        color:
-                                                            FlutterAppTheme.of(
-                                                                    context)
-                                                                .tertiaryColor,
+                                                        color: Colors.blue,
                                                         decoration:
                                                             TextDecoration
                                                                 .underline,
@@ -665,9 +641,10 @@ class _postsNewWidgetState extends State<postsNewWidget> {
                                         )));*/
                           }
                           return Padding(
-                      padding: EdgeInsetsDirectional.fromSTEB(0, 280, 0, 0),
-                      child: CircularProgressIndicatorWidget(),
-                    );
+                            padding:
+                                EdgeInsetsDirectional.fromSTEB(0, 280, 0, 0),
+                            child: CircularProgressIndicatorWidget(),
+                          );
                         }))),
           ],
         ),

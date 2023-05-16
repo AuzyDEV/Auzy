@@ -4,7 +4,6 @@ import 'dart:convert';
 import 'dart:async';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter_facebook_auth/flutter_facebook_auth.dart';
-import 'package:dart_ipify/dart_ipify.dart';
 
 class SigninMan {
   final FirebaseAuth _auth = FirebaseAuth.instance;

@@ -30,10 +30,9 @@ class _chatcopyWidgetState extends State<chatcopyWidget> {
     return Scaffold(
       key: scaffoldKey,
       resizeToAvoidBottomInset: false,
-      backgroundColor: FlutterAppTheme.of(context).whiteColor,
       appBar: PreferredSize(
         preferredSize: const Size.fromHeight(60),
-        child: appbar(text: 'Messages'),
+        child: appbar(text: 'Users'),
       ),
       drawer: Drawerr(),
       body: SafeArea(
@@ -89,6 +88,16 @@ class _chatcopyWidgetState extends State<chatcopyWidget> {
                                           obscureText: false,
                                           decoration: InputDecoration(
                                             hintText: 'Search users ...',
+                                            hintStyle:
+                                                FlutterAppTheme.of(context)
+                                                    .bodyText1
+                                                    .override(
+                                                      color: Colors.grey,
+                                                      fontFamily: 'Roboto',
+                                                      fontSize: 14,
+                                                      fontWeight:
+                                                          FontWeight.normal,
+                                                    ),
                                             enabledBorder: OutlineInputBorder(
                                               borderSide: BorderSide(
                                                 color: Color(0x00000000),
@@ -146,7 +155,6 @@ class _chatcopyWidgetState extends State<chatcopyWidget> {
                                     height: MediaQuery.of(context).size.height,
                                     padding: EdgeInsets.all(10),
                                     decoration: BoxDecoration(
-                                      color: Colors.white,
                                       borderRadius: BorderRadius.only(
                                         topLeft: Radius.circular(25),
                                         topRight: Radius.circular(25),

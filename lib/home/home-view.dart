@@ -884,7 +884,7 @@ class _HomeWidgetState extends State<HomeWidget> {
                                                                         return Padding(
                                                                           padding: EdgeInsetsDirectional.fromSTEB(
                                                                               0,
-                                                                              110,
+                                                                              120,
                                                                               0,
                                                                               0),
                                                                           child:

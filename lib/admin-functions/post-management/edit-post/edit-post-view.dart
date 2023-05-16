@@ -71,7 +71,7 @@ class _editPostDetailsWidgetState extends State<editPostDetailsWidget> {
                       child: Column(
                         children: [
                           HtmlEditor(
-                            controller: controller, //required
+                            controller: controller,
                             htmlEditorOptions: HtmlEditorOptions(
                               hint: "Your text here...",
                             ),

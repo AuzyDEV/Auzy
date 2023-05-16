@@ -78,28 +78,25 @@ class _AllListingsWidgetState extends State<AllListingsWidget> {
         child: Column(
           mainAxisSize: MainAxisSize.max,
           children: [
-            Align(
-              alignment: AlignmentDirectional(0.5, 6.41),
-              child: Column(
-                mainAxisSize: MainAxisSize.max,
-                mainAxisAlignment: MainAxisAlignment.center,
-                children: [
-                  TextFormFieldWidget(
-                    onChanged: (value) {
-                      setState(() {
-                        searchString = value.toLowerCase();
-                      });
-                    },
-                    hintText: "Search for doctors",
-                    controller: SearchtextController,
-                  ),
-                ],
-              ),
+            Column(
+              mainAxisSize: MainAxisSize.max,
+              mainAxisAlignment: MainAxisAlignment.center,
+              children: [
+                TextFormFieldWidget(
+                  onChanged: (value) {
+                    setState(() {
+                      searchString = value.toLowerCase();
+                    });
+                  },
+                  hintText: "Search for doctors... ",
+                  controller: SearchtextController,
+                ),
+              ],
             ),
             RefreshIndicator(
                 onRefresh: _refreshList,
                 child: Padding(
-                    padding: EdgeInsetsDirectional.fromSTEB(8, 0, 8, 0),
+                    padding: EdgeInsetsDirectional.fromSTEB(12, 0, 12, 0),
                     child: FutureBuilder<List<ListingModel>>(
                         future: futureDoctor,
                         builder: (context, snapshot) {
@@ -126,7 +123,7 @@ class _AllListingsWidgetState extends State<AllListingsWidget> {
                                                       padding:
                                                           EdgeInsetsDirectional
                                                               .fromSTEB(
-                                                                  8, 0, 8, 0),
+                                                                  0, 10, 0, 10),
                                                       child: Card(
                                                         clipBehavior: Clip
                                                             .antiAliasWithSaveLayer,
@@ -328,7 +325,7 @@ class _AllListingsWidgetState extends State<AllListingsWidget> {
                                                                                 '${snapshot.data[index].Adress}',
                                                                                 style: FlutterAppTheme.of(context).bodyText1.override(
                                                                                       fontFamily: 'Roboto',
-                                                                                      color: Color(0xFF8B97A2),
+                                                                                      color: FlutterAppTheme.of(context).TextColor,
                                                                                       fontSize: 14,
                                                                                       fontWeight: FontWeight.w500,
                                                                                     ),
@@ -359,9 +356,9 @@ class _AllListingsWidgetState extends State<AllListingsWidget> {
                                                                                 '${snapshot.data[index].phoneNumber}',
                                                                                 style: FlutterAppTheme.of(context).bodyText1.override(
                                                                                       fontFamily: 'Roboto',
-                                                                                      color: Colors.black,
+                                                                                      color: FlutterAppTheme.of(context).TextColor,
                                                                                       fontSize: 14,
-                                                                                      fontWeight: FontWeight.normal,
+                                                                                      fontWeight: FontWeight.w500,
                                                                                     ),
                                                                               ),
                                                                             ),

@@ -169,6 +169,8 @@ class _MyprofilWidgetState extends State<MyprofilWidget> {
                                                   padding: EdgeInsetsDirectional
                                                       .fromSTEB(0, 175, 0, 0),
                                                   child: Divider(
+                                                    indent: 50,
+                                                    endIndent: 50,
                                                     height: 50,
                                                     color: FlutterAppTheme.of(
                                                             context)
@@ -229,7 +231,7 @@ class _MyprofilWidgetState extends State<MyprofilWidget> {
                                       child: Container(
                                         decoration: BoxDecoration(
                                           color: FlutterAppTheme.of(context)
-                                              .secondaryBackground,
+                                              .TransparentColor,
                                           borderRadius:
                                               BorderRadius.circular(12),
                                           border: Border.all(
@@ -306,7 +308,7 @@ class _MyprofilWidgetState extends State<MyprofilWidget> {
                                         child: Container(
                                           decoration: BoxDecoration(
                                             color: FlutterAppTheme.of(context)
-                                                .secondaryBackground,
+                                                .TransparentColor,
                                             borderRadius:
                                                 BorderRadius.circular(12),
                                             border: Border.all(
@@ -428,7 +430,7 @@ class _MyprofilWidgetState extends State<MyprofilWidget> {
                                         child: Container(
                                           decoration: BoxDecoration(
                                             color: FlutterAppTheme.of(context)
-                                                .secondaryBackground,
+                                                .TransparentColor,
                                             borderRadius:
                                                 BorderRadius.circular(12),
                                             border: Border.all(
@@ -550,7 +552,7 @@ class _MyprofilWidgetState extends State<MyprofilWidget> {
                                         child: Container(
                                           decoration: BoxDecoration(
                                             color: FlutterAppTheme.of(context)
-                                                .secondaryBackground,
+                                                .TransparentColor,
                                             borderRadius:
                                                 BorderRadius.circular(12),
                                             border: Border.all(

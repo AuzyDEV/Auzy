@@ -236,7 +236,8 @@ class _SigninWidgetWidgetState extends State<SigninWidget> {
                                   alignment: AlignmentDirectional(0, 0),
                                   child: Icon(
                                     Icons.email,
-                                    color: Colors.black,
+                                    color: FlutterAppTheme.of(context)
+                                        .LightDarkTextColor,
                                     size: 24,
                                   ),
                                 ),
@@ -253,7 +254,8 @@ class _SigninWidgetWidgetState extends State<SigninWidget> {
                                   alignment: AlignmentDirectional(0, 0),
                                   child: Icon(
                                     Icons.facebook,
-                                    color: Colors.black,
+                                    color: FlutterAppTheme.of(context)
+                                        .LightDarkTextColor,
                                     size: 24,
                                   ),
                                 ),

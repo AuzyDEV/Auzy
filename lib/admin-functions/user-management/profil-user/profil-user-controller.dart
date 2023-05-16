@@ -1,11 +1,9 @@
 import 'package:http/http.dart' as http;
 import 'dart:convert';
 import 'dart:async';
-import 'package:firebase_auth/firebase_auth.dart';
 import 'package:skeleton/user-profile/profile-model.dart';
 
 class ProfilUserMan {
-  final FirebaseAuth _auth = FirebaseAuth.instance;
   static List<User> Userslist;
   static String role;
 

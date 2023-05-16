@@ -380,7 +380,7 @@ class _usersnewWidgetState extends State<usersnewWidget> {
                                                                               child: Padding(
                                                                                 padding: EdgeInsetsDirectional.fromSTEB(4, 4, 4, 4),
                                                                                 child: Icon(
-                                                                                  Icons.update,
+                                                                                  Icons.edit,
                                                                                   color: Color.fromARGB(255, 214, 116, 36),
                                                                                   size: 20,
                                                                                 ),

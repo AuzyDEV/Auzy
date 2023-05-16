@@ -1,10 +1,8 @@
 import 'dart:convert';
 import 'package:http/http.dart' as http;
 import 'dart:async';
-import 'package:firebase_auth/firebase_auth.dart';
 
 class EditSingleListingCategoryMan {
-  final FirebaseAuth _auth = FirebaseAuth.instance;
   Future<bool> editListingCategory(String id, String name) async {
     final response = await http.put(
       Uri.parse('http://127.0.0.1:3000/api/updateDB/${id}'),

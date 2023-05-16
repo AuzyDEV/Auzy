@@ -24,7 +24,7 @@ class ProfileHeaderWidget extends StatelessWidget {
                     name,
                     style: TextStyle(
                       fontSize: 24,
-                      color: FlutterAppTheme.of(context).whiteColor,
+                      color: FlutterAppTheme.of(context).LightDarkTextColor,
                       fontWeight: FontWeight.bold,
                     ),
                     overflow: TextOverflow.ellipsis,

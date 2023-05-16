@@ -72,7 +72,8 @@ class _postsForUsersWidgetState extends State<postsForUsersWidget> {
                       TabBar(
                         isScrollable: true,
                         labelColor: FlutterAppTheme.of(context).primaryColor,
-                        unselectedLabelColor: FlutterAppTheme.of(context).Grey,
+                        unselectedLabelColor:
+                            FlutterAppTheme.of(context).primaryText,
                         labelStyle: GoogleFonts.getFont(
                           'Roboto',
                         ),
@@ -81,13 +82,13 @@ class _postsForUsersWidgetState extends State<postsForUsersWidget> {
                         indicatorWeight: 3,
                         tabs: [
                           Tab(
-                            text: 'Posts',
+                            text: 'All Posts',
                           ),
                           Tab(
-                            text: 'Saved',
+                            text: 'Saved Posts',
                           ),
                           Tab(
-                            text: "Shared",
+                            text: "Shared Posts",
                           )
                         ],
                       ),
@@ -186,7 +187,7 @@ class _postsForUsersWidgetState extends State<postsForUsersWidget> {
                                                                                           buttonSize: 46,
                                                                                           icon: Icon(
                                                                                             Icons.bookmark_outline_outlined,
-                                                                                            color: Colors.grey,
+                                                                                            color: FlutterAppTheme.of(context).secondaryText,
                                                                                             size: 23,
                                                                                           ),
                                                                                           onPressed: () async {
@@ -250,7 +251,7 @@ class _postsForUsersWidgetState extends State<postsForUsersWidget> {
                                                                                       padding: EdgeInsetsDirectional.fromSTEB(4, 0, 0, 0),
                                                                                       child: Icon(
                                                                                         Icons.favorite_border_outlined,
-                                                                                        color: Colors.grey,
+                                                                                        color: FlutterAppTheme.of(context).secondaryText,
                                                                                         size: 24,
                                                                                       ),
                                                                                     ),
@@ -274,7 +275,7 @@ class _postsForUsersWidgetState extends State<postsForUsersWidget> {
                                                                                     },
                                                                                     child: Icon(
                                                                                       Icons.ios_share_sharp,
-                                                                                      color: Colors.grey,
+                                                                                      color: FlutterAppTheme.of(context).secondaryText,
                                                                                       size: 23,
                                                                                     ),
                                                                                   ),
@@ -697,7 +698,7 @@ class _postsForUsersWidgetState extends State<postsForUsersWidget> {
                                                                                           },
                                                                                           child: Icon(
                                                                                             Icons.more_vert_outlined,
-                                                                                            color: FlutterAppTheme.of(context).Grey,
+                                                                                            color: FlutterAppTheme.of(context).secondaryText,
                                                                                           )),
                                                                                     ],
                                                                                   ),
@@ -776,7 +777,7 @@ class _postsForUsersWidgetState extends State<postsForUsersWidget> {
                                                                                                   padding: EdgeInsetsDirectional.fromSTEB(4, 0, 0, 0),
                                                                                                   child: Icon(
                                                                                                     Icons.favorite_border_outlined,
-                                                                                                    color: FlutterAppTheme.of(context).Grey,
+                                                                                                    color: FlutterAppTheme.of(context).secondaryText,
                                                                                                     size: 24,
                                                                                                   ),
                                                                                                 ),

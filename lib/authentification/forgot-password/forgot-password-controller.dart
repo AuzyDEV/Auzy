@@ -1,10 +1,8 @@
 import 'package:http/http.dart' as http;
 import 'dart:convert';
 import 'dart:async';
-import 'package:firebase_auth/firebase_auth.dart';
 
 class ForgetPasswordMan {
-  final FirebaseAuth _auth = FirebaseAuth.instance;
 
   Future<String> resetpasswordUser(
     String email,

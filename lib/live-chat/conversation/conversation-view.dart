@@ -28,7 +28,6 @@ class _ChatPageState extends State<ChatPage> {
   @override
   Widget build(BuildContext context) => Scaffold(
         extendBodyBehindAppBar: true,
-        backgroundColor: FlutterAppTheme.of(context).AppBarPrimaryColor,
         body: SafeArea(
             child: FutureBuilder<User>(
                 future: _futureUser,
@@ -42,7 +41,6 @@ class _ChatPageState extends State<ChatPage> {
                           child: Container(
                             padding: EdgeInsets.all(10),
                             decoration: BoxDecoration(
-                              color: FlutterAppTheme.of(context).whiteColor,
                               borderRadius: BorderRadius.only(
                                 topLeft: Radius.circular(25),
                                 topRight: Radius.circular(25),

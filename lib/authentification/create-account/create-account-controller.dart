@@ -1,11 +1,9 @@
 import 'package:http/http.dart' as http;
 import 'dart:convert';
 import 'dart:async';
-import 'package:firebase_auth/firebase_auth.dart';
 import 'package:dart_ipify/dart_ipify.dart';
 
 class CreateAccountMan {
-  final FirebaseAuth _auth = FirebaseAuth.instance;
 
   Future<Map<String, String>> signupUser(
     String email,

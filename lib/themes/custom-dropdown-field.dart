@@ -40,7 +40,10 @@ class _ReusableDropdownState extends State<ReusableDropdown> {
                   widget.onChanged(value);
                 }
               : null,
+          dropdownColor: Colors.white,
           decoration: InputDecoration(
+            filled: true,
+            fillColor: Colors.white,
             errorStyle: FlutterAppTheme.of(context).bodyText1.override(
                   fontFamily: 'Roboto',
                   color: Colors.red,

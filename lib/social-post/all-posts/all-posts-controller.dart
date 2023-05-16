@@ -1,11 +1,9 @@
-import 'package:firebase_auth/firebase_auth.dart';
 import 'all-posts-model.dart';
 import 'package:http/http.dart' as http;
 import 'dart:convert';
 import 'dart:async';
 
 class PostsUserMan {
-  final FirebaseAuth _auth = FirebaseAuth.instance;
   static List<Post> Postslist;
   Future<List<Post>> getAllPostsForUsers() async {
     final response1 =

@@ -39,7 +39,6 @@ class _SpecialitiesWidgetState extends State<SpecialitiesWidget> {
   Widget build(BuildContext context) {
     return Scaffold(
         key: scaffoldKey,
-        backgroundColor: FlutterAppTheme.of(context).primaryBtnText,
         appBar: PreferredSize(
           preferredSize: const Size.fromHeight(60),
           child: appbar(text: 'Categories'),
@@ -49,7 +48,7 @@ class _SpecialitiesWidgetState extends State<SpecialitiesWidget> {
             child: Column(
           children: [
             Padding(
-              padding: EdgeInsetsDirectional.fromSTEB(16, 25, 16, 0),
+              padding: EdgeInsetsDirectional.fromSTEB(16, 20, 16, 10),
               child: Row(
                 mainAxisSize: MainAxisSize.max,
                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
@@ -59,8 +58,10 @@ class _SpecialitiesWidgetState extends State<SpecialitiesWidget> {
                     crossAxisAlignment: CrossAxisAlignment.start,
                     children: [
                       Text(
-                        'Health Professional\'s Specialities',
+                        'Health Professional\'s \n Specialities',
                         style: FlutterAppTheme.of(context).bodyText1.override(
+                              color: FlutterAppTheme.of(context)
+                                  .LightDarkTextColor,
                               fontFamily: 'Open Sans',
                               fontSize: 20,
                             ),
@@ -70,8 +71,8 @@ class _SpecialitiesWidgetState extends State<SpecialitiesWidget> {
                 ],
               ),
             ),
-            Align(
-              alignment: AlignmentDirectional(0.5, 6.41),
+            Padding(
+              padding: EdgeInsetsDirectional.fromSTEB(0, 0, 0, 20),
               child: Column(
                 mainAxisSize: MainAxisSize.max,
                 mainAxisAlignment: MainAxisAlignment.center,

@@ -120,33 +120,36 @@ class _ProfillWidgetState extends State<ProfillWidget> {
                                 ),
                                 Padding(
                                   padding: EdgeInsetsDirectional.fromSTEB(
-                                      0, 20, 0, 0),
+                                      16, 20, 16, 0),
                                   child: Row(
                                     mainAxisSize: MainAxisSize.max,
                                     mainAxisAlignment: MainAxisAlignment.center,
                                     children: [
-                                      CustomButton(
-                                        onPressed: () async {
-                                          await showModalBottomSheet(
-                                            isScrollControlled: true,
-                                            backgroundColor:
-                                                FlutterAppTheme.of(context)
-                                                    .primaryBtnText,
-                                            context: context,
-                                            builder: (context) {
-                                              return Padding(
-                                                padding: MediaQuery.of(context)
-                                                    .viewInsets,
-                                                child: Container(
-                                                  height: 300,
-                                                  child: ShowIpAdressWidget(
-                                                      id: widget.id),
-                                                ),
-                                              );
-                                            },
-                                          );
-                                        },
-                                        text: 'get IP adress',
+                                      Expanded(
+                                        child: CustomButton(
+                                          onPressed: () async {
+                                            await showModalBottomSheet(
+                                              isScrollControlled: true,
+                                              backgroundColor:
+                                                  FlutterAppTheme.of(context)
+                                                      .primaryBtnText,
+                                              context: context,
+                                              builder: (context) {
+                                                return Padding(
+                                                  padding:
+                                                      MediaQuery.of(context)
+                                                          .viewInsets,
+                                                  child: Container(
+                                                    height: 300,
+                                                    child: ShowIpAdressWidget(
+                                                        id: widget.id),
+                                                  ),
+                                                );
+                                              },
+                                            );
+                                          },
+                                          text: 'get IP adress',
+                                        ),
                                       ),
                                     ],
                                   ),

@@ -78,7 +78,7 @@ class _NewMessageWidgetState extends State<NewMessageWidget> {
                   padding: EdgeInsets.all(8),
                   decoration: BoxDecoration(
                     shape: BoxShape.circle,
-                    color: FlutterAppTheme.of(context).tertiaryColor,
+                    color: Colors.blue,
                   ),
                   child: Icon(
                     Icons.send,

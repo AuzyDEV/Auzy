@@ -63,35 +63,33 @@ class _DrawerrState extends State<Drawerr> {
                                     Column(
                                       mainAxisSize: MainAxisSize.max,
                                       children: [
-                                        Align(
-                                            alignment:
-                                                AlignmentDirectional(0, 0),
-                                            child: Card(
-                                              clipBehavior:
-                                                  Clip.antiAliasWithSaveLayer,
-                                              color: FlutterAppTheme.of(context)
-                                                  .primaryColor,
-                                              shape: RoundedRectangleBorder(
-                                                borderRadius:
-                                                    BorderRadius.circular(50),
+                                        Card(
+                                          clipBehavior:
+                                              Clip.antiAliasWithSaveLayer,
+                                          color: FlutterAppTheme.of(context)
+                                              .primaryColor,
+                                          shape: RoundedRectangleBorder(
+                                            borderRadius:
+                                                BorderRadius.circular(50),
+                                          ),
+                                          child: Padding(
+                                            padding:
+                                                EdgeInsetsDirectional.fromSTEB(
+                                                    1, 1, 1, 1),
+                                            child: Container(
+                                              width: 50,
+                                              height: 50,
+                                              clipBehavior: Clip.antiAlias,
+                                              decoration: BoxDecoration(
+                                                shape: BoxShape.circle,
                                               ),
-                                              child: Padding(
-                                                padding: EdgeInsetsDirectional
-                                                    .fromSTEB(1, 1, 1, 1),
-                                                child: Container(
-                                                  width: 50,
-                                                  height: 50,
-                                                  clipBehavior: Clip.antiAlias,
-                                                  decoration: BoxDecoration(
-                                                    shape: BoxShape.circle,
-                                                  ),
-                                                  child: Image.asset(
-                                                    "../assets/images/user.png",
-                                                    fit: BoxFit.cover,
-                                                  ),
-                                                ),
+                                              child: Image.asset(
+                                                "../assets/images/user.png",
+                                                fit: BoxFit.cover,
                                               ),
-                                            )),
+                                            ),
+                                          ),
+                                        )
                                       ],
                                     ),
                                     Padding(
@@ -154,172 +152,163 @@ class _DrawerrState extends State<Drawerr> {
                 ),
               ],
             ),
-            _createDrawerItem(
+            _createDrawerItem(context,
                 icon: Icons.home_outlined,
                 text: 'Home',
-                isSelected: selectedIndex == 0,
-                onTap: () {
-                  setState(() {
-                    selectedIndex = 0;
-                  });
+                isSelected: selectedIndex == 0, onTap: () {
+              setState(() {
+                selectedIndex = 0;
+              });
 
-                  Navigator.push(
-                    context,
-                    MaterialPageRoute(
-                      builder: (context) => HomeWithButtomNavBarWidget(),
-                    ),
-                  );
-                }),
-            _createDrawerItem(
+              Navigator.push(
+                context,
+                MaterialPageRoute(
+                  builder: (context) => HomeWithButtomNavBarWidget(),
+                ),
+              );
+            }),
+            _createDrawerItem(context,
                 icon: Icons.account_circle_outlined,
                 text: 'Profil',
-                isSelected: selectedIndex == 1,
-                onTap: () {
-                  setState(() {
-                    selectedIndex = 1;
-                  });
+                isSelected: selectedIndex == 1, onTap: () {
+              setState(() {
+                selectedIndex = 1;
+              });
 
-                  Navigator.push(
-                    context,
-                    MaterialPageRoute(
-                      builder: (context) => MyprofilWidget(),
-                    ),
-                  );
-                }),
+              Navigator.push(
+                context,
+                MaterialPageRoute(
+                  builder: (context) => MyprofilWidget(),
+                ),
+              );
+            }),
             if (_futureStringValue == "admin")
-              _createDrawerItem(
+              _createDrawerItem(context,
                   icon: Icons.people_alt_outlined,
                   text: 'User Management',
-                  isSelected: selectedIndex == 2,
-                  onTap: () {
-                    setState(() {
-                      selectedIndex = 2;
-                    });
+                  isSelected: selectedIndex == 2, onTap: () {
+                setState(() {
+                  selectedIndex = 2;
+                });
 
-                    Navigator.push(
-                      context,
-                      MaterialPageRoute(
-                        builder: (context) => usersnewWidget(),
-                      ),
-                    );
-                  }),
+                Navigator.push(
+                  context,
+                  MaterialPageRoute(
+                    builder: (context) => usersnewWidget(),
+                  ),
+                );
+              }),
             if (_futureStringValue == "admin")
-              _createDrawerItem(
+              _createDrawerItem(context,
                   icon: Icons.send_outlined,
                   text: 'Announcement',
-                  isSelected: selectedIndex == 5,
-                  onTap: () {
-                    setState(() {
-                      selectedIndex = 5;
-                    });
+                  isSelected: selectedIndex == 5, onTap: () {
+                setState(() {
+                  selectedIndex = 5;
+                });
 
-                    Navigator.push(
-                      context,
-                      MaterialPageRoute(
-                        builder: (context) => announcementWidget(),
-                      ),
-                    );
-                  }),
+                Navigator.push(
+                  context,
+                  MaterialPageRoute(
+                    builder: (context) => announcementWidget(),
+                  ),
+                );
+              }),
             if (_futureStringValue == "admin")
-              _createDrawerItem(
+              _createDrawerItem(context,
                   icon: Icons.co_present_outlined,
                   text: 'Post Management',
-                  isSelected: selectedIndex == 6,
-                  onTap: () {
-                    setState(() {
-                      selectedIndex = 6;
-                    });
-                    Navigator.push(
-                      context,
-                      MaterialPageRoute(
-                        builder: (context) => postsNewWidget(),
-                      ),
-                    );
-                  }),
+                  isSelected: selectedIndex == 6, onTap: () {
+                setState(() {
+                  selectedIndex = 6;
+                });
+                Navigator.push(
+                  context,
+                  MaterialPageRoute(
+                    builder: (context) => postsNewWidget(),
+                  ),
+                );
+              }),
             if (_futureStringValue == "user")
-              _createDrawerItem(
+              _createDrawerItem(context,
                   icon: Icons.co_present_outlined,
                   text: 'Posts',
-                  isSelected: selectedIndex == 6,
-                  onTap: () {
-                    setState(() {
-                      selectedIndex = 6;
-                    });
+                  isSelected: selectedIndex == 6, onTap: () {
+                setState(() {
+                  selectedIndex = 6;
+                });
 
-                    Navigator.push(
-                      context,
-                      MaterialPageRoute(
-                        builder: (context) => postsForUsersWidget(),
-                      ),
-                    );
-                  }),
-            _createDrawerItem(
+                Navigator.push(
+                  context,
+                  MaterialPageRoute(
+                    builder: (context) => postsForUsersWidget(),
+                  ),
+                );
+              }),
+            _createDrawerItem(context,
                 icon: Icons.person_search_outlined,
                 text: 'Doctors',
-                isSelected: selectedIndex == 8,
-                onTap: () {
-                  setState(() {
-                    selectedIndex = 8;
-                  });
+                isSelected: selectedIndex == 8, onTap: () {
+              setState(() {
+                selectedIndex = 8;
+              });
 
-                  Navigator.push(
-                    context,
-                    MaterialPageRoute(
-                      builder: (context) => SpecialitiesWidget(),
-                    ),
-                  );
-                }),
-            _createDrawerItem(
+              Navigator.push(
+                context,
+                MaterialPageRoute(
+                  builder: (context) => SpecialitiesWidget(),
+                ),
+              );
+            }),
+            _createDrawerItem(context,
                 icon: Icons.message_outlined,
                 text: 'Messages',
-                isSelected: selectedIndex == 3,
-                onTap: () {
-                  setState(() {
-                    selectedIndex = 3;
-                  });
+                isSelected: selectedIndex == 3, onTap: () {
+              setState(() {
+                selectedIndex = 3;
+              });
 
-                  Navigator.push(
-                    context,
-                    MaterialPageRoute(
-                      builder: (context) => chatcopyWidget(),
-                    ),
-                  );
-                }),
+              Navigator.push(
+                context,
+                MaterialPageRoute(
+                  builder: (context) => chatcopyWidget(),
+                ),
+              );
+            }),
             if (_futureStringValue == "user")
-              _createDrawerItem(
+              _createDrawerItem(context,
                   icon: Icons.email_outlined,
                   text: 'Contact Us',
-                  isSelected: selectedIndex == 9,
-                  onTap: () {
-                    setState(() {
-                      selectedIndex = 9;
-                    });
+                  isSelected: selectedIndex == 9, onTap: () {
+                setState(() {
+                  selectedIndex = 9;
+                });
 
-                    Navigator.push(
-                      context,
-                      MaterialPageRoute(
-                        builder: (context) => contactUsWidget(),
-                      ),
-                    );
-                  }),
+                Navigator.push(
+                  context,
+                  MaterialPageRoute(
+                    builder: (context) => contactUsWidget(),
+                  ),
+                );
+              }),
             if (_futureStringValue == "admin")
-              _createDrawerItem(
+              _createDrawerItem(context,
                   icon: Icons.list,
                   text: 'Listing Categ Management',
-                  isSelected: selectedIndex == 10,
-                  onTap: () {
-                    setState(() {
-                      selectedIndex = 10;
-                    });
+                  isSelected: selectedIndex == 10, onTap: () {
+                setState(() {
+                  selectedIndex = 10;
+                });
 
-                    Navigator.push(
-                      context,
-                      MaterialPageRoute(
-                        builder: (context) => ListingCategoryForAdmin(),
-                      ),
-                    );
-                  }),
+                Navigator.push(
+                  context,
+                  MaterialPageRoute(
+                    builder: (context) => ListingCategoryForAdmin(),
+                  ),
+                );
+              }),
             _createDrawerItem(
+              context,
               icon: Icons.logout_outlined,
               text: 'Logout',
               isSelected: selectedIndex == 11,
@@ -345,19 +334,20 @@ class _DrawerrState extends State<Drawerr> {
   }
 }
 
-Widget _createDrawerItem(
+Widget _createDrawerItem(BuildContext context,
     {IconData icon, String text, GestureTapCallback onTap, bool isSelected}) {
   return Ink(
     child: ListTile(
       selected: true,
-      hoverColor: Colors.white,
       title: Padding(
         padding: EdgeInsetsDirectional.fromSTEB(12, 8, 12, 0),
         child: Row(
           children: <Widget>[
             Icon(
               icon,
-              color: isSelected ? Color(0xFF9457FB) : Color(0xFF616A6B),
+              color: isSelected
+                  ? FlutterAppTheme.of(context).primaryColor
+                  : FlutterAppTheme.of(context).LightDarkTextColor,
               size: 24,
             ),
             Padding(
@@ -367,7 +357,9 @@ Widget _createDrawerItem(
                 style: TextStyle(
                     fontWeight: FontWeight.bold,
                     fontFamily: 'Roboto',
-                    color: isSelected ? Color(0xFF9457FB) : Color(0xFF616A6B)),
+                    color: isSelected
+                        ? FlutterAppTheme.of(context).primaryColor
+                        : FlutterAppTheme.of(context).LightDarkTextColor),
               ),
             )
           ],

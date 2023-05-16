@@ -5,8 +5,8 @@ import 'dart:async';
 import 'share-post-model.dart';
 
 class sharedPostMan {
-  final FirebaseAuth _auth = FirebaseAuth.instance;
 
+  // ignore: missing_return
   Future<bool> SharePost(
       String postId,
       postContenu,
