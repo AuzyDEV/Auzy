@@ -89,30 +89,22 @@ class _editPostDetailsWidgetState extends State<editPostDetailsWidget> {
                         child: Row(children: [
                           Expanded(
                             child: Padding(
-                              padding:
-                                  EdgeInsetsDirectional.fromSTEB(0, 0, 0, 0),
+                              padding: EdgeInsetsDirectional.fromSTEB(0, 0, 0, 0),
                               child: CustomButton(
                                 onPressed: () async {
                                   String text = await controller.getText();
                                   if (formKey.currentState.validate()) {
-                                    bool response =
-                                        await editPostServices.UpdatePostInfos(
-                                            widget.id,
-                                            titleController.text,
-                                            text);
+                                    bool response = await editPostServices.UpdatePostInfos( widget.id, titleController.text,text);
                                     if (response == true) {
                                       Navigator.push(
                                         context,
                                         MaterialPageRoute(
-                                          builder: (context) =>
-                                              PostsManagementWidget(),
+                                          builder: (context) => PostsManagementWidget(),
                                         ),
                                       );
-                                      ScaffoldMessenger.of(context)
-                                          .showSnackBar(
+                                      ScaffoldMessenger.of(context).showSnackBar(
                                         SnackbarWidget(
-                                          content: Text(
-                                            'Successfully post updated!',
+                                          content: Text( 'Successfully post updated!',
                                           ),
                                         ),
                                       );
@@ -124,14 +116,17 @@ class _editPostDetailsWidgetState extends State<editPostDetailsWidget> {
                                               title: "Error",
                                               content: "$response",
                                             );
-                                          });
+                                          }
+                                      );
                                   }
                                 },
                                 text: 'submit',
                               ),
                             ),
                           ),
-                        ])),
+                        ]
+                      )
+                    ),
                   ],
                 ),
               ],

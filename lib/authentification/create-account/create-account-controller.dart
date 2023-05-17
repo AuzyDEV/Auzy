@@ -5,14 +5,9 @@ import 'package:dart_ipify/dart_ipify.dart';
 
 class CreateAccountMan {
 
-  Future<Map<String, String>> signupUser(
-    String email,
-    String password,
-    String displayName,
-  ) async {
+  Future<Map<String, String>> signupUser(String email,String password,String displayName) async {
     final ipv4 = await Ipify.ipv4();
-    final response = await http.post(
-      Uri.parse('http://127.0.0.1:3000/api/register'),
+    final response = await http.post(Uri.parse('http://127.0.0.1:3000/api/register'),
       headers: <String, String>{
         'Content-Type': 'application/json; charset=UTF-8',
       },

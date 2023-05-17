@@ -8,8 +8,7 @@ class PostMan {
 
   Future<List> GetAllPostsManagement() async {
     Postslist = new List<Post>();
-    final response =
-        await http.get(Uri.parse('http://127.0.0.1:3000/api/posts'));
+    final response = await http.get(Uri.parse('http://127.0.0.1:3000/api/posts'));
     if (response.statusCode == 200) {
       var posts = jsonDecode(response.body);
       List postsList = posts["message"];
@@ -22,8 +21,7 @@ class PostMan {
   }
 
   Future<List<Post>> getAllListingsNew() async {
-    final response =
-        await http.get(Uri.parse('http://127.0.0.1:3000/api/postsnew'));
+    final response = await http.get(Uri.parse('http://127.0.0.1:3000/api/postsnew'));
     if (response.statusCode == 200) {
       final listings = jsonDecode(response.body);
       final allListings = listings["message"]["listCollections"];
@@ -34,8 +32,7 @@ class PostMan {
   }
 
   Future<bool> deletePost(String id) async {
-    final http.Response response =
-        await http.delete(Uri.parse('http://127.0.0.1:3000/api/post/${id}'));
+    final http.Response response = await http.delete(Uri.parse('http://127.0.0.1:3000/api/post/${id}'));
     if (response.statusCode == 200) {
       return true;
     } else {
@@ -44,14 +41,11 @@ class PostMan {
   }
 
   Future<bool> RestorePost(String id) async {
-    final response = await http.put(
-        Uri.parse('http://127.0.0.1:3000/api/postvisibilitytrue/${id}'),
-        headers: <String, String>{
-          'Content-Type': 'application/json; charset=UTF-8',
-        });
+    final response = await http.put(Uri.parse('http://127.0.0.1:3000/api/postvisibilitytrue/${id}'),
+      headers: <String, String>{
+      'Content-Type': 'application/json; charset=UTF-8',
+      });
     if (response.statusCode == 200) {
-      final data = jsonDecode(response.body);
-      print(data);
       return true;
     } else {
       return false;
@@ -59,14 +53,11 @@ class PostMan {
   }
 
   Future<bool> HidePost(String id) async {
-    final response = await http.put(
-        Uri.parse('http://127.0.0.1:3000/api/postvisibilityfalse/${id}'),
-        headers: <String, String>{
-          'Content-Type': 'application/json; charset=UTF-8',
-        });
+    final response = await http.put(Uri.parse('http://127.0.0.1:3000/api/postvisibilityfalse/${id}'),
+      headers: <String, String>{
+        'Content-Type': 'application/json; charset=UTF-8',
+      });
     if (response.statusCode == 200) {
-      final data = jsonDecode(response.body);
-      print(data);
       return true;
     } else {
       return false;
@@ -74,14 +65,14 @@ class PostMan {
   }
 
   Future<bool> deleteFilePostFromDownloadURL(String downloadURL) async {
-    final http.Response response =
-        await http.delete(Uri.parse('http://127.0.0.1:3000/api/filepost'),
-            headers: <String, String>{
-              'Content-Type': 'application/json; charset=UTF-8',
-            },
-            body: jsonEncode(<String, String>{
-              'downloadURL': downloadURL,
-            }));
+    final http.Response response = await http.delete(Uri.parse('http://127.0.0.1:3000/api/filepost'),
+      headers: <String, String>{
+      'Content-Type': 'application/json; charset=UTF-8',
+      },
+      body: jsonEncode(<String, String>{
+      'downloadURL': downloadURL,
+      })
+    );
     if (response.statusCode == 200) {
       return true;
     } else {

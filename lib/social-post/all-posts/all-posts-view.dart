@@ -246,23 +246,7 @@ class _postsForUsersWidgetState extends State<postsForUsersWidget> {
                                                                               children: [
                                                                                 Expanded(
                                                                                     child: Row(
-                                                                                  children: [
-                                                                                    Padding(
-                                                                                      padding: EdgeInsetsDirectional.fromSTEB(4, 0, 0, 0),
-                                                                                      child: Icon(
-                                                                                        Icons.favorite_border_outlined,
-                                                                                        color: FlutterAppTheme.of(context).secondaryText,
-                                                                                        size: 24,
-                                                                                      ),
-                                                                                    ),
-                                                                                    Padding(
-                                                                                      padding: EdgeInsetsDirectional.fromSTEB(4, 0, 0, 0),
-                                                                                      child: Text(
-                                                                                        '2,493',
-                                                                                        style: FlutterAppTheme.of(context).bodyText2,
-                                                                                      ),
-                                                                                    ),
-                                                                                  ],
+                                                                                  children: [],
                                                                                 )),
                                                                                 Padding(
                                                                                   padding: EdgeInsetsDirectional.fromSTEB(4, 0, 0, 0),
@@ -515,15 +499,7 @@ class _postsForUsersWidgetState extends State<postsForUsersWidget> {
                                                                               0),
                                                                           child:
                                                                               Row(
-                                                                            children: [
-                                                                              Padding(
-                                                                                padding: EdgeInsetsDirectional.fromSTEB(4, 0, 0, 0),
-                                                                                child: Text(
-                                                                                  '2,493',
-                                                                                  style: FlutterAppTheme.of(context).bodyText2,
-                                                                                ),
-                                                                              )
-                                                                            ],
+                                                                            children: [],
                                                                           ),
                                                                         ),
                                                                         Padding(
@@ -772,23 +748,7 @@ class _postsForUsersWidgetState extends State<postsForUsersWidget> {
                                                                                           children: [
                                                                                             Expanded(
                                                                                                 child: Row(
-                                                                                              children: [
-                                                                                                Padding(
-                                                                                                  padding: EdgeInsetsDirectional.fromSTEB(4, 0, 0, 0),
-                                                                                                  child: Icon(
-                                                                                                    Icons.favorite_border_outlined,
-                                                                                                    color: FlutterAppTheme.of(context).secondaryText,
-                                                                                                    size: 24,
-                                                                                                  ),
-                                                                                                ),
-                                                                                                Padding(
-                                                                                                  padding: EdgeInsetsDirectional.fromSTEB(4, 0, 0, 0),
-                                                                                                  child: Text(
-                                                                                                    '2,493',
-                                                                                                    style: FlutterAppTheme.of(context).bodyText2,
-                                                                                                  ),
-                                                                                                ),
-                                                                                              ],
+                                                                                              children: [],
                                                                                             )),
                                                                                           ],
                                                                                         ),

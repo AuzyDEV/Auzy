@@ -8,27 +8,9 @@ List<Post> postFromJson(String str) =>
 class Post {
   String id;
   String title;
-  String contenu,
-      date,
-      uname,
-      uphoto,
-      visibility,
-      uid,
-      existsInCollection2,
-      downloadURL;
+  String contenu,date, uname, uphoto, visibility, uid, existsInCollection2, downloadURL;
   List<dynamic> files;
-  Post(
-      {this.id,
-      this.title,
-      this.contenu,
-      this.date,
-      this.uname,
-      this.uphoto,
-      this.visibility,
-      this.uid,
-      this.files,
-      this.existsInCollection2,
-      this.downloadURL});
+  Post({this.id, this.title, this.contenu, this.date, this.uname, this.uphoto, this.visibility, this.uid, this.files, this.existsInCollection2, this.downloadURL});
   factory Post.fromMap(Map<String, dynamic> json) {
     return Post(
       title: (json["title"] ?? ''),
@@ -40,10 +22,7 @@ class Post {
       id: (json["id"] ?? ''),
       title: (json["data"]["title"] ?? ''),
       contenu: (json["data"]["contenu"] ?? ''),
-      date: DateTime.fromMillisecondsSinceEpoch(
-              (json["data"]["date"]["seconds"] * 1000 +
-                  json["data"]["date"]["nanoseconds"] ~/ 1000000))
-          .toString(),
+      date: DateTime.fromMillisecondsSinceEpoch((json["data"]["date"]["seconds"] * 1000 + json["data"]["date"]["nanoseconds"] ~/ 1000000)).toString(),
       uname: (json["data"]["uname"] ?? ''),
       uphoto: (json["data"]["uphoto"] ?? ''),
       uid: (json["data"]["uid"] ?? ''),
@@ -56,11 +35,7 @@ class Post {
       id: (json["id"] ?? ''),
       title: (json["data"]["title"] ?? ''),
       contenu: (json["data"]["contenu"] ?? ''),
-      date: DateFormat('dd MMM yyyy HH:mm')
-          .format(DateTime.fromMillisecondsSinceEpoch(
-              (json["data"]["date"]["seconds"] * 1000 +
-                  json["data"]["date"]["nanoseconds"] ~/ 1000000)))
-          .toString(),
+      date: DateFormat('dd MMM yyyy HH:mm').format(DateTime.fromMillisecondsSinceEpoch((json["data"]["date"]["seconds"] * 1000 +json["data"]["date"]["nanoseconds"] ~/ 1000000))).toString(),
       uname: (json["data"]["uname"] ?? ''),
       uphoto: (json["data"]["uphoto"] ?? ''),
       uid: (json["data"]["uid"] ?? ''),
@@ -73,11 +48,7 @@ class Post {
     return Post(
       title: (json["data"]["title"] ?? ''),
       contenu: (json["data"]["contenu"] ?? ''),
-      date: DateFormat('dd MMM yyyy HH:mm')
-          .format(DateTime.fromMillisecondsSinceEpoch(
-              (json["data"]["date"]["seconds"] * 1000 +
-                  json["data"]["date"]["nanoseconds"] ~/ 1000000)))
-          .toString(),
+      date: DateFormat('dd MMM yyyy HH:mm').format(DateTime.fromMillisecondsSinceEpoch((json["data"]["date"]["seconds"] * 1000 +json["data"]["date"]["nanoseconds"] ~/ 1000000))).toString(),
       uname: (json["data"]["uname"] ?? ''),
       uphoto: (json["data"]["uphoto"] ?? ''),
       uid: (json["data"]["uid"] ?? ''),
@@ -89,10 +60,7 @@ class Post {
     return Post(
       title: (json["title"] ?? ''),
       contenu: (json["contenu"] ?? ''),
-      date: DateTime.fromMillisecondsSinceEpoch(
-              (json["date"]["seconds"] * 1000 +
-                  json["date"]["nanoseconds"] ~/ 1000000))
-          .toString() /*(json["date"]["seconds"] ?? 'haifa').toString()*/,
+      date: DateTime.fromMillisecondsSinceEpoch((json["date"]["seconds"] * 1000 + json["date"]["nanoseconds"] ~/ 1000000)).toString(),
       uname: (json["uname"] ?? ''),
       uphoto: (json["uphoto"] ?? ''),
       visibility: (json["visibility"] ?? '').toString(),
@@ -103,10 +71,7 @@ class Post {
       id: (json["id"] ?? ''),
       title: (json["title"] ?? ''),
       contenu: (json["contenu"] ?? ''),
-      date: DateTime.fromMillisecondsSinceEpoch(
-              (json["date"]["seconds"] * 1000 +
-                  json["date"]["nanoseconds"] ~/ 1000000))
-          .toString(),
+      date: DateTime.fromMillisecondsSinceEpoch((json["date"]["seconds"] * 1000 + json["date"]["nanoseconds"] ~/ 1000000)).toString(),
       uname: (json["uname"] ?? ''),
       uphoto: (json["uphoto"] ?? ''),
       visibility: (json["visibility"] ?? '').toString(),
@@ -117,10 +82,7 @@ class Post {
       id: (json["id"] ?? ''),
       title: (json["data"]["title"] ?? ''),
       contenu: (json["data"]["contenu"] ?? ''),
-      date: DateTime.fromMillisecondsSinceEpoch(
-              (json["data"]["date"]["seconds"] * 1000 +
-                  json["data"]["date"]["nanoseconds"] ~/ 1000000))
-          .toString(),
+      date: DateTime.fromMillisecondsSinceEpoch((json["data"]["date"]["seconds"] * 1000 + json["data"]["date"]["nanoseconds"] ~/ 1000000)).toString(),
       uname: (json["data"]["uname"] ?? ''),
       uphoto: (json["data"]["uphoto"] ?? ''),
       visibility: (json["data"]["visibility"] ?? '').toString(),
@@ -128,8 +90,8 @@ class Post {
     );
   }
   static Post fromJson(Map<String, dynamic> json) => Post(
-        id: (json["uid"] ?? ''),
-        title: (json["title"] ?? ''),
-        contenu: (json["contenu"] ?? ''),
-      );
+      id: (json["uid"] ?? ''),
+      title: (json["title"] ?? ''),
+      contenu: (json["contenu"] ?? ''),
+    );
 }

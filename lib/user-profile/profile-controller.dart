@@ -7,15 +7,13 @@ class ProfilingMan {
   static String role;
 
   Future<User> GetCurrentUser() async {
-    final response1 =
-        await http.get(Uri.parse('http://127.0.0.1:3000/api/currentuser'));
-    if (response1.statusCode == 200) {
-      final currentUser = jsonDecode(response1.body);
+    final responseuser = await http.get(Uri.parse('http://127.0.0.1:3000/api/currentuser'));
+    if (responseuser.statusCode == 200) {
+      final currentUser = jsonDecode(responseuser.body);
       String userId = currentUser["message"][0]['uid'];
-      final response2 = await http
-          .get(Uri.parse('http://127.0.0.1:3000/api/userinfos/${userId}'));
-      if (response2.statusCode == 200) {
-        final currentUserDetails = jsonDecode(response2.body);
+      final responsedetails = await http.get(Uri.parse('http://127.0.0.1:3000/api/userinfos/${userId}'));
+      if (responsedetails.statusCode == 200) {
+        final currentUserDetails = jsonDecode(responsedetails.body);
         final currentUserDetail = currentUserDetails["message"][0];
         return User.fromMapp(currentUserDetail);
       } else {
@@ -27,15 +25,13 @@ class ProfilingMan {
   }
 
   Future<String> GetCurrentUserRole() async {
-    final response1 =
-        await http.get(Uri.parse('http://127.0.0.1:3000/api/currentuser'));
-    if (response1.statusCode == 200) {
-      final currentUser = jsonDecode(response1.body);
+    final responseuser = await http.get(Uri.parse('http://127.0.0.1:3000/api/currentuser'));
+    if (responseuser.statusCode == 200) {
+      final currentUser = jsonDecode(responseuser.body);
       String userId = currentUser["message"][0]['uid'];
-      final response2 = await http
-          .get(Uri.parse('http://127.0.0.1:3000/api/userole/${userId}'));
-      if (response2.statusCode == 200) {
-        final currentUserRole = jsonDecode(response2.body);
+      final responserole = await http.get(Uri.parse('http://127.0.0.1:3000/api/userole/${userId}'));
+      if (responserole.statusCode == 200) {
+        final currentUserRole = jsonDecode(responserole.body);
         role = currentUserRole["message"][0];
         return role;
       } else {
@@ -47,8 +43,7 @@ class ProfilingMan {
   }
 
   Future<String> GetIDCurrentUser() async {
-    final response =
-        await http.get(Uri.parse('http://127.0.0.1:3000/api/currentuser'));
+    final response = await http.get(Uri.parse('http://127.0.0.1:3000/api/currentuser'));
     if (response.statusCode == 200) {
       final currentUser = jsonDecode(response.body);
       String userId = currentUser["message"][0]['uid'];
@@ -59,13 +54,11 @@ class ProfilingMan {
   }
 
   Future<bool> DeleteCurrentUser() async {
-    final response =
-        await http.get(Uri.parse('http://127.0.0.1:3000/api/currentuser'));
+    final response = await http.get(Uri.parse('http://127.0.0.1:3000/api/currentuser'));
     if (response.statusCode == 200) {
       final currentUser = jsonDecode(response.body);
       String userId = currentUser["message"][0]['uid'];
-      final http.Response response1 = await http
-          .delete(Uri.parse('http://127.0.0.1:3000/api/userinfo/${userId}'));
+      final http.Response response1 = await http.delete(Uri.parse('http://127.0.0.1:3000/api/userinfo/${userId}'));
       if (response1.statusCode == 200) {
         return true;
       } else {
@@ -78,8 +71,7 @@ class ProfilingMan {
 
   Future<bool> UpdateprofilUser(
       String id, String email, String displayName, String photoURL) async {
-    final response = await http.put(
-      Uri.parse('http://127.0.0.1:3000/api/userinfo/${id}'),
+    final response = await http.put(Uri.parse('http://127.0.0.1:3000/api/userinfo/${id}'),
       headers: <String, String>{
         'Content-Type': 'application/json; charset=UTF-8',
       },
@@ -97,8 +89,7 @@ class ProfilingMan {
   }
 
   Future<bool> ChangePassword(String password) async {
-    final response = await http.put(
-      Uri.parse('http://127.0.0.1:3000/api/userpassword'),
+    final response = await http.put(Uri.parse('http://127.0.0.1:3000/api/userpassword'),
       headers: <String, String>{
         'Content-Type': 'application/json; charset=UTF-8',
       },
@@ -114,17 +105,15 @@ class ProfilingMan {
   }
 
   Future<bool> BlockCurrentUser() async {
-    final response =
-        await http.get(Uri.parse('http://127.0.0.1:3000/api/currentuser'));
+    final response = await http.get(Uri.parse('http://127.0.0.1:3000/api/currentuser'));
     if (response.statusCode == 200) {
       final currentUser = jsonDecode(response.body);
       String userId = currentUser["message"][0]['uid'];
-      final response1 = await http.put(
-          Uri.parse('http://127.0.0.1:3000/api/blocuser/${userId}'),
-          headers: <String, String>{
-            'Content-Type': 'application/json; charset=UTF-8',
-          });
-      if (response1.statusCode == 200) {
+      final responsedit = await http.put(Uri.parse('http://127.0.0.1:3000/api/blocuser/${userId}'),
+        headers: <String, String>{
+          'Content-Type': 'application/json; charset=UTF-8',
+        });
+      if (responsedit.statusCode == 200) {
         return true;
       } else {
         return false;

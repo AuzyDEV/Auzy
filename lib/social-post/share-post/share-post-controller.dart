@@ -6,19 +6,8 @@ import 'share-post-model.dart';
 
 class sharedPostMan {
 
-  // ignore: missing_return
-  Future<bool> SharePost(
-      String postId,
-      postContenu,
-      String postPhoto,
-      String adminName,
-      String adminPhoto,
-      String currentUserId,
-      String currentUserName,
-      String currentUserphoto,
-      String idSharedUser) async {
-    final response = await http.post(
-      Uri.parse('http://127.0.0.1:3000/api/sharepost'),
+  Future<bool> SharePost(String postId, String postContenu, String postPhoto, String adminName, String adminPhoto, String currentUserId, String currentUserName, String currentUserphoto, String idSharedUser) async {
+    final response = await http.post(Uri.parse('http://127.0.0.1:3000/api/sharepost'),
       headers: <String, String>{
         'Content-Type': 'application/json; charset=UTF-8',
       },
@@ -42,19 +31,15 @@ class sharedPostMan {
   }
 
   Future<List<sharedPost>> getAllSharedPostsByCurrentUserId() async {
-    final response1 =
-        await http.get(Uri.parse('http://127.0.0.1:3000/api/currentuser'));
-    if (response1.statusCode == 200) {
-      final user = jsonDecode(response1.body);
+    final responseuser = await http.get(Uri.parse('http://127.0.0.1:3000/api/currentuser'));
+    if (responseuser.statusCode == 200) {
+      final user = jsonDecode(responseuser.body);
       String userId = user["message"][0]['uid'];
-      final response = await http
-          .get(Uri.parse('http://localhost:3000/api/sharedposts/${userId}'));
+      final response = await http.get(Uri.parse('http://localhost:3000/api/sharedposts/${userId}'));
       if (response.statusCode == 200) {
         final sharedPosts = jsonDecode(response.body);
         var sharedPostsList = sharedPosts["message"]["sharedposts"];
-        return sharedPostsList
-            .map<sharedPost>((json) => sharedPost.fromMap(json))
-            .toList();
+        return sharedPostsList.map<sharedPost>((json) => sharedPost.fromMap(json)).toList();
       } else {
         throw Exception("Failed to get saved post's list");
       }

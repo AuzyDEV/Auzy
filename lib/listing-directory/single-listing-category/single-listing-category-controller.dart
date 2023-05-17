@@ -7,9 +7,7 @@ class SingleListingCategoryMan {
 
   Future<ListingCtegoryModel> getListingCategoryDetails(String id) async {
     String collectionName = "listingCategory";
-    final response = await http
-        .get(Uri.parse('http://127.0.0.1:3000/api/DB/${collectionName}/${id}'));
-
+    final response = await http.get(Uri.parse('http://127.0.0.1:3000/api/DB/${collectionName}/${id}'));
     if (response.statusCode == 200) {
       final listingDetails = jsonDecode(response.body);
       return ListingCtegoryModel.fromMaq(listingDetails);
@@ -20,8 +18,7 @@ class SingleListingCategoryMan {
 
   Future<bool> deleteListingCategory(String id) async {
     String collectionName = "listingCategory";
-    final http.Response response = await http.delete(
-        Uri.parse('http://127.0.0.1:3000/api/DB/${collectionName}/${id}'));
+    final http.Response response = await http.delete(Uri.parse('http://127.0.0.1:3000/api/DB/${collectionName}/${id}'));
     if (response.statusCode == 200) {
       return true;
     } else {

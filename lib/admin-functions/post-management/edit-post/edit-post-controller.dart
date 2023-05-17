@@ -7,8 +7,7 @@ class EditPostMan {
   static List<Post> Postslist;
 
   Future<Post> getPostDetails(String id) async {
-    final response =
-        await http.get(Uri.parse('http://127.0.0.1:3000/api/post/${id}'));
+    final response = await http.get(Uri.parse('http://127.0.0.1:3000/api/post/${id}'));
     if (response.statusCode == 200) {
       final post = jsonDecode(response.body);
       return Post.fromMaq(post);
@@ -18,8 +17,7 @@ class EditPostMan {
   }
 
   Future<bool> UpdatePostInfos(String id, String title, contenu) async {
-    final response = await http.put(
-      Uri.parse('http://127.0.0.1:3000/api/post/${id}'),
+    final response = await http.put(Uri.parse('http://127.0.0.1:3000/api/post/${id}'),
       headers: <String, String>{
         'Content-Type': 'application/json; charset=UTF-8',
       },
@@ -36,14 +34,14 @@ class EditPostMan {
   }
 
   Future<bool> deleteFilePostFromDownloadURL(String downloadURL) async {
-    final http.Response response =
-        await http.delete(Uri.parse('http://127.0.0.1:3000/api/filepost'),
-            headers: <String, String>{
-              'Content-Type': 'application/json; charset=UTF-8',
-            },
-            body: jsonEncode(<String, String>{
-              'downloadURL': downloadURL,
-            }));
+    final http.Response response = await http.delete(Uri.parse('http://127.0.0.1:3000/api/filepost'),
+      headers: <String, String>{
+        'Content-Type': 'application/json; charset=UTF-8',
+      },
+      body: jsonEncode(<String, String>{
+        'downloadURL': downloadURL,
+      })
+    );
     if (response.statusCode == 200) {
       return true;
     } else {

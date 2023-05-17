@@ -9,17 +9,7 @@ class savedPost {
   String postTitle;
   String uid, postContenu, date, uname, uphoto, currentUserId, visibility;
   List<dynamic> files;
-  savedPost(
-      {this.id,
-      this.postTitle,
-      this.postContenu,
-      this.date,
-      this.uname,
-      this.uphoto,
-      this.currentUserId,
-      this.uid,
-      this.visibility,
-      this.files});
+  savedPost({this.id, this.postTitle, this.postContenu, this.date, this.uname, this.uphoto, this.currentUserId, this.uid, this.visibility, this.files});
 
   factory savedPost.fromMap(Map<String, dynamic> json) {
     return savedPost(
@@ -37,10 +27,7 @@ class savedPost {
       id: (json["id"] ?? ''),
       postTitle: (json["data"]["title"] ?? ''),
       postContenu: (json["data"]["contenu"] ?? ''),
-      date: DateTime.fromMillisecondsSinceEpoch(
-              (json["data"]["date"]["seconds"] * 1000 +
-                  json["data"]["date"]["nanoseconds"] ~/ 1000000))
-          .toString(),
+      date: DateTime.fromMillisecondsSinceEpoch((json["data"]["date"]["seconds"] * 1000 + json["data"]["date"]["nanoseconds"] ~/ 1000000)).toString(),
       uname: (json["data"]["uname"] ?? ''),
       uphoto: (json["data"]["uphoto"] ?? ''),
       uid: (json["data"]["uid"] ?? ''),

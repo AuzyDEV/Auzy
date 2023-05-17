@@ -1,7 +1,6 @@
 import 'dart:convert';
 
-List<User> postFromJson(String str) =>
-    List<User>.from(json.decode(str).map((x) => User.fromMap(x)));
+List<User> postFromJson(String str) => List<User>.from(json.decode(str).map((x) => User.fromMap(x)));
 
 class User {
   String id;
@@ -10,15 +9,9 @@ class User {
   String displayName;
   String photoURL, ipadress, role;
   bool disabled;
-  User(
-      {this.id,
-      this.email,
-      this.password,
-      this.displayName,
-      this.photoURL,
-      this.disabled,
-      this.ipadress,
-      this.role});
+  
+  User({this.id, this.email, this.password, this.displayName, this.photoURL, this.disabled, this.ipadress, this.role});
+
   factory User.fromMap(Map<String, dynamic> json) {
     return User(
       id: (json["uid"] ?? ''),

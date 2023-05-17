@@ -6,10 +6,8 @@ import 'package:skeleton/social-post/all-posts/all-posts-model.dart';
 class AddPostMan {
   static List<Post> Postslist;
 
-  Future<String> addNewPost(
-      String title, contenu, String uid, String uname, String uphoto) async {
-    final response = await http.post(
-      Uri.parse('http://127.0.0.1:3000/api/addpost'),
+  Future<String> addNewPost(String title, contenu, String uid, String uname, String uphoto) async {
+    final response = await http.post(Uri.parse('http://127.0.0.1:3000/api/addpost'),
       headers: <String, String>{
         'Content-Type': 'application/json; charset=UTF-8',
       },

@@ -35,7 +35,6 @@ class UserMan {
   Future<int> CountNumberOfUsers() async {
     final response =
         await http.get(Uri.parse('http://127.0.0.1:3000/api/getnumberofusers'));
-
     if (response.statusCode == 200) {
       final numberUsers = jsonDecode(response.body);
       int numberOfUsers = numberUsers["count"];
@@ -46,8 +45,7 @@ class UserMan {
   }
 
   Future<bool> deleteUser(String id) async {
-    final http.Response response = await http
-        .delete(Uri.parse('http://127.0.0.1:3000/api/userinfo/${id}'));
+    final http.Response response = await http.delete(Uri.parse('http://127.0.0.1:3000/api/userinfo/${id}'));
     if (response.statusCode == 200) {
       return true;
     } else {
@@ -56,8 +54,7 @@ class UserMan {
   }
 
   Future<bool> deleteAllUsers() async {
-    final http.Response response = await http
-        .delete(Uri.parse('http://127.0.0.1:3000/api/deleteallusers'));
+    final http.Response response = await http.delete(Uri.parse('http://127.0.0.1:3000/api/deleteallusers'));
     if (response.statusCode == 200) {
       return true;
     } else {
@@ -65,10 +62,8 @@ class UserMan {
     }
   }
 
-  Future<bool> UpdateprofilUser(
-      String id, String email, String displayName, String photoURL) async {
-    final response = await http.put(
-      Uri.parse('http://127.0.0.1:3000/api/userinfo/${id}'),
+  Future<bool> UpdateprofilUser(String id, String email, String displayName, String photoURL) async {
+    final response = await http.put(Uri.parse('http://127.0.0.1:3000/api/userinfo/${id}'),
       headers: <String, String>{
         'Content-Type': 'application/json; charset=UTF-8',
       },
@@ -87,7 +82,6 @@ class UserMan {
 
   Future<List<User>> GetAllUsersForChats() async {
     final response = await http.get(Uri.parse('http://127.0.0.1:3000/api/get'));
-
     if (response.statusCode == 200) {
       final usersList = jsonDecode(response.body);
       final users = usersList["message"];
@@ -98,11 +92,11 @@ class UserMan {
   }
 
   Future<bool> BlockUser(String id) async {
-    final response = await http.put(
-        Uri.parse('http://127.0.0.1:3000/api/blocuser/${id}'),
-        headers: <String, String>{
-          'Content-Type': 'application/json; charset=UTF-8',
-        });
+    final response = await http.put(Uri.parse('http://127.0.0.1:3000/api/blocuser/${id}'),
+      headers: <String, String>{
+        'Content-Type': 'application/json; charset=UTF-8',
+      }
+    );
     if (response.statusCode == 200) {
       return true;
     } else {
@@ -111,11 +105,11 @@ class UserMan {
   }
 
   Future<bool> RestoreUser(String id) async {
-    final response = await http.put(
-        Uri.parse('http://127.0.0.1:3000/api/restoreuser/${id}'),
-        headers: <String, String>{
-          'Content-Type': 'application/json; charset=UTF-8',
-        });
+    final response = await http.put(Uri.parse('http://127.0.0.1:3000/api/restoreuser/${id}'),
+      headers: <String, String>{
+        'Content-Type': 'application/json; charset=UTF-8',
+      }
+    );
     if (response.statusCode == 200) {
       return true;
     } else {
@@ -124,8 +118,7 @@ class UserMan {
   }
 
   Future<List<User>> getAllUsersRole() async {
-    final response =
-        await http.get(Uri.parse('http://localhost:3000/api/usersrole'));
+    final response = await http.get(Uri.parse('http://localhost:3000/api/usersrole'));
     if (response.statusCode == 200) {
       final listUsersRole = jsonDecode(response.body);
       var usersRoles = listUsersRole["message"]["users"];

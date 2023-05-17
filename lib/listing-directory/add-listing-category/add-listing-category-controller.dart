@@ -3,10 +3,7 @@ import 'package:http/http.dart' as http;
 import 'dart:async';
 
 class ListingCtegoryMan {
-
-  Future<String> addNewListingCategory(
-    String Name,
-  ) async {
+  Future<String> addNewListingCategory(String Name) async {
     final response = await http.post(
       Uri.parse('http://127.0.0.1:3000/api/addDB'),
       headers: <String, String>{

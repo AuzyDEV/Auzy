@@ -4,15 +4,8 @@ import 'dart:async';
 
 class DBDoctorMan {
 
-  Future<String> addNewListing(
-      String firstName,
-      String lastName,
-      String speciality,
-      String email,
-      String phoneNumber,
-      String Adress) async {
-    final response = await http.post(
-      Uri.parse('http://127.0.0.1:3000/api/addDB'),
+  Future<String> addNewListing(String firstName,String lastName,String speciality,String email,String phoneNumber,String Adress) async {
+    final response = await http.post(Uri.parse('http://127.0.0.1:3000/api/addDB'),
       headers: <String, String>{
         'Content-Type': 'application/json; charset=UTF-8',
       },

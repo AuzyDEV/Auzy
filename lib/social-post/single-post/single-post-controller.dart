@@ -7,8 +7,7 @@ class SinglePostMan {
   static List<Post> Postslist;
 
   Future<Post> getPostDetails(String id) async {
-    final response =
-        await http.get(Uri.parse('http://127.0.0.1:3000/api/post/${id}'));
+    final response = await http.get(Uri.parse('http://127.0.0.1:3000/api/post/${id}'));
     if (response.statusCode == 200) {
       final postDetails = jsonDecode(response.body);
       return Post.fromMaq(postDetails["message"]);

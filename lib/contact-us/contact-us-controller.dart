@@ -4,10 +4,8 @@ import 'dart:async';
 
 class EmailMan {
 
-  Future<bool> ContactUsWithEmail(
-      String email, String name, String mobile, String message) async {
-    final response = await http.post(
-      Uri.parse('http://127.0.0.1:3000/api/send'),
+  Future<bool> ContactUsWithEmail(String email, String name, String mobile, String message) async {
+    final response = await http.post(Uri.parse('http://127.0.0.1:3000/api/send'),
       headers: <String, String>{
         'Content-Type': 'application/json; charset=UTF-8',
       },

@@ -1,23 +1,13 @@
 import 'dart:convert';
 import 'package:skeleton/social-post/all-posts/file-model.dart';
 
-List<ListingModel> ListingModelFromJson(String str) => List<ListingModel>.from(
-    json.decode(str).map((x) => ListingModel.fromMap(x)));
-
+List<ListingModel> ListingModelFromJson(String str) => List<ListingModel>.from(json.decode(str).map((x) => ListingModel.fromMap(x)));
 class ListingModel {
   String id;
   String firstName, lastName, speciality;
   String email, phoneNumber, Adress;
   List<dynamic> files;
-  ListingModel(
-      {this.id,
-      this.firstName,
-      this.lastName,
-      this.speciality,
-      this.email,
-      this.phoneNumber,
-      this.Adress,
-      this.files});
+  ListingModel({this.id, this.firstName, this.lastName, this.speciality, this.email, this.phoneNumber, this.Adress, this.files});
 
   factory ListingModel.fromMap(Map<String, dynamic> json) {
     return ListingModel(

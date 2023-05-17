@@ -8,12 +8,8 @@ import 'package:flutter_facebook_auth/flutter_facebook_auth.dart';
 class SigninMan {
   final FirebaseAuth _auth = FirebaseAuth.instance;
 
-  Future<String> signinUser(
-    String email,
-    String password,
-  ) async {
-    final response = await http.post(
-      Uri.parse('http://127.0.0.1:3000/api/login'),
+  Future<String> signinUser(String email,String password) async {
+    final response = await http.post(Uri.parse('http://127.0.0.1:3000/api/login'),
       headers: <String, String>{
         'Content-Type': 'application/json; charset=UTF-8',
       },
@@ -27,8 +23,7 @@ class SigninMan {
   }
 
   Future<String> SigninWithFacebook() async {
-    final response = await http.post(
-      Uri.parse('http://127.0.0.1:3000/api/logingoogle'),
+    final response = await http.post(Uri.parse('http://127.0.0.1:3000/api/logingoogle'),
       headers: <String, String>{
         'Content-Type': 'application/json; charset=UTF-8',
       },
@@ -42,8 +37,7 @@ class SigninMan {
   }
 
   Future<bool> LogoutUser() async {
-    final http.Response response =
-        await http.get(Uri.parse('http://127.0.0.1:3000/api/logout'));
+    final http.Response response = await http.get(Uri.parse('http://127.0.0.1:3000/api/logout'));
     if (response.statusCode == 200) {
       return true;
     } else {
@@ -54,42 +48,27 @@ class SigninMan {
   Future<FirebaseUser> signInWithGoogle() async {
     try {
       final GoogleSignInAccount googleUser = await GoogleSignIn().signIn();
-
-      // Obtain the auth details from the request
-      final GoogleSignInAuthentication googleAuth =
-          await googleUser?.authentication;
-
-      // Create a new credential
+      final GoogleSignInAuthentication googleAuth = await googleUser?.authentication;
       var GoogleAuthProvider;
       final credential = GoogleAuthProvider.credential(
         accessToken: googleAuth?.accessToken,
         idToken: googleAuth?.idToken,
       );
-
-      // Once signed in, return the UserCredential
-      return await FirebaseAuth.instance.signInWithGoogle(
-          accessToken: googleAuth?.accessToken, idToken: googleAuth?.idToken);
+      return await FirebaseAuth.instance.signInWithGoogle( accessToken: googleAuth?.accessToken, idToken: googleAuth?.idToken);
     } catch (e) {
       print(e);
     }
   }
 
   Future<Null> signOutWithGoogle() async {
-    // Sign out with firebase
     await FirebaseAuth.instance.signOut();
-    // Sign out with google
     print('signout');
   }
 
   Future<FirebaseUser> signInWithFacebook() async {
     try {
       final LoginResult loginResult = await FacebookAuth.instance.login();
-      print(loginResult.message);
-      // Create a credential from the access token
-      //final OAuthCredential facebookAuthCredential = FacebookAuthProvider.credential(loginResult.accessToken.token);
-
-      return FirebaseAuth.instance
-          .signInWithFacebook(accessToken: loginResult.accessToken.token);
+      return FirebaseAuth.instance.signInWithFacebook(accessToken: loginResult.accessToken.token);
     } catch (e) {
       print(e);
     }
@@ -99,16 +78,11 @@ class SigninMan {
     try {
       final _instance = FacebookAuth.instance;
       final result = await _instance.login(permissions: ['email']);
-      print(result.message);
       if (result.status == LoginStatus.success) {
-        //  final OAuthCredential credential =
-        //   FacebookAuthProvider.credential(result.accessToken.token);
-        final a = await _auth.signInWithFacebook(
-            accessToken: result.accessToken.token);
+        final a = await _auth.signInWithFacebook(accessToken: result.accessToken.token);
         await _instance.getUserData().then((userData) async {
-          //await _auth.currentUser.up(userData['email']);
         });
-        return null;
+      return null;
       } else if (result.status == LoginStatus.cancelled) {
         return 'Login cancelled';
       } else {

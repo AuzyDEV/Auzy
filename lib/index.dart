@@ -9,8 +9,7 @@ export 'admin-functions/post-management/edit-post/edit-post-view.dart'
     show editPostDetailsWidget;
 export 'admin-functions/post-management/edit-post/edit-post-image-widget.dart'
     show updateImagePostWidget;
-export 'admin-functions/user-management/add-user/add-user-view.dart'
-    show addUserWidget;
+export 'admin-functions/user-management/add-user/add-user-view.dart' show addUserWidget;
 export 'admin-functions/user-management/all-users/all-users-view.dart'
     show UsersWidget;
 export 'admin-functions/user-management/profil-user/profil-user-view.dart'

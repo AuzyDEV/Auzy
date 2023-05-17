@@ -294,7 +294,7 @@ class _DrawerrState extends State<Drawerr> {
             if (_futureStringValue == "admin")
               _createDrawerItem(context,
                   icon: Icons.list,
-                  text: 'Listing Categ Management',
+                  text: 'Doctor\'s specialities',
                   isSelected: selectedIndex == 10, onTap: () {
                 setState(() {
                   selectedIndex = 10;
