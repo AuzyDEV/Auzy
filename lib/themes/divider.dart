@@ -8,13 +8,12 @@ class CustomDivider extends StatelessWidget {
   final double endIndent;
 
   const CustomDivider(
-      {Key key,
-      this.height,
-      this.thickness,
-      this.color,
-      this.indent,
-      this.endIndent})
-      : super(key: key);
+    {Key key,
+    this.height,
+    this.thickness,
+    this.color,
+    this.indent,
+    this.endIndent}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
@@ -29,8 +28,7 @@ class CustomDivider extends StatelessWidget {
         ),
       ),
       color: Colors.grey ?? color,
-      margin:
-          EdgeInsetsDirectional.only(start: 50 ?? indent, end: 50 ?? endIndent),
+      margin: EdgeInsetsDirectional.only(start: 50 ?? indent, end: 50 ?? endIndent),
     );
   }
 }

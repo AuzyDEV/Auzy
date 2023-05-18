@@ -26,6 +26,7 @@ class _editprofilWidgetState extends State<editprofilWidget> {
   ProfilingMan profilingUserServices = ProfilingMan();
   bool switchListTileValue;
   Future<User> _futureUser;
+
   @override
   void initState() {
     super.initState();
@@ -55,132 +56,116 @@ class _editprofilWidgetState extends State<editprofilWidget> {
       ),
       drawer: Drawerr(),
       body: SingleChildScrollView(
-          child: FutureBuilder<User>(
-              future: _futureUser,
-              builder: (context, snapshot) {
-                if (snapshot.hasData) {
-                  return Column(
-                    mainAxisSize: MainAxisSize.max,
-                    children: [
-                      Form(
-                        key: formKey,
-                        autovalidateMode: AutovalidateMode.always,
-                        child: Column(
+        child: FutureBuilder<User>(
+          future: _futureUser,
+          builder: (context, snapshot) {
+            if (snapshot.hasData) {
+              return Column(
+                mainAxisSize: MainAxisSize.max,
+                children: [
+                  Form(
+                    key: formKey,
+                    autovalidateMode: AutovalidateMode.always,
+                    child: Column(
+                      mainAxisSize: MainAxisSize.max,
+                      children: [
+                        Padding(
+                          padding: EdgeInsetsDirectional.fromSTEB(0, 0, 0, 0),
+                          child: Column(
+                            mainAxisSize: MainAxisSize.max,
+                            children: [
+                              LabeledRowWidget(text: 'Full Name'),
+                              TextFormFieldWidget(
+                                controller: fullnameController,
+                                isRequired: true,
+                                isString: true,
+                              ),
+                              LabeledRowWidget(text: 'Photo url'),
+                              TextFormFieldWidget(
+                                controller: photourlController,
+                                isRequired: true,
+                              ),
+                              LabeledRowWidget(text: 'Email'),
+                              TextFormFieldWidget(
+                                controller: emailAddressController,
+                                isRequired: true,
+                                isEmail: true,
+                              ),
+                            ],
+                          ),
+                        ),
+                        Column(
                           mainAxisSize: MainAxisSize.max,
                           children: [
                             Padding(
-                              padding:
-                                  EdgeInsetsDirectional.fromSTEB(0, 0, 0, 0),
-                              child: Column(
-                                mainAxisSize: MainAxisSize.max,
+                              padding: EdgeInsetsDirectional.fromSTEB(16, 30, 16, 10),
+                              child: Row(
                                 children: [
-                                  LabeledRowWidget(text: 'Full Name'),
-                                  TextFormFieldWidget(
-                                    controller: fullnameController,
-                                    isRequired: true,
-                                    isString: true,
-                                  ),
-                                  LabeledRowWidget(text: 'Photo url'),
-                                  TextFormFieldWidget(
-                                    controller: photourlController,
-                                    isRequired: true,
-                                  ),
-                                  LabeledRowWidget(text: 'Email'),
-                                  TextFormFieldWidget(
-                                    controller: emailAddressController,
-                                    isRequired: true,
-                                    isEmail: true,
-                                  ),
-                                ],
-                              ),
-                            ),
-                            Column(
-                              mainAxisSize: MainAxisSize.max,
-                              children: [
-                                Padding(
-                                    padding: EdgeInsetsDirectional.fromSTEB(
-                                        16, 30, 16, 10),
-                                    child: Row(children: [
-                                      Expanded(
-                                        child: Padding(
-                                          padding:
-                                              EdgeInsetsDirectional.fromSTEB(
-                                                  0, 0, 0, 0),
-                                          child: CustomButton(
-                                            onPressed: () async {
-                                              if (formKey.currentState
-                                                  .validate()) {
-                                                bool response =
-                                                    await profilingUserServices
-                                                        .UpdateprofilUser(
-                                                            widget.id,
-                                                            emailAddressController
-                                                                .text,
-                                                            fullnameController
-                                                                .text,
-                                                            photourlController
-                                                                .text);
-                                                response == true
-                                                    ? showDialog(
-                                                        context: context,
-                                                        builder: (BuildContext
-                                                            context) {
-                                                          return alertDialogWidget(
-                                                            title: "Succes!",
-                                                            content:
-                                                                "updating infos completed successfully!",
-                                                            actions: [
-                                                              TextButton(
-                                                                child:
-                                                                    Text("ok"),
-                                                                onPressed:
-                                                                    () async {
-                                                                  await Navigator
-                                                                      .push(
-                                                                    context,
-                                                                    MaterialPageRoute(
-                                                                      builder:
-                                                                          (context) =>
-                                                                              HomeWidget(),
-                                                                    ),
-                                                                  );
-                                                                },
-                                                              )
-                                                            ],
+                                  Expanded(
+                                    child: Padding(
+                                      padding: EdgeInsetsDirectional.fromSTEB(0, 0, 0, 0),
+                                      child: CustomButton(
+                                        onPressed: () async {
+                                          if (formKey.currentState.validate()) {
+                                            bool response = await profilingUserServices.UpdateprofilUser(widget.id, emailAddressController.text, fullnameController.text, photourlController.text);
+                                            response == true ? 
+                                              showDialog(
+                                                context: context,
+                                                builder: (BuildContext context) {
+                                                  return alertDialogWidget(
+                                                    title: "Succes!",
+                                                    content: "updating infos completed successfully!",
+                                                    actions: [
+                                                      TextButton(
+                                                        child: Text("ok"),
+                                                        onPressed: () async {
+                                                          await Navigator.push(
+                                                            context,
+                                                            MaterialPageRoute(
+                                                              builder: (context) => HomeWidget(),
+                                                            ),
                                                           );
-                                                        })
-                                                    : showDialog(
-                                                        context: context,
-                                                        builder: (BuildContext
-                                                            context) {
-                                                          return alertDialogWidget(
-                                                            title: "Error!",
-                                                            content:
-                                                                "$response",
-                                                          );
-                                                        });
-                                              }
-                                            },
-                                            text: 'submit',
-                                          ),
-                                        ),
+                                                        },
+                                                      )
+                                                    ],
+                                                  );
+                                                }
+                                              )
+                                            : showDialog(
+                                                context: context,
+                                                builder: (BuildContext context) {
+                                                  return alertDialogWidget(
+                                                    title: "Error!",
+                                                    content: "$response",
+                                                  );
+                                                }
+                                              );
+                                          }
+                                        },
+                                        text: 'submit',
                                       ),
-                                    ])),
-                              ],
+                                    ),
+                                  ),
+                                ]
+                              )
                             ),
                           ],
                         ),
-                      ),
-                    ],
-                  );
-                } else if (snapshot.hasError) {
-                  return Text("${snapshot.error}");
-                }
-
-                return Padding(
-                    padding: EdgeInsetsDirectional.fromSTEB(0, 300, 0, 0),
-                    child: const CircularProgressIndicatorWidget());
-              })),
+                      ],
+                    ),
+                  ),
+                ],
+              );
+            } else if (snapshot.hasError) {
+              return Text("${snapshot.error}");
+            }
+            return Padding(
+                padding: EdgeInsetsDirectional.fromSTEB(0, 300, 0, 0),
+                child: const CircularProgressIndicatorWidget()
+            );
+          }
+        )
+      ),
     );
   }
 }

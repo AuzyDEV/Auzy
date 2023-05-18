@@ -5,10 +5,7 @@ import '../conversation/conversation-controller.dart';
 class NewMessageWidget extends StatefulWidget {
   final String idUser;
 
-  const NewMessageWidget({
-    @required this.idUser,
-    Key key,
-  }) : super(key: key);
+  const NewMessageWidget({ @required this.idUser, Key key,}) : super(key: key);
 
   @override
   _NewMessageWidgetState createState() => _NewMessageWidgetState();
@@ -38,13 +35,14 @@ class _NewMessageWidgetState extends State<NewMessageWidget> {
     } else {
       Navigator.pop(context);
     }
-
     return Future.value(false);
   }
 
   @override
   Widget build(BuildContext context) =>
-      Column(mainAxisAlignment: MainAxisAlignment.end, children: <Widget>[
+    Column(
+      mainAxisAlignment: MainAxisAlignment.end, 
+      children: <Widget>[
         Container(
           color: FlutterAppTheme.of(context).whiteColor,
           padding: EdgeInsets.all(8),
@@ -89,5 +87,6 @@ class _NewMessageWidgetState extends State<NewMessageWidget> {
             ],
           ),
         ),
-      ]);
+      ]
+    );
 }

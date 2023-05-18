@@ -18,8 +18,7 @@ void main() async {
 
 class MyApp extends StatefulWidget {@override
   State<MyApp> createState() => _MyAppState();
-  static _MyAppState of(BuildContext context) =>
-      context.findAncestorStateOfType<_MyAppState>();
+  static _MyAppState of(BuildContext context) => context.findAncestorStateOfType<_MyAppState>();
 }
 
 class _MyAppState extends State<MyApp> {
@@ -28,9 +27,9 @@ class _MyAppState extends State<MyApp> {
 
   void setLocale(Locale value) => setState(() => _locale = value);
   void setThemeMode(ThemeMode mode) => setState(() {
-        _themeMode = mode;
-        FlutterAppTheme.saveThemeMode(mode);
-      });
+    _themeMode = mode;
+    FlutterAppTheme.saveThemeMode(mode);
+  });
 
   @override
   Widget build(BuildContext context) {

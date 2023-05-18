@@ -69,19 +69,17 @@ class _CreateAccountWidgetState extends State<CreateAccountWidget> {
                 mainAxisSize: MainAxisSize.max,
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
-                  Text(
-                    'Create',
+                  Text('Create',
                     style: FlutterAppTheme.of(context).bodyText1.override(
-                          fontFamily: 'Open Sans',
-                          fontSize: 30,
-                        ),
+                      fontFamily: 'Open Sans',
+                      fontSize: 30,
+                    ),
                   ),
-                  Text(
-                    'Account',
+                  Text('Account',
                     style: FlutterAppTheme.of(context).bodyText1.override(
-                          fontFamily: 'Open Sans',
-                          fontSize: 30,
-                        ),
+                      fontFamily: 'Open Sans',
+                      fontSize: 30,
+                    ),
                   ),
                   Divider(
                     thickness: 3,
@@ -130,21 +128,18 @@ class _CreateAccountWidgetState extends State<CreateAccountWidget> {
                         ),
                         LabeledRowWidget(text: 'Select photo'),
                         Padding(
-                          padding:
-                              EdgeInsetsDirectional.fromSTEB(16, 10, 16, 0),
+                          padding: EdgeInsetsDirectional.fromSTEB(16, 10, 16, 0),
                           child: Column(
                             mainAxisAlignment: MainAxisAlignment.center,
                             children: [
-                              Text(
-                                fileName ?? 'No file chosen',
+                              Text( fileName ?? 'No file chosen',
                                 style: TextStyle(
                                   fontWeight: FontWeight.bold,
                                 ),
                               ),
                               ElevatedButton(
                                 onPressed: (() {
-                                  InputElement inputElement =
-                                      FileUploadInputElement();
+                                  InputElement inputElement = FileUploadInputElement();
                                   inputElement.click();
                                   inputElement.onChange.listen((e) {
                                     final files = inputElement.files;
@@ -179,88 +174,81 @@ class _CreateAccountWidgetState extends State<CreateAccountWidget> {
                     mainAxisSize: MainAxisSize.max,
                     children: [
                       Padding(
-                          padding:
-                              EdgeInsetsDirectional.fromSTEB(16, 30, 16, 10),
-                          child: Row(children: [
-                            Expanded(
-                              child: Padding(
-                                padding:
-                                    EdgeInsetsDirectional.fromSTEB(0, 0, 0, 0),
-                                child: CustomButton(
-                                  onPressed: () async {
-                                    if (formKey.currentState.validate()) {
-                                      if (fileContents == null) {
-                                        ScaffoldMessenger.of(context)
-                                            .showSnackBar(SnackBar(
-                                          content:
-                                              Text('Please select a file!'),
-                                          backgroundColor: Colors.red,
-                                        ));
-                                      } else {
-                                        Map<String, String> response =
-                                            await createAccountUserServices
-                                                .signupUser(
-                                                    emailAddressController.text,
-                                                    passwordController.text,
-                                                    fullnameController.text);
-                                        String result = response['result'];
-
-                                        if (result ==
-                                            "User registred & email send successfully") {
-                                          String uid = response['data'];
-                                          await FirebaseStorage.instance
-                                              .ref('users/$uid/$fileName')
-                                              .putData(fileContents);
-                                          showDialog(
-                                              context: context,
-                                              builder: (BuildContext context) {
-                                                return alertDialogWidget(
-                                                  title: "Succes!",
-                                                  content:
-                                                      "Registration completed successfully! please check your email to verify your email adress",
-                                                  actions: [
-                                                    TextButton(
-                                                      child: Text("Ok"),
-                                                      onPressed: () async {
-                                                        await Navigator.push(
-                                                          context,
-                                                          MaterialPageRoute(
-                                                            builder: (context) =>
-                                                                SigninWidget(),
-                                                          ),
-                                                        );
-                                                      },
-                                                    )
-                                                  ],
-                                                );
-                                              });
+                          padding: EdgeInsetsDirectional.fromSTEB(16, 30, 16, 10),
+                          child: Row(
+                            children: [
+                              Expanded(
+                                child: Padding(
+                                  padding: EdgeInsetsDirectional.fromSTEB(0, 0, 0, 0),
+                                  child: CustomButton(
+                                    onPressed: () async {
+                                      if (formKey.currentState.validate()) {
+                                        if (fileContents == null) {
+                                          ScaffoldMessenger.of(context).showSnackBar(
+                                            SnackBar(
+                                              content: Text('Please select a file!'),
+                                              backgroundColor: Colors.red,
+                                            )
+                                          );
                                         } else {
-                                          showDialog(
-                                              context: context,
-                                              builder: (BuildContext context) {
-                                                return alertDialogWidget(
-                                                  title: "Error!",
-                                                  content: "$result",
-                                                  actions: [
-                                                    TextButton(
-                                                      child: Text("Ok"),
-                                                      onPressed: () async {
-                                                        await Navigator.pop(
-                                                            context);
-                                                      },
-                                                    )
-                                                  ],
-                                                );
-                                              });
+                                          Map<String, String> response = await createAccountUserServices.signupUser(emailAddressController.text, passwordController.text, fullnameController.text);
+                                          String result = response['result'];
+
+                                          if (result == "User registred & email send successfully") {
+                                            String uid = response['data'];
+                                            await FirebaseStorage.instance.ref('users/$uid/$fileName').putData(fileContents);
+                                            showDialog(
+                                                context: context,
+                                                builder: (BuildContext context) {
+                                                  return alertDialogWidget(
+                                                    title: "Succes!",
+                                                    content: "Registration completed successfully! please check your email to verify your email adress",
+                                                    actions: [
+                                                      TextButton(
+                                                        child: Text("Ok"),
+                                                        onPressed: () async {
+                                                          await Navigator.push(
+                                                            context,
+                                                            MaterialPageRoute(
+                                                              builder: (context) =>
+                                                                  SigninWidget(),
+                                                            ),
+                                                          );
+                                                        },
+                                                      )
+                                                    ],
+                                                  );
+                                                }
+                                            );
+                                          } else {
+                                            showDialog(
+                                                context: context,
+                                                builder: (BuildContext context) {
+                                                  return alertDialogWidget(
+                                                    title: "Error!",
+                                                    content: "$result",
+                                                    actions: [
+                                                      TextButton(
+                                                        child: Text("Ok"),
+                                                        onPressed: () async {
+                                                          await Navigator.pop(context);
+                                                        },
+                                                      )
+                                                    ],
+                                                  );
+                                                }
+                                            );
+                                          }
                                         }
                                       }
-                                    }
-                                  },
-                                  text: 'create',
+                                    },
+                                    text: 'create',
+                                  ),
                                 ),
                               ),
-                            ),
-                          ])),
+                            ]
+                          )
+                      ),
                     ],
                   ),
                 ],

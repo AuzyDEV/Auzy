@@ -17,6 +17,7 @@ class _ForgetpasswordWidgetState extends State<ForgetpasswordWidget> {
   String response;
   int clickCount = 0;
   ForgetPasswordMan forgetPasswordUserServices = ForgetPasswordMan();
+
   @override
   void initState() {
     super.initState();
@@ -67,38 +68,29 @@ class _ForgetpasswordWidgetState extends State<ForgetpasswordWidget> {
                           Text.rich(
                             TextSpan(
                               text: 'Reset ',
-                              style: FlutterAppTheme.of(context)
-                                  .bodyText1
-                                  .override(
-                                    fontFamily: 'Open Sans',
-                                    color: FlutterAppTheme.of(context)
-                                        .primaryColor,
-                                    fontSize: 30,
-                                  ),
+                              style: FlutterAppTheme.of(context).bodyText1.override(
+                                fontFamily: 'Open Sans',
+                                color: FlutterAppTheme.of(context).primaryColor,
+                                fontSize: 30,
+                              ),
                               children: <TextSpan>[
                                 TextSpan(
                                   text: 'password',
-                                  style: FlutterAppTheme.of(context)
-                                      .bodyText1
-                                      .override(
-                                        fontFamily: 'Open Sans',
-                                        color: FlutterAppTheme.of(context)
-                                            .TextColor,
-                                        fontSize: 30,
-                                      ),
+                                  style: FlutterAppTheme.of(context).bodyText1.override(
+                                    fontFamily: 'Open Sans',
+                                    color: FlutterAppTheme.of(context).TextColor,
+                                    fontSize: 30,
+                                  ),
                                 ),
                               ],
                             ),
                           ),
                           Text(
                             'Enter the email associated with your account',
-                            style: FlutterAppTheme.of(context)
-                                .bodyText1
-                                .override(
-                                  fontFamily: 'Open Sans',
-                                  color:
-                                      FlutterAppTheme.of(context).secondaryText,
-                                ),
+                            style: FlutterAppTheme.of(context).bodyText1.override(
+                              fontFamily: 'Open Sans',
+                              color: FlutterAppTheme.of(context).secondaryText,
+                            ),
                           ),
                         ],
                       ),
@@ -119,52 +111,26 @@ class _ForgetpasswordWidgetState extends State<ForgetpasswordWidget> {
                       isEmail: true,
                     ),
                     Padding(
-                        padding: EdgeInsetsDirectional.fromSTEB(16, 30, 16, 0),
-                        child: Row(children: [
+                      padding: EdgeInsetsDirectional.fromSTEB(16, 30, 16, 0),
+                      child: Row(
+                        children: [
                           Expanded(
                             child: CustomButton(
                               onPressed: () async {
                                 clickCount = clickCount + 1;
                                 if (formKey.currentState.validate()) {
-                                  response = await forgetPasswordUserServices.resetpasswordUser(
-                                      emailAddressController.text);
+                                  response = await forgetPasswordUserServices.resetpasswordUser(emailAddressController.text);
                                 }
                                 if (clickCount < 4) {
-                                  response == "email reset password send!"
-                                      ? showDialog(
-                                          context: context,
-                                          builder: (BuildContext context) {
-                                            return alertDialogWidget(
-                                              title: "Succes",
-                                              content: "$response",
-                                              actions: [
-                                                TextButton(
-                                                  child: Text("Ok"),
-                                                  onPressed: () {
-                                                    Navigator.of(context).pop();
-                                                  },
-                                                )
-                                              ],
-                                            );
-                                          })
-                                      : showDialog(
-                                          context: context,
-                                          builder: (BuildContext context) {
-                                            return alertDialogWidget(
-                                              title: "Error!",
-                                              content: "$response",
-                                            );
-                                          });
-                                } else
-                                  showDialog(
+                                  response == "email reset password send!"? 
+                                    showDialog(
                                       context: context,
                                       builder: (BuildContext context) {
-                                        return AlertDialog(
-                                          title: Text("Error"),
-                                          content: Text(
-                                              "3 requests! We have blocked requests to unusual activity. Try again later."),
+                                        return alertDialogWidget(
+                                          title: "Succes",
+                                          content: "$response",
                                           actions: [
-                                            ElevatedButton(
+                                            TextButton(
                                               child: Text("Ok"),
                                               onPressed: () {
                                                 Navigator.of(context).pop();
@@ -172,12 +138,42 @@ class _ForgetpasswordWidgetState extends State<ForgetpasswordWidget> {
                                             )
                                           ],
                                         );
-                                      });
+                                      }
+                                    )
+                                  : showDialog(
+                                      context: context,
+                                      builder: (BuildContext context) {
+                                        return alertDialogWidget(
+                                          title: "Error!",
+                                          content: "$response",
+                                        );
+                                      }
+                                    );
+                                } else
+                                  showDialog(
+                                    context: context,
+                                    builder: (BuildContext context) {
+                                      return AlertDialog(
+                                        title: Text("Error"),
+                                        content: Text("3 requests! We have blocked requests to unusual activity. Try again later."),
+                                        actions: [
+                                          ElevatedButton(
+                                            child: Text("Ok"),
+                                            onPressed: () {
+                                              Navigator.of(context).pop();
+                                            },
+                                          )
+                                        ],
+                                      );
+                                    }
+                                  );
                               },
                               text: 'Send',
                             ),
                           )
-                        ])),
+                        ]
+                      )
+                    ),
                   ],
                 ),
               ),

@@ -7,12 +7,10 @@ class HomeWithButtomNavBarWidget extends StatefulWidget {
   const HomeWithButtomNavBarWidget({Key key}) : super(key: key);
 
   @override
-  _HomeWithButtomNavBarWidgetState createState() =>
-      _HomeWithButtomNavBarWidgetState();
+  _HomeWithButtomNavBarWidgetState createState() =>  _HomeWithButtomNavBarWidgetState();
 }
 
-class _HomeWithButtomNavBarWidgetState
-    extends State<HomeWithButtomNavBarWidget> {
+class _HomeWithButtomNavBarWidgetState extends State<HomeWithButtomNavBarWidget> {
   final scaffoldKey = GlobalKey<ScaffoldState>();
   String _futureRoleValue;
   Future<String> _getCurrentUserRole() async {
@@ -45,12 +43,13 @@ class _HomeWithButtomNavBarWidgetState
     MyprofilWidget()
   ];
   int _currentIndex = 0;
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       body: _futureRoleValue == "admin"
-          ? _pagesAdmin[_currentIndex]
-          : _pagesUser[_currentIndex],
+        ? _pagesAdmin[_currentIndex]
+        : _pagesUser[_currentIndex],
       bottomNavigationBar: BottomNavigationBar(
         fixedColor: FlutterAppTheme.of(context).ButtonPrimaryColor,
         unselectedItemColor: FlutterAppTheme.of(context).Grey,
@@ -64,15 +63,15 @@ class _HomeWithButtomNavBarWidgetState
             label: 'Home',
           ),
           BottomNavigationBarItem(
-              icon: Icon(
-                Icons.favorite_sharp,
-              ),
-              label: 'Posts'),
+            icon: Icon(
+              Icons.favorite_sharp,
+            ),
+            label: 'Posts'),
           BottomNavigationBarItem(
-              icon: Icon(
-                Icons.person_search,
-              ),
-              label: 'Doctors'),
+            icon: Icon(
+              Icons.person_search,
+            ),
+            label: 'Doctors'),
           BottomNavigationBarItem(
             icon: Icon(
               Icons.person_sharp,

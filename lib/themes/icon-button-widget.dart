@@ -3,16 +3,15 @@ import '../themes/theme.dart';
 
 class FlutterFlowIconButton extends StatelessWidget {
   const FlutterFlowIconButton(
-      {Key key,
-      this.borderColor,
-      this.borderRadius,
-      this.borderWidth,
-      this.buttonSize,
-      this.fillColor,
-      this.icon,
-      this.onPressed})
-      : super(key: key);
-
+    {Key key,
+    this.borderColor,
+    this.borderRadius,
+    this.borderWidth,
+    this.buttonSize,
+    this.fillColor,
+    this.icon,
+    this.onPressed})
+    : super(key: key);
   final double borderRadius;
   final double buttonSize;
   final Color fillColor;
@@ -23,29 +22,27 @@ class FlutterFlowIconButton extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) => Material(
-        borderRadius:
-            borderRadius != null ? BorderRadius.circular(borderRadius) : null,
-        color: FlutterAppTheme.of(context).TransparentColor,
-        clipBehavior: Clip.antiAlias,
-        child: Ink(
-          width: buttonSize,
-          height: buttonSize,
-          decoration: BoxDecoration(
-            color: fillColor,
-            border: Border.all(
-              color:
-                  borderColor ?? FlutterAppTheme.of(context).TransparentColor,
-              width: borderWidth ?? 0,
-            ),
-            borderRadius: borderRadius != null
-                ? BorderRadius.circular(borderRadius)
-                : null,
-          ),
-          child: IconButton(
-            icon: icon,
-            onPressed: onPressed,
-            splashRadius: buttonSize,
-          ),
+    borderRadius: borderRadius != null ? BorderRadius.circular(borderRadius) : null,
+    color: FlutterAppTheme.of(context).TransparentColor,
+    clipBehavior: Clip.antiAlias,
+    child: Ink(
+      width: buttonSize,
+      height: buttonSize,
+      decoration: BoxDecoration(
+        color: fillColor,
+        border: Border.all(
+          color: borderColor ?? FlutterAppTheme.of(context).TransparentColor,
+          width: borderWidth ?? 0,
         ),
-      );
+        borderRadius: borderRadius != null
+            ? BorderRadius.circular(borderRadius)
+            : null,
+      ),
+      child: IconButton(
+        icon: icon,
+        onPressed: onPressed,
+        splashRadius: buttonSize,
+      ),
+    ),
+  );
 }

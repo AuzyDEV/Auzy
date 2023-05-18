@@ -25,10 +25,10 @@ class _buttonWidgetState extends State<buttonWidget> {
         height: 45,
         color: FlutterAppTheme.of(context).ButtonPrimaryColor,
         textStyle: FlutterAppTheme.of(context).subtitle2.override(
-              fontFamily: 'Roboto',
-              color: FlutterAppTheme.of(context).primaryBtnText,
-              fontWeight: FontWeight.bold,
-            ),
+          fontFamily: 'Roboto',
+          color: FlutterAppTheme.of(context).primaryBtnText,
+          fontWeight: FontWeight.bold,
+        ),
         borderSide: BorderSide(
           color: FlutterAppTheme.of(context).TransparentColor,
           width: 1,

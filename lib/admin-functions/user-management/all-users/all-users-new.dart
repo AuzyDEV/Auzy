@@ -98,21 +98,20 @@ class _usersnewWidgetState extends State<usersnewWidget> {
             RefreshIndicator(
               onRefresh: _refreshList,
               child: Padding(
-                  padding: EdgeInsetsDirectional.fromSTEB(8, 0, 8, 0),
-                  child: FutureBuilder<List<User>>(
-                    future: _futureUsers,
-                    builder: (context, snapshot) {
-                      if (snapshot.hasData) {
-                        return ListView.builder(
-                          shrinkWrap: true,
-                          itemCount: snapshot.data.length,
-                          itemBuilder:
-                              (_, index) =>
-                                ((snapshot.data[index].displayName.toLowerCase().contains(searchString)) ||
-                                (snapshot.data[index].email.toLowerCase().contains(searchString)))
-                                ? Padding(
-                                        padding: EdgeInsetsDirectional
-                                            .fromSTEB(0, 10, 0, 0),
+                padding: EdgeInsetsDirectional.fromSTEB(8, 0, 8, 0),
+                child: FutureBuilder<List<User>>(
+                  future: _futureUsers,
+                  builder: (context, snapshot) {
+                    if (snapshot.hasData) {
+                      return ListView.builder(
+                        shrinkWrap: true,
+                        itemCount: snapshot.data.length,
+                        itemBuilder:
+                            (_, index) =>
+                              ((snapshot.data[index].displayName.toLowerCase().contains(searchString)) ||
+                              (snapshot.data[index].email.toLowerCase().contains(searchString)))
+                              ? Padding(
+                                  padding: EdgeInsetsDirectional.fromSTEB(0, 10, 0, 0),
                                   child: Row(
                                     mainAxisSize: MainAxisSize.max,
                                     children: [
@@ -186,11 +185,11 @@ class _usersnewWidgetState extends State<usersnewWidget> {
                                                                       Text(
                                                                         '${snapshot.data[index].displayName}',
                                                                         style: FlutterAppTheme.of(context).subtitle1.override(
-                                                                              fontFamily: 'Roboto',
-                                                                              color: FlutterAppTheme.of(context).TextColor,
-                                                                              fontSize: 18,
-                                                                              fontWeight: FontWeight.w500,
-                                                                            ),
+                                                                          fontFamily: 'Roboto',
+                                                                          color: FlutterAppTheme.of(context).TextColor,
+                                                                          fontSize: 18,
+                                                                          fontWeight: FontWeight.w500,
+                                                                        ),
                                                                       ),
                                                                     ],
                                                                   ),
@@ -201,10 +200,10 @@ class _usersnewWidgetState extends State<usersnewWidget> {
                                                                       children: [
                                                                         Text('${snapshot.data[index].email}',
                                                                           style: FlutterAppTheme.of(context).bodyText2.override(
-                                                                                fontFamily: 'Roboto',
-                                                                                color: FlutterAppTheme.of(context).TextColor,
-                                                                                fontSize: 14,
-                                                                                fontWeight: FontWeight.bold,
+                                                                            fontFamily: 'Roboto',
+                                                                            color: FlutterAppTheme.of(context).TextColor,
+                                                                            fontSize: 14,
+                                                                            fontWeight: FontWeight.bold,
                                                                           ),
                                                                         ),
                                                                       ],
@@ -249,8 +248,7 @@ class _usersnewWidgetState extends State<usersnewWidget> {
                                                         children: [
                                                           Padding(
                                                             padding: EdgeInsetsDirectional.fromSTEB(5, 0, 0, 0),
-                                                            child:
-                                                              InkWell(
+                                                            child: InkWell(
                                                               onTap: () async {
                                                                 var confirmDialogResponse = await showDialog<bool>(
                                                                   context: context,
@@ -443,30 +441,29 @@ class _usersnewWidgetState extends State<usersnewWidget> {
                                       ),
                                     ],
                                   )
-                                )
-                                : Container()
-                            );
-                      } else if (snapshot.hasError) {
-                        return Padding(
-                            padding:
-                                EdgeInsetsDirectional.fromSTEB(0, 80, 0, 0),
-                            child: Text('No doctors',
-                                textAlign: TextAlign.center,
-                                style: FlutterAppTheme.of(context)
-                                    .bodyText2
-                                    .override(
-                                      fontFamily: 'Roboto',
-                                      fontSize: 17,
-                                      fontWeight: FontWeight.bold,
-                                    )
-                                  )
-                              );
-                      }
+                              )
+                              : Container()
+                        );
+                    } else if (snapshot.hasError) {
                       return Padding(
-                        padding: EdgeInsetsDirectional.fromSTEB(0, 280, 0, 0),
-                        child: CircularProgressIndicatorWidget(),
+                          padding: EdgeInsetsDirectional.fromSTEB(0, 80, 0, 0),
+                          child: Text('No doctors',
+                            textAlign: TextAlign.center,
+                            style: FlutterAppTheme.of(context).bodyText2.override(
+                              fontFamily: 'Roboto',
+                              fontSize: 17,
+                              fontWeight: FontWeight.bold,
+                            )
+                          )
                       );
-                    }))
+                    }
+                    return Padding(
+                      padding: EdgeInsetsDirectional.fromSTEB(0, 280, 0, 0),
+                      child: CircularProgressIndicatorWidget(),
+                    );
+                  }
+                )
+              )
             ),
           ],
         ),

@@ -54,8 +54,7 @@ void startPageLoadAnimations(
     createAnimation(animation, vsync);
     await Future.delayed(
       Duration(milliseconds: animation.delay),
-      () => (animation.curvedAnimation.parent as AnimationController)
-          .forward(from: 0.0),
+      () => (animation.curvedAnimation.parent as AnimationController).forward(from: 0.0),
     );
   });
 }

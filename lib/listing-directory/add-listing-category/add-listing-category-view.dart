@@ -10,8 +10,7 @@ class addListingCategoryWidget extends StatefulWidget {
   const addListingCategoryWidget({Key key}) : super(key: key);
 
   @override
-  _addListingCategoryWidgetState createState() =>
-      _addListingCategoryWidgetState();
+  _addListingCategoryWidgetState createState() => _addListingCategoryWidgetState();
 }
 
 class _addListingCategoryWidgetState extends State<addListingCategoryWidget> {
@@ -36,15 +35,15 @@ class _addListingCategoryWidgetState extends State<addListingCategoryWidget> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-        key: scaffoldKey,
-        backgroundColor: FlutterAppTheme.of(context).whiteColor,
-        appBar: PreferredSize(
-          preferredSize: const Size.fromHeight(60),
-          child: appbar(text: 'New Category'),
-        ),
-        drawer: Drawerr(),
-        body: SingleChildScrollView(
-            child: Column(
+      key: scaffoldKey,
+      backgroundColor: FlutterAppTheme.of(context).whiteColor,
+      appBar: PreferredSize(
+        preferredSize: const Size.fromHeight(60),
+        child: appbar(text: 'New Category'),
+      ),
+      drawer: Drawerr(),
+      body: SingleChildScrollView(
+        child: Column(
           mainAxisSize: MainAxisSize.max,
           children: [
             Form(
@@ -71,10 +70,8 @@ class _addListingCategoryWidgetState extends State<addListingCategoryWidget> {
                             Text(fileName),
                             ElevatedButton(
                               onPressed: (() {
-                                InputElement inputElement =
-                                    FileUploadInputElement();
+                                InputElement inputElement = FileUploadInputElement();
                                 inputElement.click();
-
                                 inputElement.onChange.listen((e) {
                                   final files = inputElement.files;
                                   if (files.length == 1) {
@@ -101,57 +98,48 @@ class _addListingCategoryWidgetState extends State<addListingCategoryWidget> {
                     mainAxisSize: MainAxisSize.max,
                     children: [
                       Padding(
-                          padding:
-                              EdgeInsetsDirectional.fromSTEB(16, 30, 16, 10),
-                          child: Row(children: [
+                        padding: EdgeInsetsDirectional.fromSTEB(16, 30, 16, 10),
+                        child: Row(
+                          children: [
                             Expanded(
                               child: Padding(
-                                padding:
-                                    EdgeInsetsDirectional.fromSTEB(0, 0, 0, 0),
+                                padding: EdgeInsetsDirectional.fromSTEB(0, 0, 0, 0),
                                 child: CustomButton(
                                   onPressed: () async {
                                     if (formKey.currentState.validate()) {
                                       if (fileContents == null) {
-                                        ScaffoldMessenger.of(context)
-                                            .showSnackBar(SnackBar(
+                                        ScaffoldMessenger.of(context).showSnackBar(
+                                          SnackBar(
                                           content:
                                               Text('Please select a file!'),
                                           backgroundColor: Colors.red,
-                                        ));
-                                      } else {
-                                        String response =
-                                            await listingCategoriesServives
-                                                .addNewListingCategory(
-                                          NameController.text,
+                                          )
                                         );
-
-                                        await FirebaseStorage.instance
-                                            .ref(
-                                                'listingCategory/$response/$fileName')
-                                            .putData(fileContents);
+                                      } else {
+                                        String response = await listingCategoriesServives.addNewListingCategory( NameController.text, );
+                                        await FirebaseStorage.instance.ref('listingCategory/$response/$fileName').putData(fileContents);
                                         showDialog(
-                                            context: context,
-                                            builder: (BuildContext context) {
-                                              return alertDialogWidget(
-                                                title: "Succes!",
-                                                content:
-                                                    "category was added successfully",
-                                                actions: [
-                                                  TextButton(
-                                                    child: Text("Ok"),
-                                                    onPressed: () async {
-                                                      await Navigator.push(
-                                                        context,
-                                                        MaterialPageRoute(
-                                                          builder: (context) =>
-                                                              HomeWidget(),
-                                                        ),
-                                                      );
-                                                    },
-                                                  )
-                                                ],
-                                              );
-                                            });
+                                          context: context,
+                                          builder: (BuildContext context) {
+                                            return alertDialogWidget(
+                                              title: "Succes!",
+                                              content: "category was added successfully",
+                                              actions: [
+                                                TextButton(
+                                                  child: Text("Ok"),
+                                                  onPressed: () async {
+                                                    await Navigator.push(
+                                                      context,
+                                                      MaterialPageRoute(
+                                                        builder: (context) =>  HomeWidget(),
+                                                      ),
+                                                    );
+                                                  },
+                                                )
+                                              ],
+                                            );
+                                          }
+                                        );
                                       }
                                     }
                                   },
@@ -159,13 +147,17 @@ class _addListingCategoryWidgetState extends State<addListingCategoryWidget> {
                                 ),
                               ),
                             ),
-                          ])),
+                          ]
+                        )
+                      ),
                     ],
                   ),
                 ],
               ),
             ),
           ],
-        )));
+        )
+      )
+    );
   }
 }

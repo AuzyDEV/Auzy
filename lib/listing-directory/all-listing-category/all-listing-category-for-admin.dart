@@ -9,8 +9,7 @@ class ListingCategoryForAdmin extends StatefulWidget {
   const ListingCategoryForAdmin({Key key}) : super(key: key);
 
   @override
-  _ListingCategoryForAdminState createState() =>
-      _ListingCategoryForAdminState();
+  _ListingCategoryForAdminState createState() =>  _ListingCategoryForAdminState();
 }
 
 class _ListingCategoryForAdminState extends State<ListingCategoryForAdmin> {
@@ -20,8 +19,7 @@ class _ListingCategoryForAdminState extends State<ListingCategoryForAdmin> {
   TextEditingController SearchtextController;
   Future<List<ListingCtegoryModel>> _futureCategory;
   ProfilingMan profilingUserServices = ProfilingMan();
-  CategoryListingCtegoryMan categoryListingsServices =
-      CategoryListingCtegoryMan();
+  CategoryListingCtegoryMan categoryListingsServices = CategoryListingCtegoryMan();
 
   @override
   void initState() {
@@ -39,24 +37,23 @@ class _ListingCategoryForAdminState extends State<ListingCategoryForAdmin> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-        key: scaffoldKey,
-        appBar: PreferredSize(
-          preferredSize: const Size.fromHeight(60),
-          child: appbar(text: 'Categories'),
-        ),
-        floatingActionButton: floatingActionButtonWidget(
-          onPressed: () async {
-            await Navigator.push(
-              context,
-              MaterialPageRoute(
-                  builder: (context) => addListingCategoryWidget()),
-            );
-          },
-          icon: Icons.add,
-        ),
-        drawer: Drawerr(),
-        body: SingleChildScrollView(
-            child: Column(
+      key: scaffoldKey,
+      appBar: PreferredSize(
+        preferredSize: const Size.fromHeight(60),
+        child: appbar(text: 'Categories'),
+      ),
+      floatingActionButton: floatingActionButtonWidget(
+        onPressed: () async {
+          await Navigator.push(context,
+            MaterialPageRoute(
+                builder: (context) => addListingCategoryWidget()),
+          );
+        },
+        icon: Icons.add,
+      ),
+      drawer: Drawerr(),
+      body: SingleChildScrollView(
+        child: Column(
           children: [
             Padding(
               padding: EdgeInsetsDirectional.fromSTEB(16, 20, 16, 10),
@@ -68,14 +65,12 @@ class _ListingCategoryForAdminState extends State<ListingCategoryForAdmin> {
                     mainAxisSize: MainAxisSize.max,
                     crossAxisAlignment: CrossAxisAlignment.start,
                     children: [
-                      Text(
-                        'Category Management',
+                      Text('Category Management',
                         style: FlutterAppTheme.of(context).bodyText1.override(
-                              color: FlutterAppTheme.of(context)
-                                  .LightDarkTextColor,
-                              fontFamily: 'Open Sans',
-                              fontSize: 20,
-                            ),
+                          color: FlutterAppTheme.of(context).LightDarkTextColor,
+                          fontFamily: 'Open Sans',
+                          fontSize: 20,
+                        ),
                       ),
                     ],
                   ),
@@ -101,114 +96,100 @@ class _ListingCategoryForAdminState extends State<ListingCategoryForAdmin> {
               ),
             ),
             FutureBuilder<List<ListingCtegoryModel>>(
-                future: _futureCategory,
-                builder: (context, snapshot) {
-                  if (snapshot.hasData) {
-                    return Align(
-                        alignment: AlignmentDirectional(0.05, 0),
-                        child: Padding(
-                            padding:
-                                EdgeInsetsDirectional.fromSTEB(0, 15, 0, 0),
-                            child: GridView.builder(
-                              itemCount: snapshot.data.length,
-                              padding: EdgeInsets.zero,
-                              gridDelegate:
-                                  SliverGridDelegateWithFixedCrossAxisCount(
-                                crossAxisCount: 3,
-                                crossAxisSpacing: 0,
-                                mainAxisSpacing: 3,
-                              ),
-                              shrinkWrap: true,
-                              scrollDirection: Axis.vertical,
-                              itemBuilder: (BuildContext context, int index) {
-                                if (snapshot.data[index].Name
-                                    .toLowerCase()
-                                    .contains(searchString))
-                                  return InkWell(
-                                    onTap: () async {
-                                      await Navigator.push(
-                                        context,
-                                        MaterialPageRoute(
-                                          builder: (context) =>
-                                              SingleListingCategoryWidget(
-                                            id: "${snapshot.data[index].id}",
-                                          ),
-                                        ),
-                                      );
-                                    },
+              future: _futureCategory,
+              builder: (context, snapshot) {
+                if (snapshot.hasData) {
+                  return Align(
+                    alignment: AlignmentDirectional(0.05, 0),
+                    child: Padding(
+                      padding: EdgeInsetsDirectional.fromSTEB(0, 15, 0, 0),
+                      child: GridView.builder(
+                        itemCount: snapshot.data.length,
+                        padding: EdgeInsets.zero,
+                        gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
+                          crossAxisCount: 3,
+                          crossAxisSpacing: 0,
+                          mainAxisSpacing: 3,
+                        ),
+                        shrinkWrap: true,
+                        scrollDirection: Axis.vertical,
+                        itemBuilder: (BuildContext context, int index) {
+                          if (snapshot.data[index].Name.toLowerCase().contains(searchString))
+                            return InkWell(
+                              onTap: () async {
+                                await Navigator.push(context,
+                                  MaterialPageRoute(
+                                    builder: (context) =>
+                                        SingleListingCategoryWidget( id: "${snapshot.data[index].id}",
+                                    ),
+                                  ),
+                                );
+                              },
+                              child: Column(
+                                mainAxisSize: MainAxisSize.max,
+                                children: [
+                                  Container(
+                                    width: 75,
+                                    height: 75,
+                                    decoration: BoxDecoration(
+                                      color: Color(0xFFF1F4F8),
+                                      shape: BoxShape.circle,
+                                    ),
                                     child: Column(
                                       mainAxisSize: MainAxisSize.max,
+                                      mainAxisAlignment: MainAxisAlignment.center,
                                       children: [
-                                        Container(
-                                          width: 75,
-                                          height: 75,
-                                          decoration: BoxDecoration(
-                                            color: Color(0xFFF1F4F8),
-                                            shape: BoxShape.circle,
-                                          ),
-                                          child: Column(
-                                            mainAxisSize: MainAxisSize.max,
-                                            mainAxisAlignment:
-                                                MainAxisAlignment.center,
-                                            children: [
-                                              Image.network(
-                                                '${snapshot.data[index].files[0].downloadURL}',
-                                                width: 40,
-                                                height: 40,
-                                                fit: BoxFit.cover,
-                                              ),
-                                            ],
-                                          ),
-                                        ),
-                                        Padding(
-                                          padding:
-                                              EdgeInsetsDirectional.fromSTEB(
-                                                  0, 10, 0, 0),
-                                          child: Row(
-                                            mainAxisSize: MainAxisSize.max,
-                                            mainAxisAlignment:
-                                                MainAxisAlignment.center,
-                                            children: [
-                                              Expanded(
-                                                child: Text(
-                                                  '${snapshot.data[index].Name}',
-                                                  textAlign: TextAlign.center,
-                                                  style: FlutterAppTheme.of(
-                                                          context)
-                                                      .bodyText1
-                                                      .override(
-                                                        fontFamily: 'Roboto',
-                                                        color:
-                                                            FlutterAppTheme.of(
-                                                                    context)
-                                                                .secondaryText,
-                                                        fontSize: 13,
-                                                        fontWeight:
-                                                            FontWeight.normal,
-                                                      ),
-                                                ),
-                                              )
-                                            ],
-                                          ),
+                                        Image.network(
+                                          '${snapshot.data[index].files[0].downloadURL}',
+                                          width: 40,
+                                          height: 40,
+                                          fit: BoxFit.cover,
                                         ),
                                       ],
                                     ),
-                                  );
-                                else
-                                  return Container();
-                              },
-                            )));
-                  } else if (snapshot.hasError) {
-                    return Center(
-                      child: Text("no data"),
-                    );
-                  }
-                  return Padding(
-                    padding: EdgeInsetsDirectional.fromSTEB(0, 280, 0, 0),
-                    child: CircularProgressIndicatorWidget(),
+                                  ),
+                                  Padding(
+                                    padding:  EdgeInsetsDirectional.fromSTEB( 0, 10, 0, 0),
+                                    child: Row(
+                                      mainAxisSize: MainAxisSize.max,
+                                      mainAxisAlignment:  MainAxisAlignment.center,
+                                      children: [
+                                        Expanded(
+                                          child: Text(
+                                            '${snapshot.data[index].Name}',
+                                            textAlign: TextAlign.center,
+                                            style: FlutterAppTheme.of(context).bodyText1.override(
+                                              fontFamily: 'Roboto',
+                                              color: FlutterAppTheme.of(context).secondaryText,
+                                              fontSize: 13,
+                                              fontWeight: FontWeight.normal,
+                                            ),
+                                          ),
+                                        )
+                                      ],
+                                    ),
+                                  ),
+                                ],
+                              ),
+                            );
+                          else
+                            return Container();
+                        },
+                      )
+                    )
                   );
-                }),
+                } else if (snapshot.hasError) {
+                  return Center(child: Text("no data"),);
+                }
+                return Padding(
+                  padding: EdgeInsetsDirectional.fromSTEB(0, 280, 0, 0),
+                  child: CircularProgressIndicatorWidget(),
+                );
+              }
+            ),
           ],
-        )));
+        )
+      )
+    );
   }
 }

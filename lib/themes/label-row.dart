@@ -17,11 +17,11 @@ class LabeledRowWidget extends StatelessWidget {
           child: Text(
             '$text*',
             style: FlutterAppTheme.of(context).bodyText2.override(
-                  fontFamily: 'Roboto',
-                  color: FlutterAppTheme.of(context).TextColor,
-                  fontSize: 14,
-                  fontWeight: FontWeight.bold,
-                ),
+              fontFamily: 'Roboto',
+              color: FlutterAppTheme.of(context).TextColor,
+              fontSize: 14,
+              fontWeight: FontWeight.bold,
+            ),
           ),
         ),
       ],

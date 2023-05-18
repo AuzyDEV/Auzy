@@ -8,12 +8,10 @@ class floatingActionButtonWidget extends StatefulWidget {
   const floatingActionButtonWidget({this.icon, this.onPressed}) : super();
 
   @override
-  _floatingActionButtonWidgetState createState() =>
-      _floatingActionButtonWidgetState();
+  _floatingActionButtonWidgetState createState() =>  _floatingActionButtonWidgetState();
 }
 
-class _floatingActionButtonWidgetState
-    extends State<floatingActionButtonWidget> {
+class _floatingActionButtonWidgetState extends State<floatingActionButtonWidget> {
   @override
   Widget build(BuildContext context) {
     return FloatingActionButton(

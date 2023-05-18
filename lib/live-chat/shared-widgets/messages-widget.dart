@@ -7,11 +7,7 @@ import '../conversation/conversation-model.dart';
 class MessagesWidget extends StatefulWidget {
   final String idUser, myId;
 
-  const MessagesWidget({
-    @required this.idUser,
-    this.myId,
-    Key key,
-  }) : super(key: key);
+  const MessagesWidget({@required this.idUser, this.myId,  Key key, }) : super(key: key);
   @override
   _MessagesWidgetState createState() => _MessagesWidgetState();
 }
@@ -30,35 +26,34 @@ class _MessagesWidgetState extends State<MessagesWidget> {
 
   @override
   Widget build(BuildContext context) => StreamBuilder<List<Message>>(
-        stream: MessageMan.getMessages(widget.idUser),
-        builder: (context, snapshot) {
-          switch (snapshot.connectionState) {
-            case ConnectionState.waiting:
-              return Center(child: CircularProgressIndicatorWidget());
-            default:
-              if (snapshot.hasError) {
-                return buildText('Something Went Wrong Try later');
-              } else {
-                final messages = snapshot.data;
-
-                return messages.isEmpty
-                    ? buildText('Say Hi..')
-                    : ListView.builder(
-                        physics: BouncingScrollPhysics(),
-                        reverse: true,
-                        itemCount: messages.length,
-                        itemBuilder: (context, index) {
-                          final message = messages[index];
-                          return MessageWidget(
-                            message: message,
-                            isMe: message.idUser == widget.myId,
-                          );
-                        },
-                      );
-              }
-          }
-        },
-      );
+    stream: MessageMan.getMessages(widget.idUser),
+    builder: (context, snapshot) {
+      switch (snapshot.connectionState) {
+        case ConnectionState.waiting:
+          return Center(child: CircularProgressIndicatorWidget());
+        default:
+          if (snapshot.hasError) {
+            return buildText('Something Went Wrong Try later');
+          } else {
+            final messages = snapshot.data;
+            return messages.isEmpty
+            ? buildText('Say Hi..')
+            : ListView.builder(
+                physics: BouncingScrollPhysics(),
+                reverse: true,
+                itemCount: messages.length,
+                itemBuilder: (context, index) {
+                  final message = messages[index];
+                  return MessageWidget(
+                    message: message,
+                    isMe: message.idUser == widget.myId,
+                  );
+                },
+            );
+        }
+      }
+    },
+  );
 
   Widget buildText(String text) => Center(
         child: Text(

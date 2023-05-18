@@ -57,16 +57,16 @@ class _FlutterFlowDropDownState extends State<FlutterFlowDropDown> {
       validator: (value) => value == null ? 'Field is required' : null,
       value: effectiveOptions.contains(dropDownValue) ? dropDownValue : null,
       hint: widget.hintText != null
-          ? Text(widget.hintText, style: widget.textStyle)
-          : null,
+        ? Text(widget.hintText, style: widget.textStyle)
+        : null,
       items: effectiveOptions
           .map((e) => DropdownMenuItem(
-                value: e,
-                child: Text(
-                  e,
-                  style: widget.textStyle,
-                ),
-              ))
+            value: e,
+            child: Text(
+              e,
+              style: widget.textStyle,
+            ),
+          ))
           .toList(),
       elevation: 1,
       onChanged: (value) {
@@ -81,10 +81,10 @@ class _FlutterFlowDropDownState extends State<FlutterFlowDropDown> {
     final childWidget = InputDecorator(
       decoration: InputDecoration(
         errorStyle: FlutterAppTheme.of(context).bodyText1.override(
-              fontFamily: 'Roboto',
-              color: Colors.red,
-              fontWeight: FontWeight.normal,
-            ),
+          fontFamily: 'Roboto',
+          color: Colors.red,
+          fontWeight: FontWeight.normal,
+        ),
         focusedErrorBorder: OutlineInputBorder(
           borderSide: BorderSide(
             color: Colors.red,
@@ -118,13 +118,16 @@ class _FlutterFlowDropDownState extends State<FlutterFlowDropDown> {
       child: Padding(
         padding: widget.margin,
         child: widget.hidesUnderline
-            ? DropdownButtonHideUnderline(child: dropdownWidget)
-            : dropdownWidget,
+          ? DropdownButtonHideUnderline(child: dropdownWidget)
+          : dropdownWidget,
       ),
     );
     if (widget.height != null || widget.width != null) {
       return Container(
-          width: widget.width, height: widget.height, child: childWidget);
+        width: widget.width, 
+        height: widget.height, 
+        child: childWidget
+      );
     }
     return childWidget;
   }

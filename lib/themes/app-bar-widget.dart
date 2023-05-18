@@ -16,13 +16,12 @@ class _appbarState extends State<appbar> {
     return AppBar(
       backgroundColor: FlutterAppTheme.of(context).AppBarPrimaryColor,
       automaticallyImplyLeading: true,
-      title: Text(
-        widget.text,
+      title: Text( widget.text,
         style: FlutterAppTheme.of(context).bodyText2.override(
-              fontFamily: 'Roboto',
-              color: FlutterAppTheme.of(context).whiteColor,
-              fontSize: 18,
-            ),
+          fontFamily: 'Roboto',
+          color: FlutterAppTheme.of(context).whiteColor,
+          fontSize: 18,
+        ),
       ),
       actions: [],
       centerTitle: true,

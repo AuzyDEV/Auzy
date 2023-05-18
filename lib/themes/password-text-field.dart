@@ -46,85 +46,85 @@ class _PasswordFormFieldState extends State<PasswordFormField> {
   @override
   Widget build(BuildContext context) {
     return Padding(
-        padding: EdgeInsetsDirectional.fromSTEB(16, 10, 16, 0),
-        child: TextFormField(
-          autofocus: widget.autoFocus,
-          controller: _controller,
-          focusNode: _focusNode,
-          obscureText: _obscureText,
-          onChanged: widget.onChanged,
-          autovalidateMode: AutovalidateMode.onUserInteraction,
-          cursorColor: FlutterAppTheme.of(context).primaryColor,
-          style: FlutterAppTheme.of(context).bodyText1.override(
-              fontFamily: 'Roboto',
-              color: Colors.black,
-              fontWeight: FontWeight.normal),
-          decoration: InputDecoration(
-            labelText: widget.labelText,
-            hintText: widget.hintText,
-            errorStyle: FlutterAppTheme.of(context).bodyText1.override(
-                  fontFamily: 'Roboto',
-                  color: Colors.red,
-                  fontWeight: FontWeight.normal,
-                ),
-            focusedErrorBorder: OutlineInputBorder(
-              borderSide: BorderSide(
-                color: Colors.red,
-                width: 1,
-              ),
-              borderRadius: BorderRadius.circular(8),
-            ),
-            errorBorder: OutlineInputBorder(
-              borderSide: BorderSide(
-                color: Colors.red,
-                width: 1,
-              ),
-              borderRadius: BorderRadius.circular(8),
-            ),
-            enabledBorder: OutlineInputBorder(
-              borderSide: BorderSide(
-                color: Color(0x988B97A2),
-                width: 1,
-              ),
-              borderRadius: BorderRadius.circular(8),
-            ),
-            focusedBorder: OutlineInputBorder(
-              borderSide: BorderSide(
-                color: Color(0x988B97A2),
-                width: 1,
-              ),
-              borderRadius: BorderRadius.circular(8),
-            ),
-            hintStyle: FlutterAppTheme.of(context).bodyText1.override(
-                  fontFamily: 'Roboto',
-                  color: Color(0xFF9DA3A9),
-                  fontSize: 14,
-                  fontWeight: FontWeight.normal,
-                ),
-            filled: true,
-            fillColor: Colors.white,
-            contentPadding: EdgeInsetsDirectional.fromSTEB(20, 16, 20, 16),
-            suffixIcon: IconButton(
-              iconSize: 23,
-              icon: Icon(
-                _obscureText ? Icons.visibility_off : Icons.visibility,
-              ),
-              onPressed: () {
-                setState(() {
-                  _obscureText = !_obscureText;
-                  _focusNode.requestFocus();
-                });
-              },
-            ),
+      padding: EdgeInsetsDirectional.fromSTEB(16, 10, 16, 0),
+      child: TextFormField(
+        autofocus: widget.autoFocus,
+        controller: _controller,
+        focusNode: _focusNode,
+        obscureText: _obscureText,
+        onChanged: widget.onChanged,
+        autovalidateMode: AutovalidateMode.onUserInteraction,
+        cursorColor: FlutterAppTheme.of(context).primaryColor,
+        style: FlutterAppTheme.of(context).bodyText1.override(
+          fontFamily: 'Roboto',
+          color: Colors.black,
+          fontWeight: FontWeight.normal),
+        decoration: InputDecoration(
+          labelText: widget.labelText,
+          hintText: widget.hintText,
+          errorStyle: FlutterAppTheme.of(context).bodyText1.override(
+            fontFamily: 'Roboto',
+            color: Colors.red,
+            fontWeight: FontWeight.normal,
           ),
-          validator: widget.validator ??
-              (value) {
-                if (value == null || value.isEmpty) {
-                  return 'Field is required';
-                }
-
-                return null;
-              },
-        ));
+          focusedErrorBorder: OutlineInputBorder(
+            borderSide: BorderSide(
+              color: Colors.red,
+              width: 1,
+            ),
+            borderRadius: BorderRadius.circular(8),
+          ),
+          errorBorder: OutlineInputBorder(
+            borderSide: BorderSide(
+              color: Colors.red,
+              width: 1,
+            ),
+            borderRadius: BorderRadius.circular(8),
+          ),
+          enabledBorder: OutlineInputBorder(
+            borderSide: BorderSide(
+              color: Color(0x988B97A2),
+              width: 1,
+            ),
+            borderRadius: BorderRadius.circular(8),
+          ),
+          focusedBorder: OutlineInputBorder(
+            borderSide: BorderSide(
+              color: Color(0x988B97A2),
+              width: 1,
+            ),
+            borderRadius: BorderRadius.circular(8),
+          ),
+          hintStyle: FlutterAppTheme.of(context).bodyText1.override(
+            fontFamily: 'Roboto',
+            color: Color(0xFF9DA3A9),
+            fontSize: 14,
+            fontWeight: FontWeight.normal,
+          ),
+          filled: true,
+          fillColor: Colors.white,
+          contentPadding: EdgeInsetsDirectional.fromSTEB(20, 16, 20, 16),
+          suffixIcon: IconButton(
+            iconSize: 23,
+            icon: Icon(
+              _obscureText ? Icons.visibility_off : Icons.visibility,
+            ),
+            onPressed: () {
+              setState(() {
+                _obscureText = !_obscureText;
+                _focusNode.requestFocus();
+              });
+            },
+          ),
+        ),
+        validator: widget.validator ??
+            (value) {
+              if (value == null || value.isEmpty) {
+                return 'Field is required';
+              }
+              return null;
+            },
+      )
+    );
   }
 }

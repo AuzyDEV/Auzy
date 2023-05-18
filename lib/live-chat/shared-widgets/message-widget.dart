@@ -16,7 +16,6 @@ class MessageWidget extends StatelessWidget {
   Widget build(BuildContext context) {
     final radius = Radius.circular(12);
     final borderRadius = BorderRadius.all(radius);
-
     return Row(
       mainAxisAlignment: isMe ? MainAxisAlignment.end : MainAxisAlignment.start,
       children: <Widget>[
@@ -31,9 +30,10 @@ class MessageWidget extends StatelessWidget {
               );
             },
             child: CircleAvatar(
-                radius: 16,
-                backgroundImage: AssetImage("../../assets/images/user.png")),
-          ),
+              radius: 16,
+              backgroundImage: AssetImage("../../assets/images/user.png")
+            ),
+        ),
         Column(
           children: [
             Container(
@@ -41,13 +41,10 @@ class MessageWidget extends StatelessWidget {
               margin: EdgeInsets.all(16),
               constraints: BoxConstraints(maxWidth: 140),
               decoration: BoxDecoration(
-                color:
-                    isMe ? FlutterAppTheme.of(context).lightGrey : Colors.blue,
+                color: isMe ? FlutterAppTheme.of(context).lightGrey : Colors.blue,
                 borderRadius: isMe
-                    ? borderRadius
-                        .subtract(BorderRadius.only(bottomRight: radius))
-                    : borderRadius
-                        .subtract(BorderRadius.only(bottomLeft: radius)),
+                    ? borderRadius.subtract(BorderRadius.only(bottomRight: radius))
+                    : borderRadius.subtract(BorderRadius.only(bottomLeft: radius)),
               ),
               child: buildMessage(),
             ),
@@ -62,14 +59,13 @@ class MessageWidget extends StatelessWidget {
   }
 
   Widget buildMessage() => Column(
-        crossAxisAlignment:
-            isMe ? CrossAxisAlignment.end : CrossAxisAlignment.start,
-        children: <Widget>[
-          Text(
-            message.message,
-            style: TextStyle(color: isMe ? Colors.black : Colors.white),
-            textAlign: isMe ? TextAlign.end : TextAlign.start,
-          ),
-        ],
-      );
+    crossAxisAlignment: isMe ? CrossAxisAlignment.end : CrossAxisAlignment.start,
+    children: <Widget>[
+      Text(
+        message.message,
+        style: TextStyle(color: isMe ? Colors.black : Colors.white),
+        textAlign: isMe ? TextAlign.end : TextAlign.start,
+      ),
+    ],
+  );
 }

@@ -23,31 +23,33 @@ class _ShowIpAdressWidgetState extends State<ShowIpAdressWidget> {
   @override
   Widget build(BuildContext context) {
     return Container(
-        width: double.infinity,
-        height: double.infinity,
-        child: FutureBuilder<String>(
-            future: _futureUser,
-            builder: (context, snapshot) {
-              if (snapshot.hasData) {
-                return Column(
-                  mainAxisSize: MainAxisSize.max,
-                  children: [
-                    Text(
-                      '${snapshot.data}',
-                      textAlign: TextAlign.center,
-                      style: FlutterAppTheme.of(context).bodyText1.override(
-                            color: Colors.black,
-                            fontFamily: 'Roboto',
-                            fontSize: 20,
-                            fontWeight: FontWeight.bold,
-                          ),
-                    ),
-                  ],
-                );
-              } else if (snapshot.hasError) {
-                return Text("${snapshot.error}");
-              }
-              return Center(child: CircularProgressIndicatorWidget());
-            }));
+      width: double.infinity,
+      height: double.infinity,
+      child: FutureBuilder<String>(
+        future: _futureUser,
+        builder: (context, snapshot) {
+          if (snapshot.hasData) {
+            return Column(
+              mainAxisSize: MainAxisSize.max,
+              children: [
+                Text(
+                  '${snapshot.data}',
+                  textAlign: TextAlign.center,
+                  style: FlutterAppTheme.of(context).bodyText1.override(
+                    color: Colors.black,
+                    fontFamily: 'Roboto',
+                    fontSize: 20,
+                    fontWeight: FontWeight.bold,
+                  ),
+                ),
+              ],
+            );
+          } else if (snapshot.hasError) {
+            return Text("${snapshot.error}");
+          }
+          return Center(child: CircularProgressIndicatorWidget());
+        }
+      )
+    );
   }
 }

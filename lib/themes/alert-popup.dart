@@ -18,12 +18,12 @@ class _alertDialogWidgetState extends State<alertDialogWidget> {
       title: Text(widget.title),
       content: Text(widget.content),
       actions: widget.actions ??
-          <Widget>[
-            TextButton(
-              onPressed: () => Navigator.of(context).pop(),
-              child: Text('Close'),
-            ),
-          ],
+        <Widget>[
+          TextButton(
+            onPressed: () => Navigator.of(context).pop(),
+            child: Text('Close'),
+          ),
+        ],
     );
   }
 }

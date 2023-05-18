@@ -133,7 +133,8 @@ class _editPostDetailsWidgetState extends State<editPostDetailsWidget> {
             ),
           ),
         ],
-      )),
+      )
+    ),
     );
   }
 }

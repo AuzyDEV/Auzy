@@ -61,15 +61,15 @@ class _addListingWidgetState extends State<addListingWidget> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-        key: scaffoldKey,
-        backgroundColor: FlutterAppTheme.of(context).whiteColor,
-        appBar: PreferredSize(
-          preferredSize: const Size.fromHeight(60),
-          child: appbar(text: 'New Listing'),
-        ),
-        drawer: Drawerr(),
-        body: SingleChildScrollView(
-            child: Column(
+      key: scaffoldKey,
+      backgroundColor: FlutterAppTheme.of(context).whiteColor,
+      appBar: PreferredSize(
+        preferredSize: const Size.fromHeight(60),
+        child: appbar(text: 'New Listing'),
+      ),
+      drawer: Drawerr(),
+      body: SingleChildScrollView(
+        child: Column(
           mainAxisSize: MainAxisSize.max,
           children: [
             Form(
@@ -94,15 +94,19 @@ class _addListingWidgetState extends State<addListingWidget> {
                         isString: true,
                       ),
                       LabeledRowWidget(text: 'Speciality'),
-                      Row(mainAxisSize: MainAxisSize.max, children: [
-                        Expanded(
+                      Row(
+                        mainAxisSize: MainAxisSize.max, 
+                        children: [
+                          Expanded(
                             child: ReusableDropdown(
-                          items: specialties,
-                          onChanged: (value) {
-                            dropDownValue = value;
-                          },
-                        )),
-                      ]),
+                              items: specialties,
+                              onChanged: (value) {
+                                dropDownValue = value;
+                              },
+                            )
+                          ),
+                        ]
+                      ),
                       LabeledRowWidget(text: 'Adress'),
                       TextFormFieldWidget(
                         controller: addressController,
@@ -127,18 +131,15 @@ class _addListingWidgetState extends State<addListingWidget> {
                         child: Column(
                           mainAxisAlignment: MainAxisAlignment.center,
                           children: [
-                            Text(
-                              fileName ?? 'No file chosen',
+                            Text(fileName ?? 'No file chosen',
                               style: TextStyle(
                                 fontWeight: FontWeight.bold,
                               ),
                             ),
                             ElevatedButton(
                               onPressed: (() {
-                                InputElement inputElement =
-                                    FileUploadInputElement();
+                                InputElement inputElement = FileUploadInputElement();
                                 inputElement.click();
-
                                 inputElement.onChange.listen((e) {
                                   final files = inputElement.files;
                                   if (files.length == 1) {
@@ -165,61 +166,46 @@ class _addListingWidgetState extends State<addListingWidget> {
                     mainAxisSize: MainAxisSize.max,
                     children: [
                       Padding(
-                          padding:
-                              EdgeInsetsDirectional.fromSTEB(16, 30, 16, 10),
-                          child: Row(children: [
+                        padding: EdgeInsetsDirectional.fromSTEB(16, 30, 16, 10),
+                        child: Row(
+                          children: [
                             Expanded(
                               child: Padding(
-                                padding:
-                                    EdgeInsetsDirectional.fromSTEB(0, 0, 0, 0),
+                                padding: EdgeInsetsDirectional.fromSTEB(0, 0, 0, 0),
                                 child: CustomButton(
                                   onPressed: () async {
                                     if (formKey.currentState.validate()) {
                                       if (fileContents == null) {
-                                        ScaffoldMessenger.of(context)
-                                            .showSnackBar(
-                                       SnackBar(
-                                          content:
-                                              Text('Please select a file!'),
-                                          backgroundColor: Colors.red,
-                                        )
+                                        ScaffoldMessenger.of(context).showSnackBar(
+                                          SnackBar(
+                                            content:Text('Please select a file!'),
+                                            backgroundColor: Colors.red,
+                                          )
                                         );
                                       } else {
-                                        String response =
-                                            await listingServices.addNewListing(
-                                                firstNameController.text,
-                                                lastNameController.text,
-                                                dropDownValue,
-                                                emailController.text,
-                                                phoneNumberController.text,
-                                                addressController.text);
-
-                                        await FirebaseStorage.instance
-                                            .ref('doctors/$response/$fileName')
-                                            .putData(fileContents);
+                                        String response = await listingServices.addNewListing( firstNameController.text, lastNameController.text, dropDownValue,  emailController.text,  phoneNumberController.text, addressController.text);
+                                        await FirebaseStorage.instance.ref('doctors/$response/$fileName').putData(fileContents);
                                         showDialog(
-                                            context: context,
-                                            builder: (BuildContext context) {
-                                              return alertDialogWidget(
-                                                title: "Succes!",
-                                                content:
-                                                    "Doctor was added successfully",
-                                                actions: [
-                                                  TextButton(
-                                                    child: Text("Ok"),
-                                                    onPressed: () async {
-                                                      await Navigator.push(
-                                                        context,
-                                                        MaterialPageRoute(
-                                                          builder: (context) =>
-                                                              HomeWidget(),
-                                                        ),
-                                                      );
-                                                    },
-                                                  )
-                                                ],
-                                              );
-                                            });
+                                          context: context,
+                                          builder: (BuildContext context) {
+                                            return alertDialogWidget(
+                                              title: "Succes!",
+                                              content: "Doctor was added successfully",
+                                              actions: [
+                                                TextButton(
+                                                  child: Text("Ok"),
+                                                  onPressed: () async {
+                                                    await Navigator.push(context,
+                                                      MaterialPageRoute(
+                                                        builder: (context) => HomeWidget(),
+                                                      ),
+                                                    );
+                                                  },
+                                                )
+                                              ],
+                                            );
+                                          }
+                                        );
                                       }
                                     }
                                   },
@@ -227,13 +213,17 @@ class _addListingWidgetState extends State<addListingWidget> {
                                 ),
                               ),
                             ),
-                          ])),
+                          ]
+                        )
+                      ),
                     ],
                   ),
                 ],
               ),
             ),
           ],
-        )));
+        )
+      )
+    );
   }
 }

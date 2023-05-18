@@ -1,7 +1,6 @@
 import 'dart:convert';
 
-List<sharedPost> sharedPostFromJson(String str) =>
-    List<sharedPost>.from(json.decode(str).map((x) => sharedPost.fromMap(x)));
+List<sharedPost> sharedPostFromJson(String str) => List<sharedPost>.from(json.decode(str).map((x) => sharedPost.fromMap(x)));
 
 class sharedPost {
   String id, postId, postContenu, postPhoto, adminName, adminPhoto, currentUserId, currentUserName, currentUserphoto, idSharedUser, dateShare;
