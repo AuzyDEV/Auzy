@@ -8,13 +8,13 @@ class File {
   String name;
   String downloadURL, contentType, size, timeCreated, updated;
   File(
-      {this.id,
-      this.name,
-      this.downloadURL,
-      this.contentType,
-      this.size,
-      this.timeCreated,
-      this.updated});
+    {this.id,
+    this.name,
+    this.downloadURL,
+    this.contentType,
+    this.size,
+    this.timeCreated,
+    this.updated});
   factory File.fromMap(Map<String, dynamic> json) {
     return File(
       name: (json["name"] ?? ''),
@@ -36,9 +36,10 @@ class File {
       updated: (json["updated"] ?? ''),
     );
   }
-  static File fromJson(Map<String, dynamic> json) => File(
-        id: (json["uid"] ?? ''),
-        name: (json["name"] ?? ''),
-        downloadURL: (json["downloadURL"] ?? ''),
-      );
+  static File fromJson(Map<String, dynamic> json) => 
+    File(
+      id: (json["uid"] ?? ''),
+      name: (json["name"] ?? ''),
+      downloadURL: (json["downloadURL"] ?? ''),
+    );
 }

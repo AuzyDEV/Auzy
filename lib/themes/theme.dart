@@ -6,27 +6,28 @@ const kThemeModeKey = '__theme_mode__';
 SharedPreferences _prefs;
 
 abstract class FlutterAppTheme {
-  static Future initialize() async =>  _prefs = await SharedPreferences.getInstance();
+  static Future initialize() async =>
+      _prefs = await SharedPreferences.getInstance();
   static ThemeMode get themeMode {
     final darkMode = _prefs?.getBool(kThemeModeKey);
     return darkMode == null
-      ? ThemeMode.system
-      : darkMode
-          ? ThemeMode.dark
-          : ThemeMode.light;
+        ? ThemeMode.system
+        : darkMode
+            ? ThemeMode.dark
+            : ThemeMode.light;
   }
 
   static void saveThemeMode(ThemeMode mode) {
     print(ThemeMode.system);
     mode == ThemeMode.system
-      ? _prefs?.remove(kThemeModeKey)
-      : _prefs?.setBool(kThemeModeKey, mode == ThemeMode.dark);
+        ? _prefs?.remove(kThemeModeKey)
+        : _prefs?.setBool(kThemeModeKey, mode == ThemeMode.dark);
   }
 
   static FlutterAppTheme of(BuildContext context) =>
-    Theme.of(context).brightness == Brightness.dark
-      ? DarkModeTheme()
-      : LightModeTheme();
+      Theme.of(context).brightness == Brightness.dark
+          ? DarkModeTheme()
+          : LightModeTheme();
 
   Color primaryColor;
   Color secondaryColor;
@@ -35,6 +36,7 @@ abstract class FlutterAppTheme {
   Color primaryBackground;
   Color secondaryBackground;
   Color primaryText;
+  Color tabBarText;
   Color secondaryText;
   Color ButtonPrimaryColor;
   Color AppBarPrimaryColor;
@@ -108,6 +110,7 @@ class LightModeTheme extends FlutterAppTheme {
   Color TextColor = const Color(0xFF101213);
   Color LightDarkTextColor = Colors.black54;
   Color MenuItemColorDrawer = Color(0xFF616A6B);
+  Color tabBarText = Color(0x988B97A2);
   // colors
   Color whiteColor = const Color(0xFFFFFFFF);
   Color blackColor = Colors.black;
@@ -144,6 +147,7 @@ class DarkModeTheme extends FlutterAppTheme {
   Color primaryBackground = const Color(0xFF1A1F24);
   Color secondaryBackground = const Color(0xFF101213);
   Color primaryText = const Color(0xFFFFFFFF);
+  Color tabBarText = const Color(0xFFFFFFFF);
   Color secondaryText = const Color(0xFFFFFFFF);
   Color ButtonPrimaryColor = const Color(0xFFFFFFFF);
   Color primaryBtnText = Color(0xFFFFFFFF);
@@ -169,23 +173,24 @@ extension TextStyleHelper on TextStyle {
     bool useGoogleFonts = true,
     TextDecoration decoration,
     double lineHeight,
-  }) => useGoogleFonts
-        ? GoogleFonts.getFont(
-            fontFamily,
-            color: color ?? this.color,
-            fontSize: fontSize ?? this.fontSize,
-            fontWeight: fontWeight ?? this.fontWeight,
-            fontStyle: fontStyle ?? this.fontStyle,
-            decoration: decoration,
-            height: lineHeight,
-          )
-        : copyWith(
-            fontFamily: fontFamily,
-            color: color,
-            fontSize: fontSize,
-            fontWeight: fontWeight,
-            fontStyle: fontStyle,
-            decoration: decoration,
-            height: lineHeight,
-          );
+  }) =>
+      useGoogleFonts
+          ? GoogleFonts.getFont(
+              fontFamily,
+              color: color ?? this.color,
+              fontSize: fontSize ?? this.fontSize,
+              fontWeight: fontWeight ?? this.fontWeight,
+              fontStyle: fontStyle ?? this.fontStyle,
+              decoration: decoration,
+              height: lineHeight,
+            )
+          : copyWith(
+              fontFamily: fontFamily,
+              color: color,
+              fontSize: fontSize,
+              fontWeight: fontWeight,
+              fontStyle: fontStyle,
+              decoration: decoration,
+              height: lineHeight,
+            );
 }

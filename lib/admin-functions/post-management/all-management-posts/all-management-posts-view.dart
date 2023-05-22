@@ -1,474 +1,533 @@
 import 'package:flutter_html/flutter_html.dart';
 import '../../../index.dart';
-import 'all-management-posts-controller.dart';
 import '../../../social-post/all-posts/all-posts-model.dart';
-import '../../../user-profile/profile-controller.dart';
-import 'package:flutter/material.dart';
 import '../../../themes/theme.dart';
+import 'package:flutter/material.dart';
+import '../../../user-profile/profile-controller.dart';
+import 'all-management-posts-controller.dart';
 
-class PostsManagementWidget extends StatefulWidget {
-  const PostsManagementWidget({Key key}) : super(key: key);
+class postsNewWidget extends StatefulWidget {
+  final String speciality;
+  const postsNewWidget({Key key, this.speciality}) : super(key: key);
 
   @override
-  _PostsManagementWidgetState createState() => _PostsManagementWidgetState();
+  _postsNewWidgetState createState() => _postsNewWidgetState();
 }
 
-class _PostsManagementWidgetState extends State<PostsManagementWidget>
-    with TickerProviderStateMixin {
+class _postsNewWidgetState extends State<postsNewWidget> {
   final scaffoldKey = GlobalKey<ScaffoldState>();
-  List empsFiltered = [];
-  String _searchResult = '';
-  int _currentSortColumn = 0;
-  bool _isSortAsc = true;
+  Future<List<Post>> futurePosts;
   PostMan postServices = PostMan();
-  ProfilingMan userServices = ProfilingMan();
-  String role;
-  TextEditingController searchController = TextEditingController();
-  Future<List<Post>> _futurePosts;
-  void _loadData() async {
-    await postServices.GetAllPostsManagement();
+  String searchString = "";
+  TextEditingController SearchtextController;
+  String _futureRoleValue;
+  ProfilingMan apiUser = ProfilingMan();
+  int itemCount = 2;
+  ScrollController _scrollController = ScrollController();
+
+  Future<String> _getCurrentUserRole() async {
+    return apiUser.GetCurrentUserRole();
+  }
+
+  void _getFutureRoleValue() async {
+    String value = await _getCurrentUserRole();
+    setState(() {
+      _futureRoleValue = value;
+    });
+  }
+
+  void _scrollListener() {
+    if (_scrollController.offset >= _scrollController.position.maxScrollExtent && !_scrollController.position.outOfRange) {
+      setState(() {
+        itemCount += 3;
+      });
+    }
   }
 
   Future<void> _refreshList() async {
     setState(() {
-      _futurePosts = postServices.GetAllPostsManagement();
+      futurePosts = postServices.getAllListingsNew();
     });
-  }
-
-  Future<String> _getCurrentUserRole() async {
-    this.role = await userServices.GetCurrentUserRole();
   }
 
   @override
   void initState() {
     super.initState();
-    _loadData();
+    _getFutureRoleValue();
+    futurePosts = postServices.getAllListingsNew();
+    _scrollController.addListener(_scrollListener);
+    SearchtextController = TextEditingController();
+  }
+
+  @override
+  void dispose() {
+    super.dispose();
   }
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       key: scaffoldKey,
+      backgroundColor: FlutterAppTheme.of(context).whiteColor,
       appBar: PreferredSize(
         preferredSize: const Size.fromHeight(60),
-        child: appbar(text: 'Posts'),
+        child: appbar(text: 'Post Management'),
       ),
-      backgroundColor: FlutterAppTheme.of(context).whiteColor,
-      floatingActionButton: floatingActionButtonWidget(
-        onPressed: () async {
-          await Navigator.push(
-            context,
-            MaterialPageRoute(builder: (context) => addNewPostWidget()),
-          );
-        },
-        icon: Icons.add,
-      ),
+      floatingActionButton: _futureRoleValue == "admin" ? 
+        floatingActionButtonWidget(
+          onPressed: () async {
+            await Navigator.push(
+              context,
+              MaterialPageRoute(builder: (context) => addNewPostWidget()),
+            );
+          },
+          icon: Icons.add,
+        )
+      : null,
       drawer: Drawerr(),
-      body: SafeArea(
-        child: GestureDetector(
-          onTap: () => FocusScope.of(context).unfocus(),
-          child: Padding(
-            padding: EdgeInsetsDirectional.fromSTEB(0, 8, 0, 16),
-            child: ListView(
-              children: [
-                Card(
-                  child: ListTile(
-                    leading: const Icon(
-                      Icons.search,
-                      color: Color(0xFF9457FB),
-                    ),
-                    title: TextField(
-                        controller: searchController,
-                        decoration: const InputDecoration(
-                            hintText: 'Search', border: InputBorder.none),
-                        onChanged: (value) {
-                          setState(() {
-                            _searchResult = value;
-                            empsFiltered = PostMan.Postslist.where((e) =>
-                                e.title.contains(_searchResult.toLowerCase()) ||
-                                e.contenu.contains(
-                                    _searchResult.toLowerCase())).toList();
-                          });
-                        }),
-                    trailing: IconButton(
-                      icon: const Icon(
-                        Icons.cancel,
-                      ),
-                      onPressed: () {
-                        setState(() {
-                          searchController.clear();
-                          _searchResult = '';
-                          empsFiltered = PostMan.Postslist;
-                        });
-                      },
-                    ),
+      body: SingleChildScrollView(
+        child: Column( mainAxisSize: MainAxisSize.max,
+          children: [
+            Align(
+              alignment: AlignmentDirectional(0.5, 6.41),
+              child: Column(
+                mainAxisSize: MainAxisSize.max,
+                mainAxisAlignment: MainAxisAlignment.center,
+                children: [
+                  TextFormFieldWidget(
+                    onChanged: (value) {
+                      setState(() {
+                        searchString = value.toLowerCase();
+                      });
+                    },
+                    hintText: "Search..",
+                    controller: SearchtextController,
                   ),
-                ),
-                SingleChildScrollView(
-                    scrollDirection: Axis.vertical,
-                    child: SingleChildScrollView(
-                        scrollDirection: Axis.horizontal,
-                        child: RefreshIndicator(
-                          onRefresh: _refreshList,
-                          child: _createDataTable(),
-                        ))),
-              ],
+                ],
+              ),
             ),
-          ),
-        ),
-      ),
-    );
-  }
-
-  DataTable _createDataTable() {
-    return DataTable(
-      columns: _createColumns(),
-      rows: _createRows(),
-      sortColumnIndex: _currentSortColumn,
-      sortAscending: _isSortAsc,
-    );
-  }
-
-  List<DataColumn> _createColumns() {
-    return [
-      DataColumn(label: Text('ID')),
-      DataColumn(
-        label: Text('Title'),
-        onSort: (columnIndex, _) {
-          setState(() {
-            _currentSortColumn = columnIndex;
-            if (_isSortAsc) {
-              empsFiltered.sort((a, b) => b.title.compareTo(a.title));
-            } else {
-              empsFiltered.sort((a, b) => a.title.compareTo(b.title));
-            }
-            _isSortAsc = !_isSortAsc;
-          });
-        },
-      ),
-      DataColumn(label: Text('Text')),
-      DataColumn(label: Text('Date')),
-      DataColumn(label: Text('Action'))
-    ];
-  }
-
-  List<DataRow> _createRows() {
-    return empsFiltered
-        .map((e) => DataRow(
-              color: MaterialStateColor.resolveWith((states) {
-                if (e.visibility.toString() == "false") {
-                  return Colors.red[50];
-                } else
-                  return Colors.green[50];
-              }),
-              cells: [
-                DataCell(Text('#' + e.id.toString())),
-                DataCell(Text(e.title.toString())),
-                DataCell(
-                  Container(
-                    width: 500,
-                    height: 100,
-                    child: Html(
-                      data: e.contenu.toString(),
-                    ),
-                  ),
-                ),
-                DataCell(Text(e.date.toString())),
-                DataCell(
-                  Padding(
-                      padding: EdgeInsetsDirectional.fromSTEB(0, 8, 10, 8),
-                      child: Row(children: [
-                        InkWell(
-                          onTap: () async {
-                            await Navigator.push(
-                              context,
-                              MaterialPageRoute(
-                                builder: (context) =>
-                                    postDetailsWidget(id: e.id.toString()),
-                              ),
-                            );
-                          },
-                          child: Container(
-                            width: 40,
-                            height: 30,
-                            decoration: BoxDecoration(
-                              color: Colors.blue[50],
-                              borderRadius: BorderRadius.circular(8),
-                              border: Border.all(
-                                color: Colors.blue[50],
-                                width: 0,
-                              ),
-                            ),
-                            child: Padding(
-                              padding:
-                                  EdgeInsetsDirectional.fromSTEB(4, 4, 4, 4),
-                              child: Icon(
-                                Icons.remove_red_eye_outlined,
-                                color: Colors.blue,
-                                size: 20,
-                              ),
-                            ),
-                          ),
-                        ),
-                        Padding(
-                          padding: EdgeInsetsDirectional.fromSTEB(5, 0, 0, 0),
-                          child: InkWell(
-                            onTap: () async {
-                              var confirmDialogResponse =
-                                  await showDialog<bool>(
-                                        context: context,
-                                        builder: (alertDialogContext) {
-                                          return alertDialogWidget(
-                                            title: 'Delete post',
-                                            content:
-                                                'Are you sure to delete this post ?',
-                                            actions: [
-                                              TextButton(
-                                                onPressed: () => Navigator.pop(
-                                                    alertDialogContext, false),
-                                                child: Text('Cancel'),
+            RefreshIndicator(
+              onRefresh: _refreshList,
+              child: Padding( padding: EdgeInsetsDirectional.fromSTEB(8, 0, 8, 0),
+                child: FutureBuilder<List<Post>>(
+                  future: futurePosts,
+                  builder: (context, snapshot) {
+                    if (snapshot.hasData) {
+                      return ListView.builder(
+                        shrinkWrap: true,
+                        controller: _scrollController,
+                        itemCount: snapshot.data.length,
+                        itemBuilder: (_, index) => ((snapshot.data[index].contenu.toLowerCase().contains(searchString)) ||
+                        (snapshot.data[index].title.toLowerCase().contains(searchString)))
+                          ? Padding(padding: EdgeInsetsDirectional.fromSTEB(16, 8, 16, 8),
+                              child: Column(
+                                children: [
+                                  Padding( padding: EdgeInsetsDirectional.fromSTEB(0, 0, 0, 0),
+                                    child: Row(
+                                      mainAxisSize: MainAxisSize.max,
+                                      children: [
+                                        Expanded(
+                                          child: Row(
+                                          children: [
+                                            Card(
+                                              clipBehavior: Clip.antiAliasWithSaveLayer,
+                                              color:FlutterAppTheme.of(context).primaryColor,
+                                              shape:RoundedRectangleBorder(
+                                                borderRadius: BorderRadius.circular(20),
                                               ),
-                                              TextButton(
-                                                onPressed: () => {
-                                                  postServices.deletePost(
-                                                      e.id.toString()),
-                                                  Navigator.push(
-                                                    context,
-                                                    MaterialPageRoute(
-                                                      builder: (context) =>
-                                                          PostsManagementWidget(),
+                                              child: Padding(padding: EdgeInsetsDirectional.fromSTEB(1,1, 1, 1),
+                                                child: Container(
+                                                  width: 40,
+                                                  height: 40,
+                                                  clipBehavior:Clip.antiAlias,
+                                                  decoration: BoxDecoration(
+                                                    shape: BoxShape.circle,
+                                                  ),
+                                                  child: Image.asset("../../assets/images/user.png",
+                                                    fit: BoxFit.cover,
+                                                  ),
+                                                ),
+                                              ),
+                                            ),
+                                            Padding( padding: EdgeInsetsDirectional.fromSTEB(12, 0,0, 0),
+                                              child: Text(
+                                                '${snapshot.data[index].uname}',
+                                                style: FlutterAppTheme
+                                                        .of(context)
+                                                    .bodyText1,
+                                              ),
+                                            ),
+                                          ],)
+                                        ),
+                                      ],
+                                    ),
+                                  ),
+                                  Padding(padding: EdgeInsetsDirectional.fromSTEB(0, 4, 0, 4),
+                                    child: ClipRRect(
+                                      borderRadius: BorderRadius.circular(8),
+                                      child: Image.network(
+                                        '${snapshot.data[index].files[0].downloadURL}',
+                                        width: 350,
+                                        height: 300,
+                                        fit: BoxFit.cover,
+                                      ),
+                                    ),
+                                  ),
+                                  Padding(padding: EdgeInsetsDirectional.fromSTEB(0, 5, 2, 5),
+                                    child: Row(
+                                      children: [
+                                        Expanded(
+                                          child: Row(children: [
+                                          InkWell(
+                                            onTap: () async {
+                                              await Navigator.push(
+                                                context,
+                                                MaterialPageRoute(
+                                                  builder: (context) =>
+                                                      postDetailsWidget( id: snapshot.data[index].id.toString()),
+                                                ),
+                                              );
+                                            },
+                                            child: Container(
+                                              width: 40,
+                                              height: 30,
+                                              decoration: BoxDecoration(
+                                                color: Colors.blue[50],
+                                                borderRadius: BorderRadius.circular(8),
+                                              ),
+                                              child: Padding(
+                                                padding: EdgeInsetsDirectional.fromSTEB(4, 4, 4, 4),
+                                                child: Icon(
+                                                    Icons.remove_red_eye_outlined,
+                                                    color: Colors.blue,
+                                                    size: 20,
+                                                ),
+                                              ),
+                                            ),
+                                          ),
+                                          Padding(
+                                            padding: EdgeInsetsDirectional.fromSTEB(5, 0, 0, 0),
+                                            child: InkWell(
+                                              onTap: () async {
+                                                var confirmDialogResponse =
+                                                    await showDialog<bool>(
+                                                          context: context,
+                                                          builder: (alertDialogContext) {
+                                                            return alertDialogWidget(
+                                                              title: 'Delete post',
+                                                              content: 'Are you sure to delete this post ?',
+                                                              actions: [
+                                                                TextButton(
+                                                                  onPressed: () => Navigator.pop(alertDialogContext, false),
+                                                                  child: Text('Cancel'),
+                                                                ),
+                                                                TextButton(
+                                                                  onPressed: () => {
+                                                                    postServices.deletePost(snapshot.data[index].id.toString()),
+                                                                    Navigator.push(context,
+                                                                      MaterialPageRoute(
+                                                                        builder: (context) => postsNewWidget(),
+                                                                      ),
+                                                                    ),
+                                                                    ScaffoldMessenger.of(context).showSnackBar(
+                                                                      SnackbarWidget(
+                                                                        content: Text('Successfully post deleted!',
+                                                                        ),
+                                                                      ),
+                                                                    ),
+                                                                  },
+                                                                  child:
+                                                                      Text('Confirm'),
+                                                                ),
+                                                              ],
+                                                            );
+                                                          },
+                                                    ) ??
+                                                false;
+                                              },
+                                              child: Container(
+                                                width: 40,
+                                                height: 30,
+                                                decoration: BoxDecoration(
+                                                  color:Color.fromARGB(255, 245, 210,207),
+                                                  borderRadius:BorderRadius.circular(8),
+                                                ),
+                                                child: Padding(padding: EdgeInsetsDirectional.fromSTEB(4, 4, 4, 4),
+                                                  child: Icon(
+                                                    Icons.delete,
+                                                    color: Color.fromARGB(255, 163, 32, 23),
+                                                    size: 20,
+                                                  ),
+                                                ),
+                                              ),
+                                            ),
+                                          ),
+                                          Padding(
+                                            padding: EdgeInsetsDirectional.fromSTEB(5, 0, 0, 0),
+                                            child: InkWell(
+                                              onTap: () async {
+                                                await Navigator.push(
+                                                  context,
+                                                  MaterialPageRoute(
+                                                    builder: (context) =>
+                                                        editPostDetailsWidget(
+                                                      id: snapshot.data[index].id.toString(),
+                                                      title: snapshot.data[index].title,
+                                                      contenu: snapshot.data[index].contenu,
                                                     ),
                                                   ),
-                                                  ScaffoldMessenger.of(context)
-                                                      .showSnackBar(
-                                                    SnackbarWidget(
-                                                      content: Text(
-                                                        'Successfully post deleted!',
+                                                );
+                                              },
+                                              child: Container(
+                                                width: 40,
+                                                height: 30,
+                                                decoration: BoxDecoration(
+                                                  color:Color.fromARGB(214, 241, 228, 200),
+                                                  borderRadius: BorderRadius.circular(8),
+                                                ),
+                                                child: Padding(
+                                                  padding: EdgeInsetsDirectional.fromSTEB(4, 4, 4, 4),
+                                                  child: Icon(
+                                                    Icons.update,
+                                                    color: Color.fromARGB(255, 214, 116, 36),
+                                                    size: 20,
+                                                  ),
+                                                ),
+                                              ),
+                                            ),
+                                          ),
+                                          snapshot.data[index].visibility.toString() == "true"
+                                          ? Padding(
+                                                  padding:
+                                                      EdgeInsetsDirectional
+                                                          .fromSTEB(
+                                                              5,
+                                                              0,
+                                                              0,
+                                                              0),
+                                                  child: InkWell(
+                                                    onTap: () async {
+                                                      var confirmDialogResponse =
+                                                          await showDialog<
+                                                                  bool>(
+                                                                context:
+                                                                    context,
+                                                                builder:
+                                                                    (alertDialogContext) {
+                                                                  return alertDialogWidget(
+                                                                    title: 'Hide post',
+                                                                    content: 'Are you sure to hide this post ?',
+                                                                    actions: [
+                                                                      TextButton(
+                                                                        onPressed: () => Navigator.pop(alertDialogContext, false),
+                                                                        child: Text('Cancel'),
+                                                                      ),
+                                                                      TextButton(
+                                                                        onPressed: () => {
+                                                                          postServices.HidePost(snapshot.data[index].id.toString()),
+                                                                          Navigator.push(
+                                                                            context,
+                                                                            MaterialPageRoute(
+                                                                              builder: (context) => HomeWidget(),
+                                                                            ),
+                                                                          ),
+                                                                          ScaffoldMessenger.of(context).showSnackBar(SnackbarWidget(
+                                                                            content: Text(
+                                                                              'Successfully post hide!',
+                                                                            ),
+                                                                          )),
+                                                                        },
+                                                                        child: Text('Confirm'),
+                                                                      ),
+                                                                    ],
+                                                                  );
+                                                                },
+                                                              ) ??
+                                                              false;
+                                                    },
+                                                    child: Container(
+                                                      width: 40,
+                                                      height: 30,
+                                                      decoration:
+                                                          BoxDecoration(
+                                                        color: Colors
+                                                            .red[100],
+                                                        borderRadius:
+                                                            BorderRadius
+                                                                .circular(
+                                                                    8),
+                                                      ),
+                                                      child: Padding(
+                                                        padding: EdgeInsetsDirectional
+                                                            .fromSTEB(
+                                                                4,
+                                                                4,
+                                                                4,
+                                                                4),
+                                                        child: Icon(
+                                                          Icons
+                                                              .lock_outline,
+                                                          color: Colors
+                                                              .red,
+                                                          size: 20,
+                                                        ),
                                                       ),
                                                     ),
                                                   ),
-                                                },
-                                                child: Text('Confirm'),
-                                              ),
-                                            ],
-                                          );
-                                        },
-                                      ) ??
-                                      false;
-                            },
-                            child: Container(
-                              width: 40,
-                              height: 30,
-                              decoration: BoxDecoration(
-                                color: Color.fromARGB(255, 245, 210, 207),
-                                borderRadius: BorderRadius.circular(8),
-                                border: Border.all(
-                                  color: Color.fromARGB(255, 245, 210, 207),
-                                  width: 0,
-                                ),
-                              ),
-                              child: Padding(
-                                padding:
-                                    EdgeInsetsDirectional.fromSTEB(4, 4, 4, 4),
-                                child: Icon(
-                                  Icons.delete,
-                                  color: Color.fromARGB(255, 163, 32, 23),
-                                  size: 20,
-                                ),
-                              ),
-                            ),
-                          ),
-                        ),
-                        Padding(
-                          padding: EdgeInsetsDirectional.fromSTEB(5, 0, 0, 0),
-                          child: InkWell(
-                            onTap: () async {
-                              await Navigator.push(
-                                context,
-                                MaterialPageRoute(
-                                  builder: (context) => editPostDetailsWidget(
-                                    id: e.id.toString(),
-                                    title: e.title,
-                                    contenu: e.contenu,
-                                  ),
-                                ),
-                              );
-                            },
-                            child: Container(
-                              width: 40,
-                              height: 30,
-                              decoration: BoxDecoration(
-                                color: Color.fromARGB(214, 241, 228, 200),
-                                borderRadius: BorderRadius.circular(8),
-                              ),
-                              child: Padding(
-                                padding:
-                                    EdgeInsetsDirectional.fromSTEB(4, 4, 4, 4),
-                                child: Icon(
-                                  Icons.update,
-                                  color: Color.fromARGB(255, 214, 116, 36),
-                                  size: 20,
-                                ),
-                              ),
-                            ),
-                          ),
-                        ),
-                        e.visibility.toString() == "true"
-                            ? Padding(
-                                padding:
-                                    EdgeInsetsDirectional.fromSTEB(5, 0, 0, 0),
-                                child: InkWell(
-                                  onTap: () async {
-                                    var confirmDialogResponse =
-                                        await showDialog<bool>(
-                                              context: context,
-                                              builder: (alertDialogContext) {
-                                                return alertDialogWidget(
-                                                  title: 'Hide post',
-                                                  content:
-                                                      'Are you sure to hide this post ?',
-                                                  actions: [
-                                                    TextButton(
-                                                      onPressed: () =>
-                                                          Navigator.pop(
-                                                              alertDialogContext,
-                                                              false),
-                                                      child: Text('Cancel'),
-                                                    ),
-                                                    TextButton(
-                                                      onPressed: () => {
-                                                        postServices.HidePost(
-                                                            e.id.toString()),
-                                                        Navigator.push(
-                                                          context,
-                                                          MaterialPageRoute(
-                                                            builder: (context) =>
-                                                                HomeWidget(),
-                                                          ),
+                                                )
+                                              : Padding(
+                                                  padding:
+                                                      EdgeInsetsDirectional
+                                                          .fromSTEB(
+                                                              5,
+                                                              0,
+                                                              0,
+                                                              0),
+                                                  child: InkWell(
+                                                    onTap: () async {
+                                                      var confirmDialogResponse =
+                                                          await showDialog<
+                                                                  bool>(
+                                                                context:
+                                                                    context,
+                                                                builder:
+                                                                    (alertDialogContext) {
+                                                                  return alertDialogWidget(
+                                                                    title: 'restore post',
+                                                                    content: 'Are you sure to restore this post ?',
+                                                                    actions: [
+                                                                      TextButton(
+                                                                        onPressed: () => Navigator.pop(alertDialogContext, false),
+                                                                        child: Text('Cancel'),
+                                                                      ),
+                                                                      TextButton(
+                                                                        onPressed: () => {
+                                                                          postServices.RestorePost(snapshot.data[index].id.toString()),
+                                                                          Navigator.push(
+                                                                            context,
+                                                                            MaterialPageRoute(
+                                                                              builder: (context) => HomeWidget(),
+                                                                            ),
+                                                                          ),
+                                                                          ScaffoldMessenger.of(context).showSnackBar(
+                                                                            SnackbarWidget(
+                                                                              content: Text(
+                                                                                'Successfully post restored!',
+                                                                              ),
+                                                                            ),
+                                                                          )
+                                                                        },
+                                                                        child: Text('Confirm'),
+                                                                      ),
+                                                                    ],
+                                                                  );
+                                                                },
+                                                              ) ??
+                                                              false;
+                                                    },
+                                                    child: Container(
+                                                      width: 40,
+                                                      height: 30,
+                                                      decoration:
+                                                          BoxDecoration(
+                                                        color: Colors
+                                                            .green[50],
+                                                        borderRadius:
+                                                            BorderRadius
+                                                                .circular(
+                                                                    8),
+                                                        border: Border
+                                                            .all(
+                                                          color: Colors
+                                                              .green[50],
+                                                          width: 0,
                                                         ),
-                                                        ScaffoldMessenger.of(
-                                                                context)
-                                                            .showSnackBar(
-                                                                SnackbarWidget(
-                                                          content: Text(
-                                                            'Successfully post hide!',
-                                                          ),
-                                                        )),
-                                                      },
-                                                      child: Text('Confirm'),
+                                                      ),
+                                                      child: Padding(
+                                                        padding: EdgeInsetsDirectional
+                                                            .fromSTEB(
+                                                                4,
+                                                                4,
+                                                                4,
+                                                                4),
+                                                        child: Icon(
+                                                          Icons
+                                                              .remove_red_eye_outlined,
+                                                          color: Colors
+                                                              .green,
+                                                          size: 20,
+                                                        ),
+                                                      ),
                                                     ),
-                                                  ],
-                                                );
-                                              },
-                                            ) ??
-                                            false;
-                                  },
-                                  child: Container(
-                                    width: 40,
-                                    height: 30,
-                                    decoration: BoxDecoration(
-                                      color: Colors.red[100],
-                                      borderRadius: BorderRadius.circular(8),
-                                      border: Border.all(
-                                        color: Colors.red[100],
-                                        width: 0,
-                                      ),
-                                    ),
-                                    child: Padding(
-                                      padding: EdgeInsetsDirectional.fromSTEB(
-                                          4, 4, 4, 4),
-                                      child: Icon(
-                                        Icons.lock_outline,
-                                        color: Colors.red,
-                                        size: 20,
-                                      ),
+                                                  ),
+                                                ),
+                                        ])),
+                                      ],
                                     ),
                                   ),
-                                ),
+                                  Padding(
+                                    padding: EdgeInsetsDirectional.fromSTEB(0, 5, 2, 0),
+                                    child: Html(
+                                        data: "${snapshot.data[index].contenu}",
+                                        style: {'#': Style(
+                                            maxLines: 3,
+                                            textOverflow:
+                                                TextOverflow.ellipsis,
+                                          ),
+                                        }),
+                                  ),
+                                  Row(
+                                    mainAxisAlignment: MainAxisAlignment.start,
+                                    children: [
+                                      GestureDetector(
+                                        child: Padding(
+                                          padding: EdgeInsetsDirectional.fromSTEB(10, 0, 2, 0), 
+                                          child: Text(
+                                            "Read more",
+                                            style: TextStyle(
+                                              color: Colors.blue,
+                                              decoration:TextDecoration.underline,
+                                            ),
+                                          ),
+                                        ),
+                                      ),
+                                    ]
+                                  ),
+                                  Padding(
+                                    padding: EdgeInsetsDirectional.fromSTEB(0, 12, 2, 12),
+                                    child: Row(
+                                      children: [
+                                        Expanded(
+                                          child: Text(
+                                            '${snapshot.data[index].date}',
+                                            textAlign: TextAlign.right,
+                                            style: TextStyle(
+                                                fontWeight: FontWeight.bold
+                                                ),
+                                            ),
+                                        ),
+                                      ],
+                                    )
+                                  ),
+                                ],
                               )
-                            : Padding(
-                                padding:
-                                    EdgeInsetsDirectional.fromSTEB(5, 0, 0, 0),
-                                child: InkWell(
-                                  onTap: () async {
-                                    var confirmDialogResponse =
-                                        await showDialog<bool>(
-                                              context: context,
-                                              builder: (alertDialogContext) {
-                                                return alertDialogWidget(
-                                                  title: 'restore post',
-                                                  content:
-                                                      'Are you sure to restore this post ?',
-                                                  actions: [
-                                                    TextButton(
-                                                      onPressed: () =>
-                                                          Navigator.pop(
-                                                              alertDialogContext,
-                                                              false),
-                                                      child: Text('Cancel'),
-                                                    ),
-                                                    TextButton(
-                                                      onPressed: () => {
-                                                        postServices
-                                                            .RestorePost(e.id
-                                                                .toString()),
-                                                        Navigator.push(
-                                                          context,
-                                                          MaterialPageRoute(
-                                                            builder: (context) =>
-                                                                HomeWidget(),
-                                                          ),
-                                                        ),
-                                                        ScaffoldMessenger.of(
-                                                                context)
-                                                            .showSnackBar(
-                                                          SnackbarWidget(
-                                                            content: Text(
-                                                              'Successfully post restored!',
-                                                            ),
-                                                          ),
-                                                        )
-                                                      },
-                                                      child: Text('Confirm'),
-                                                    ),
-                                                  ],
-                                                );
-                                              },
-                                            ) ??
-                                            false;
-                                  },
-                                  child: Container(
-                                    width: 40,
-                                    height: 30,
-                                    decoration: BoxDecoration(
-                                      color: Colors.green[50],
-                                      borderRadius: BorderRadius.circular(8),
-                                      border: Border.all(
-                                        color: Colors.green[50],
-                                        width: 0,
-                                      ),
-                                    ),
-                                    child: Padding(
-                                      padding: EdgeInsetsDirectional.fromSTEB(
-                                          4, 4, 4, 4),
-                                      child: Icon(
-                                        Icons.remove_red_eye_outlined,
-                                        color: Colors.green,
-                                        size: 20,
-                                      ),
-                                    ),
-                                  ),
-                                ),
-                              ),
-                      ])),
-                ),
-              ],
-            ))
-        .toList();
-  }
-
-  DataCell _createTitleCell(bookTitle) {
-    return DataCell(
-        TextFormField(initialValue: bookTitle, style: TextStyle(fontSize: 14)));
+                            )
+                          : Container()
+                      );
+                    } else if (snapshot.hasError) {
+                      return Text(snapshot.error);
+                    }
+                    return Padding(
+                      padding: EdgeInsetsDirectional.fromSTEB(0, 280, 0, 0),
+                      child: CircularProgressIndicatorWidget(),
+                    );
+                  }
+                )
+              )
+            ),
+          ],
+        ),
+      ),
+    );
   }
 }

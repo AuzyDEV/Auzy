@@ -1,52 +1,66 @@
+import 'package:skeleton/user-profile/profile-model.dart';
 import '../../../index.dart';
-import '../../../user-profile/profile-model.dart';
+import '../../../themes/left-drawer.dart';
 import '../../../themes/theme.dart';
 import 'package:flutter/material.dart';
 import 'all-users-controller.dart';
 
-class UsersWidget extends StatefulWidget {
-  const UsersWidget({Key key}) : super(key: key);
+class usersnewWidget extends StatefulWidget {
+  final String speciality;
+  const usersnewWidget({Key key, this.speciality}) : super(key: key);
 
   @override
-  _UsersWidgetState createState() => _UsersWidgetState();
+  _usersnewWidgetState createState() => _usersnewWidgetState();
 }
 
-class _UsersWidgetState extends State<UsersWidget>
-    with TickerProviderStateMixin {
+class _usersnewWidgetState extends State<usersnewWidget> {
   final scaffoldKey = GlobalKey<ScaffoldState>();
-  List empsFiltered = [];
-  String _searchResult = '';
-  int _currentSortColumn = 0;
-  bool _isSortAsc = true;
-  UserMan userServices = UserMan();
-  bool _isEditMode = false;
+  Future<List<User>> futureUser;
   Future<List<User>> _futureUsers;
-  TextEditingController searchController = TextEditingController();
-  void _loadData() async {
-    await userServices.GetAllUsers();
+  UserMan userServices = UserMan();
+  String searchString = "";
+  TextEditingController SearchtextController;
+  String _futureRoleValue;
+
+  Future<String> _getCurrentUserRole() async {
+    return apiUser.GetCurrentUserRole();
+  }
+
+  void _getFutureRoleValue() async {
+    String value = await _getCurrentUserRole();
+    setState(() {
+      _futureRoleValue = value;
+    });
   }
 
   Future<void> _refreshList() async {
     setState(() {
-      _futureUsers = userServices.GetAllUsers();
+      _futureUsers = userServices.getAllUsersNew();
     });
   }
 
   @override
   void initState() {
     super.initState();
-    _loadData();
+    _getFutureRoleValue();
+    _futureUsers = userServices.getAllUsersNew();
+    SearchtextController = TextEditingController();
+  }
+
+  @override
+  void dispose() {
+    super.dispose();
   }
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       key: scaffoldKey,
+      backgroundColor: FlutterAppTheme.of(context).whiteColor,
       appBar: PreferredSize(
         preferredSize: const Size.fromHeight(60),
         child: appbar(text: 'Users'),
       ),
-      backgroundColor: FlutterAppTheme.of(context).whiteColor,
       floatingActionButton: floatingActionButtonWidget(
         onPressed: () async {
           await Navigator.push(
@@ -59,473 +73,401 @@ class _UsersWidgetState extends State<UsersWidget>
         icon: Icons.add,
       ),
       drawer: Drawerr(),
-      body: SafeArea(
-        child: GestureDetector(
-          onTap: () => FocusScope.of(context).unfocus(),
-          child: Padding(
-            padding: EdgeInsetsDirectional.fromSTEB(0, 8, 0, 16),
-            child: ListView(
-              children: [
-                Card(
-                  child: ListTile(
-                    leading: const Icon(
-                      Icons.search,
-                      color: Color(0xFF9457FB),
-                    ),
-                    title: TextField(
-                        controller: searchController,
-                        decoration: const InputDecoration(
-                            hintText: 'Search', border: InputBorder.none),
-                        onChanged: (value) {
-                          setState(() {
-                            _searchResult = value;
-                            empsFiltered = UserMan.Userslist.where((e) =>
-                                e.email.contains(_searchResult.toLowerCase()) ||
-                                e.displayName.contains(
-                                    _searchResult.toLowerCase())).toList();
-                          });
-                        }),
-                    trailing: IconButton(
-                      icon: const Icon(Icons.cancel),
-                      onPressed: () {
-                        setState(() {
-                          searchController.clear();
-                          _searchResult = '';
-                          empsFiltered = UserMan.Userslist;
-                        });
-                      },
-                    ),
+      body: SingleChildScrollView(
+        child: Column(
+          mainAxisSize: MainAxisSize.max,
+          children: [
+            Align(
+              alignment: AlignmentDirectional(0.5, 6.41),
+              child: Column(
+                mainAxisSize: MainAxisSize.max,
+                mainAxisAlignment: MainAxisAlignment.center,
+                children: [
+                  TextFormFieldWidget(
+                    onChanged: (value) {
+                      setState(() {
+                        searchString = value.toLowerCase();
+                      });
+                    },
+                    hintText: "Search...",
+                    controller: SearchtextController,
                   ),
-                ),
-                SingleChildScrollView(
-                    scrollDirection: Axis.vertical,
-                    child: SingleChildScrollView(
-                      scrollDirection: Axis.horizontal,
-                      child: RefreshIndicator(
-                        onRefresh: _refreshList,
-                        child: _createDataTable(),
-                      ),
-                    )),
-                Column(
-                  mainAxisSize: MainAxisSize.max,
-                  children: [
-                    Padding(
-                        padding: EdgeInsetsDirectional.fromSTEB(16, 30, 16, 10),
-                        child: Row(children: [
-                          Expanded(
-                            child: Padding(
-                              padding:
-                                  EdgeInsetsDirectional.fromSTEB(0, 0, 0, 0),
-                              child: CustomButton(
-                                onPressed: () async {
-                                  var confirmDialogResponse = await showDialog<
-                                          bool>(
-                                        context: context,
-                                        builder: (alertDialogContext) {
-                                          return alertDialogWidget(
-                                            title: 'Delete user',
-                                            content:
-                                                'Are you sure to delete this user ?',
-                                            actions: [
-                                              TextButton(
-                                                onPressed: () => Navigator.pop(
-                                                    alertDialogContext, false),
-                                                child: Text('Cancel'),
-                                              ),
-                                              TextButton(
-                                                onPressed: () => {
-                                                  userServices.deleteAllUsers(),
-                                                  Navigator.push(
-                                                    context,
-                                                    MaterialPageRoute(
-                                                      builder: (context) =>
-                                                          HomeWidget(),
-                                                    ),
-                                                  ),
-                                                  ScaffoldMessenger.of(context)
-                                                      .showSnackBar(
-                                                    SnackbarWidget(
-                                                      content: Text(
-                                                        'Successfully Users deleted!',
+                ],
+              ),
+            ),
+            RefreshIndicator(
+              onRefresh: _refreshList,
+              child: Padding(
+                padding: EdgeInsetsDirectional.fromSTEB(8, 0, 8, 0),
+                child: FutureBuilder<List<User>>(
+                  future: _futureUsers,
+                  builder: (context, snapshot) {
+                    if (snapshot.hasData) {
+                      return ListView.builder(
+                        shrinkWrap: true,
+                        itemCount: snapshot.data.length,
+                        itemBuilder:
+                            (_, index) =>
+                              ((snapshot.data[index].displayName.toLowerCase().contains(searchString)) ||
+                              (snapshot.data[index].email.toLowerCase().contains(searchString)))
+                              ? Padding(
+                                  padding: EdgeInsetsDirectional.fromSTEB(0, 10, 0, 0),
+                                  child: Row(
+                                    mainAxisSize: MainAxisSize.max,
+                                    children: [
+                                      Expanded(
+                                        child: Padding(
+                                          padding: EdgeInsetsDirectional.fromSTEB(8, 0, 8, 0),
+                                          child: Card(
+                                            clipBehavior: Clip.antiAliasWithSaveLayer,
+                                            color: FlutterAppTheme.of(context).whiteColor,
+                                            elevation: 1,
+                                            shape:RoundedRectangleBorder(
+                                              borderRadius: BorderRadius.circular(8),
+                                            ),
+                                            child: Column(
+                                              mainAxisSize: MainAxisSize.max,
+                                              children: [
+                                                Column(
+                                                  mainAxisSize: MainAxisSize.max,
+                                                  children: [
+                                                    Padding(
+                                                      padding: EdgeInsetsDirectional.fromSTEB(0, 8, 0, 8),
+                                                      child: Row(
+                                                        mainAxisSize: MainAxisSize.max,
+                                                        children: [
+                                                          Column(
+                                                            mainAxisSize: MainAxisSize.max,
+                                                            children: [
+                                                              Padding(
+                                                                padding: EdgeInsetsDirectional.fromSTEB(12, 0, 0, 0),
+                                                                child: Column(
+                                                                  mainAxisSize: MainAxisSize.max,
+                                                                  children: [
+                                                                    Padding(
+                                                                      padding: EdgeInsetsDirectional.fromSTEB(5, 5, 5, 0),
+                                                                      child: Container(
+                                                                        width: 60,
+                                                                        height: 60,
+                                                                        decoration: BoxDecoration(
+                                                                          color: FlutterAppTheme.of(context).primaryColor,
+                                                                          shape: BoxShape.circle,
+                                                                        ),
+                                                                        child: Padding(
+                                                                          padding: EdgeInsetsDirectional.fromSTEB(2, 2, 2, 2),
+                                                                          child: ClipRRect(
+                                                                            borderRadius: BorderRadius.circular(60),
+                                                                            child: Image.asset(
+                                                                              "../assets/images/user.png",
+                                                                              width: 50,
+                                                                              height: 50,
+                                                                              fit: BoxFit.cover,
+                                                                            ),
+                                                                          ),
+                                                                        ),
+                                                                      ),
+                                                                    ),
+                                                                  ],
+                                                                ),
+                                                              ),
+                                                            ],
+                                                          ),
+                                                          Expanded(
+                                                            child: Padding(
+                                                              padding: EdgeInsetsDirectional.fromSTEB(8, 1, 0, 0),
+                                                              child: Column(
+                                                                mainAxisSize: MainAxisSize.max,
+                                                                mainAxisAlignment: MainAxisAlignment.center,
+                                                                children: [
+                                                                  Row(
+                                                                    mainAxisSize: MainAxisSize.max,
+                                                                    children: [
+                                                                      Text(
+                                                                        '${snapshot.data[index].displayName}',
+                                                                        style: FlutterAppTheme.of(context).subtitle1.override(
+                                                                          fontFamily: 'Roboto',
+                                                                          color: FlutterAppTheme.of(context).TextColor,
+                                                                          fontSize: 18,
+                                                                          fontWeight: FontWeight.w500,
+                                                                        ),
+                                                                      ),
+                                                                    ],
+                                                                  ),
+                                                                  Padding(
+                                                                    padding: EdgeInsetsDirectional.fromSTEB(0, 3, 0, 0),
+                                                                    child: Row(
+                                                                      mainAxisSize: MainAxisSize.max,
+                                                                      children: [
+                                                                        Text('${snapshot.data[index].email}',
+                                                                          style: FlutterAppTheme.of(context).bodyText2.override(
+                                                                            fontFamily: 'Roboto',
+                                                                            color: FlutterAppTheme.of(context).TextColor,
+                                                                            fontSize: 14,
+                                                                            fontWeight: FontWeight.bold,
+                                                                          ),
+                                                                        ),
+                                                                      ],
+                                                                    ),
+                                                                  ),
+                                                                ],
+                                                              ),
+                                                            ),
+                                                          ),
+                                                          Padding(
+                                                            padding: EdgeInsetsDirectional.fromSTEB(0, 10, 20, 45),
+                                                            child: Column(
+                                                              mainAxisSize: MainAxisSize.max,
+                                                              children: [
+                                                                InkWell(
+                                                                  onTap: () {
+                                                                    Navigator.push(context, MaterialPageRoute(builder: (context) => ProfillWidget(id: snapshot.data[index].id.toString())));
+                                                                  },
+                                                                  child: Icon(
+                                                                    Icons.arrow_forward_ios_outlined,
+                                                                    color: FlutterAppTheme.of(context).TextColor,
+                                                                  ),
+                                                                )
+                                                              ],
+                                                            ),
+                                                          ),
+                                                        ],
                                                       ),
                                                     ),
-                                                  ),
-                                                },
-                                                child: Text('Confirm'),
-                                              ),
-                                            ],
-                                          );
-                                        },
-                                      ) ??
-                                      false;
-                                },
-                                text: 'Delete all users',
-                              ),
-                            ),
-                          ),
-                        ])),
-                  ],
-                ),
-              ],
-            ),
-          ),
-        ),
-      ),
-    );
-  }
-
-  DataTable _createDataTable() {
-    return DataTable(
-      columns: _createColumns(),
-      rows: _createRows(),
-      sortColumnIndex: _currentSortColumn,
-      sortAscending: _isSortAsc,
-    );
-  }
-
-  List<DataColumn> _createColumns() {
-    return [
-      DataColumn(label: Text('ID')),
-      DataColumn(
-        label: Text('Email'),
-        onSort: (columnIndex, _) {
-          setState(() {
-            _currentSortColumn = columnIndex;
-            if (_isSortAsc) {
-              empsFiltered.sort((a, b) => b.email.compareTo(a.email));
-            } else {
-              empsFiltered.sort((a, b) => a.email.compareTo(b.email));
-            }
-            _isSortAsc = !_isSortAsc;
-          });
-        },
-      ),
-      DataColumn(label: Text('Action'))
-    ];
-  }
-
-  List<DataRow> _createRows() {
-    return empsFiltered
-        .map((e) =>
-            // e.disabled.toString() == "false" ?
-            DataRow(
-              color: MaterialStateColor.resolveWith((states) {
-                if (e.disabled.toString() == "true") {
-                  return Colors.red[50];
-                } else
-                  return Colors.white;
-              }),
-              cells: [
-                DataCell(Text('#' + e.id.toString())),
-                _createTitleCell(e.email.toString()),
-                DataCell(
-                  Padding(
-                      padding: EdgeInsetsDirectional.fromSTEB(0, 8, 10, 8),
-                      child: Row(children: [
-                        InkWell(
-                          onTap: () async {
-                            await Navigator.push(
-                              context,
-                              MaterialPageRoute(
-                                builder: (context) =>
-                                    ProfillWidget(id: e.id.toString()),
-                              ),
-                            );
-                          },
-                          child: Container(
-                            width: 40,
-                            height: 30,
-                            decoration: BoxDecoration(
-                              color: Colors.blue[50],
-                              borderRadius: BorderRadius.circular(8),
-                              border: Border.all(
-                                color: Colors.blue[50],
-                                width: 0,
-                              ),
-                            ),
-                            child: Padding(
-                              padding:
-                                  EdgeInsetsDirectional.fromSTEB(4, 4, 4, 4),
-                              child: Icon(
-                                Icons.account_circle,
-                                color: Colors.blue,
-                                size: 20,
-                              ),
-                            ),
-                          ),
-                        ),
-                        Padding(
-                          padding: EdgeInsetsDirectional.fromSTEB(5, 0, 0, 0),
-                          child: InkWell(
-                            onTap: () async {
-                              var confirmDialogResponse =
-                                  await showDialog<bool>(
-                                        context: context,
-                                        builder: (alertDialogContext) {
-                                          return alertDialogWidget(
-                                            title: 'Delete user',
-                                            content:
-                                                'Are you sure to delete this user ?',
-                                            actions: [
-                                              TextButton(
-                                                onPressed: () => Navigator.pop(
-                                                    alertDialogContext, false),
-                                                child: Text('Cancel'),
-                                              ),
-                                              TextButton(
-                                                onPressed: () => {
-                                                  userServices.deleteUser(
-                                                      e.id.toString()),
-                                                  Navigator.push(
-                                                    context,
-                                                    MaterialPageRoute(
-                                                      builder: (context) =>
-                                                          HomeWidget(),
+                                                    Container(
+                                                      width: MediaQuery.of(context).size.width * 0.85,
+                                                      height: 1,
+                                                      decoration:
+                                                        BoxDecoration(
+                                                        color: Color(0xFFDBE2E7),
+                                                      ),
                                                     ),
-                                                  ),
-                                                  ScaffoldMessenger.of(context)
-                                                      .showSnackBar(
-                                                          SnackbarWidget(
-                                                              content: Text(
-                                                    'Successfully User deleted!',
-                                                  ))),
-                                                },
-                                                child: Text('Confirm'),
-                                              ),
-                                            ],
-                                          );
-                                        },
-                                      ) ??
-                                      false;
-                            },
-                            child: Container(
-                              width: 40,
-                              height: 30,
-                              decoration: BoxDecoration(
-                                color: Color.fromARGB(255, 245, 210, 207),
-                                borderRadius: BorderRadius.circular(8),
-                                border: Border.all(
-                                  color: Color.fromARGB(255, 245, 210, 207),
-                                  width: 0,
-                                ),
-                              ),
-                              child: Padding(
-                                padding:
-                                    EdgeInsetsDirectional.fromSTEB(4, 4, 4, 4),
-                                child: Icon(
-                                  Icons.delete,
-                                  color: Color.fromARGB(255, 163, 32, 23),
-                                  size: 20,
-                                ),
-                              ),
-                            ),
-                          ),
-                        ),
-                        Padding(
-                          padding: EdgeInsetsDirectional.fromSTEB(5, 0, 0, 0),
-                          child: InkWell(
-                            onTap: () async {
-                              await Navigator.push(
-                                context,
-                                MaterialPageRoute(
-                                  builder: (context) => editprofilWidget(
-                                      id: e.id.toString(),
-                                      name: e.displayName,
-                                      email: e.email,
-                                      photourl: e.photoURL.toString()),
-                                ),
-                              );
-                            },
-                            child: Container(
-                              width: 40,
-                              height: 30,
-                              decoration: BoxDecoration(
-                                color: Color.fromARGB(214, 241, 228, 200),
-                                borderRadius: BorderRadius.circular(8),
-                              ),
-                              child: Padding(
-                                padding:
-                                    EdgeInsetsDirectional.fromSTEB(4, 4, 4, 4),
-                                child: Icon(
-                                  Icons.update,
-                                  color: Color.fromARGB(255, 214, 116, 36),
-                                  size: 20,
-                                ),
-                              ),
-                            ),
-                          ),
-                        ),
-                        e.disabled.toString() == "false"
-                            ? Padding(
-                                padding:
-                                    EdgeInsetsDirectional.fromSTEB(5, 0, 0, 0),
-                                child: InkWell(
-                                  onTap: () async {
-                                    var confirmDialogResponse =
-                                        await showDialog<bool>(
-                                              context: context,
-                                              builder: (alertDialogContext) {
-                                                return alertDialogWidget(
-                                                  title: 'block user',
-                                                  content:
-                                                      'Are you sure to block this user ?',
-                                                  actions: [
-                                                    TextButton(
-                                                      onPressed: () =>
-                                                          Navigator.pop(
-                                                              alertDialogContext,
-                                                              false),
-                                                      child: Text('Cancel'),
-                                                    ),
-                                                    TextButton(
-                                                      onPressed: () => {
-                                                        userServices.BlockUser(
-                                                            e.id.toString()),
-                                                        Navigator.push(
-                                                          context,
-                                                          MaterialPageRoute(
-                                                            builder: (context) =>
-                                                                HomeWidget(),
+                                                    Padding(
+                                                      padding: EdgeInsetsDirectional.fromSTEB(16, 8, 16, 8),
+                                                      child: Row(
+                                                        mainAxisAlignment:MainAxisAlignment.end,
+                                                        children: [
+                                                          Padding(
+                                                            padding: EdgeInsetsDirectional.fromSTEB(5, 0, 0, 0),
+                                                            child: InkWell(
+                                                              onTap: () async {
+                                                                var confirmDialogResponse = await showDialog<bool>(
+                                                                  context: context,
+                                                                  builder: (alertDialogContext) {
+                                                                    return alertDialogWidget(
+                                                                      title: 'Delete user',
+                                                                      content: 'Are you sure to delete this user ?',
+                                                                      actions: [
+                                                                        TextButton(
+                                                                          onPressed: () => Navigator.pop(alertDialogContext, false),
+                                                                          child: Text('Cancel'),
+                                                                        ),
+                                                                        TextButton(
+                                                                          onPressed: () => {
+                                                                            userServices.deleteUser(snapshot.data[index].id.toString()),
+                                                                            Navigator.push(
+                                                                              context,
+                                                                              MaterialPageRoute(
+                                                                                builder: (context) => HomeWidget(),
+                                                                              ),
+                                                                            ),
+                                                                            ScaffoldMessenger.of(context).showSnackBar(
+                                                                              SnackbarWidget(
+                                                                                content: Text('Successfully User deleted!',
+                                                                                )
+                                                                              )
+                                                                            ),
+                                                                          },
+                                                                          child: Text('Confirm'),
+                                                                        ),
+                                                                      ],
+                                                                    );
+                                                                  },
+                                                                ) ??
+                                                                false;
+                                                              },
+                                                              child: Container(
+                                                                width: 40,
+                                                                height: 30,
+                                                                child: Padding(
+                                                                  padding: EdgeInsetsDirectional.fromSTEB(4, 4, 4, 4),
+                                                                  child: Icon(
+                                                                    Icons.delete,
+                                                                    color: Color.fromARGB(255, 163, 32, 23),
+                                                                    size: 20,
+                                                                  ),
+                                                                ),
+                                                              ),
+                                                            ),
                                                           ),
-                                                        ),
-                                                        ScaffoldMessenger.of(
-                                                                context)
-                                                            .showSnackBar(
-                                                          SnackbarWidget(
-                                                            content: Text(
-                                                                'Successfully User blocked!'),
+                                                          Padding(
+                                                            padding: EdgeInsetsDirectional.fromSTEB(5, 0, 0, 0),
+                                                            child: InkWell(
+                                                              onTap: () async {
+                                                                await Navigator.push(
+                                                                  context,
+                                                                  MaterialPageRoute(
+                                                                    builder: (context) => editprofilWidget(id: snapshot.data[index].id.toString(), name: snapshot.data[index].displayName, email: snapshot.data[index].email, photourl: snapshot.data[index].photoURL.toString()),
+                                                                  ),
+                                                                );
+                                                              },
+                                                              child: Container(
+                                                                width: 40,
+                                                                height: 30,
+                                                                child: Padding(
+                                                                  padding: EdgeInsetsDirectional.fromSTEB(4, 4, 4, 4),
+                                                                  child: Icon(
+                                                                    Icons.edit,
+                                                                    color: Color.fromARGB(255, 214, 116, 36),
+                                                                    size: 20,
+                                                                  ),
+                                                                ),
+                                                              ),
+                                                            ),
                                                           ),
-                                                        ),
-                                                      },
-                                                      child: Text('Confirm'),
+                                                          snapshot.data[index].disabled.toString() == "false" ? 
+                                                            Padding(
+                                                              padding: EdgeInsetsDirectional.fromSTEB(5, 0, 0, 0),
+                                                              child: InkWell(
+                                                                onTap: () async {
+                                                                  var confirmDialogResponse = await showDialog<bool>(
+                                                                    context: context,
+                                                                    builder: (alertDialogContext) {
+                                                                      return alertDialogWidget(
+                                                                        title: 'block user',
+                                                                        content: 'Are you sure to block this user ?',
+                                                                        actions: [
+                                                                          TextButton(
+                                                                            onPressed: () => Navigator.pop(alertDialogContext, false),
+                                                                            child: Text('Cancel'),
+                                                                          ),
+                                                                          TextButton(
+                                                                            onPressed: () => {
+                                                                              userServices.BlockUser(snapshot.data[index].id.toString()),
+                                                                              Navigator.push(
+                                                                                context,
+                                                                                MaterialPageRoute(
+                                                                                  builder: (context) => usersnewWidget(),
+                                                                                ),
+                                                                              ),
+                                                                              ScaffoldMessenger.of(context).showSnackBar(
+                                                                                SnackbarWidget(
+                                                                                  content: Text('Successfully User blocked!'),
+                                                                                ),
+                                                                              ),
+                                                                            },
+                                                                            child: Text('Confirm'),
+                                                                          ),
+                                                                        ],
+                                                                      );
+                                                                    },
+                                                                  ) ??
+                                                                false;
+                                                                },
+                                                                child: Container(
+                                                                  width: 40,
+                                                                  height: 30,
+                                                                  child: Padding(
+                                                                    padding: EdgeInsetsDirectional.fromSTEB(4, 4, 4, 4),
+                                                                    child: Icon(
+                                                                      Icons.block,
+                                                                      color: Colors.red,
+                                                                      size: 20,
+                                                                    ),
+                                                                  ),
+                                                                ),
+                                                              ),
+                                                            )
+                                                            : Padding(
+                                                                padding: EdgeInsetsDirectional.fromSTEB(5, 0, 0, 0),
+                                                                child: InkWell(
+                                                                  onTap: () async { 
+                                                                    var confirmDialogResponse = await showDialog<bool>(
+                                                                      context: context,
+                                                                      builder: (alertDialogContext) {
+                                                                        return alertDialogWidget(
+                                                                          title: 'restore user',
+                                                                          content: 'Are you sure to restore this user ?',
+                                                                          actions: [
+                                                                            TextButton(
+                                                                              onPressed: () => Navigator.pop(alertDialogContext, false),
+                                                                              child: Text('Cancel'),
+                                                                            ),
+                                                                            TextButton(
+                                                                              onPressed: () => {
+                                                                                userServices.RestoreUser(snapshot.data[index].id.toString()),
+                                                                                Navigator.push(
+                                                                                  context,
+                                                                                  MaterialPageRoute(
+                                                                                    builder: (context) => usersnewWidget(),
+                                                                                  ),
+                                                                                ),
+                                                                                ScaffoldMessenger.of(context).showSnackBar(
+                                                                                  SnackbarWidget(
+                                                                                  content: Text( 'Successfully User restored!',),
+                                                                                  )
+                                                                                ),
+                                                                              },
+                                                                              child: Text('Confirm'),
+                                                                            ),
+                                                                          ],
+                                                                        );
+                                                                      },
+                                                                    ) ??
+                                                                  false;
+                                                                  },
+                                                                  child: Container(
+                                                                    width: 40,
+                                                                    height: 30,
+                                                                    child: Padding(
+                                                                      padding: EdgeInsetsDirectional.fromSTEB(4, 4, 4, 4),
+                                                                      child: Icon(
+                                                                        Icons.repeat_rounded,
+                                                                        color: Colors.green,
+                                                                        size: 20,
+                                                                      ),
+                                                                    ),
+                                                                  ),
+                                                                ),
+                                                            ),
+                                                        ],
+                                                      ),
                                                     ),
                                                   ],
-                                                );
-                                              },
-                                            ) ??
-                                            false;
-                                  },
-                                  child: Container(
-                                    width: 40,
-                                    height: 30,
-                                    decoration: BoxDecoration(
-                                      color: Colors.red[100],
-                                      borderRadius: BorderRadius.circular(8),
-                                      border: Border.all(
-                                        color: Colors.red[100],
-                                        width: 0,
+                                                ),
+                                              ],
+                                            ),
+                                          ),
+                                        ),
                                       ),
-                                    ),
-                                    child: Padding(
-                                      padding: EdgeInsetsDirectional.fromSTEB(
-                                          4, 4, 4, 4),
-                                      child: Icon(
-                                        Icons.block,
-                                        color: Colors.red,
-                                        size: 20,
-                                      ),
-                                    ),
-                                  ),
-                                ),
+                                    ],
+                                  )
                               )
-                            : Padding(
-                                padding:
-                                    EdgeInsetsDirectional.fromSTEB(5, 0, 0, 0),
-                                child: InkWell(
-                                  onTap: () async {
-                                    var confirmDialogResponse =
-                                        await showDialog<bool>(
-                                              context: context,
-                                              builder: (alertDialogContext) {
-                                                return alertDialogWidget(
-                                                  title: 'restore user',
-                                                  content:
-                                                      'Are you sure to restore this user ?',
-                                                  actions: [
-                                                    TextButton(
-                                                      onPressed: () =>
-                                                          Navigator.pop(
-                                                              alertDialogContext,
-                                                              false),
-                                                      child: Text('Cancel'),
-                                                    ),
-                                                    TextButton(
-                                                      onPressed: () => {
-                                                        userServices.RestoreUser(
-                                                            e.id.toString()),
-                                                        Navigator.push(
-                                                          context,
-                                                          MaterialPageRoute(
-                                                            builder: (context) =>
-                                                                HomeWidget(),
-                                                          ),
-                                                        ),
-                                                        ScaffoldMessenger.of(
-                                                                context)
-                                                            .showSnackBar(
-                                                                SnackbarWidget(
-                                                          content: Text(
-                                                            'Successfully User restored!',
-                                                          ),
-                                                        )),
-                                                      },
-                                                      child: Text('Confirm'),
-                                                    ),
-                                                  ],
-                                                );
-                                              },
-                                            ) ??
-                                            false;
-                                  },
-                                  child: Container(
-                                    width: 40,
-                                    height: 30,
-                                    decoration: BoxDecoration(
-                                      color: Colors.green[50],
-                                      borderRadius: BorderRadius.circular(8),
-                                      border: Border.all(
-                                        color: Colors.green[50],
-                                        width: 0,
-                                      ),
-                                    ),
-                                    child: Padding(
-                                      padding: EdgeInsetsDirectional.fromSTEB(
-                                          4, 4, 4, 4),
-                                      child: Icon(
-                                        Icons.repeat_rounded,
-                                        color: Colors.green,
-                                        size: 20,
-                                      ),
-                                    ),
-                                  ),
-                                ),
-                              ),
-                      ])),
-                ),
-              ],
-            ))
-        .toList();
-  }
-
-  DataCell _createTitleCell(bookTitle) {
-    return DataCell(_isEditMode == true
-        ? TextFormField(initialValue: bookTitle, style: TextStyle(fontSize: 14))
-        : Text(bookTitle));
-  }
-
-  Row _createCheckboxField() {
-    return Row(
-      children: [
-        Checkbox(
-          value: _isEditMode,
-          onChanged: (value) {
-            setState(() {
-              _isEditMode = value;
-            });
-          },
+                              : Container()
+                        );
+                    } else if (snapshot.hasError) {
+                      return Padding(
+                          padding: EdgeInsetsDirectional.fromSTEB(0, 80, 0, 0),
+                          child: Text('No doctors',
+                            textAlign: TextAlign.center,
+                            style: FlutterAppTheme.of(context).bodyText2.override(
+                              fontFamily: 'Roboto',
+                              fontSize: 17,
+                              fontWeight: FontWeight.bold,
+                            )
+                          )
+                      );
+                    }
+                    return Padding(
+                      padding: EdgeInsetsDirectional.fromSTEB(0, 280, 0, 0),
+                      child: CircularProgressIndicatorWidget(),
+                    );
+                  }
+                )
+              )
+            ),
+          ],
         ),
-        Text('Edit mode'),
-      ],
+      ),
     );
   }
 }

@@ -20,7 +20,7 @@ final List<Widget> _pagesUser = [
 ];
 final List<Widget> _pagesAdmin = [
   HomeWidget(),
-  PostsManagementWidget(),
+  postsNewWidget(),
   addListingWidget(),
   MyprofilWidget()
 ];

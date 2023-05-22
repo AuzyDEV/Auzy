@@ -3,20 +3,19 @@ import 'index.dart';
 import 'themes/theme.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'firebase_options.dart';
-import 'dart:ui' as ui;
 
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
   await FlutterAppTheme.initialize();
-  await Firebase.initializeApp(
-    options: DefaultFirebaseOptions.currentPlatform,
-  );
+  await Firebase.initializeApp(options: DefaultFirebaseOptions.currentPlatform);
   WidgetsFlutterBinding.ensureInitialized();
 
   runApp(MyApp());
 }
 
-class MyApp extends StatefulWidget {@override
+class MyApp extends StatefulWidget {
+  
+  @override
   State<MyApp> createState() => _MyAppState();
   static _MyAppState of(BuildContext context) => context.findAncestorStateOfType<_MyAppState>();
 }
@@ -24,7 +23,6 @@ class MyApp extends StatefulWidget {@override
 class _MyAppState extends State<MyApp> {
   Locale _locale;
   ThemeMode _themeMode = FlutterAppTheme.themeMode;
-
   void setLocale(Locale value) => setState(() => _locale = value);
   void setThemeMode(ThemeMode mode) => setState(() {
     _themeMode = mode;

@@ -36,31 +36,26 @@ class _SigninWidgetWidgetState extends State<SigninWidget> {
             mainAxisAlignment: MainAxisAlignment.spaceEvenly,
             children: [
               Padding(
-                padding: EdgeInsetsDirectional.fromSTEB(16, 20, 16, 25),
-                child: Row(
-                  mainAxisSize: MainAxisSize.max,
-                  mainAxisAlignment: MainAxisAlignment.start,
-                  children: [
-                    InkWell(
-                      onTap: () async {
-                        await Navigator.push(
-                          context,
-                          MaterialPageRoute(
-                            builder: (context) => SigninWidget(),
-                          ),
-                        );
-                      },
-                      child: Icon(
-                        Icons.arrow_back_ios_new,
-                        color: FlutterAppTheme.of(context).LightDarkTextColor,
-                        size: 24,
+              padding: EdgeInsetsDirectional.fromSTEB(16, 40, 16, 25),
+              child: Row(
+                mainAxisSize: MainAxisSize.max,
+                mainAxisAlignment: MainAxisAlignment.start,
+                children: [
+                  InkWell(
+                    onTap: () async {
+                      Navigator.pop(context);
+                    },
+                    child: Icon(
+                      Icons.arrow_back_ios_new_outlined,
+                      color: FlutterAppTheme.of(context).LightDarkTextColor,
+                      size: 24,
                       ),
                     ),
                   ],
                 ),
               ),
               Padding(
-                padding: EdgeInsetsDirectional.fromSTEB(16, 0, 16, 20),
+                padding: EdgeInsetsDirectional.fromSTEB(16, 25, 16, 30),
                 child: Column(
                   mainAxisSize: MainAxisSize.max,
                   crossAxisAlignment: CrossAxisAlignment.start,

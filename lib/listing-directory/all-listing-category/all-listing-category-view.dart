@@ -59,7 +59,7 @@ class _SpecialitiesWidgetState extends State<SpecialitiesWidget> {
                     children: [
                       Text('Health Professional\'s \n Specialities',
                         style: FlutterAppTheme.of(context).bodyText1.override(
-                          color: FlutterAppTheme.of(context).LightDarkTextColor,
+                          color: FlutterAppTheme.of(context).ButtonPrimaryColor,
                           fontFamily: 'Open Sans',
                           fontSize: 20,
                         ),

@@ -99,7 +99,7 @@ class _editPostDetailsWidgetState extends State<editPostDetailsWidget> {
                                       Navigator.push(
                                         context,
                                         MaterialPageRoute(
-                                          builder: (context) => PostsManagementWidget(),
+                                          builder: (context) => postsNewWidget(),
                                         ),
                                       );
                                       ScaffoldMessenger.of(context).showSnackBar(
