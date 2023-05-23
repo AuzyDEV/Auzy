@@ -130,40 +130,40 @@ class _SigninWidgetWidgetState extends State<SigninWidget> {
                       mainAxisSize: MainAxisSize.max,
                       children: [
                         Padding(
-                            padding: EdgeInsetsDirectional.fromSTEB(16, 10, 16, 10),
-                            child: Row(
-                              children: [
-                                Expanded(
-                                  child: Padding(
-                                    padding: EdgeInsetsDirectional.fromSTEB(0, 0, 0, 0),
-                                    child: CustomButton(
-                                      onPressed: () async {
-                                        if (formKey.currentState.validate()) {
-                                          String response =  await signinUserServices.signinUser(emailAddressController.text, passwordController.text,);
-                                          response == "User signin successfully"  
-                                          ? await Navigator.push(
-                                              context,
-                                              MaterialPageRoute(
-                                                builder: (context) => HomeWithButtomNavBarWidget(),
-                                              ),
-                                            )
-                                          : showDialog(
-                                              context: context,
-                                              builder: (BuildContext context) {
-                                                return alertDialogWidget(
-                                                  title: "Error!",
-                                                  content: "$response",
-                                                );
-                                              }
-                                            );
-                                        }
-                                      },
-                                      text: 'Sign In',
-                                    ),
+                          padding: EdgeInsetsDirectional.fromSTEB(16, 10, 16, 10),
+                          child: Row(
+                            children: [
+                              Expanded(
+                                child: Padding(
+                                padding: EdgeInsetsDirectional.fromSTEB(0, 0, 0, 0),
+                                  child: CustomButton(
+                                    onPressed: () async {
+                                      if (formKey.currentState.validate()) {
+                                        String response =  await signinUserServices.signinUser(emailAddressController.text, passwordController.text,);
+                                        response == "User signin successfully"  
+                                        ? await Navigator.push(
+                                            context,
+                                            MaterialPageRoute(
+                                              builder: (context) => HomeWithButtomNavBarWidget(),
+                                            ),
+                                          )
+                                        : showDialog(
+                                            context: context,
+                                            builder: (BuildContext context) {
+                                              return alertDialogWidget(
+                                                title: "Error!",
+                                                content: "$response",
+                                              );
+                                            }
+                                          );
+                                      }
+                                    },
+                                    text: 'Sign In',
                                   ),
-                                )
-                              ]
-                            )
+                                ),
+                              )
+                            ]
+                          )
                         ),
                         Divider(
                           thickness: 1,
@@ -224,8 +224,7 @@ class _SigninWidgetWidgetState extends State<SigninWidget> {
                                   alignment: AlignmentDirectional(0, 0),
                                   child: Icon(
                                     Icons.facebook,
-                                    color: FlutterAppTheme.of(context)
-                                        .LightDarkTextColor,
+                                    color: FlutterAppTheme.of(context).LightDarkTextColor,
                                     size: 24,
                                   ),
                                 ),
@@ -252,8 +251,7 @@ class _SigninWidgetWidgetState extends State<SigninWidget> {
                                   Navigator.push(
                                     context,
                                     MaterialPageRoute(
-                                      builder: (context) =>
-                                          CreateAccountWidget(),
+                                      builder: (context) => CreateAccountWidget(),
                                     ),
                                   );
                                 },

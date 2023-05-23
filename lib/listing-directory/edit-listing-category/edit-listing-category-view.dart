@@ -64,65 +64,67 @@ class _editListingCategoryWidgetState extends State<editListingCategoryWidget> {
                     children: [
                       Padding(
                         padding: EdgeInsetsDirectional.fromSTEB(16, 30, 16, 10),
-                        child: Row(children: [
-                          Expanded(
-                            child: Padding(
-                              padding: EdgeInsetsDirectional.fromSTEB(0, 0, 0, 0),
-                              child: CustomButton(
-                                onPressed: () async {
-                                  if (formKey.currentState.validate()) {
-                                    bool response =  await editListingCategoriesServives.editListingCategory(widget.id.toString(), NameController.text,);
-                                    response == true ? 
-                                      showDialog(
-                                        context: context,
-                                        builder: (BuildContext context) {
-                                          return alertDialogWidget(
-                                            title: "Succes!",
-                                            content: "category was added successfully",
-                                            actions: [
-                                              TextButton(
-                                                child: Text("Ok"),
-                                                onPressed: () async {
-                                                  await Navigator.push(
-                                                    context,
-                                                    MaterialPageRoute(
-                                                      builder: (context) =>  HomeWidget(),
-                                                    ),
-                                                  );
-                                                },
-                                              )
-                                            ],
-                                          );
-                                        }
-                                      )
-                                    : showDialog(
-                                        context: context,
-                                        builder: (BuildContext context) {
-                                          return alertDialogWidget(
-                                            title: "Error!",
-                                            content: "$response",
-                                            actions: [
-                                              TextButton(
-                                                child: Text("Ok"),
-                                                onPressed: () async {
-                                                  await Navigator.push(
-                                                    context,
-                                                    MaterialPageRoute(
-                                                      builder: (context) => HomeWidget(),
-                                                    ),
-                                                  );
-                                                },
-                                              )
-                                            ],
-                                          );
-                                        }
-                                      );
-                                  }
-                                },
-                                text: 'save',
+                        child: Row(
+                          children: [
+                            Expanded(
+                              child: Padding(
+                                padding: EdgeInsetsDirectional.fromSTEB(0, 0, 0, 0),
+                                child: CustomButton(
+                                  onPressed: () async {
+                                    if (formKey.currentState.validate()) {
+                                      bool response =  await editListingCategoriesServives.editListingCategory(widget.id.toString(), NameController.text,);
+                                      response == true ? 
+                                        showDialog(
+                                          context: context,
+                                          builder: (BuildContext context) {
+                                            return alertDialogWidget(
+                                              title: "Succes!",
+                                              content: "category was added successfully",
+                                              actions: [
+                                                TextButton(
+                                                  child: Text("Ok"),
+                                                  onPressed: () async {
+                                                    await Navigator.push(
+                                                      context,
+                                                      MaterialPageRoute(
+                                                        builder: (context) =>  HomeWidget(),
+                                                      ),
+                                                    );
+                                                  },
+                                                )
+                                              ],
+                                            );
+                                          }
+                                        )
+                                      : showDialog(
+                                          context: context,
+                                          builder: (BuildContext context) {
+                                            return alertDialogWidget(
+                                              title: "Error!",
+                                              content: "$response",
+                                              actions: [
+                                                TextButton(
+                                                  child: Text("Ok"),
+                                                  onPressed: () async {
+                                                    await Navigator.push(
+                                                      context,
+                                                      MaterialPageRoute(
+                                                        builder: (context) => HomeWidget(),
+                                                      ),
+                                                    );
+                                                  },
+                                                )
+                                              ],
+                                            );
+                                          }
+                                        );
+                                    }
+                                  },
+                                  text: 'save',
+                                ),
                               ),
                             ),
-                          ),]
+                          ]
                         )
                       ),
                     ],

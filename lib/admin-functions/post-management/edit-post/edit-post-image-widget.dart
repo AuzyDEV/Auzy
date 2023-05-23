@@ -8,8 +8,7 @@ import '../../../index.dart';
 
 class updateImagePostWidget extends StatefulWidget {
   final String id, downloadURL;
-  const updateImagePostWidget({Key key, this.id, this.downloadURL})
-      : super(key: key);
+  const updateImagePostWidget({Key key, this.id, this.downloadURL}) : super(key: key);
 
   @override
   _updateImagePostWidgetState createState() => _updateImagePostWidgetState();
@@ -22,6 +21,7 @@ class _updateImagePostWidgetState extends State<updateImagePostWidget> {
   final formKey = GlobalKey<FormState>();
   Uint8List fileContents;
   EditPostMan editPostService = EditPostMan();
+
   @override
   void initState() {}
 
@@ -33,15 +33,15 @@ class _updateImagePostWidgetState extends State<updateImagePostWidget> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-        key: scaffoldKey,
-        backgroundColor: FlutterAppTheme.of(context).whiteColor,
-        appBar: PreferredSize(
-          preferredSize: const Size.fromHeight(60),
-          child: appbar(text: 'Post\'s image'),
-        ),
-        drawer: Drawerr(),
-        body: SingleChildScrollView(
-            child: Column(
+      key: scaffoldKey,
+      backgroundColor: FlutterAppTheme.of(context).whiteColor,
+      appBar: PreferredSize(
+        preferredSize: const Size.fromHeight(60),
+        child: appbar(text: 'Post\'s image'),
+      ),
+      drawer: Drawerr(),
+      body: SingleChildScrollView(
+        child: Column(
           mainAxisSize: MainAxisSize.max,
           children: [
             Form(
@@ -58,18 +58,15 @@ class _updateImagePostWidgetState extends State<updateImagePostWidget> {
                         child: Column(
                           mainAxisAlignment: MainAxisAlignment.center,
                           children: [
-                            Text(
-                              fileName ?? 'No file chosen',
+                            Text( fileName ?? 'No file chosen',
                               style: TextStyle(
                                 fontWeight: FontWeight.bold,
                               ),
                             ),
                             ElevatedButton(
                               onPressed: (() {
-                                InputElement inputElement =
-                                    FileUploadInputElement();
+                                InputElement inputElement = FileUploadInputElement();
                                 inputElement.click();
-
                                 inputElement.onChange.listen((e) {
                                   final files = inputElement.files;
                                   if (files.length == 1) {
@@ -87,9 +84,6 @@ class _updateImagePostWidgetState extends State<updateImagePostWidget> {
                               }),
                               child: Text("Pick a file"),
                             ),
-                            /* if (fileContents != null)
-                                      Text(
-                                          "File contents: ${String.fromCharCodes(fileContents)}")*/
                           ],
                         ),
                       ),
@@ -99,59 +93,50 @@ class _updateImagePostWidgetState extends State<updateImagePostWidget> {
                     mainAxisSize: MainAxisSize.max,
                     children: [
                       Padding(
-                          padding:
-                              EdgeInsetsDirectional.fromSTEB(16, 30, 16, 10),
-                          child: Row(children: [
+                        padding: EdgeInsetsDirectional.fromSTEB(16, 30, 16, 10),
+                        child: Row(
+                          children: [
                             Expanded(
                               child: Padding(
-                                padding:
-                                    EdgeInsetsDirectional.fromSTEB(0, 0, 0, 0),
+                                padding: EdgeInsetsDirectional.fromSTEB(0, 0, 0, 0),
                                 child: CustomButton(
                                   onPressed: () async {
                                     if (formKey.currentState.validate()) {
                                       if (fileContents == null) {
-                                        ScaffoldMessenger.of(context)
-                                            .showSnackBar(
-                                         SnackBar(
-                                          content:
-                                              Text('Please select a file!'),
+                                        ScaffoldMessenger.of(context).showSnackBar(
+                                          SnackBar(
+                                          content: Text('Please select a file!'),
                                           backgroundColor: Colors.red,
                                         )
                                         );
                                       } else {
-                                        bool response = await editPostService
-                                            .deleteFilePostFromDownloadURL(
-                                                widget.downloadURL);
+                                        bool response = await editPostService.deleteFilePostFromDownloadURL(widget.downloadURL);
                                         print(response);
                                         if (response == true) {
-                                          await FirebaseStorage.instance
-                                              .ref(
-                                                  'posts/${widget.id}/$fileName')
-                                              .putData(fileContents);
+                                          await FirebaseStorage.instance.ref('posts/${widget.id}/$fileName').putData(fileContents);
                                         }
                                         showDialog(
-                                            context: context,
-                                            builder: (BuildContext context) {
-                                              return alertDialogWidget(
-                                                title: "Succes!",
-                                                content:
-                                                    "post\'s image was updated successfully",
-                                                actions: [
-                                                  TextButton(
-                                                    child: Text("Ok"),
-                                                    onPressed: () async {
-                                                      await Navigator.push(
-                                                        context,
-                                                        MaterialPageRoute(
-                                                          builder: (context) =>
-                                                              HomeWidget(),
-                                                        ),
-                                                      );
-                                                    },
-                                                  )
-                                                ],
-                                              );
-                                            });
+                                          context: context,
+                                          builder: (BuildContext context) {
+                                            return alertDialogWidget(
+                                              title: "Succes!",
+                                              content: "post\'s image was updated successfully",
+                                              actions: [
+                                                TextButton(
+                                                  child: Text("Ok"),
+                                                  onPressed: () async {
+                                                    await Navigator.push(
+                                                      context,
+                                                      MaterialPageRoute(
+                                                        builder: (context) =>  HomeWidget(),
+                                                      ),
+                                                    );
+                                                  },
+                                                )
+                                              ],
+                                            );
+                                          }
+                                        );
                                       }
                                     }
                                   },
@@ -159,13 +144,17 @@ class _updateImagePostWidgetState extends State<updateImagePostWidget> {
                                 ),
                               ),
                             ),
-                          ])),
+                          ]
+                        )
+                      ),
                     ],
                   ),
                 ],
               ),
             ),
           ],
-        )));
+        )
+      )
+    );
   }
 }

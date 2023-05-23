@@ -51,10 +51,10 @@ class User {
   }
 
   static User fromJson(Map<String, dynamic> json) => User(
-        id: (json["uid"] ?? ''),
-        email: (json["email"] ?? ''),
-        password: (json["password"] ?? ''),
-        displayName: (json["displayName"] ?? ''),
-        photoURL: (json["photoURL"] ?? ''),
-      );
+      id: (json["uid"] ?? ''),
+      email: (json["email"] ?? ''),
+      password: (json["password"] ?? ''),
+      displayName: (json["displayName"] ?? ''),
+      photoURL: (json["photoURL"] ?? ''),
+    );
 }

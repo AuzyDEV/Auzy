@@ -233,9 +233,8 @@ class _AllListingsWidgetState extends State<AllListingsWidget> {
                                             Container(
                                               width: MediaQuery.of(context).size.width * 0.85,
                                               height: 1,
-                                              decoration:
-                                                BoxDecoration(
-                                                  color: Color(0xFFDBE2E7),
+                                              decoration: BoxDecoration(
+                                                color: Color(0xFFDBE2E7),
                                               ),
                                             ),
                                             Padding(
@@ -312,12 +311,12 @@ class _AllListingsWidgetState extends State<AllListingsWidget> {
                       return Padding(
                         padding: EdgeInsetsDirectional.fromSTEB(0, 80, 0, 0),
                         child: Text('No doctors',
-                            textAlign: TextAlign.center,
-                            style: FlutterAppTheme.of(context).bodyText2.override(
-                              fontFamily: 'Roboto',
-                              fontSize: 17,
-                              fontWeight: FontWeight.bold,
-                            )
+                          textAlign: TextAlign.center,
+                          style: FlutterAppTheme.of(context).bodyText2.override(
+                            fontFamily: 'Roboto',
+                            fontSize: 17,
+                            fontWeight: FontWeight.bold,
+                          )
                         )
                       );
                     }

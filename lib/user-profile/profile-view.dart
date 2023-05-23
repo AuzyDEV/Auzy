@@ -251,18 +251,15 @@ class _MyprofilWidgetState extends State<MyprofilWidget> {
                                       onTap: () async {
                                         await Navigator.push( context,
                                           MaterialPageRoute(
-                                              builder: (context) => changePasswordWidget()),
+                                            builder: (context) => changePasswordWidget()),
                                         );
                                       },
                                       child: Container(
                                         decoration: BoxDecoration(
-                                          color: FlutterAppTheme.of(context)
-                                              .TransparentColor,
-                                          borderRadius:
-                                              BorderRadius.circular(12),
+                                          color: FlutterAppTheme.of(context).TransparentColor,
+                                          borderRadius: BorderRadius.circular(12),
                                           border: Border.all(
-                                            color: FlutterAppTheme.of(context)
-                                                .lineColor,
+                                            color: FlutterAppTheme.of(context).lineColor,
                                             width: 2,
                                           ),
                                         ),
@@ -270,37 +267,22 @@ class _MyprofilWidgetState extends State<MyprofilWidget> {
                                           mainAxisSize: MainAxisSize.max,
                                           children: [
                                             Padding(
-                                              padding: EdgeInsetsDirectional
-                                                  .fromSTEB(8, 12, 8, 12),
+                                              padding: EdgeInsetsDirectional.fromSTEB(8, 12, 8, 12),
                                               child: Row(
-                                                mainAxisSize:
-                                                    MainAxisSize.max,
+                                                mainAxisSize: MainAxisSize.max,
                                                 children: [
                                                   Padding(
-                                                    padding:
-                                                        EdgeInsetsDirectional
-                                                            .fromSTEB(
-                                                                8, 0, 0, 0),
+                                                    padding: EdgeInsetsDirectional.fromSTEB(8, 0, 0, 0),
                                                     child: Icon(
                                                       Icons.lock_outlined,
-                                                      color:
-                                                          FlutterAppTheme.of(
-                                                                  context)
-                                                              .Grey,
+                                                      color: FlutterAppTheme.of(context).Grey,
                                                       size: 24,
                                                     ),
                                                   ),
                                                   Padding(
-                                                    padding:
-                                                        EdgeInsetsDirectional
-                                                            .fromSTEB(
-                                                                12, 0, 0, 0),
-                                                    child: Text(
-                                                      'Change password',
-                                                      style:
-                                                          FlutterAppTheme.of(
-                                                                  context)
-                                                              .bodyText2,
+                                                    padding: EdgeInsetsDirectional.fromSTEB(12, 0, 0, 0),
+                                                    child: Text('Change password',
+                                                      style: FlutterAppTheme.of(context).bodyText2,
                                                     ),
                                                   ),
                                                 ],
@@ -332,8 +314,7 @@ class _MyprofilWidgetState extends State<MyprofilWidget> {
                                               content: 'you will be blocked permanently, you can only restore your account after a request to the admin',
                                               actions: [
                                                 TextButton(
-                                                  onPressed: () =>
-                                                      Navigator.pop(alertDialogContext,false),
+                                                  onPressed: () => Navigator.pop(alertDialogContext,false),
                                                   child: Text('Cancel'),
                                                 ),
                                                 TextButton(
@@ -356,7 +337,7 @@ class _MyprofilWidgetState extends State<MyprofilWidget> {
                                               ],
                                             );
                                           },
-                                          ) ??
+                                        ) ??
                                         false;
                                       },
                                       child: Container(
@@ -519,8 +500,8 @@ class _MyprofilWidgetState extends State<MyprofilWidget> {
                   return Text("${snapshot.error}");
                 }
                 return Padding(
-                    padding: EdgeInsetsDirectional.fromSTEB(0, 300, 0, 0),
-                    child: CircularProgressIndicatorWidget()
+                  padding: EdgeInsetsDirectional.fromSTEB(0, 300, 0, 0),
+                  child: CircularProgressIndicatorWidget()
                 );
               }
             )

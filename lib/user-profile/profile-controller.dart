@@ -69,8 +69,7 @@ class ProfilingMan {
     }
   }
 
-  Future<bool> UpdateprofilUser(
-      String id, String email, String displayName, String photoURL) async {
+  Future<bool> UpdateprofilUser( String id, String email, String displayName, String photoURL) async {
     final response = await http.put(Uri.parse('http://127.0.0.1:3000/api/userinfo/${id}'),
       headers: <String, String>{
         'Content-Type': 'application/json; charset=UTF-8',

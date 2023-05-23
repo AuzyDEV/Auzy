@@ -383,7 +383,7 @@ class _DoctorprofileWidgetState extends State<DoctorprofileWidget> {
                                         ScaffoldMessenger.of(context).showSnackBar(
                                           SnackbarWidget(
                                             content: Text('Successfully Doctor deleted!',
-                                          )
+                                            )
                                           )
                                         ),
                                       },

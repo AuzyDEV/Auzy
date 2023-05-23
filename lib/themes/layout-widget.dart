@@ -72,21 +72,14 @@ extension AnimatedWidgetExtension on Widget {
     return AnimatedBuilder(
       animation: animationInfo.curvedAnimation,
       builder: (context, child) {
-        // On Action Trigger animations are in this state when
-        // they are first loaded, but before they are triggered.
-        // The widget should remain as it is.
         if (animationInfo.curvedAnimation.status == AnimationStatus.dismissed) {
           return child;
         }
         var returnedWidget = child;
-        if (animationInfo.initialState.offset.dx != 0 ||
-            animationInfo.initialState.offset.dy != 0 ||
-            animationInfo.finalState.offset.dx != 0 ||
-            animationInfo.finalState.offset.dy != 0) {
-          final xRange = animationInfo.finalState.offset.dx -
-              animationInfo.initialState.offset.dx;
-          final yRange = animationInfo.finalState.offset.dy -
-              animationInfo.initialState.offset.dy;
+        if (animationInfo.initialState.offset.dx != 0 || animationInfo.initialState.offset.dy != 0 ||
+            animationInfo.finalState.offset.dx != 0 || animationInfo.finalState.offset.dy != 0) {
+          final xRange = animationInfo.finalState.offset.dx - animationInfo.initialState.offset.dx;
+          final yRange = animationInfo.finalState.offset.dy - animationInfo.initialState.offset.dy;
           final xDelta = xRange * animationInfo.curvedAnimation.value;
           final yDelta = yRange * animationInfo.curvedAnimation.value;
           returnedWidget = Transform.translate(
@@ -97,10 +90,8 @@ extension AnimatedWidgetExtension on Widget {
             child: returnedWidget,
           );
         }
-        if (animationInfo.initialState.scale != 1 ||
-            animationInfo.finalState.scale != 1) {
-          final range =
-              animationInfo.finalState.scale - animationInfo.initialState.scale;
+        if (animationInfo.initialState.scale != 1 || animationInfo.finalState.scale != 1) {
+          final range = animationInfo.finalState.scale - animationInfo.initialState.scale;
           final delta = range * animationInfo.curvedAnimation.value;
           final scale = animationInfo.initialState.scale + delta;
 
@@ -110,25 +101,17 @@ extension AnimatedWidgetExtension on Widget {
           );
         }
         if (animationInfo.fadeIn) {
-          final opacityRange = animationInfo.finalState.opacity -
-              animationInfo.initialState.opacity;
-          final opacityDelta =
-              animationInfo.curvedAnimation.value * opacityRange;
+          final opacityRange = animationInfo.finalState.opacity - animationInfo.initialState.opacity;
+          final opacityDelta = animationInfo.curvedAnimation.value * opacityRange;
           final opacity = animationInfo.initialState.opacity + opacityDelta;
-
           returnedWidget = Opacity(
-            // In cases where the child tree has a Material widget with elevation,
-            // opacity animations may result in sudden box shadow "glitches"
-            // To prevent this, opacity is animated up to but NOT including 1.0.
-            // It is impossible to tell the difference between 0.998 and 1.0 opacity.
             opacity: min(0.998, opacity),
             child: returnedWidget,
           );
         }
         return returnedWidget;
       },
-      child:
-          animationInfos.length > 1 ? animated(animationInfos.skip(1)) : this,
+      child: animationInfos.length > 1 ? animated(animationInfos.skip(1)) : this,
     );
   }
 }

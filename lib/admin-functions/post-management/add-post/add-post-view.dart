@@ -54,14 +54,17 @@ class _addNewPostWidgetState extends State<addNewPostWidget> {
           future: _futureUser,
           builder: (context, snapshot) {
             if (snapshot.hasData) {
-              return Column( mainAxisSize: MainAxisSize.max,
+              return Column( 
+                mainAxisSize: MainAxisSize.max,
                 children: [
                   Form(
                     key: formKey,
                     autovalidateMode: AutovalidateMode.always,
-                    child: Column( mainAxisSize: MainAxisSize.max,
+                    child: Column( 
+                      mainAxisSize: MainAxisSize.max,
                       children: [
-                        Padding(padding: EdgeInsetsDirectional.fromSTEB(0, 0, 0, 0),
+                        Padding(
+                          padding: EdgeInsetsDirectional.fromSTEB(0, 0, 0, 0),
                           child: Column(
                             mainAxisSize: MainAxisSize.max,
                             children: [
@@ -74,20 +77,23 @@ class _addNewPostWidgetState extends State<addNewPostWidget> {
                             ],
                           ),
                         ),
-                        Padding( padding: EdgeInsetsDirectional.fromSTEB( 16, 20, 16, 0),
-                          child: Column(children: [
-                            HtmlEditor(
-                              controller: controller, //required
-                              htmlEditorOptions: HtmlEditorOptions(
-                                hint: "Your text here...",
-                                initialText:
-                                    "text content initial, if any",
+                        Padding( 
+                          padding: EdgeInsetsDirectional.fromSTEB( 16, 20, 16, 0),
+                          child: Column(
+                            children: [
+                              HtmlEditor(
+                                controller: controller, //required
+                                htmlEditorOptions: HtmlEditorOptions(
+                                  hint: "Your text here...",
+                                  initialText:
+                                      "text content initial, if any",
+                                ),
                               ),
-                            ),
-                          ]
+                            ]
                           )
                         ),
-                        Padding(padding: EdgeInsetsDirectional.fromSTEB(16, 10, 16, 0),
+                        Padding(
+                          padding: EdgeInsetsDirectional.fromSTEB(16, 10, 16, 0),
                           child: Column(
                             mainAxisAlignment: MainAxisAlignment.center,
                             children: [
@@ -131,48 +137,51 @@ class _addNewPostWidgetState extends State<addNewPostWidget> {
                         Column(
                           mainAxisSize: MainAxisSize.max,
                           children: [
-                            Padding( padding: EdgeInsetsDirectional.fromSTEB(16, 30, 16, 10),
-                              child: Row(children: [
-                                Expanded(
-                                  child: Padding(
-                                    padding: EdgeInsetsDirectional.fromSTEB(0, 0, 0, 0),
-                                    child: CustomButton(
-                                      onPressed: () async {
-                                        String text = await controller.getText();
-                                        if (formKey.currentState.validate()) {
-                                          if (fileContents == null) {
-                                            ScaffoldMessenger.of(context).showSnackBar(
-                                              SnackBar(
-                                              content: Text('Please select a file!'),
-                                              backgroundColor: Colors.red,
-                                              )
-                                            );
-                                          } else {
-                                            String response = await addPostServices.addNewPost(
-                                              titleController.text, 
-                                              text.toString(),
-                                              snapshot.data.id,
-                                              snapshot.data.displayName,
-                                              snapshot.data.photoURL);
-                                            await FirebaseStorage.instance.ref('posts/$response/$fileName').putData(fileContents);
-                                            Navigator.push( context, MaterialPageRoute(builder: (context) => postsNewWidget(),
-                                            ),
-                                          );
-                                            ScaffoldMessenger.of(context).showSnackBar(
-                                              SnackbarWidget(
-                                                content: Text('Post added successfully!',
+                            Padding(
+                              padding: EdgeInsetsDirectional.fromSTEB(16, 30, 16, 10),
+                              child: Row(
+                                children: [
+                                  Expanded(
+                                    child: Padding(
+                                      padding: EdgeInsetsDirectional.fromSTEB(0, 0, 0, 0),
+                                      child: CustomButton(
+                                        onPressed: () async {
+                                          String text = await controller.getText();
+                                          if (formKey.currentState.validate()) {
+                                            if (fileContents == null) {
+                                              ScaffoldMessenger.of(context).showSnackBar(
+                                                SnackBar(
+                                                content: Text('Please select a file!'),
+                                                backgroundColor: Colors.red,
+                                                )
+                                              );
+                                            } else {
+                                              String response = await addPostServices.addNewPost(
+                                                titleController.text, 
+                                                text.toString(),
+                                                snapshot.data.id,
+                                                snapshot.data.displayName,
+                                                snapshot.data.photoURL);
+                                              await FirebaseStorage.instance.ref('posts/$response/$fileName').putData(fileContents);
+                                              Navigator.push( context, MaterialPageRoute(builder: (context) => postsNewWidget(),
                                                 ),
-                                              ),
-                                            );
+                                              );
+                                              ScaffoldMessenger.of(context).showSnackBar(
+                                                SnackbarWidget(
+                                                  content: Text('Post added successfully!',
+                                                  ),
+                                                ),
+                                              );
+                                            }
                                           }
-                                        }
-                                      },
-                                      text: 'send',
+                                        },
+                                        text: 'send',
+                                      ),
                                     ),
                                   ),
-                                ),
-                              ]
-                            )),
+                                ]
+                              )
+                            ),
                           ],
                         ),
                       ],
@@ -185,8 +194,8 @@ class _addNewPostWidgetState extends State<addNewPostWidget> {
             }
             return Center(
                 child: const CircularProgressIndicatorWidget(
-              color: Colors.transparent,
-            ));
+                  color: Colors.transparent,)
+            );
           }
         )
       )

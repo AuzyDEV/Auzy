@@ -48,7 +48,7 @@ class _editPostDetailsWidgetState extends State<editPostDetailsWidget> {
         child: appbar(text: 'Edit Post'),
       ),
       body: SingleChildScrollView(
-          child: Column(
+        child: Column(
         mainAxisSize: MainAxisSize.max,
         children: [
           Form(
@@ -134,7 +134,7 @@ class _editPostDetailsWidgetState extends State<editPostDetailsWidget> {
           ),
         ],
       )
-    ),
+      ),
     );
   }
 }

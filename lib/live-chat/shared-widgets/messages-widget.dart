@@ -13,10 +13,8 @@ class MessagesWidget extends StatefulWidget {
 }
 
 class _MessagesWidgetState extends State<MessagesWidget> {
-  Timer _timer;
   int start = 0;
   StreamController streamController;
-  ValueNotifier<String> _myString = ValueNotifier<String>('');
   Stream<List<Message>> list;
   int nbr;
   @override
@@ -50,15 +48,15 @@ class _MessagesWidgetState extends State<MessagesWidget> {
                   );
                 },
             );
-        }
+          }
       }
     },
   );
 
   Widget buildText(String text) => Center(
-        child: Text(
-          text,
-          style: TextStyle(fontSize: 24),
-        ),
-      );
+    child: Text(
+      text,
+      style: TextStyle(fontSize: 24),
+    ),
+  );
 }

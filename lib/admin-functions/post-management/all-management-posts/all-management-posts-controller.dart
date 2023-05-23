@@ -43,8 +43,9 @@ class PostMan {
   Future<bool> RestorePost(String id) async {
     final response = await http.put(Uri.parse('http://127.0.0.1:3000/api/postvisibilitytrue/${id}'),
       headers: <String, String>{
-      'Content-Type': 'application/json; charset=UTF-8',
-      });
+        'Content-Type': 'application/json; charset=UTF-8',
+      }
+    );
     if (response.statusCode == 200) {
       return true;
     } else {
@@ -67,10 +68,10 @@ class PostMan {
   Future<bool> deleteFilePostFromDownloadURL(String downloadURL) async {
     final http.Response response = await http.delete(Uri.parse('http://127.0.0.1:3000/api/filepost'),
       headers: <String, String>{
-      'Content-Type': 'application/json; charset=UTF-8',
+        'Content-Type': 'application/json; charset=UTF-8',
       },
       body: jsonEncode(<String, String>{
-      'downloadURL': downloadURL,
+        'downloadURL': downloadURL,
       })
     );
     if (response.statusCode == 200) {

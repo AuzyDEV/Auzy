@@ -43,8 +43,8 @@ class MessageWidget extends StatelessWidget {
               decoration: BoxDecoration(
                 color: isMe ? FlutterAppTheme.of(context).lightGrey : Colors.blue,
                 borderRadius: isMe
-                    ? borderRadius.subtract(BorderRadius.only(bottomRight: radius))
-                    : borderRadius.subtract(BorderRadius.only(bottomLeft: radius)),
+                  ? borderRadius.subtract(BorderRadius.only(bottomRight: radius))
+                  : borderRadius.subtract(BorderRadius.only(bottomLeft: radius)),
               ),
               child: buildMessage(),
             ),

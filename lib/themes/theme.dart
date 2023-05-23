@@ -6,28 +6,27 @@ const kThemeModeKey = '__theme_mode__';
 SharedPreferences _prefs;
 
 abstract class FlutterAppTheme {
-  static Future initialize() async =>
-      _prefs = await SharedPreferences.getInstance();
+  static Future initialize() async => _prefs = await SharedPreferences.getInstance();
   static ThemeMode get themeMode {
     final darkMode = _prefs?.getBool(kThemeModeKey);
     return darkMode == null
-        ? ThemeMode.system
-        : darkMode
-            ? ThemeMode.dark
-            : ThemeMode.light;
+      ? ThemeMode.system
+      : darkMode
+          ? ThemeMode.dark
+          : ThemeMode.light;
   }
 
   static void saveThemeMode(ThemeMode mode) {
     print(ThemeMode.system);
     mode == ThemeMode.system
-        ? _prefs?.remove(kThemeModeKey)
-        : _prefs?.setBool(kThemeModeKey, mode == ThemeMode.dark);
+      ? _prefs?.remove(kThemeModeKey)
+      : _prefs?.setBool(kThemeModeKey, mode == ThemeMode.dark);
   }
 
   static FlutterAppTheme of(BuildContext context) =>
-      Theme.of(context).brightness == Brightness.dark
-          ? DarkModeTheme()
-          : LightModeTheme();
+    Theme.of(context).brightness == Brightness.dark
+      ? DarkModeTheme()
+      : LightModeTheme();
 
   Color primaryColor;
   Color secondaryColor;
@@ -64,43 +63,43 @@ abstract class FlutterAppTheme {
         color: primaryText,
         fontWeight: FontWeight.w600,
         fontSize: 24,
-      );
+  );
   TextStyle get title2 => GoogleFonts.getFont(
         'Poppins',
         color: secondaryText,
         fontWeight: FontWeight.w600,
         fontSize: 22,
-      );
+  );
   TextStyle get title3 => GoogleFonts.getFont(
         'Poppins',
         color: primaryText,
         fontWeight: FontWeight.w600,
         fontSize: 20,
-      );
+  );
   TextStyle get subtitle1 => GoogleFonts.getFont(
         'Poppins',
         color: primaryText,
         fontWeight: FontWeight.w600,
         fontSize: 18,
-      );
+  );
   TextStyle get subtitle2 => GoogleFonts.getFont(
         'Poppins',
         color: secondaryText,
         fontWeight: FontWeight.w600,
         fontSize: 16,
-      );
+  );
   TextStyle get bodyText1 => GoogleFonts.getFont(
         'Poppins',
         color: primaryText,
         fontWeight: FontWeight.w600,
         fontSize: 14,
-      );
+  );
   TextStyle get bodyText2 => GoogleFonts.getFont(
         'Poppins',
         color: secondaryText,
         fontWeight: FontWeight.w600,
         fontSize: 14,
-      );
+  );
 }
 
 class LightModeTheme extends FlutterAppTheme {
@@ -173,24 +172,23 @@ extension TextStyleHelper on TextStyle {
     bool useGoogleFonts = true,
     TextDecoration decoration,
     double lineHeight,
-  }) =>
-      useGoogleFonts
-          ? GoogleFonts.getFont(
-              fontFamily,
-              color: color ?? this.color,
-              fontSize: fontSize ?? this.fontSize,
-              fontWeight: fontWeight ?? this.fontWeight,
-              fontStyle: fontStyle ?? this.fontStyle,
-              decoration: decoration,
-              height: lineHeight,
-            )
-          : copyWith(
-              fontFamily: fontFamily,
-              color: color,
-              fontSize: fontSize,
-              fontWeight: fontWeight,
-              fontStyle: fontStyle,
-              decoration: decoration,
-              height: lineHeight,
-            );
+  }) => useGoogleFonts ? 
+    GoogleFonts.getFont(
+      fontFamily,
+      color: color ?? this.color,
+      fontSize: fontSize ?? this.fontSize,
+      fontWeight: fontWeight ?? this.fontWeight,
+      fontStyle: fontStyle ?? this.fontStyle,
+      decoration: decoration,
+      height: lineHeight,
+    )
+  : copyWith(
+      fontFamily: fontFamily,
+      color: color,
+      fontSize: fontSize,
+      fontWeight: fontWeight,
+      fontStyle: fontStyle,
+      decoration: decoration,
+      height: lineHeight,
+    );
 }

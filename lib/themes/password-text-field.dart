@@ -118,12 +118,12 @@ class _PasswordFormFieldState extends State<PasswordFormField> {
           ),
         ),
         validator: widget.validator ??
-            (value) {
-              if (value == null || value.isEmpty) {
-                return 'Field is required';
-              }
-              return null;
-            },
+          (value) {
+            if (value == null || value.isEmpty) {
+              return 'Field is required';
+            }
+            return null;
+          },
       )
     );
   }

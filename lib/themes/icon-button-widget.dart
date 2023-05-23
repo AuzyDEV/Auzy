@@ -10,8 +10,7 @@ class FlutterFlowIconButton extends StatelessWidget {
     this.buttonSize,
     this.fillColor,
     this.icon,
-    this.onPressed})
-    : super(key: key);
+    this.onPressed}) : super(key: key);
   final double borderRadius;
   final double buttonSize;
   final Color fillColor;

@@ -160,8 +160,8 @@ class _editprofilWidgetState extends State<editprofilWidget> {
               return Text("${snapshot.error}");
             }
             return Padding(
-                padding: EdgeInsetsDirectional.fromSTEB(0, 300, 0, 0),
-                child: const CircularProgressIndicatorWidget()
+              padding: EdgeInsetsDirectional.fromSTEB(0, 300, 0, 0),
+              child: const CircularProgressIndicatorWidget()
             );
           }
         )

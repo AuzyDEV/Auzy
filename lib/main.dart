@@ -9,7 +9,7 @@ void main() async {
   await FlutterAppTheme.initialize();
   await Firebase.initializeApp(options: DefaultFirebaseOptions.currentPlatform);
   WidgetsFlutterBinding.ensureInitialized();
-
+  
   runApp(MyApp());
 }
 

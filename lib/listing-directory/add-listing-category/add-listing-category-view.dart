@@ -110,8 +110,7 @@ class _addListingCategoryWidgetState extends State<addListingCategoryWidget> {
                                       if (fileContents == null) {
                                         ScaffoldMessenger.of(context).showSnackBar(
                                           SnackBar(
-                                          content:
-                                              Text('Please select a file!'),
+                                          content: Text('Please select a file!'),
                                           backgroundColor: Colors.red,
                                           )
                                         );

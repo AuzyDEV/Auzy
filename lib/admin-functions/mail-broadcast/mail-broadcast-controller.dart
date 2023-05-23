@@ -19,5 +19,6 @@ Future<bool> sendBroadcastEmail(String message) async {
     return false;
   }
 }
+
 }
 

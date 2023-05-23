@@ -65,40 +65,39 @@ class _FFButtonWidgetState extends State<FFButtonWidget> {
   @override
   Widget build(BuildContext context) {
     Widget textWidget = loading
-        ? Center(
-            child: Container(
-              width: 23,
-              height: 23,
-              child: CircularProgressIndicator(
-                valueColor: AlwaysStoppedAnimation<Color>(
-                  widget.options.textStyle.color ??
-                      FlutterAppTheme.of(context).whiteColor,
-                ),
+      ? Center(
+          child: Container(
+            width: 23,
+            height: 23,
+            child: CircularProgressIndicator(
+              valueColor: AlwaysStoppedAnimation<Color>(
+                widget.options.textStyle.color ??
+                    FlutterAppTheme.of(context).whiteColor,
               ),
             ),
-          )
-        : AutoSizeText(
-            widget.text,
-            style: widget.options.textStyle,
-            maxLines: 1,
-            overflow: TextOverflow.ellipsis,
-          );
+          ),
+        )
+      : AutoSizeText(
+          widget.text,
+          style: widget.options.textStyle,
+          maxLines: 1,
+          overflow: TextOverflow.ellipsis,
+        );
 
-    final onPressed = widget.showLoadingIndicator
-        ? () async {
-            if (loading) {
-              return;
-            }
-            setState(() => loading = true);
-            try {
-              await widget.onPressed();
-            } finally {
-              if (mounted) {
-                setState(() => loading = false);
-              }
-            }
-          }
-        : () => widget.onPressed();
+    final onPressed = widget.showLoadingIndicator ? () async {
+      if (loading) {
+        return;
+      }
+      setState(() => loading = true);
+      try {
+        await widget.onPressed();
+      } finally {
+        if (mounted) {
+          setState(() => loading = false);
+        }
+      }
+    }
+    : () => widget.onPressed();
 
     if (widget.icon != null || widget.iconData != null) {
       textWidget = Flexible(child: textWidget);
@@ -109,28 +108,24 @@ class _FFButtonWidgetState extends State<FFButtonWidget> {
           icon: Padding(
             padding: widget.options.iconPadding ?? EdgeInsets.zero,
             child: widget.icon ??
-                FaIcon(
-                  widget.iconData,
-                  size: widget.options.iconSize,
-                  color: widget.options.iconColor ??
-                      widget.options.textStyle.color,
-                ),
+              FaIcon(
+                widget.iconData,
+                size: widget.options.iconSize,
+                color: widget.options.iconColor ??
+                    widget.options.textStyle.color,
+              ),
           ),
           label: textWidget,
           onPressed: onPressed,
           style: ButtonStyle(
             shape: MaterialStateProperty.all<RoundedRectangleBorder>(
               RoundedRectangleBorder(
-                borderRadius:
-                    BorderRadius.circular(widget.options.borderRadius),
+                borderRadius: BorderRadius.circular(widget.options.borderRadius),
                 side: widget.options.borderSide ?? BorderSide.none,
               ),
             ),
-            backgroundColor:
-                MaterialStateProperty.all<Color>(widget.options.color),
-            foregroundColor: MaterialStateProperty.all<Color>(
-              widget.options.textStyle.color,
-            ),
+            backgroundColor: MaterialStateProperty.all<Color>(widget.options.color),
+            foregroundColor: MaterialStateProperty.all<Color>( widget.options.textStyle.color,),
           ),
         ),
       );
@@ -148,15 +143,10 @@ class _FFButtonWidgetState extends State<FFButtonWidget> {
               side: BorderSide.none,
             ),
           ),
-          backgroundColor:
-              MaterialStateProperty.all<Color>(widget.options.color),
-          foregroundColor: MaterialStateProperty.all<Color>(
-            widget.options.textStyle.color,
-          ),
-          padding:
-              MaterialStateProperty.all<EdgeInsets>(widget.options.padding),
-          elevation:
-              MaterialStateProperty.all<double>(widget.options.elevation),
+          backgroundColor: MaterialStateProperty.all<Color>(widget.options.color),
+          foregroundColor: MaterialStateProperty.all<Color>(widget.options.textStyle.color,),
+          padding: MaterialStateProperty.all<EdgeInsets>(widget.options.padding),
+          elevation: MaterialStateProperty.all<double>(widget.options.elevation),
         ),
         child: textWidget,
       ),

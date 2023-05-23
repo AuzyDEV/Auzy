@@ -33,13 +33,13 @@ class _ReusableDropdownState extends State<ReusableDropdown> {
           );
         }).toList(),
         onChanged: widget.onChanged != null
-          ? (String value) {
-              setState(() {
-                dropdownValue = value;
-              });
-              widget.onChanged(value);
-            }
-          : null,
+        ? (String value) {
+            setState(() {
+              dropdownValue = value;
+            });
+            widget.onChanged(value);
+          }
+        : null,
         dropdownColor: Colors.white,
         decoration: InputDecoration(
           filled: true,

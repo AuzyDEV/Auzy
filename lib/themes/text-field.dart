@@ -16,20 +16,19 @@ class TextFormFieldWidget extends StatelessWidget {
   final bool isPassword;
 
   const TextFormFieldWidget(
-      {Key key,
-      this.hintText,
-      this.controller,
-      this.onChanged,
-      this.maxLines,
-      this.obscureText,
-      this.readOnly,
-      this.validator,
-      this.isRequired = false,
-      this.isNumeric = false,
-      this.isEmail = false,
-      this.isString = false,
-      this.isPassword = false})
-      : super(key: key);
+    {Key key,
+    this.hintText,
+    this.controller,
+    this.onChanged,
+    this.maxLines,
+    this.obscureText,
+    this.readOnly,
+    this.validator,
+    this.isRequired = false,
+    this.isNumeric = false,
+    this.isEmail = false,
+    this.isString = false,
+    this.isPassword = false}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
@@ -90,9 +89,9 @@ class TextFormFieldWidget extends StatelessWidget {
           contentPadding: EdgeInsetsDirectional.fromSTEB(20, 16, 20, 16),
         ),
         style: FlutterAppTheme.of(context).bodyText1.override(
-            fontFamily: 'Roboto',
-            color: Colors.black,
-            fontWeight: FontWeight.normal)
+          fontFamily: 'Roboto',
+          color: Colors.black,
+          fontWeight: FontWeight.normal)
       ),
     );
   }

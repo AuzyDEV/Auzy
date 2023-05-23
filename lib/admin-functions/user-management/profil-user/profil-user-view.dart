@@ -85,8 +85,8 @@ class _ProfillWidgetState extends State<ProfillWidget> {
                                   clipBehavior: Clip.antiAlias,
                                   decoration: BoxDecoration( shape: BoxShape.circle,),
                                   child: Image.asset(
-                                      "../../assets/images/user.png",
-                                      fit: BoxFit.cover),
+                                    "../../assets/images/user.png",
+                                    fit: BoxFit.cover),
                                 ),
                               ),
                             ),

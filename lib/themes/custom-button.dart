@@ -5,8 +5,7 @@ class CustomButton extends StatelessWidget {
   final VoidCallback onPressed;
   final Color color;
 
-  const CustomButton({Key key, this.text, this.onPressed, this.color})
-      : super(key: key);
+  const CustomButton({Key key, this.text, this.onPressed, this.color}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {

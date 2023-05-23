@@ -21,14 +21,13 @@ class ChatBodyWidget extends StatelessWidget {
       ),
       child: buildChats(),
     ),
-);
+  );
 
   Widget buildChats() => ListView.builder(
     physics: BouncingScrollPhysics(),
     itemBuilder: (context, index) {
       final user = users[index];
       return Container(
-        height: 75,
         child: ListTile(
           onTap: () {
             Navigator.of(context).push(MaterialPageRoute(

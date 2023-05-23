@@ -487,8 +487,8 @@ class _postsForUsersWidgetState extends State<postsForUsersWidget> {
                                                   );
                                                 }
                                                 return Padding(
-                                                    padding: EdgeInsetsDirectional.fromSTEB(0, 280, 0, 0),
-                                                    child:const CircularProgressIndicatorWidget()
+                                                  padding: EdgeInsetsDirectional.fromSTEB(0, 280, 0, 0),
+                                                  child:const CircularProgressIndicatorWidget()
                                                 );
                                               }
                                             )

@@ -129,7 +129,7 @@ class _CreateAccountWidgetState extends State<CreateAccountWidget> {
                         LabeledRowWidget(text: 'Select photo'),
                         Padding(
                           padding: EdgeInsetsDirectional.fromSTEB(16, 20, 16, 0),
-                          child:Row(
+                          child: Row(
                             children: [
                               Expanded(
                                 child: Container(
@@ -230,44 +230,44 @@ class _CreateAccountWidgetState extends State<CreateAccountWidget> {
                                           String uid = response['data'];
                                           await FirebaseStorage.instance.ref('users/$uid/$fileName').putData(fileContents);
                                           showDialog(
-                                              context: context,
-                                              builder: (BuildContext context) {
-                                                return alertDialogWidget(
-                                                  title: "Succes!",
-                                                  content: "Registration completed successfully! please check your email to verify your email adress",
-                                                  actions: [
-                                                    TextButton(
-                                                      child: Text("Ok"),
-                                                      onPressed: () async {
-                                                        await Navigator.push(
-                                                          context,
-                                                          MaterialPageRoute(
-                                                            builder: (context) => SigninWidget(),
-                                                          ),
-                                                        );
-                                                      },
-                                                    )
-                                                  ],
-                                                );
-                                              }
+                                            context: context,
+                                            builder: (BuildContext context) {
+                                              return alertDialogWidget(
+                                                title: "Succes!",
+                                                content: "Registration completed successfully! please check your email to verify your email adress",
+                                                actions: [
+                                                  TextButton(
+                                                    child: Text("Ok"),
+                                                    onPressed: () async {
+                                                      await Navigator.push(
+                                                        context,
+                                                        MaterialPageRoute(
+                                                          builder: (context) => SigninWidget(),
+                                                        ),
+                                                      );
+                                                    },
+                                                  )
+                                                ],
+                                              );
+                                            }
                                           );
                                         } else {
                                           showDialog(
-                                              context: context,
-                                              builder: (BuildContext context) {
-                                                return alertDialogWidget(
-                                                  title: "Error!",
-                                                  content: "$result",
-                                                  actions: [
-                                                    TextButton(
-                                                      child: Text("Ok"),
-                                                      onPressed: () async {
-                                                        await Navigator.pop(context);
-                                                      },
-                                                    )
-                                                  ],
-                                                );
-                                              }
+                                            context: context,
+                                            builder: (BuildContext context) {
+                                              return alertDialogWidget(
+                                                title: "Error!",
+                                                content: "$result",
+                                                actions: [
+                                                  TextButton(
+                                                    child: Text("Ok"),
+                                                    onPressed: () async {
+                                                      await Navigator.pop(context);
+                                                    },
+                                                  )
+                                                ],
+                                              );
+                                            }
                                           );
                                         }
                                       }

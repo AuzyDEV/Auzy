@@ -270,8 +270,9 @@ class _UsersListForPostsWidgetState extends State<UsersListForPostsWidget> {
                       return Text("${snapshot1.error}");
                     }
                     return Padding(
-                        padding: EdgeInsetsDirectional.fromSTEB(0, 300, 0, 0),
-                        child: const CircularProgressIndicatorWidget());
+                      padding: EdgeInsetsDirectional.fromSTEB(0, 300, 0, 0),
+                      child: const CircularProgressIndicatorWidget()
+                    );
                   }
                 ),
               )

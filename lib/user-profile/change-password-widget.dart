@@ -83,10 +83,10 @@ class _changePasswordWidgetState extends State<changePasswordWidget> {
                         PasswordFormField(
                           controller: passwordController1,
                           validator: (value) => value.isEmpty
-                              ? 'Field is required'
-                              : (value != passwordController.text
-                                  ? 'Please confirm your password'
-                                  : null),
+                            ? 'Field is required'
+                            : (value != passwordController.text
+                                ? 'Please confirm your password'
+                                : null),
                         ),
                         Column(
                           mainAxisSize: MainAxisSize.max,
@@ -154,8 +154,9 @@ class _changePasswordWidgetState extends State<changePasswordWidget> {
               return Text("${snapshot.error}");
             }
             return Padding(
-                padding: EdgeInsetsDirectional.fromSTEB(0, 300, 0, 0),
-                child: const CircularProgressIndicatorWidget());
+              padding: EdgeInsetsDirectional.fromSTEB(0, 300, 0, 0),
+              child: const CircularProgressIndicatorWidget()
+            );
           }
         )
       ),

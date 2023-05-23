@@ -33,8 +33,7 @@ class UserMan {
   }
 
   Future<int> CountNumberOfUsers() async {
-    final response =
-        await http.get(Uri.parse('http://127.0.0.1:3000/api/getnumberofusers'));
+    final response = await http.get(Uri.parse('http://127.0.0.1:3000/api/getnumberofusers'));
     if (response.statusCode == 200) {
       final numberUsers = jsonDecode(response.body);
       int numberOfUsers = numberUsers["count"];
