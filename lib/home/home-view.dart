@@ -73,68 +73,7 @@ class _HomeWidgetState extends State<HomeWidget> {
                           crossAxisAlignment: CrossAxisAlignment.start,
                           children: [
                             Padding(
-                              padding: EdgeInsetsDirectional.fromSTEB(0, 15, 0, 15),
-                              child: Row(
-                                mainAxisSize: MainAxisSize.max,
-                                mainAxisAlignment:  MainAxisAlignment.spaceBetween,
-                                children: [
-                                  Column(
-                                    mainAxisSize: MainAxisSize.max,
-                                    crossAxisAlignment: CrossAxisAlignment.start,
-                                    children: [
-                                      Text('Welcome',
-                                        style: FlutterAppTheme.of(context).bodyText1.override(
-                                          fontFamily: 'Roboto',
-                                          fontSize: 20,
-                                        ),
-                                      ),
-                                      Padding(
-                                        padding: EdgeInsetsDirectional.fromSTEB(0, 2, 0, 0),
-                                        child: Text('${snapshot.data.displayName}',
-                                          style: FlutterAppTheme.of(context).bodyText1.override(
-                                            fontFamily: 'Roboto',
-                                            fontSize: 16,
-                                            fontWeight: FontWeight.w500,
-                                          ),
-                                        ),
-                                      ),
-                                    ],
-                                  ),
-                                  Padding(
-                                    padding: EdgeInsetsDirectional.fromSTEB(0, 5, 0, 5),
-                                    child: Container(
-                                      width: 50,
-                                      height: 50,
-                                      decoration: BoxDecoration(
-                                        color: FlutterAppTheme.of(context).whiteColor,
-                                        borderRadius: BorderRadius.circular(10),
-                                        shape: BoxShape.rectangle,
-                                      ),
-                                      child: Padding(
-                                        padding: EdgeInsetsDirectional.fromSTEB(2, 2, 2, 2),
-                                        child: ClipRRect(
-                                          borderRadius: BorderRadius.circular(10),
-                                          child: Image.asset(
-                                            "../assets/images/user.png",
-                                            width: 70,
-                                            height: 70,
-                                            fit: BoxFit.cover,
-                                          ),
-                                        ),
-                                      ),
-                                    ),
-                                  ),
-                                ],
-                              ),
-                            ),
-                            Divider(
-                              height: 12,
-                              indent: 50,
-                              endIndent: 50,
-                              color: FlutterAppTheme.of(context).lightGrey,
-                            ),
-                            Padding(
-                              padding: EdgeInsetsDirectional.fromSTEB(0, 20, 0, 0),
+                              padding: EdgeInsetsDirectional.fromSTEB(0, 10, 0, 0),
                               child: Column(
                                 mainAxisSize: MainAxisSize.max,
                                 children: [
@@ -505,7 +444,9 @@ class _HomeWidgetState extends State<HomeWidget> {
                                       )
                                     ]
                                   ),
-                                  Row(
+                                  Padding(
+                                  padding: EdgeInsetsDirectional.fromSTEB(0, 10, 0, 20),
+                                  child: Row(
                                     children: [
                                       Text( "Discover our guidance",
                                         style: FlutterAppTheme.of(context).bodyText1.override(
@@ -514,9 +455,10 @@ class _HomeWidgetState extends State<HomeWidget> {
                                         ),
                                       )
                                     ],
+                                    ),
                                   ),
                                   Padding(
-                                    padding: EdgeInsetsDirectional.fromSTEB(0, 10, 0, 0),
+                                    padding: EdgeInsetsDirectional.fromSTEB(0, 0, 0, 0),
                                     child: Column(
                                       mainAxisSize: MainAxisSize.max,
                                       children: [

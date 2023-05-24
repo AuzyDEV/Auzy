@@ -62,35 +62,8 @@ class _DrawerrState extends State<Drawerr> {
                                   mainAxisAlignment: MainAxisAlignment.start,
                                   crossAxisAlignment: CrossAxisAlignment.center,
                                   children: [
-                                    Column(
-                                      mainAxisSize: MainAxisSize.max,
-                                      children: [
-                                        Card(
-                                          clipBehavior: Clip.antiAliasWithSaveLayer,
-                                          color: FlutterAppTheme.of(context).primaryColor,
-                                          shape: RoundedRectangleBorder(
-                                            borderRadius: BorderRadius.circular(50),
-                                          ),
-                                          child: Padding(
-                                            padding: EdgeInsetsDirectional.fromSTEB(1, 1, 1, 1),
-                                            child: Container(
-                                              width: 50,
-                                              height: 50,
-                                              clipBehavior: Clip.antiAlias,
-                                              decoration: BoxDecoration(
-                                                shape: BoxShape.circle,
-                                              ),
-                                              child: Image.asset(
-                                                "../assets/images/user.png",
-                                                fit: BoxFit.cover,
-                                              ),
-                                            ),
-                                          ),
-                                        )
-                                      ],
-                                    ),
                                     Padding(
-                                      padding: EdgeInsetsDirectional.fromSTEB( 10, 0, 0, 0),
+                                      padding: EdgeInsetsDirectional.fromSTEB(12, 0, 0, 0),
                                       child: Column(
                                         mainAxisSize: MainAxisSize.max,
                                         crossAxisAlignment: CrossAxisAlignment.start,
@@ -150,23 +123,7 @@ class _DrawerrState extends State<Drawerr> {
                 Navigator.push(
                   context,
                   MaterialPageRoute(
-                    builder: (context) => HomeWithButtomNavBarWidget(),
-                  ),
-                );
-              }
-            ),
-            _createDrawerItem(context,
-              icon: Icons.account_circle_outlined,
-              text: 'Profil',
-              isSelected: selectedIndex == 1, 
-              onTap: () {
-                setState(() {
-                  selectedIndex = 1;
-                });
-                Navigator.push(
-                  context,
-                  MaterialPageRoute(
-                    builder: (context) => MyprofilWidget(),
+                    builder: (context) => HomeWidget(),
                   ),
                 );
               }
@@ -306,6 +263,22 @@ class _DrawerrState extends State<Drawerr> {
                   );
                 }
               ),
+            _createDrawerItem(context,
+              icon: Icons.account_circle_outlined,
+              text: 'Profil',
+              isSelected: selectedIndex == 1, 
+              onTap: () {
+                setState(() {
+                  selectedIndex = 1;
+                });
+                Navigator.push(
+                  context,
+                  MaterialPageRoute(
+                    builder: (context) => MyprofilWidget(),
+                  ),
+                );
+              }
+            ),
             _createDrawerItem(
               context,
               icon: Icons.logout_outlined,

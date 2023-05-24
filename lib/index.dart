@@ -9,7 +9,6 @@ export 'authentification/create-account/create-account-view.dart' show CreateAcc
 export 'authentification/forgot-password/forgot-password-view.dart' show ForgetpasswordWidget;
 export 'authentification/login/login-view.dart' show SigninWidget;
 export 'contact-us/contact-us-view.dart' show contactUsWidget;
-export 'home/welcome-view.dart' show HomeWithButtomNavBarWidget;
 export 'home/home-view.dart' show HomeWidget;
 export 'listing-directory/add-listing/add-listing-view.dart' show addListingWidget;
 export 'listing-directory/add-listing-category/add-listing-category-view.dart' show addListingCategoryWidget;

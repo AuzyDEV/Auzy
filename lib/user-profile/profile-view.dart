@@ -109,7 +109,11 @@ class _MyprofilWidgetState extends State<MyprofilWidget> {
                                                     padding: EdgeInsetsDirectional.fromSTEB(0, 130,0, 15),
                                                     child: Text(
                                                       '${snapshot.data.displayName}',
-                                                      style: FlutterAppTheme.of(context).bodyText1,
+                                                      style: TextStyle(
+                                                        fontSize: 20,
+                                                        fontWeight: FontWeight.bold,
+                                                        color: Colors.black,
+                                                      ),
                                                     ),
                                                   ),
                                                 ],
@@ -125,22 +129,13 @@ class _MyprofilWidgetState extends State<MyprofilWidget> {
                                                       '${snapshot.data.email}',
                                                       style: TextStyle(
                                                         fontWeight: FontWeight.bold,
-                                                        color: FlutterAppTheme.of(context).primaryColor,
+                                                        color: Colors.black,
                                                       ),
                                                     ),
                                                   ),
                                                 ],
                                               ),
                                             ),
-                                            Padding(
-                                              padding: EdgeInsetsDirectional.fromSTEB(0, 175, 0, 0),
-                                              child: Divider(
-                                                indent: 50,
-                                                endIndent: 50,
-                                                height: 50,
-                                                color: FlutterAppTheme.of(context).lightGrey,
-                                              )
-                                            )
                                           ],
                                         ),
                                       ),
@@ -150,17 +145,6 @@ class _MyprofilWidgetState extends State<MyprofilWidget> {
                               ),
                             ),
                           )
-                        ],
-                      ),
-                      Row(
-                        mainAxisSize: MainAxisSize.max,
-                        children: [
-                          Padding(
-                            padding: EdgeInsetsDirectional.fromSTEB(16, 0, 16, 0),
-                            child: Text('Account Settings',
-                              style: FlutterAppTheme.of(context).bodyText1,
-                            ),
-                          ),
                         ],
                       ),
                       ListView(
@@ -310,8 +294,8 @@ class _MyprofilWidgetState extends State<MyprofilWidget> {
                                         var confirmDialogResponse =  await showDialog<bool>( context: context,  builder:
                                           (alertDialogContext) {
                                             return alertDialogWidget(
-                                              title: 'block account',
-                                              content: 'you will be blocked permanently, you can only restore your account after a request to the admin',
+                                              title: 'Block account',
+                                              content: 'You will be blocked permanently, you can only restore your account after a request to the admin',
                                               actions: [
                                                 TextButton(
                                                   onPressed: () => Navigator.pop(alertDialogContext,false),
@@ -394,17 +378,19 @@ class _MyprofilWidgetState extends State<MyprofilWidget> {
                                     padding: EdgeInsetsDirectional.fromSTEB(16, 12, 16, 0),
                                     child: InkWell(
                                       onTap: () async {
-                                        var confirmDialogResponse = await showDialog<bool>(context: context, builder:
+                                        var confirmDialogResponse = await showDialog<bool>(
+                                          context: context, 
+                                          builder:
                                           (alertDialogContext) {
                                             return alertDialogWidget(
                                               title: 'Delete account',
                                               content: 'Are you sure to delete your account?',
                                               actions: [
-                                                ElevatedButton(
+                                                TextButton(
                                                   onPressed: () =>  Navigator.pop(alertDialogContext, false),
                                                   child: Text('Cancel'),
                                                 ),
-                                                ElevatedButton(
+                                                TextButton(
                                                   onPressed: () => {
                                                     profilingUserServices.DeleteCurrentUser(),
                                                     Navigator.push(context,
@@ -419,8 +405,7 @@ class _MyprofilWidgetState extends State<MyprofilWidget> {
                                                       )
                                                     ),
                                                   },
-                                                  child:
-                                                      Text('Confirm'),
+                                                  child: Text('Confirm'),
                                                 ),
                                               ],
                                             );
@@ -474,22 +459,24 @@ class _MyprofilWidgetState extends State<MyprofilWidget> {
                         ],
                       ),
                       Padding(
-                        padding: EdgeInsetsDirectional.fromSTEB(0, 10, 0, 0),
+                        padding: EdgeInsetsDirectional.fromSTEB(16, 10, 16, 0),
                         child: Row(
                           mainAxisSize: MainAxisSize.max,
                           mainAxisAlignment: MainAxisAlignment.center,
                           children: [
-                            CustomButton(
-                              onPressed: () async {
-                                bool response = await signinUserServices.LogoutUser();
-                                if (response)
-                                  await Navigator.push( context,
-                                    MaterialPageRoute(
-                                      builder: (context) => SigninWidget(),
-                                    ),
-                                  );
-                              },
-                              text: 'Log Out',
+                            Expanded(
+                              child: CustomButton(
+                                onPressed: () async {
+                                  bool response = await signinUserServices.LogoutUser();
+                                  if (response)
+                                    await Navigator.push( context,
+                                      MaterialPageRoute(
+                                        builder: (context) => SigninWidget(),
+                                      ),
+                                    );
+                                  },
+                                text: 'Log Out',
+                              ),
                             ),
                           ],
                         ),

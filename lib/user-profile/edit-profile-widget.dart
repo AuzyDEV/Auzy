@@ -80,11 +80,6 @@ class _editprofilWidgetState extends State<editprofilWidget> {
                                 isRequired: true,
                                 isString: true,
                               ),
-                              LabeledRowWidget(text: 'Photo url'),
-                              TextFormFieldWidget(
-                                controller: photourlController,
-                                isRequired: true,
-                              ),
                               LabeledRowWidget(text: 'Email'),
                               TextFormFieldWidget(
                                 controller: emailAddressController,
@@ -142,7 +137,7 @@ class _editprofilWidgetState extends State<editprofilWidget> {
                                               );
                                           }
                                         },
-                                        text: 'submit',
+                                        text: 'Submit',
                                       ),
                                     ),
                                   ),

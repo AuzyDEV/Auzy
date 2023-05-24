@@ -2,6 +2,7 @@ import '../../index.dart';
 import 'login-controller.dart';
 import '../../../themes/theme.dart';
 import 'package:flutter/material.dart';
+import 'package:social_login_buttons/social_login_buttons.dart';
 
 class SigninWidget extends StatefulWidget {
   const SigninWidget({Key key}) : super(key: key);
@@ -36,26 +37,7 @@ class _SigninWidgetWidgetState extends State<SigninWidget> {
             mainAxisAlignment: MainAxisAlignment.spaceEvenly,
             children: [
               Padding(
-              padding: EdgeInsetsDirectional.fromSTEB(16, 40, 16, 25),
-              child: Row(
-                mainAxisSize: MainAxisSize.max,
-                mainAxisAlignment: MainAxisAlignment.start,
-                children: [
-                  InkWell(
-                    onTap: () async {
-                      Navigator.pop(context);
-                    },
-                    child: Icon(
-                      Icons.arrow_back_ios_new_outlined,
-                      color: FlutterAppTheme.of(context).LightDarkTextColor,
-                      size: 24,
-                      ),
-                    ),
-                  ],
-                ),
-              ),
-              Padding(
-                padding: EdgeInsetsDirectional.fromSTEB(16, 25, 16, 30),
+                padding: EdgeInsetsDirectional.fromSTEB(16, 40, 16, 30),
                 child: Column(
                   mainAxisSize: MainAxisSize.max,
                   crossAxisAlignment: CrossAxisAlignment.start,
@@ -113,7 +95,7 @@ class _SigninWidgetWidgetState extends State<SigninWidget> {
                                   ),
                                 );
                               },
-                              child: Text( 'Forget Password ?',
+                              child: Text( 'Forget password ?',
                                 style: FlutterAppTheme.of(context).bodyText1.override(
                                   fontFamily: 'Roboto',
                                   color: FlutterAppTheme.of(context).secondaryText,
@@ -144,7 +126,7 @@ class _SigninWidgetWidgetState extends State<SigninWidget> {
                                         ? await Navigator.push(
                                             context,
                                             MaterialPageRoute(
-                                              builder: (context) => HomeWithButtomNavBarWidget(),
+                                              builder: (context) => HomeWidget(),
                                             ),
                                           )
                                         : showDialog(
@@ -165,12 +147,7 @@ class _SigninWidgetWidgetState extends State<SigninWidget> {
                             ]
                           )
                         ),
-                        Divider(
-                          thickness: 1,
-                          indent: 50,
-                          endIndent: 50,
-                          color: Colors.grey[300],
-                        ),
+              
                         Padding(
                           padding: EdgeInsetsDirectional.fromSTEB(20, 0, 20, 12),
                           child: Row(
@@ -192,44 +169,23 @@ class _SigninWidgetWidgetState extends State<SigninWidget> {
                           ),
                         ),
                         Padding(
-                          padding: EdgeInsetsDirectional.fromSTEB(8, 8, 8, 8),
-                          child: Row(
-                            mainAxisSize: MainAxisSize.max,
-                            mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                            children: [
-                              InkWell(
-                                onTap: () async {
-                                  var result = signinUserServices.signInWithGoogle();
-                                  if (result != null) {}
-                                },
-                                child: Container(
-                                  width: 50,
-                                  height: 50,
-                                  alignment: AlignmentDirectional(0, 0),
-                                  child: Icon(
-                                    Icons.email,
-                                    color: FlutterAppTheme.of(context).LightDarkTextColor,
-                                    size: 24,
-                                  ),
-                                ),
-                              ),
-                              InkWell(
-                                onTap: () async {
-                                  var result = signinUserServices.facebookSignin();
-                                  if (result != null) {}
-                                },
-                                child: Container(
-                                  width: 50,
-                                  height: 50,
-                                  alignment: AlignmentDirectional(0, 0),
-                                  child: Icon(
-                                    Icons.facebook,
-                                    color: FlutterAppTheme.of(context).LightDarkTextColor,
-                                    size: 24,
-                                  ),
-                                ),
-                              ),
-                            ],
+                          padding: EdgeInsetsDirectional.fromSTEB(16, 10, 16, 10),
+                          child: SocialLoginButton(
+                            buttonType: SocialLoginButtonType.google,
+                            onPressed: () {
+                              var result = signinUserServices.signInWithGoogle();
+                              if (result != null) {}
+                            },
+                          ),
+                        ),
+                        Padding(
+                          padding: EdgeInsetsDirectional.fromSTEB(16, 10, 16, 10),
+                          child: SocialLoginButton(
+                            buttonType: SocialLoginButtonType.facebook,
+                            onPressed: () {
+                              var result = signinUserServices.facebookSignin();
+                              if (result != null) {}
+                            },
                           ),
                         ),
                         Padding(

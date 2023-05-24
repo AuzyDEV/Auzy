@@ -15,7 +15,7 @@ class LabeledRowWidget extends StatelessWidget {
         Padding(
           padding: EdgeInsetsDirectional.fromSTEB(16, 20, 16, 0),
           child: Text(
-            '$text*',
+            '$text',
             style: FlutterAppTheme.of(context).bodyText2.override(
               fontFamily: 'Roboto',
               color: FlutterAppTheme.of(context).TextColor,
