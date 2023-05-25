@@ -477,73 +477,119 @@ class _HomeWidgetState extends State<HomeWidget> {
                                                         itemCount: snapshot.data.length,
                                                         itemBuilder: (_, index) =>
                                                           Padding(
-                                                          padding: EdgeInsetsDirectional.fromSTEB(0,8,0,0),
-                                                          child: Container(
-                                                            decoration: BoxDecoration(
-                                                              border: Border.all(
-                                                                color: FlutterAppTheme.of(context).secondaryText,
-                                                                width: 0.5,
+                                                            padding: EdgeInsetsDirectional.fromSTEB(0,12,0,0),
+                                                            child: Container(
+                                                              decoration: BoxDecoration(
+                                                                border: Border.all(
+                                                                  color: FlutterAppTheme.of(context).secondaryText,
+                                                                  width: 0.5,
+                                                                ),
+                                                                borderRadius: BorderRadius.circular(8.0),
                                                               ),
-                                                              borderRadius: BorderRadius.circular(8.0),
-                                                            ),
-                                                            child: Padding(
-                                                              padding: EdgeInsetsDirectional.fromSTEB(16,8,16, 8),
-                                                              child: Column(
-                                                                children: [
-                                                                  Padding(
-                                                                    padding: EdgeInsetsDirectional.fromSTEB(0, 0, 0, 0),
-                                                                    child: Row(
-                                                                      mainAxisSize: MainAxisSize.max,
-                                                                      children: [
-                                                                        Expanded(
-                                                                          child: Row(
-                                                                            children: [
-                                                                              Card(
-                                                                                clipBehavior: Clip.antiAliasWithSaveLayer,
-                                                                                color: FlutterAppTheme.of(context).primaryColor,
-                                                                                shape: RoundedRectangleBorder(
-                                                                                  borderRadius: BorderRadius.circular(20),
-                                                                                ),
-                                                                                child: Padding(
-                                                                                  padding: EdgeInsetsDirectional.fromSTEB(1, 1, 1, 1),
-                                                                                  child: Container(
-                                                                                    width: 40,
-                                                                                    height: 40,
-                                                                                    clipBehavior: Clip.antiAlias,
-                                                                                    decoration: BoxDecoration(
-                                                                                      shape: BoxShape.circle,
-                                                                                    ),
-                                                                                    child: Image.asset(
-                                                                                      "../../assets/images/user.png",
-                                                                                      fit: BoxFit.cover,
+                                                              child: Padding(
+                                                                padding: EdgeInsetsDirectional.fromSTEB(8, 8, 8, 8),
+                                                                child: Column(
+                                                                  children: [
+                                                                    Padding(
+                                                                      padding: EdgeInsetsDirectional.fromSTEB(0, 0, 0, 0),
+                                                                      child: Row(
+                                                                        mainAxisSize: MainAxisSize.max,
+                                                                        children: [
+                                                                          Expanded(
+                                                                            child: Row(
+                                                                              children: [
+                                                                                Padding(
+                                                                                  padding: EdgeInsetsDirectional.fromSTEB(8, 8, 0, 2),
+                                                                                  child: Text(
+                                                                                    '${snapshot.data[index].title}',
+                                                                                    style: TextStyle(
+                                                                                      color: Colors.black,
+                                                                                      fontFamily: 'Roboto',
+                                                                                      fontSize: 20
                                                                                     ),
                                                                                   ),
                                                                                 ),
+                                                                              ],
+                                                                            )
+                                                                          ),
+                                                                        ],
+                                                                      ),
+                                                                    ),
+                                                                    Padding(
+                                                                      padding: EdgeInsetsDirectional.fromSTEB(8, 2, 0, 15),
+                                                                      child: Row(
+                                                                        children: [
+                                                                          Expanded(
+                                                                            child: Text(
+                                                                              '${snapshot.data[index].date}',
+                                                                              textAlign: TextAlign.left,
+                                                                              style: TextStyle(
+                                                                                fontWeight: FontWeight.normal,
+                                                                                color: Colors.grey
                                                                               ),
-                                                                              Padding(
-                                                                                padding: EdgeInsetsDirectional.fromSTEB(12, 0, 0, 0),
-                                                                                child: Text('${snapshot.data[index].uname}',
-                                                                                  style: FlutterAppTheme.of(context).bodyText1,
-                                                                                ),
-                                                                              ),
-                                                                            ],
-                                                                          )
+                                                                            ),
+                                                                          ),
+                                                                        ],
+                                                                      )
+                                                                    ),
+                                                                    Padding(
+                                                                      padding: EdgeInsets.fromLTRB(8, 0, 8, 0),
+                                                                      child: ClipRRect(
+                                                                        child: Image.network(
+                                                                          '${snapshot.data[index].downloadURL}',
+                                                                          width: 350,
+                                                                          height: 300,
+                                                                          fit: BoxFit.cover,
                                                                         ),
-                                                                        snapshot.data[index].existsInCollection2 == "false" 
-                                                                          ? Padding(
-                                                                            padding: EdgeInsetsDirectional.fromSTEB(12, 0, 0, 0),
+                                                                      ),
+                                                                    ),
+                                                                    Padding(
+                                                                      padding: EdgeInsetsDirectional.fromSTEB(0,2,0, 0),
+                                                                      child:
+                                                                        Html(data: snapshot.data[index].contenu, style: {
+                                                                        '#': Style(
+                                                                          maxLines: 3,
+                                                                          textOverflow: TextOverflow.ellipsis,
+                                                                          ),
+                                                                        }
+                                                                      ),
+                                                                    ),
+                                                                    Row(
+                                                                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                                                                      children: [
+                                                                        GestureDetector(
+                                                                          child: Padding(
+                                                                            padding: EdgeInsetsDirectional.fromSTEB(10, 0, 0, 0),
+                                                                            child: Text(
+                                                                              "Read more",
+                                                                              style: TextStyle(
+                                                                                color: Colors.blue,
+                                                                                decoration: TextDecoration.underline,
+                                                                              ),
+                                                                            ),
+                                                                          ),
+                                                                          onTap: () {
+                                                                            Navigator.push(context,
+                                                                              MaterialPageRoute(builder: (context) => postDetailsWidget(id: snapshot.data[index].id)),
+                                                                            );
+                                                                          },
+                                                                        ),
+                                                                        Container(
+                                                                          width: 175,
+                                                                        ),
+                                                                        snapshot.data[index].existsInCollection2 == "false" ? 
+                                                                          Padding(
+                                                                            padding: EdgeInsetsDirectional.fromSTEB(0, 0, 0, 0),
                                                                             child: FlutterFlowIconButton(
                                                                               borderColor: Colors.transparent,
-                                                                              borderRadius: 30,
-                                                                              buttonSize: 46,
                                                                               icon: Icon(
                                                                                 Icons.bookmark_outline_outlined,
-                                                                                color: Colors.grey,
-                                                                                size: 23,
+                                                                                color: FlutterAppTheme.of(context).secondaryText,
+                                                                                size: 20,
                                                                               ),
                                                                               onPressed: () async {
                                                                                 bool response = await savedPostsServices.SavePost(snapshot.data[index].id, snapshot.data[index].title, snapshot.data[index].contenu, snapshot.data[index].date, snapshot.data[index].uname, snapshot.data[index].uphoto, _CurrentUserId);
-                                                                                await Navigator.push( context,
+                                                                                await Navigator.push(context,
                                                                                   MaterialPageRoute(
                                                                                     builder: (context) => postsForUsersWidget(),
                                                                                   ),
@@ -551,128 +597,26 @@ class _HomeWidgetState extends State<HomeWidget> {
                                                                               },
                                                                             ),
                                                                           )
-                                                                        : Padding(
-                                                                            padding: EdgeInsetsDirectional.fromSTEB(12, 0, 0, 0),
+                                                                          : Padding(
+                                                                            padding: EdgeInsetsDirectional.fromSTEB(0, 0, 0, 0),
                                                                             child: FlutterFlowIconButton(
                                                                               borderColor: Colors.transparent,
-                                                                              borderRadius: 30,
-                                                                              buttonSize: 46,
                                                                               icon: Icon(
                                                                                 Icons.bookmark_outlined,
                                                                                 color: Colors.amber,
-                                                                                size: 23,
+                                                                                size: 20,
                                                                               ),
                                                                               onPressed: () async {},
                                                                             ),
                                                                           )
-                                                                      ],
+                                                                      ]
                                                                     ),
-                                                                  ),
-                                                                  ClipRRect(
-                                                                    borderRadius: BorderRadius.circular(8),
-                                                                    child: Image.network(
-                                                                      '${snapshot.data[index].downloadURL}',
-                                                                      width: 350,
-                                                                      height: 300,
-                                                                      fit: BoxFit.cover,
-                                                                    ),
-                                                                  ),
-                                                                  Padding(
-                                                                    padding: EdgeInsetsDirectional.fromSTEB(0, 5, 2, 5),
-                                                                    child: Row(
-                                                                      children: [
-                                                                        Expanded(
-                                                                          child: Row(
-                                                                            children: [
-                                                                              Padding(
-                                                                                padding: EdgeInsetsDirectional.fromSTEB(4, 0, 0, 0),
-                                                                                child: Icon(
-                                                                                  Icons.favorite_border_outlined,
-                                                                                  color: Colors.grey,
-                                                                                  size: 24,
-                                                                                ),
-                                                                              ),
-                                                                              Padding(
-                                                                                padding: EdgeInsetsDirectional.fromSTEB(4, 0, 0, 0),
-                                                                                child: Text(
-                                                                                  '2,493',
-                                                                                  style: FlutterAppTheme.of(context).bodyText2,
-                                                                                ),
-                                                                              ),
-                                                                            ],
-                                                                          )
-                                                                        ),
-                                                                        Padding(
-                                                                          padding: EdgeInsetsDirectional.fromSTEB(4, 0, 0, 0),
-                                                                          child: InkWell(
-                                                                            onTap: () async {
-                                                                              await Navigator.push(context,
-                                                                                MaterialPageRoute(builder: (context) => UsersListForPostsWidget(postId: snapshot.data[index].id, Postcontenu: snapshot.data[index].contenu, postImage: snapshot.data[index].downloadURL, CurrentuserId: _CurrentUserId, adminName: snapshot.data[index].uname, adminPhoto: snapshot.data[index].uphoto)),
-                                                                              );
-                                                                            },
-                                                                            child: Icon(
-                                                                              Icons.ios_share_sharp,
-                                                                              color: Colors.grey,
-                                                                              size: 23,
-                                                                            ),
-                                                                          ),
-                                                                        ),
-                                                                      ],
-                                                                    ),
-                                                                  ),
-                                                                  Padding(
-                                                                    padding: EdgeInsetsDirectional.fromSTEB(0, 5, 2, 0),
-                                                                    child: Html(
-                                                                          data: "${snapshot.data[index].contenu}", 
-                                                                          style: {
-                                                                          '#': Style(
-                                                                            maxLines: 2,
-                                                                            textOverflow: TextOverflow.ellipsis,
-                                                                          ),
-                                                                          }
-                                                                        ),
-                                                                  ),
-                                                                  Row(
-                                                                    mainAxisAlignment: MainAxisAlignment.start, 
-                                                                    children: [
-                                                                      GestureDetector(
-                                                                        child: Padding(
-                                                                          padding: EdgeInsetsDirectional.fromSTEB(10, 0, 2, 0), 
-                                                                          child:Text(
-                                                                          "Read more",
-                                                                          style: TextStyle(
-                                                                            color: Colors.blue,
-                                                                            decoration: TextDecoration.underline,
-                                                                            ),
-                                                                          ),
-                                                                        ),
-                                                                        onTap: () {
-                                                                          Navigator.push(context,
-                                                                            MaterialPageRoute(builder: (context) => postDetailsWidget(id: snapshot.data[index].id)),
-                                                                          );
-                                                                        },
-                                                                      ),
-                                                                    ]
-                                                                  ),
-                                                                  Padding(
-                                                                    padding: EdgeInsetsDirectional.fromSTEB(0, 12, 2, 12),
-                                                                    child: Row(
-                                                                      children: [
-                                                                        Expanded(
-                                                                          child: Text('${snapshot.data[index].date}',
-                                                                            textAlign: TextAlign.right,
-                                                                            style: TextStyle(fontWeight: FontWeight.bold),
-                                                                          ),
-                                                                        ),
-                                                                      ],
-                                                                    )
-                                                                  ),
-                                                                ],
+                                                                  ],
+                                                                )
                                                               ),
-                                                            )
+                                                            ),
                                                           )
-                                                        ),
-                                                    );
+                                                  );
                                                     } else if (snapshot.hasError) {
                                                       return Text('${snapshot.error}',
                                                         textAlign: TextAlign.center,

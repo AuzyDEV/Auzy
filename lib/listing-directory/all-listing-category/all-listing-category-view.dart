@@ -41,7 +41,7 @@ class _SpecialitiesWidgetState extends State<SpecialitiesWidget> {
       key: scaffoldKey,
       appBar: PreferredSize(
         preferredSize: const Size.fromHeight(60),
-        child: appbar(text: 'Categories'),
+        child: appbar(text: 'Find a professional'),
       ),
       drawer: Drawerr(),
       body: SingleChildScrollView(

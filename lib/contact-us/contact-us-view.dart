@@ -149,7 +149,7 @@ class _contactUsWidgetState extends State<contactUsWidget> {
                                         );
                                     }
                                   },
-                                  text: 'send',
+                                  text: 'Send',
                                 ),
                               ),
                             ),

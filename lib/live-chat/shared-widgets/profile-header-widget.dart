@@ -8,7 +8,8 @@ class ProfileHeaderWidget extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) => Container(
-    height: 80,
+    color: Colors.black,
+    height: 75,
     padding: EdgeInsets.all(16).copyWith(left: 0),
     child: Column(
       children: [
@@ -21,7 +22,7 @@ class ProfileHeaderWidget extends StatelessWidget {
                 name,
                 style: TextStyle(
                   fontSize: 24,
-                  color: FlutterAppTheme.of(context).LightDarkTextColor,
+                  color: FlutterAppTheme.of(context).whiteColor,
                   fontWeight: FontWeight.bold,
                 ),
                 overflow: TextOverflow.ellipsis,
@@ -40,6 +41,6 @@ class ProfileHeaderWidget extends StatelessWidget {
       shape: BoxShape.circle,
       color: Colors.white54,
     ),
-    child: Icon(icon, size: 25, color: Colors.white),
+    child: Icon(icon, size: 25, color: Colors.black),
   );
 }

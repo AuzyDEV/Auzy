@@ -37,22 +37,30 @@ class _SigninWidgetWidgetState extends State<SigninWidget> {
             mainAxisAlignment: MainAxisAlignment.spaceEvenly,
             children: [
               Padding(
-                padding: EdgeInsetsDirectional.fromSTEB(16, 40, 16, 30),
+                padding: EdgeInsetsDirectional.fromSTEB(16, 40, 16, 20),
                 child: Column(
                   mainAxisSize: MainAxisSize.max,
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
-                    Text( 'Sign In',
-                      style: FlutterAppTheme.of(context).bodyText1.override(
-                        fontFamily: 'Open Sans',
-                        fontSize: 30,
+                    Padding(
+                      padding: EdgeInsetsDirectional.fromSTEB(0, 0, 0, 5),
+                      child: Text( 'Sign In',
+                        style: FlutterAppTheme.of(context).bodyText1.override(
+                          fontFamily: 'Open Sans',
+                          fontSize: 30,
+                        ),
                       ),
+                    ),
+                    Container(
+                      height: 2,
+                      width: 80,
+                      color: Color(0xFF9457FB)
                     ),
                     Divider(
                       thickness: 3,
                       indent: 5,
                       endIndent: 250,
-                      color: Color(0xFF9457FB),
+                      color: Colors.transparent,
                     ),
                   ],
                 ),

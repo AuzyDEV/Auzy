@@ -198,7 +198,7 @@ class _DrawerrState extends State<Drawerr> {
               ),
             _createDrawerItem(context,
                 icon: Icons.person_search_outlined,
-                text: 'Doctors',
+                text: 'Professionals',
                 isSelected: selectedIndex == 8, 
                 onTap: () {
                   setState(() {
@@ -214,7 +214,7 @@ class _DrawerrState extends State<Drawerr> {
               ),
             _createDrawerItem(context,
               icon: Icons.message_outlined,
-              text: 'Messages',
+              text: 'Live Assistant',
               isSelected: selectedIndex == 3, 
               onTap: () {
                 setState(() {

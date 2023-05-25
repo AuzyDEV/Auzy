@@ -63,40 +63,7 @@ class _postDetailsWidgetState extends State<postDetailsWidget> {
                 mainAxisSize: MainAxisSize.max,
                 children: [
                   Padding(
-                    padding: EdgeInsetsDirectional.fromSTEB(0, 8, 0, 0),
-                    child: Row(
-                      mainAxisSize: MainAxisSize.max,
-                      mainAxisAlignment: MainAxisAlignment.center,
-                      children: [
-                        Container(
-                          width: MediaQuery.of(context).size.width * 0.9,
-                          height: 320,
-                          decoration: BoxDecoration(
-                            color: FlutterAppTheme.of(context).whiteColor,
-                            borderRadius: BorderRadius.circular(16),
-                          ),
-                          child: Stack(
-                            children: [
-                              Align(
-                                alignment: AlignmentDirectional(0, 0),
-                                child: ClipRRect(
-                                  borderRadius: BorderRadius.circular(16),
-                                  child: Image.network(
-                                    '${snapshot.data.files[0].downloadURL}',
-                                    width: double.infinity,
-                                    height: double.infinity,
-                                    fit: BoxFit.cover,
-                                  ),
-                                ),
-                              ),
-                            ],
-                          ),
-                        ),
-                      ],
-                    ),
-                  ),
-                  Padding(
-                    padding: EdgeInsetsDirectional.fromSTEB(24, 20, 24, 0),
+                    padding: EdgeInsetsDirectional.fromSTEB(16, 20, 16, 0),
                     child: Row(
                       mainAxisSize: MainAxisSize.max,
                       children: [
@@ -108,30 +75,49 @@ class _postDetailsWidgetState extends State<postDetailsWidget> {
                     ),
                   ),
                   Padding(
-                    padding: EdgeInsetsDirectional.fromSTEB(24, 4, 24, 0),
-                    child: Row(
-                      mainAxisSize: MainAxisSize.max,
-                      children: [
-                        Expanded(
-                          child: Padding(
-                            padding: EdgeInsetsDirectional.fromSTEB(
-                                0, 0, 0, 10),
-                            child: Html(data: snapshot.data.contenu),
-                          ),
-                        ),
-                      ],
-                    ),
-                  ),
-                  Padding(
-                    padding: EdgeInsetsDirectional.fromSTEB(24, 8, 24, 0),
+                    padding: EdgeInsetsDirectional.fromSTEB(16, 5, 16, 8),
                     child: Row(
                       children: [
                         Expanded(
                           child: Text(
                             '${snapshot.data.date}',
-                            textAlign: TextAlign.right,
-                            style: FlutterAppTheme.of(context).bodyText1,
+                            style: FlutterAppTheme.of(context).bodyText2,
                           ),
+                        ),
+                      ],
+                    ),
+                  ),
+                  Row(
+                    mainAxisSize: MainAxisSize.max,
+                    mainAxisAlignment: MainAxisAlignment.start,
+                    children: [
+                      Container(
+                        width: MediaQuery.of(context).size.width,
+                        height: 320,
+                        decoration: BoxDecoration(
+                          color: Colors.white,
+                        ),
+                        child: Padding(
+                          padding: EdgeInsets.fromLTRB(16, 0, 16, 0),
+                            child: ClipRRect(
+                              child: Image.network(
+                                '${snapshot.data.files[0].downloadURL}',
+                                width: double.infinity,
+                                height: double.infinity,
+                                fit: BoxFit.cover,
+                              ),
+                            ),
+                        ),  
+                      ),
+                    ],
+                  ),
+                  Padding(
+                    padding: EdgeInsetsDirectional.fromSTEB(16, 5, 16, 0),
+                    child: Row(
+                      mainAxisSize: MainAxisSize.max,
+                      children: [
+                        Expanded(
+                            child: Html(data: snapshot.data.contenu),
                         ),
                       ],
                     ),

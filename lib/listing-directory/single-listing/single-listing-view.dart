@@ -53,7 +53,7 @@ class _DoctorprofileWidgetState extends State<DoctorprofileWidget> {
       backgroundColor: FlutterAppTheme.of(context).whiteColor,
       appBar: PreferredSize(
         preferredSize: const Size.fromHeight(60),
-        child: appbar(text: 'doctor profile'),
+        child: appbar(text: 'Professional Details'),
       ),
       drawer: Drawerr(),
       body: SafeArea(
@@ -121,25 +121,6 @@ class _DoctorprofileWidgetState extends State<DoctorprofileWidget> {
                                   ),
                                 ),
                               ],
-                            ),
-                            Padding(
-                              padding: EdgeInsetsDirectional.fromSTEB( 0, 2, 0, 0),
-                              child: Row(
-                                mainAxisSize: MainAxisSize.max,
-                                mainAxisAlignment: MainAxisAlignment.center,
-                                children: [
-                                  Padding(
-                                    padding: EdgeInsetsDirectional.fromSTEB( 5, 0, 0, 0),
-                                    child: Text('8 years exeriences',
-                                      style: FlutterAppTheme.of(context).bodyText1.override(
-                                        fontFamily: 'Roboto',
-                                        color: FlutterAppTheme.of(context).primaryText,
-                                        fontWeight: FontWeight.normal,
-                                      ),
-                                    ),
-                                  ),
-                                ],
-                              ),
                             ),
                             Padding(
                               padding: EdgeInsetsDirectional.fromSTEB( 0, 2, 0, 0),

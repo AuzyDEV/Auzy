@@ -66,36 +66,19 @@ class _MyprofilWidgetState extends State<MyprofilWidget> {
                                     crossAxisAlignment: CrossAxisAlignment.start,
                                     children: [
                                       Expanded(
-                                        child: Stack(
+                                        child: Column(
                                           children: [
                                             Row(
-                                              mainAxisSize: MainAxisSize.max,
-                                              mainAxisAlignment: MainAxisAlignment.center,
+                                              mainAxisAlignment: MainAxisAlignment.start,
                                               children: [
                                                 Padding(
-                                                  padding: EdgeInsetsDirectional.fromSTEB( 0, 20, 0, 5),
-                                                  child: Container(
-                                                    width: 100,
-                                                    height: 100,
-                                                    decoration: BoxDecoration(
-                                                      color: FlutterAppTheme.of(context).primaryColor,
-                                                      shape: BoxShape.circle,
-                                                    ),
-                                                    child: Stack(
-                                                      children: [
-                                                        Padding(
-                                                          padding: EdgeInsetsDirectional.fromSTEB( 3,3,3, 3),
-                                                          child: ClipRRect(
-                                                            borderRadius: BorderRadius.circular(60),
-                                                            child: Image.asset(
-                                                              "../assets/images/user.png",
-                                                              width: 100,
-                                                              height: 100,
-                                                              fit: BoxFit.cover,
-                                                            ),
-                                                          ),
-                                                        ),
-                                                      ],
+                                                  padding: EdgeInsetsDirectional.fromSTEB(16, 20,16, 0),
+                                                  child: Text(
+                                                    '${snapshot.data.displayName}',
+                                                    style: TextStyle(
+                                                      fontSize: 20,
+                                                      fontWeight: FontWeight.bold,
+                                                      color: Colors.black,
                                                     ),
                                                   ),
                                                 ),
@@ -103,28 +86,10 @@ class _MyprofilWidgetState extends State<MyprofilWidget> {
                                             ),
                                             Center(
                                               child: Row(
-                                                mainAxisAlignment: MainAxisAlignment.center,
+                                                mainAxisAlignment: MainAxisAlignment.start,
                                                 children: [
                                                   Padding(
-                                                    padding: EdgeInsetsDirectional.fromSTEB(0, 130,0, 15),
-                                                    child: Text(
-                                                      '${snapshot.data.displayName}',
-                                                      style: TextStyle(
-                                                        fontSize: 20,
-                                                        fontWeight: FontWeight.bold,
-                                                        color: Colors.black,
-                                                      ),
-                                                    ),
-                                                  ),
-                                                ],
-                                              ),
-                                            ),
-                                            Center(
-                                              child: Row(
-                                                mainAxisAlignment: MainAxisAlignment.center,
-                                                children: [
-                                                  Padding(
-                                                    padding: EdgeInsetsDirectional.fromSTEB(0, 160, 0, 15),
+                                                    padding: EdgeInsetsDirectional.fromSTEB(16, 5, 16, 15),
                                                     child: Text(
                                                       '${snapshot.data.email}',
                                                       style: TextStyle(
@@ -137,7 +102,7 @@ class _MyprofilWidgetState extends State<MyprofilWidget> {
                                               ),
                                             ),
                                           ],
-                                        ),
+                                        )
                                       ),
                                     ],
                                   ),
@@ -400,8 +365,8 @@ class _MyprofilWidgetState extends State<MyprofilWidget> {
                                                     ),
                                                     ScaffoldMessenger.of(context).showSnackBar(
                                                       SnackbarWidget(
-                                                      content: Text('Successfully account deleted!',
-                                                      ),
+                                                        content: Text('Successfully account deleted!',
+                                                        ),
                                                       )
                                                     ),
                                                   },

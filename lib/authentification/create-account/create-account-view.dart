@@ -64,23 +64,31 @@ class _CreateAccountWidgetState extends State<CreateAccountWidget> {
               ),
             ),
             Padding(
-              padding: EdgeInsetsDirectional.fromSTEB(16, 25, 16, 30),
+              padding: EdgeInsetsDirectional.fromSTEB(16, 25, 16, 20),
               child: Column(
                 mainAxisSize: MainAxisSize.max,
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
-                  Text(
+                  Padding(
+                    padding: EdgeInsetsDirectional.fromSTEB(0, 0, 0, 5),
+                    child: Text(
                     'Create Account',
                     style: FlutterAppTheme.of(context).bodyText1.override(
                       fontFamily: 'Open Sans',
                       fontSize: 30,
+                      ),
                     ),
+                  ),
+                  Container(
+                    height: 2,
+                    width: 190,
+                    color: Color(0xFF9457FB)
                   ),
                   Divider(
                     thickness: 3,
                     indent: 5,
                     endIndent: 200,
-                    color: FlutterAppTheme.of(context).primaryColor,
+                    color: FlutterAppTheme.of(context).TransparentColor,
                   ),
                 ],
               ),
@@ -99,8 +107,18 @@ class _CreateAccountWidgetState extends State<CreateAccountWidget> {
                         LabeledRowWidget(text: 'Full Name'),
                         TextFormFieldWidget(
                           controller: fullnameController,
-                          isRequired: true,
-                          isString: true,
+                          validator: (value) {
+                            if (value == null || value.isEmpty) {
+                            return 'Field is required';
+                            }
+                            if (!(value is String)) {
+                              return 'Please enter a string.';
+                            }
+                            if (value[0] != value[0].toUpperCase()) {
+                              return 'Full name must start with an uppercase letter.';
+                            }
+                            return null; 
+                          },
                         ),
                         LabeledRowWidget(text: 'Email'),
                         TextFormFieldWidget(

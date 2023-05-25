@@ -71,8 +71,18 @@ class _addUserWidgetState extends State<addUserWidget> {
                       LabeledRowWidget(text: 'Full Name'),
                       TextFormFieldWidget(
                         controller: fullnameController,
-                        isRequired: true,
-                        isString: true,
+                        validator: (value) {
+                          if (value == null || value.isEmpty) {
+                            return 'Field is required';
+                          }
+                          if (!(value is String)) {
+                            return 'Please enter a string.';
+                          }
+                          if (value[0] != value[0].toUpperCase()) {
+                            return 'Full name must start with an uppercase letter.';
+                          }
+                          return null; 
+                        },
                       ),
                       LabeledRowWidget(text: 'Email'),
                       TextFormFieldWidget(
