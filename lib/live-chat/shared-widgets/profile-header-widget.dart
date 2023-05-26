@@ -9,7 +9,7 @@ class ProfileHeaderWidget extends StatelessWidget {
   @override
   Widget build(BuildContext context) => Container(
     color: Colors.black,
-    height: 75,
+    height: 93,
     padding: EdgeInsets.all(16).copyWith(left: 0),
     child: Column(
       children: [
@@ -29,6 +29,23 @@ class ProfileHeaderWidget extends StatelessWidget {
               ),
             ),
             SizedBox(width: 4),
+          ],
+        ),
+        Row(
+          children: [
+            Padding(
+              padding: EdgeInsetsDirectional.fromSTEB(41, 0, 0, 0),
+              child: Text(
+                "Online",
+                style: TextStyle(
+                  fontSize: 14.5,
+                  color: FlutterAppTheme.of(context).whiteColor,
+                  fontWeight: FontWeight.normal,
+                ),
+                overflow: TextOverflow.ellipsis,
+              ),
+            ),
+          SizedBox(width: 4),
           ],
         )
       ],

@@ -48,10 +48,6 @@ class MessageWidget extends StatelessWidget {
               ),
               child: buildMessage(),
             ),
-            Text(
-              message.createdAt.toString().substring(0, 16),
-              style: TextStyle(fontSize: 10),
-            )
           ],
         )
       ],

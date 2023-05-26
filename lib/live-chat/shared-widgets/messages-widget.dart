@@ -35,7 +35,7 @@ class _MessagesWidgetState extends State<MessagesWidget> {
           } else {
             final messages = snapshot.data;
             return messages.isEmpty
-            ? buildText('Say Hi..')
+            ? buildText('Say Hi.. 👋')
             : ListView.builder(
                 physics: BouncingScrollPhysics(),
                 reverse: true,
@@ -47,12 +47,11 @@ class _MessagesWidgetState extends State<MessagesWidget> {
                     isMe: message.idUser == widget.myId,
                   );
                 },
-            );
+              );
           }
       }
     },
   );
-
   Widget buildText(String text) => Center(
     child: Text(
       text,

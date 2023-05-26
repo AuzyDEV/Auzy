@@ -22,7 +22,7 @@ class _chatcopyWidgetState extends State<chatcopyWidget> {
   void initState() {
     super.initState();
     textController = TextEditingController();
-    futurePost = userServices.GetAllUsersForChats();
+    futurePost = userServices.GetAllAssistants();
   }
 
   @override
@@ -32,7 +32,7 @@ class _chatcopyWidgetState extends State<chatcopyWidget> {
       resizeToAvoidBottomInset: false,
       appBar: PreferredSize(
         preferredSize: const Size.fromHeight(60),
-        child: appbar(text: 'Users'),
+        child: appbar(text: 'Chat'),
       ),
       drawer: Drawerr(),
       body: SafeArea(
@@ -45,92 +45,6 @@ class _chatcopyWidgetState extends State<chatcopyWidget> {
                 child: Column(
                   mainAxisSize: MainAxisSize.max,
                   children: [
-                    Padding(
-                      padding: EdgeInsetsDirectional.fromSTEB(16, 0, 16, 0),
-                      child: Column(
-                        mainAxisSize: MainAxisSize.max,
-                        mainAxisAlignment: MainAxisAlignment.center,
-                        children: [
-                          Padding(
-                            padding:  EdgeInsetsDirectional.fromSTEB(0, 15, 0, 0),
-                            child: Container(
-                              width: double.infinity,
-                              height: 52,
-                              decoration: BoxDecoration(
-                                  color: Colors.white,
-                                  borderRadius: BorderRadius.circular(8),
-                                  border: Border.all(color: Colors.grey)),
-                              child: Padding(
-                                padding: EdgeInsetsDirectional.fromSTEB( 15, 0, 15, 0),
-                                child: Row(
-                                  mainAxisSize: MainAxisSize.max,
-                                  children: [
-                                    Icon(
-                                      Icons.search,
-                                      color: FlutterAppTheme.of(context).tertiaryColor,
-                                      size: 24,
-                                    ),
-                                    Expanded(
-                                      child: Padding(
-                                        padding: EdgeInsetsDirectional.fromSTEB(5, 0, 0, 2),
-                                        child: TextFormField(
-                                          onChanged: (value) {
-                                            setState(() {
-                                              searchString =
-                                                  value.toLowerCase();
-                                            });
-                                          },
-                                          controller: textController,
-                                          obscureText: false,
-                                          decoration: InputDecoration(
-                                            hintText: 'Search users ...',
-                                            hintStyle:
-                                                FlutterAppTheme.of(context).bodyText1.override(
-                                                  color: Colors.grey,
-                                                  fontFamily: 'Roboto',
-                                                  fontSize: 14,
-                                                  fontWeight: FontWeight.normal,
-                                                ),
-                                            enabledBorder: OutlineInputBorder(
-                                              borderSide: BorderSide(
-                                                color: Color(0x00000000),
-                                                width: 1,
-                                              ),
-                                              borderRadius:
-                                                  const BorderRadius.only(
-                                                topLeft: Radius.circular(4.0),
-                                                topRight: Radius.circular(4.0),
-                                              ),
-                                            ),
-                                            focusedBorder: OutlineInputBorder(
-                                              borderSide: BorderSide(
-                                                color: Color(0x00000000),
-                                                width: 1,
-                                              ),
-                                              borderRadius:
-                                                  const BorderRadius.only(
-                                                topLeft: Radius.circular(4.0),
-                                                topRight: Radius.circular(4.0),
-                                              ),
-                                            ),
-                                          ),
-                                          style: FlutterAppTheme.of(context).bodyText1.override(
-                                            fontFamily: 'Roboto',
-                                            color: Color(0xFF57636C),
-                                            fontSize: 14,
-                                            fontWeight: FontWeight.w500,
-                                          ),
-                                        ),
-                                      ),
-                                    ),
-                                  ],
-                                ),
-                              ),
-                            ),
-                          ),
-                        ],
-                      ),
-                    ),
                     Padding(
                       padding: EdgeInsetsDirectional.fromSTEB(0, 10, 0, 0),
                       child: SingleChildScrollView(
@@ -158,37 +72,46 @@ class _chatcopyWidgetState extends State<chatcopyWidget> {
                                         builder: (context, snapshot) {
                                           if (snapshot.hasData) {
                                             final users = snapshot.data;
-                                            return ListView.separated(
+                                            return ListView.builder(
                                               shrinkWrap: true,
                                               itemCount: snapshot.data.length,
                                               itemBuilder: (BuildContext context, index) {
-                                                return ((snapshot.data[index].displayName.toLowerCase().contains(searchString)))
-                                                  ? Container(
-                                                      height: 75,
-                                                      child: ListTile(
-                                                        onTap: () {
-                                                          Navigator.of(context).push(
-                                                            MaterialPageRoute(
-                                                              builder: (context) =>
-                                                                ChatPage( user: users[index]),
-                                                            )
-                                                          );
-                                                        },
-                                                        leading: CircleAvatar(
-                                                          radius: 25,
-                                                          backgroundImage:
-                                                              AssetImage(
-                                                                  "../assets/images/user.png"),
+                                                return Container(
+                                                  height: 75,
+                                                  child: ListTile(
+                                                    onTap: () {
+                                                      Navigator.of(context).push(
+                                                        MaterialPageRoute(
+                                                          builder: (context) =>
+                                                            ChatPage( user: users[index]),
+                                                        )
+                                                      );
+                                                    },
+                                                    leading: Stack(
+                                                      alignment: Alignment.center,
+                                                      children: [
+                                                        CircleAvatar(
+                                                        radius: 25,
+                                                        backgroundImage:
+                                                        NetworkImage(users[index].photoURL),
                                                         ),
-                                                        title: Text(users[index].displayName),
+                                                      Positioned(
+                                                        top: 35,
+                                                        right: 0,
+                                                        child: Container(
+                                                          width: 10,
+                                                          height: 10,
+                                                          decoration: BoxDecoration(
+                                                            shape: BoxShape.circle,
+                                                            color: Colors.green, 
+                                                          ),
+                                                        ),
                                                       ),
-                                                    )
-                                                  : Container();
-                                              },
-                                              separatorBuilder: (BuildContext context, int index) {
-                                                return snapshot.data[index].displayName.toLowerCase().contains(searchString)
-                                                ? Container()
-                                                : Container();
+                                                    ],
+                                                  ),
+                                                  title: Text(users[index].displayName),
+                                                  ),
+                                                );
                                               },
                                             );
                                           } else if (snapshot.hasError) {

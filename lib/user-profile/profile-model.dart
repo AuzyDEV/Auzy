@@ -57,4 +57,12 @@ class User {
       displayName: (json["displayName"] ?? ''),
       photoURL: (json["photoURL"] ?? ''),
     );
+  factory User.fromMapChat(Map<String, dynamic> json) {
+    return User(
+      id: (json["uid"] ?? ''),
+      email: (json["email"] ?? ''),
+      displayName: (json["displayName"] ?? ''),
+      photoURL: (json["photoURL"] ?? ''),
+    );
+  }
 }

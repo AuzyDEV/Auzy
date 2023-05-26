@@ -1,6 +1,7 @@
 import 'dart:async';
 import 'dart:convert';
 import 'package:cloud_firestore/cloud_firestore.dart';
+import '../../user-profile/profile-model.dart';
 import 'conversation-model.dart';
 import 'package:http/http.dart' as http;
 import '../../utils/utils.dart';
@@ -34,4 +35,5 @@ class MessageMan {
       throw Exception("Failed to get children's list");
     }
   }
+  
 }

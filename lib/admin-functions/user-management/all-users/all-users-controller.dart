@@ -79,12 +79,12 @@ class UserMan {
     }
   }
 
-  Future<List<User>> GetAllUsersForChats() async {
-    final response = await http.get(Uri.parse('http://127.0.0.1:3000/api/get'));
+  Future<List<User>> GetAllAssistants() async {
+    final response = await http.get(Uri.parse('http://127.0.0.1:3000/api/assistants'));
     if (response.statusCode == 200) {
       final usersList = jsonDecode(response.body);
-      final users = usersList["message"];
-      return users.map<User>((json) => User.fromMapp(json)).toList();
+      final users = usersList["message"]["users"];
+      return users.map<User>((json) => User.fromMapChat(json)).toList();
     } else {
       throw Exception("Failed to get children's list");
     }

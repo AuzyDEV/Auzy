@@ -61,7 +61,7 @@ class _NewMessageWidgetState extends State<NewMessageWidget> {
                     border: OutlineInputBorder(
                       borderSide: BorderSide(width: 0),
                       gapPadding: 10,
-                      borderRadius: BorderRadius.circular(25),
+                      borderRadius: BorderRadius.circular(8),
                     ),
                   ),
                   onChanged: (value) => setState(() {
@@ -69,7 +69,7 @@ class _NewMessageWidgetState extends State<NewMessageWidget> {
                   }),
                 ),
               ),
-              SizedBox(width: 20),
+              SizedBox(width: 15),
               GestureDetector(
                 onTap: message.trim().isEmpty ? null : sendMessage,
                 child: Container(

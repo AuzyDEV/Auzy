@@ -532,15 +532,11 @@ class _HomeWidgetState extends State<HomeWidget> {
                                                                         ],
                                                                       )
                                                                     ),
-                                                                    Padding(
-                                                                      padding: EdgeInsets.fromLTRB(8, 0, 8, 0),
-                                                                      child: ClipRRect(
-                                                                        child: Image.network(
-                                                                          '${snapshot.data[index].downloadURL}',
-                                                                          width: 350,
-                                                                          height: 300,
-                                                                          fit: BoxFit.cover,
-                                                                        ),
+                                                                    ClipRRect(
+                                                                      child: Image.network(
+                                                                        '${snapshot.data[index].downloadURL}',
+                                                                        height: 300,
+                                                                        fit: BoxFit.fill,
                                                                       ),
                                                                     ),
                                                                     Padding(
