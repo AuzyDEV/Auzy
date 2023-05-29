@@ -4,6 +4,7 @@ import 'dart:async';
 import '../add-listing-category/add-listing-category-model.dart';
 
 class CategoryListingCtegoryMan {
+  static List<ListingCtegoryModel> listt;
 
   Future<List<ListingCtegoryModel>> getAllListingCtegories() async {
     String collectionName = "listingCategory";

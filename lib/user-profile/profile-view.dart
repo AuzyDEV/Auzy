@@ -76,7 +76,7 @@ class _MyprofilWidgetState extends State<MyprofilWidget> {
                                                   child: Text(
                                                     '${snapshot.data.displayName}',
                                                     style: TextStyle(
-                                                      fontSize: 20,
+                                                      fontSize: 23,
                                                       fontWeight: FontWeight.bold,
                                                       color: Colors.black,
                                                     ),

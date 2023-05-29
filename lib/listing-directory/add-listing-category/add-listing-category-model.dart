@@ -15,6 +15,12 @@ class ListingCtegoryModel {
       files: List<File>.from(json["files"].map((x) => File.fromMap(x))),
     );
   }
+  factory ListingCtegoryModel.fromMapName(Map<String, dynamic> json) {
+    return ListingCtegoryModel(
+      id: (json["id"] ?? ''),
+      Name: (json["Name"] ?? ''),
+    );
+  }
   factory ListingCtegoryModel.fromMaq(Map<String, dynamic> json) {
     return ListingCtegoryModel(
       id: (json["combinedData"]["id"] ?? ''),

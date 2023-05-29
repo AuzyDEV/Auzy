@@ -1,3 +1,5 @@
+import 'package:html_unescape/html_unescape.dart';
+
 import '../../index.dart';
 import '../../user-profile/profile-controller.dart';
 import '../../../themes/theme.dart';
@@ -8,7 +10,6 @@ import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'all-posts-model.dart';
 import '../all-saved-posts/all-saved-posts-model.dart';
-import '../share-post/share-post-model.dart';
 import 'package:flutter_html/flutter_html.dart';
 
 class postsForUsersWidget extends StatefulWidget {
@@ -40,20 +41,23 @@ class _postsForUsersWidgetState extends State<postsForUsersWidget> {
       _CurrentUserId = value;
     });
   }
-  void _scrollListener() {
-    if (_scrollController.offset >= _scrollController.position.maxScrollExtent && !_scrollController.position.outOfRange) {
-      setState(() {
-        itemCount += 3;
-      });
-    }
-  }
+  String extractPlainTextFromHTML(String htmlString) {
+  final unescape = HtmlUnescape();
+  
+  // Remove HTML tags using regular expressions
+  final noTags = htmlString.replaceAll(RegExp(r'<[^>]*>'), '');
+  
+  // Decode HTML entities using the html_unescape package
+  final plainText = unescape.convert(noTags);
+  
+  return plainText;
+}
 
   @override
   void initState() {
     super.initState();
     _getFutureStringValue();
     futurePost = postsServices.getAllPostsForUsers();
-    _scrollController.addListener(_scrollListener);
   }
 
   @override
@@ -188,6 +192,7 @@ class _postsForUsersWidgetState extends State<postsForUsersWidget> {
                                                                   }
                                                                 ),
                                                               ),
+                                                              //Text(extractPlainTextFromHTML(snapshot.data[index].contenu)),
                                                               Row(
                                                                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
                                                                 children: [
