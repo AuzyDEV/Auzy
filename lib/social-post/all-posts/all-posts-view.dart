@@ -129,11 +129,11 @@ class _postsForUsersWidgetState extends State<postsForUsersWidget> {
                                                           borderRadius: BorderRadius.circular(8.0),
                                                         ),
                                                         child: Padding(
-                                                          padding: EdgeInsetsDirectional.fromSTEB(8, 8, 8, 8),
+                                                          padding: EdgeInsetsDirectional.fromSTEB(0, 8, 0, 8),
                                                           child: Column(
                                                             children: [
                                                               Padding(
-                                                                padding: EdgeInsetsDirectional.fromSTEB(0, 0, 0, 0),
+                                                                padding: EdgeInsetsDirectional.fromSTEB(8, 0, 8, 0),
                                                                 child: Row(
                                                                   mainAxisSize: MainAxisSize.max,
                                                                   children: [
@@ -158,7 +158,7 @@ class _postsForUsersWidgetState extends State<postsForUsersWidget> {
                                                                 ),
                                                               ),
                                                               Padding(
-                                                                padding: EdgeInsetsDirectional.fromSTEB(8, 2, 0, 15),
+                                                                padding: EdgeInsetsDirectional.fromSTEB(16, 2, 0, 15),
                                                                 child: Row(
                                                                   children: [
                                                                     Expanded(
@@ -182,23 +182,23 @@ class _postsForUsersWidgetState extends State<postsForUsersWidget> {
                                                                 ),
                                                               ),
                                                               Padding(
-                                                                padding: EdgeInsetsDirectional.fromSTEB(0,2,0, 0),
+                                                                padding: EdgeInsetsDirectional.fromSTEB(14,15,10, 0),
                                                                 child:
-                                                                  Html(data: snapshot.data[index].contenu, style: {
+                                                                Text(extractPlainTextFromHTML(snapshot.data[index].contenu)),
+                                                                  /*Html(data: snapshot.data[index].contenu, style: {
                                                                   '#': Style(
                                                                     maxLines: 3,
                                                                     textOverflow: TextOverflow.ellipsis,
                                                                     ),
                                                                   }
-                                                                ),
+                                                                ),*/
                                                               ),
-                                                              //Text(extractPlainTextFromHTML(snapshot.data[index].contenu)),
                                                               Row(
                                                                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
                                                                 children: [
                                                                   GestureDetector(
                                                                     child: Padding(
-                                                                      padding: EdgeInsetsDirectional.fromSTEB(10, 0, 0, 0),
+                                                                      padding: EdgeInsetsDirectional.fromSTEB(14, 0, 0, 0),
                                                                       child: Text(
                                                                         "Read more",
                                                                         style: TextStyle(
@@ -214,9 +214,9 @@ class _postsForUsersWidgetState extends State<postsForUsersWidget> {
                                                                     },
                                                                   ),
                                                                   Container(
-                                                                    width: 175,
+                                                                    width: 160,
                                                                   ),
-                                                                  Padding(
+                                                                  /* Padding(
                                                                     padding: EdgeInsetsDirectional.fromSTEB(0, 0, 0, 0),
                                                                     child: InkWell(
                                                                       onTap: () async {
@@ -230,7 +230,7 @@ class _postsForUsersWidgetState extends State<postsForUsersWidget> {
                                                                         size: 20,
                                                                       ),
                                                                     ),
-                                                                  ),
+                                                                  ),*/
                                                                   snapshot.data[index].existsInCollection2 == "false" ? 
                                                                       Padding(
                                                                         padding: EdgeInsetsDirectional.fromSTEB(0, 0, 0, 0),
@@ -329,11 +329,11 @@ class _postsForUsersWidgetState extends State<postsForUsersWidget> {
                                                           borderRadius: BorderRadius.circular(8.0),
                                                         ),
                                                         child: Padding(
-                                                          padding: EdgeInsetsDirectional.fromSTEB(8,8,8, 8),
+                                                          padding: EdgeInsetsDirectional.fromSTEB(0,8,0, 8),
                                                           child: Column(
                                                             children: [
                                                               Padding(
-                                                                padding: EdgeInsetsDirectional.fromSTEB(0, 0, 0, 0),
+                                                                padding: EdgeInsetsDirectional.fromSTEB(8, 0, 8, 0),
                                                                 child: Row(
                                                                   mainAxisSize: MainAxisSize.max,
                                                                   children: [
@@ -358,7 +358,7 @@ class _postsForUsersWidgetState extends State<postsForUsersWidget> {
                                                                 ),
                                                               ),
                                                               Padding(
-                                                                padding: EdgeInsetsDirectional.fromSTEB(8, 2, 0, 15),
+                                                                padding: EdgeInsetsDirectional.fromSTEB(16, 2, 0, 15),
                                                                 child: Row(
                                                                   children: [
                                                                     Expanded(
@@ -382,7 +382,7 @@ class _postsForUsersWidgetState extends State<postsForUsersWidget> {
                                                                 ),
                                                               ),
                                                               Padding(
-                                                                padding: EdgeInsetsDirectional.fromSTEB(0,2, 0,0),
+                                                                padding: EdgeInsetsDirectional.fromSTEB(9, 15, 10, 0),
                                                                 child: Html(data: snapshot.data[index].postContenu),
                                                               ),
                                                               Row(
@@ -390,7 +390,7 @@ class _postsForUsersWidgetState extends State<postsForUsersWidget> {
                                                                 children: [
                                                                   GestureDetector(
                                                                     child: Padding(
-                                                                      padding: EdgeInsetsDirectional.fromSTEB(10, 0, 0, 0),
+                                                                      padding: EdgeInsetsDirectional.fromSTEB(17, 0, 0, 0),
                                                                       child: Text(
                                                                         "Read more",
                                                                         style: TextStyle(
@@ -406,7 +406,7 @@ class _postsForUsersWidgetState extends State<postsForUsersWidget> {
                                                                     },
                                                                   ),
                                                                   Container(
-                                                                    width: 180,
+                                                                    width: 170,
                                                                   ),
                                                                   Padding(
                                                                     padding: EdgeInsetsDirectional.fromSTEB(0, 0, 0, 0),

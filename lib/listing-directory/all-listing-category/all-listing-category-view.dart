@@ -7,6 +7,7 @@ import '../../index.dart';
 import 'package:http/http.dart' as http;
 import 'package:flutter/material.dart';
 import '../../user-profile/profile-controller.dart';
+import '../all-listings/all-listings-controller.dart';
 import '../single-listing/single-listing-model.dart';
 
 class SpecialitiesWidget extends StatefulWidget {
@@ -25,36 +26,21 @@ class _SpecialitiesWidgetState extends State<SpecialitiesWidget> {
   ProfilingMan profilingUserServices = ProfilingMan();
   CategoryListingCtegoryMan categoryListingsServices = CategoryListingCtegoryMan();
   List<ListingCtegoryModel> items = []; 
- ListingCtegoryModel selectedValue;
- List<ListingModel> doctors = [];
+  ListingCtegoryModel selectedValue;
+  List<ListingModel> doctors = [];
   List<ListingModel> filteredDoctors = [];
+  AllListingsMan listingsServices = AllListingsMan();
+  
 
   Future<void> fetchListingCategory() async {
-    String collectionName = "listingCategory";
-    final response = await http.get(Uri.parse('http://127.0.0.1:3000/api/DBB/${collectionName}'));
-    if (response.statusCode == 200) {
-      final List<dynamic> jsonData = json.decode(response.body);
-      setState(() {
-        items = jsonData.map((item) => ListingCtegoryModel.fromMapName(item)).toList();
-      });
-    } else {
-      throw Exception('Failed to fetch items');
-    }
+    items = await categoryListingsServices.getAllListingCtegories();
   }
   
   Future<void> fetchDoctors() async {
-    String collectionName = "doctors";
-    final response = await http.get(Uri.parse('http://127.0.0.1:3000/api/DB/${collectionName}'));
-    if (response.statusCode == 200) {
-      final  listingCategories = json.decode(response.body);
-      final listCategory = listingCategories["message"]["listCollections"];
-      setState(() {
-        doctors = listCategory.map<ListingModel>((json) => ListingModel.fromMap(json)).toList();
-        filteredDoctors = doctors;
-      });
-    } else {
-      throw Exception('Failed to fetch doctors');
-    }
+    doctors = await listingsServices.getAllListings();
+    setState(() {
+      filteredDoctors = doctors;
+    });
   }
 
   void filterDoctors(ListingCtegoryModel speciality) {
@@ -67,13 +53,11 @@ class _SpecialitiesWidgetState extends State<SpecialitiesWidget> {
       }
     });
   }
-
   @override
   void initState() {
     super.initState();
     fetchListingCategory();
     fetchDoctors();
-    _futureCategory = categoryListingsServices.getAllListingCtegories();
   }
 
   @override
@@ -95,7 +79,7 @@ class _SpecialitiesWidgetState extends State<SpecialitiesWidget> {
         child: Column(
           children: [
             Padding(
-              padding: EdgeInsetsDirectional.fromSTEB(16, 20, 16, 10),
+              padding: EdgeInsetsDirectional.fromSTEB(16, 20, 16, 20),
               child: Row(
                 mainAxisSize: MainAxisSize.max,
                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
@@ -179,21 +163,21 @@ class _SpecialitiesWidgetState extends State<SpecialitiesWidget> {
                       contentPadding: EdgeInsetsDirectional.fromSTEB(12, 0, 12, 0),
                     ),
                     dropdownColor: Colors.white,
-                      elevation: 2,
-                      style: TextStyle(
-                        color: Colors.black,
-                        fontSize: 16,
-                      ),
-                      isDense: true,
-                      iconSize: 18.0,
-                      iconEnabledColor: Colors.grey,
+                    elevation: 5,
+                    style: TextStyle(
+                      color: Colors.black,
+                      fontSize: 16,
+                    ),
+                    isDense: true,
+                    iconSize: 18.0,
+                    iconEnabledColor: Colors.grey,
                     ),    
                   ),            
                 ],
               ),
             ),
             SizedBox(
-              height: 200, 
+              height: 600, 
               child: ListView.builder(
                 itemCount: filteredDoctors.length,
                 itemBuilder: (context, index) {

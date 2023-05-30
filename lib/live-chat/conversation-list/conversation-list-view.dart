@@ -32,7 +32,7 @@ class _chatcopyWidgetState extends State<chatcopyWidget> {
       resizeToAvoidBottomInset: false,
       appBar: PreferredSize(
         preferredSize: const Size.fromHeight(60),
-        child: appbar(text: 'Chat'),
+        child: appbar(text: 'Live Assistant'),
       ),
       drawer: Drawerr(),
       body: SafeArea(

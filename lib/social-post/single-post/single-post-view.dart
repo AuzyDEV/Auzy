@@ -63,7 +63,7 @@ class _postDetailsWidgetState extends State<postDetailsWidget> {
                 mainAxisSize: MainAxisSize.max,
                 children: [
                   Padding(
-                    padding: EdgeInsetsDirectional.fromSTEB(16, 20, 16, 0),
+                    padding: EdgeInsetsDirectional.fromSTEB(17, 20, 16, 0),
                     child: Row(
                       mainAxisSize: MainAxisSize.max,
                       children: [
@@ -75,7 +75,7 @@ class _postDetailsWidgetState extends State<postDetailsWidget> {
                     ),
                   ),
                   Padding(
-                    padding: EdgeInsetsDirectional.fromSTEB(16, 5, 16, 8),
+                    padding: EdgeInsetsDirectional.fromSTEB(17, 5, 16, 8),
                     child: Row(
                       children: [
                         Expanded(
@@ -112,12 +112,12 @@ class _postDetailsWidgetState extends State<postDetailsWidget> {
                     ],
                   ),
                   Padding(
-                    padding: EdgeInsetsDirectional.fromSTEB(16, 5, 16, 0),
+                    padding: EdgeInsetsDirectional.fromSTEB(10, 5, 12, 0),
                     child: Row(
                       mainAxisSize: MainAxisSize.max,
                       children: [
                         Expanded(
-                            child: Html(data: snapshot.data.contenu),
+                          child: Html(data: snapshot.data.contenu),
                         ),
                       ],
                     ),

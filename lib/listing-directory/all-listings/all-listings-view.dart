@@ -34,8 +34,7 @@ class _AllListingsWidgetState extends State<AllListingsWidget> {
 
   Future<void> _refreshList() async {
     setState(() {
-      futureDoctor =
-          listingsServices.getAllListingsWithCategories(widget.speciality);
+      futureDoctor = listingsServices.getAllListingsWithCategories(widget.speciality);
     });
   }
 
