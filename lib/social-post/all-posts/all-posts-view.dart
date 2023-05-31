@@ -177,6 +177,15 @@ class _postsForUsersWidgetState extends State<postsForUsersWidget> {
                                                               ClipRRect(
                                                                 child: Image.network(
                                                                   '${snapshot.data[index].downloadURL}',
+                                                                  loadingBuilder: (context, child, loadingProgress) {
+                                                                  if (loadingProgress == null) {
+                                                                    return child;
+                                                                  }
+                                                                  return LinearProgressIndicator();
+                                                                  },
+                                                                  errorBuilder: (context, error, stackTrace) {
+                                                                    return Text('Failed to load image');
+                                                                  },
                                                                   height: 300,
                                                                   fit: BoxFit.fill,
                                                                 ),
@@ -378,6 +387,15 @@ class _postsForUsersWidgetState extends State<postsForUsersWidget> {
                                                                 child: Image.network(
                                                                   '${snapshot.data[index].files[0].downloadURL}',
                                                                   height: 300,
+                                                                  loadingBuilder: (context, child, loadingProgress) {
+                                                                  if (loadingProgress == null) {
+                                                                    return child;
+                                                                  }
+                                                                  return LinearProgressIndicator();
+                                                                  },
+                                                                  errorBuilder: (context, error, stackTrace) {
+                                                                    return Text('Failed to load image');
+                                                                  },
                                                                   fit: BoxFit.fill,
                                                                 ),
                                                               ),

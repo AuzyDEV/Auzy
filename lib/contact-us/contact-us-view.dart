@@ -74,14 +74,14 @@ class _contactUsWidgetState extends State<contactUsWidget> {
                       ),
                       LabeledRowWidget(text: 'Mobile'),
                       Padding(
-                        padding: EdgeInsetsDirectional.fromSTEB(16, 10, 16, 0),
+                        padding: EdgeInsetsDirectional.fromSTEB(18, 10, 16, 0),
                         child: InternationalPhoneNumberInput(
                           onInputChanged: (PhoneNumber number) {},
                           cursorColor: Color(0xFF9457FB),
                           validator: (value) => value.isEmpty ? 'Field is required' : null,
                           onInputValidated: (bool value) {},
                           selectorConfig: SelectorConfig(
-                            selectorType: PhoneInputSelectorType.BOTTOM_SHEET,
+                            selectorType: PhoneInputSelectorType.DIALOG,
                           ),
                           ignoreBlank: false,
                           selectorTextStyle: TextStyle(
@@ -89,7 +89,9 @@ class _contactUsWidgetState extends State<contactUsWidget> {
                           initialValue: number,
                           textFieldController: mobilecontroller,
                           formatInput: true,
-                          inputBorder: OutlineInputBorder(),
+                          inputBorder: OutlineInputBorder(
+                            borderRadius: BorderRadius.circular(8)
+                          ),
                           onSaved: (PhoneNumber number) {},
                         ),
                       ),

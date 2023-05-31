@@ -95,21 +95,39 @@ class _chatcopyWidgetState extends State<chatcopyWidget> {
                                                         backgroundImage:
                                                         NetworkImage(users[index].photoURL),
                                                         ),
-                                                      Positioned(
-                                                        top: 35,
-                                                        right: 0,
-                                                        child: Container(
-                                                          width: 10,
-                                                          height: 10,
-                                                          decoration: BoxDecoration(
-                                                            shape: BoxShape.circle,
-                                                            color: Colors.green, 
+                                                        Positioned(
+                                                          top: 35,
+                                                          right: 0,
+                                                          child: Container(
+                                                            width: 10,
+                                                            height: 10,
+                                                            decoration: BoxDecoration(
+                                                              shape: BoxShape.circle,
+                                                              color: Colors.green, 
+                                                            ),
                                                           ),
                                                         ),
-                                                      ),
-                                                    ],
-                                                  ),
-                                                  title: Text(users[index].displayName),
+                                                      ],
+                                                    ),
+                                                    title: Padding(
+                                                      padding: EdgeInsets.fromLTRB(0, 13, 0, 0),
+                                                      child: Column(
+                                                        crossAxisAlignment: CrossAxisAlignment.start,
+                                                        children: [
+                                                          Text(users[index].displayName),
+                                                          Padding(
+                                                          padding: EdgeInsets.fromLTRB(0, 5, 0, 0),
+                                                            child: Text(
+                                                              "Online",
+                                                              style: TextStyle(
+                                                                fontSize: 12,
+                                                                color: Colors.green,
+                                                              ),
+                                                            )
+                                                          )
+                                                        ],
+                                                      )
+                                                    )
                                                   ),
                                                 );
                                               },

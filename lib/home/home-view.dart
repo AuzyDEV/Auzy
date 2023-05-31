@@ -95,7 +95,7 @@ class _HomeWidgetState extends State<HomeWidget> {
                                   Expanded(
                                     child: Container(
                                       width: double.infinity,
-                                      height: 140,
+                                      height: 120,
                                       child: ListView(
                                         padding: EdgeInsets.zero,
                                         scrollDirection: Axis.horizontal,
@@ -447,7 +447,7 @@ class _HomeWidgetState extends State<HomeWidget> {
                               ),
                             ),  
                             Padding(
-                              padding: EdgeInsetsDirectional.fromSTEB(18, 10, 0, 5),
+                              padding: EdgeInsetsDirectional.fromSTEB(18, 10, 0, 8),
                               child: Row(
                                 children: [
                                   Text( "Discover our guidance",
