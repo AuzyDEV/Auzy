@@ -222,57 +222,39 @@ class _postsForUsersWidgetState extends State<postsForUsersWidget> {
                                                                       );
                                                                     },
                                                                   ),
-                                                                  Container(
-                                                                    width: 160,
-                                                                  ),
-                                                                  /* Padding(
+                                                                  Container( width: 160,),
+                                                                  snapshot.data[index].existsInCollection2 == "false" ? 
+                                                                  Padding(
                                                                     padding: EdgeInsetsDirectional.fromSTEB(0, 0, 0, 0),
-                                                                    child: InkWell(
-                                                                      onTap: () async {
-                                                                        await Navigator.push(context,
-                                                                          MaterialPageRoute(builder: (context) => UsersListForPostsWidget(postId: snapshot.data[index].id, Postcontenu: snapshot.data[index].contenu, postImage: snapshot.data[index].downloadURL, CurrentuserId: _CurrentUserId, adminName: snapshot.data[index].uname, adminPhoto: snapshot.data[index].uphoto)),
-                                                                        );
-                                                                      },
-                                                                      child: Icon(
-                                                                        Icons.logout_outlined,
+                                                                    child: FlutterFlowIconButton(
+                                                                      borderColor: Colors.transparent,
+                                                                      icon: Icon(
+                                                                        Icons.bookmark_outline_outlined,
                                                                         color: FlutterAppTheme.of(context).secondaryText,
                                                                         size: 20,
                                                                       ),
+                                                                      onPressed: () async {
+                                                                        bool response = await savedPostsServices.SavePost(snapshot.data[index].id, snapshot.data[index].title, snapshot.data[index].contenu, snapshot.data[index].date, snapshot.data[index].uname, snapshot.data[index].uphoto, _CurrentUserId);
+                                                                        await Navigator.push(context,
+                                                                          MaterialPageRoute(
+                                                                            builder: (context) => postsForUsersWidget(),
+                                                                          ),
+                                                                        );
+                                                                      },
                                                                     ),
-                                                                  ),*/
-                                                                  snapshot.data[index].existsInCollection2 == "false" ? 
-                                                                      Padding(
-                                                                        padding: EdgeInsetsDirectional.fromSTEB(0, 0, 0, 0),
-                                                                        child: FlutterFlowIconButton(
-                                                                          borderColor: Colors.transparent,
-                                                                          icon: Icon(
-                                                                            Icons.bookmark_outline_outlined,
-                                                                            color: FlutterAppTheme.of(context).secondaryText,
-                                                                            size: 20,
-                                                                          ),
-                                                                          onPressed: () async {
-                                                                            bool response = await savedPostsServices.SavePost(snapshot.data[index].id, snapshot.data[index].title, snapshot.data[index].contenu, snapshot.data[index].date, snapshot.data[index].uname, snapshot.data[index].uphoto, _CurrentUserId);
-                                                                            await Navigator.push(context,
-                                                                              MaterialPageRoute(
-                                                                                builder: (context) => postsForUsersWidget(),
-                                                                              ),
-                                                                            );
-                                                                          },
-                                                                        ),
-                                                                      )
-                                                                    : Padding(
-                                                                        padding: EdgeInsetsDirectional.fromSTEB(0, 0, 0, 0),
-                                                                        child: FlutterFlowIconButton(
-                                                                          borderColor: Colors.transparent,
-                                                                          icon: Icon(
-                                                                            Icons.bookmark_outlined,
-                                                                            color: Colors.amber,
-                                                                            size: 20,
-                                                                          ),
-                                                                          onPressed: () async {},
-                                                                        ),
-                                                                      )
-                                                                  
+                                                                  )
+                                                                : Padding(
+                                                                    padding: EdgeInsetsDirectional.fromSTEB(0, 0, 0, 0),
+                                                                    child: FlutterFlowIconButton(
+                                                                      borderColor: Colors.transparent,
+                                                                      icon: Icon(
+                                                                        Icons.bookmark_outlined,
+                                                                        color: Colors.amber,
+                                                                        size: 20,
+                                                                      ),
+                                                                      onPressed: () async {},
+                                                                    ),
+                                                                  )
                                                                 ]
                                                               ),
                                                             ],

@@ -18,6 +18,8 @@ class _SigninWidgetWidgetState extends State<SigninWidget> {
   final scaffoldKey = GlobalKey<ScaffoldState>();
   final formKey = GlobalKey<FormState>();
   SigninMan signinUserServices = SigninMan();
+  bool _isLoading = false;
+
   @override
   void initState() {
     super.initState();
@@ -126,36 +128,29 @@ class _SigninWidgetWidgetState extends State<SigninWidget> {
                               Expanded(
                                 child: Padding(
                                 padding: EdgeInsetsDirectional.fromSTEB(0, 0, 0, 0),
-                                  child: CustomButton(
-                                    onPressed: () async {
-                                      if (formKey.currentState.validate()) {
-                                        String response =  await signinUserServices.signinUser(emailAddressController.text, passwordController.text,);
-                                        response == "User signin successfully"  
-                                        ? await Navigator.push(
-                                            context,
-                                            MaterialPageRoute(
-                                              builder: (context) => HomeWidget(),
-                                            ),
-                                          )
-                                        : showDialog(
-                                            context: context,
-                                            builder: (BuildContext context) {
-                                              return alertDialogWidget(
-                                                title: "Error!",
-                                                content: "$response",
-                                              );
-                                            }
-                                          );
-                                      }
-                                    },
-                                    text: 'Sign In',
+                                  child: Container(
+                                    height: 45,
+                                  child:ElevatedButton(
+                                    style: ButtonStyle(
+                                      backgroundColor:  MaterialStateProperty.all<Color>(Colors.black),
+                                    ),
+                                    onPressed: _isLoading ? null : _signInUser,
+                                    child: _isLoading
+                                    ? CircularProgressIndicator(color: Colors.white, strokeWidth: 1)
+                                    : Text('Sign In',
+                                        style: TextStyle(
+                                          fontSize: 18,
+                                          color: Colors.white,
+                                          fontWeight: FontWeight.bold,
+                                        ),
+                                      ),
                                   ),
+                                ),
                                 ),
                               )
                             ]
                           )
                         ),
-              
                         Padding(
                           padding: EdgeInsetsDirectional.fromSTEB(20, 0, 20, 12),
                           child: Row(
@@ -242,5 +237,35 @@ class _SigninWidgetWidgetState extends State<SigninWidget> {
         ),
       ),
     );
+  }
+Future<void> _signInUser() async {
+    if (formKey.currentState.validate()) {
+      setState(() {
+        _isLoading = true;
+      });
+      String response = await signinUserServices.signinUser(emailAddressController.text, passwordController.text);
+      setState(() {
+        _isLoading = false;
+      });
+
+      if (response == "User signin successfully") {
+        await Navigator.push(
+          context,
+          MaterialPageRoute(
+            builder: (context) => HomeWidget(),
+          ),
+        );
+      } else {
+        showDialog(
+          context: context,
+          builder: (BuildContext context) {
+            return alertDialogWidget(
+              title: "Error!",
+              content: "$response",
+            );
+          },
+        );
+      }
+    }
   }
 }

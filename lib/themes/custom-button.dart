@@ -23,7 +23,6 @@ class CustomButton extends StatelessWidget {
         ),
         style: ButtonStyle(
           backgroundColor: MaterialStateProperty.all<Color>(color ?? Colors.black),
-        
         ),
       )
     );
