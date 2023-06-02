@@ -42,14 +42,9 @@ class _postsForUsersWidgetState extends State<postsForUsersWidget> {
     });
   }
   String extractPlainTextFromHTML(String htmlString) {
-  final unescape = HtmlUnescape();
-  
-  // Remove HTML tags using regular expressions
-  final noTags = htmlString.replaceAll(RegExp(r'<[^>]*>'), '');
-  
-  // Decode HTML entities using the html_unescape package
-  final plainText = unescape.convert(noTags);
-  
+    final unescape = HtmlUnescape();
+    final noTags = htmlString.replaceAll(RegExp(r'<[^>]*>'), '');
+    final plainText = unescape.convert(noTags);
   return plainText;
 }
 

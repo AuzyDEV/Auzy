@@ -1,3 +1,5 @@
+import 'package:skeleton/admin-functions/user-management/all-users/all-users-controller.dart';
+
 import '../../../index.dart';
 import 'profil-user-controller.dart';
 import '../../../themes/theme.dart';
@@ -20,6 +22,7 @@ class _ProfillWidgetState extends State<ProfillWidget> {
   final scaffoldKey = GlobalKey<ScaffoldState>();
   ProfilUserMan profilingUserServices = ProfilUserMan();
   Future<User> _futureUser;
+  UserMan userServices = UserMan();
 
   @override
   void initState() {
@@ -100,6 +103,198 @@ class _ProfillWidgetState extends State<ProfillWidget> {
                                   )
                               ),
                             ),
+                            Padding(
+                              padding: EdgeInsetsDirectional.fromSTEB(16, 8, 16, 8),
+                              child: Row(
+                                mainAxisAlignment:MainAxisAlignment.center,
+                                children: [
+                                  Padding(
+                                    padding: EdgeInsetsDirectional.fromSTEB(5, 0, 0, 0),
+                                    child: InkWell(
+                                      onTap: () async {
+                                        var confirmDialogResponse = await showDialog<bool>(
+                                          context: context,
+                                          builder: (alertDialogContext) {
+                                            return alertDialogWidget(
+                                              title: 'Delete user',
+                                              content: 'Are you sure to delete this user ?',
+                                              actions: [
+                                                TextButton(
+                                                  onPressed: () => Navigator.pop(alertDialogContext, false),
+                                                  child: Text('Cancel'),
+                                                ),
+                                                TextButton(
+                                                  onPressed: () => {
+                                                    userServices.deleteUser(snapshot.data.id.toString()),
+                                                    Navigator.push(
+                                                      context,
+                                                      MaterialPageRoute(
+                                                        builder: (context) => HomeWidget(),
+                                                      ),
+                                                    ),
+                                                    ScaffoldMessenger.of(context).showSnackBar(
+                                                      SnackbarWidget(
+                                                        content: Text('Successfully User deleted!',
+                                                        )
+                                                      )
+                                                    ),
+                                                  },
+                                                  child: Text('Confirm'),
+                                                ),
+                                              ],
+                                            );
+                                          },
+                                        ) ??
+                                        false;
+                                      },
+                                      child: Container(
+                                        width: 40,
+                                        height: 30,
+                                        child: Padding(
+                                          padding: EdgeInsetsDirectional.fromSTEB(4, 4, 4, 4),
+                                          child: Icon(
+                                            Icons.delete,
+                                            color: Color.fromARGB(255, 163, 32, 23),
+                                            size: 20,
+                                          ),
+                                        ),
+                                      ),
+                                    ),
+                                  ),
+                                  Padding(
+                                    padding: EdgeInsetsDirectional.fromSTEB(5, 0, 0, 0),
+                                    child: InkWell(
+                                      onTap: () async {
+                                        await Navigator.push(
+                                          context,
+                                          MaterialPageRoute(
+                                            builder: (context) => editprofilWidget(id: snapshot.data.id.toString(), name: snapshot.data.displayName, email: snapshot.data.email, photourl: snapshot.data.photoURL.toString()),
+                                          ),
+                                        );
+                                      },
+                                      child: Container(
+                                        width: 40,
+                                        height: 30,
+                                        child: Padding(
+                                          padding: EdgeInsetsDirectional.fromSTEB(4, 4, 4, 4),
+                                          child: Icon(
+                                            Icons.edit,
+                                            color: Colors.blueAccent,
+                                            size: 20,
+                                          ),
+                                        ),
+                                      ),
+                                    ),
+                                  ),
+                                  snapshot.data.disabled == false ? 
+                                    Padding(
+                                      padding: EdgeInsetsDirectional.fromSTEB(5, 0, 0, 0),
+                                      child: InkWell(
+                                        onTap: () async {
+                                          var confirmDialogResponse = await showDialog<bool>(
+                                            context: context,
+                                            builder: (alertDialogContext) {
+                                              return alertDialogWidget(
+                                                title: 'block user',
+                                                content: 'Are you sure to block this user ?',
+                                                actions: [
+                                                  TextButton(
+                                                    onPressed: () => Navigator.pop(alertDialogContext, false),
+                                                    child: Text('Cancel'),
+                                                  ),
+                                                  TextButton(
+                                                    onPressed: () => {
+                                                      userServices.BlockUser(snapshot.data.id.toString()),
+                                                      Navigator.push(
+                                                        context,
+                                                        MaterialPageRoute(
+                                                          builder: (context) => usersnewWidget(),
+                                                        ),
+                                                      ),
+                                                      ScaffoldMessenger.of(context).showSnackBar(
+                                                        SnackbarWidget(
+                                                          content: Text('Successfully User blocked!'),
+                                                        ),
+                                                      ),
+                                                    },
+                                                    child: Text('Confirm'),
+                                                  ),
+                                                ],
+                                              );
+                                            },
+                                          ) ??
+                                        false;
+                                        },
+                                        child: Container(
+                                          width: 40,
+                                          height: 30,
+                                          child: Padding(
+                                            padding: EdgeInsetsDirectional.fromSTEB(4, 4, 4, 4),
+                                            child: Icon(
+                                              Icons.block,
+                                              color: Colors.red,
+                                              size: 20,
+                                            ),
+                                          ),
+                                        ),
+                                      ),
+                                    )
+                                    : Padding(
+                                        padding: EdgeInsetsDirectional.fromSTEB(5, 0, 0, 0),
+                                        child: InkWell(
+                                          onTap: () async { 
+                                            var confirmDialogResponse = await showDialog<bool>(
+                                              context: context,
+                                              builder: (alertDialogContext) {
+                                                return alertDialogWidget(
+                                                  title: 'restore user',
+                                                  content: 'Are you sure to restore this user ?',
+                                                  actions: [
+                                                    TextButton(
+                                                      onPressed: () => Navigator.pop(alertDialogContext, false),
+                                                      child: Text('Cancel'),
+                                                    ),
+                                                    TextButton(
+                                                      onPressed: () => {
+                                                        userServices.RestoreUser(snapshot.data.id.toString()),
+                                                        Navigator.push(
+                                                          context,
+                                                          MaterialPageRoute(
+                                                            builder: (context) => usersnewWidget(),
+                                                          ),
+                                                        ),
+                                                        ScaffoldMessenger.of(context).showSnackBar(
+                                                          SnackbarWidget(
+                                                          content: Text( 'Successfully User restored!',),
+                                                          )
+                                                        ),
+                                                      },
+                                                      child: Text('Confirm'),
+                                                    ),
+                                                  ],
+                                                );
+                                              },
+                                            ) ??
+                                          false;
+                                          },
+                                          child: Container(
+                                            width: 40,
+                                            height: 30,
+                                            child: Padding(
+                                              padding: EdgeInsetsDirectional.fromSTEB(4, 4, 4, 4),
+                                              child: Icon(
+                                                Icons.repeat_rounded,
+                                                color: Colors.green,
+                                                size: 20,
+                                              ),
+                                            ),
+                                          ),
+                                        ),
+                                    ),
+                                ]
+                              )
+                            ),
+                            
                             LabeledRowWidget(
                               text: "User id ",
                             ),

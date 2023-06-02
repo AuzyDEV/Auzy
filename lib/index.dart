@@ -50,3 +50,4 @@ export 'admin-functions/user-management/all-users/all-users-view.dart' show user
 export 'listing-directory/all-listing-category/all-listing-category-for-admin.dart' show ListingCategoryForAdmin;
 export 'listing-directory/single-listing-category/single-listing-category-view.dart' show SingleListingCategoryWidget;
 export 'themes/password-text-field.dart' show PasswordFormField;
+export 'themes/posts-listing-component.dart' show PostsListingWidget;

@@ -26,6 +26,7 @@ class User {
       password: (json["password"] ?? ''),
       displayName: (json["displayName"] ?? ''),
       photoURL: (json["photoURL"] ?? ''),
+      disabled: (json["disabled"] ?? ''),
     );
   }
   factory User.fromMapy(Map<String, dynamic> json) {
