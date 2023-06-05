@@ -1,11 +1,13 @@
 import 'dart:async';
 import 'package:flutter/material.dart';
 import '../../index.dart';
+import '../../user-profile/profile-controller.dart';
 import '../conversation/conversation-controller.dart';
 import '../conversation/conversation-model.dart';
 
 class MessagesWidget extends StatefulWidget {
   final String idUser, myId;
+  
 
   const MessagesWidget({@required this.idUser, this.myId,  Key key, }) : super(key: key);
   @override
@@ -17,14 +19,29 @@ class _MessagesWidgetState extends State<MessagesWidget> {
   StreamController streamController;
   Stream<List<Message>> list;
   int nbr;
+  ProfilingMan profilingUserServices = ProfilingMan();
+  String _CurrentUserId;
+
+  Future<String> _getCurrentUserId() async {
+    return profilingUserServices.GetIDCurrentUser();
+  }
+
+  void _getFutureStringValue() async {
+    String value = await _getCurrentUserId();
+    setState(() {
+      _CurrentUserId = value;
+    });
+  }
+
   @override
   void initState() {
     super.initState();
+    _getFutureStringValue();
   }
 
   @override
   Widget build(BuildContext context) => StreamBuilder<List<Message>>(
-    stream: MessageMan.getMessages(widget.idUser),
+    stream: MessageMan.getMessages(widget.idUser, _CurrentUserId),
     builder: (context, snapshot) {
       switch (snapshot.connectionState) {
         case ConnectionState.waiting:

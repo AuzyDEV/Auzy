@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import '../../themes/theme.dart';
+import '../../user-profile/profile-controller.dart';
 import '../conversation/conversation-controller.dart';
 
 class NewMessageWidget extends StatefulWidget {
@@ -15,16 +16,32 @@ class _NewMessageWidgetState extends State<NewMessageWidget> {
   final _controller = TextEditingController();
   String message = '';
   bool isShowSticker;
-  void sendMessage() async {
-    FocusScope.of(context).unfocus();
-    await MessageMan.uploadMessage(widget.idUser, message);
-    _controller.clear();
+  ProfilingMan profilingUserServices = ProfilingMan();
+  String _CurrentUserId;
+
+  Future<String> _getCurrentUserId() async {
+    return profilingUserServices.GetIDCurrentUser();
+  }
+
+  void _getFutureStringValue() async {
+    String value = await _getCurrentUserId();
+    setState(() {
+      _CurrentUserId = value;
+    });
   }
 
   @override
   void initState() {
     super.initState();
+    _getFutureStringValue();
     isShowSticker = false;
+  }
+
+  void sendMessage() async {
+    FocusScope.of(context).unfocus();
+    print(_CurrentUserId);
+    await MessageMan.uploadMessage(widget.idUser, message, _CurrentUserId);
+    _controller.clear();
   }
 
   Future<bool> onBackPress() {
