@@ -24,12 +24,12 @@ class _postsForUsersWidgetState extends State<postsForUsersWidget> {
   Future<List<Post>> futurePost;
   PostsUserMan postsServices = PostsUserMan();
   ProfilingMan profilingUserServices = ProfilingMan();
-  String _CurrentUserId;
   Future<List<savedPost>> futureSavedPost;
   SavedPostMan savedPostsServices = SavedPostMan();
   sharedPostMan sharedPostsServices = sharedPostMan();
   int itemCount = 2;
   ScrollController _scrollController = ScrollController();
+  String _CurrentUserId;
 
   Future<String> _getCurrentUserId() async {
     return profilingUserServices.GetIDCurrentUser();

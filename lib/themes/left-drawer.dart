@@ -279,11 +279,28 @@ class _DrawerrState extends State<Drawerr> {
                 );
               }
             ),
+            if (_futureStringValue == "assistant")
+              _createDrawerItem(context,
+                icon: Icons.ac_unit_rounded,
+                text: 'Messages Assistant',
+                isSelected: selectedIndex == 12, 
+                onTap: () {
+                  setState(() {
+                    selectedIndex = 12;
+                  });
+                  Navigator.push(
+                    context,
+                    MaterialPageRoute(
+                      builder: (context) => ConversationListUsersForAssistantWidget(),
+                    ),
+                  );
+                }
+              ),
             _createDrawerItem(
               context,
               icon: Icons.logout_outlined,
               text: 'Logout',
-              isSelected: selectedIndex == 11,
+              isSelected: selectedIndex == 13,
               onTap: () async {
                 bool response = await sapi.LogoutUser();
                 if (response)
@@ -294,7 +311,7 @@ class _DrawerrState extends State<Drawerr> {
                     ),
                   );
                   setState(() {
-                    selectedIndex = 11;
+                    selectedIndex = 13;
                   });
               },
             ),

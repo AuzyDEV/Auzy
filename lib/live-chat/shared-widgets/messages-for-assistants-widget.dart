@@ -5,16 +5,16 @@ import '../../user-profile/profile-controller.dart';
 import '../conversation/conversation-controller.dart';
 import '../conversation/conversation-model.dart';
 
-class MessagesWidget extends StatefulWidget {
+class MessagesForAssistantsWidget extends StatefulWidget {
   final String idUser, myId;
   
 
-  const MessagesWidget({@required this.idUser, this.myId,  Key key, }) : super(key: key);
+  const MessagesForAssistantsWidget({@required this.idUser, this.myId,  Key key, }) : super(key: key);
   @override
-  _MessagesWidgetState createState() => _MessagesWidgetState();
+  _MessagesForAssistantsWidgetState createState() => _MessagesForAssistantsWidgetState();
 }
 
-class _MessagesWidgetState extends State<MessagesWidget> {
+class _MessagesForAssistantsWidgetState extends State<MessagesForAssistantsWidget> {
   int start = 0;
   StreamController streamController;
   Stream<List<Message>> list;
@@ -28,7 +28,6 @@ class _MessagesWidgetState extends State<MessagesWidget> {
 
   void _getFutureStringValue() async {
     String value = await _getCurrentUserId();
-    print("hhhh"+ value);
     setState(() {
       _CurrentUserId = value;
     });
@@ -38,12 +37,11 @@ class _MessagesWidgetState extends State<MessagesWidget> {
   void initState() {
     super.initState();
     _getFutureStringValue();
-    print(widget.idUser);
   }
 
   @override
   Widget build(BuildContext context) => StreamBuilder<List<Message>>(
-    stream: MessageMan.getMessages(widget.idUser, _CurrentUserId),
+    stream: MessageMan.getMessagesForAssistans(widget.idUser, _CurrentUserId),
     builder: (context, snapshot) {
       switch (snapshot.connectionState) {
         case ConnectionState.waiting:

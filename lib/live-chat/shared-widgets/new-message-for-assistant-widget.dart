@@ -3,16 +3,16 @@ import '../../themes/theme.dart';
 import '../../user-profile/profile-controller.dart';
 import '../conversation/conversation-controller.dart';
 
-class NewMessageWidget extends StatefulWidget {
+class NewMessageForAssistantWidget extends StatefulWidget {
   final String idUser;
 
-  const NewMessageWidget({ @required this.idUser, Key key,}) : super(key: key);
+  const NewMessageForAssistantWidget({ @required this.idUser, Key key,}) : super(key: key);
 
   @override
-  _NewMessageWidgetState createState() => _NewMessageWidgetState();
+  _NewMessageForAssistantWidgetState createState() => _NewMessageForAssistantWidgetState();
 }
 
-class _NewMessageWidgetState extends State<NewMessageWidget> {
+class _NewMessageForAssistantWidgetState extends State<NewMessageForAssistantWidget> {
   final _controller = TextEditingController();
   String message = '';
   bool isShowSticker;
@@ -41,7 +41,7 @@ class _NewMessageWidgetState extends State<NewMessageWidget> {
 
   void sendMessage() async {
     FocusScope.of(context).unfocus();
-    await MessageMan.uploadMessage(widget.idUser, message, _CurrentUserId);
+    await MessageMan.uploadMessageForAssistant(widget.idUser, _CurrentUserId, message);
     _controller.clear();
   }
 

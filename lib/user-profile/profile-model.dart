@@ -66,4 +66,12 @@ class User {
       photoURL: (json["photoURL"] ?? ''),
     );
   }
+
+  factory User.fromM(Map<String, dynamic> json) {
+    return User(
+      id: (json["uid"] ?? ''),
+      email: (json["email"] ?? ''),
+      displayName: (json["displayName"] ?? ''),
+    );
+  }
 }

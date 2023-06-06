@@ -51,3 +51,4 @@ export 'listing-directory/all-listing-category/all-listing-category-for-admin.da
 export 'listing-directory/single-listing-category/single-listing-category-view.dart' show SingleListingCategoryWidget;
 export 'themes/password-text-field.dart' show PasswordFormField;
 export 'themes/posts-listing-component.dart' show PostsListingWidget;
+export './live-chat/conversation-list/conversation-list-for-assistants-view.dart' show ConversationListUsersForAssistantWidget;
