@@ -46,7 +46,7 @@ class _ConversationListUsersForAssistantWidgetState extends State<ConversationLi
       resizeToAvoidBottomInset: false,
       appBar: PreferredSize(
         preferredSize: const Size.fromHeight(60),
-        child: appbar(text: 'Live Assistant'),
+        child: appbar(text: 'Assistant\'s Chat'),
       ),
       drawer: Drawerr(),
       body: SafeArea(
@@ -106,8 +106,7 @@ class _ConversationListUsersForAssistantWidgetState extends State<ConversationLi
                                                       children: [
                                                         CircleAvatar(
                                                         radius: 25,
-                                                        backgroundImage:
-                                                        NetworkImage("https://fac.img.pmdstatic.net/fit/http.3A.2F.2Fprd2-bone-image.2Es3-website-eu-west-1.2Eamazonaws.2Ecom.2FFAC.2Fvar.2Ffemmeactuelle.2Fstorage.2Fimages.2Famour.2Fcoaching-amoureux.2Fcest-quoi-belle-femme-temoignages-43206.2F14682626-1-fre-FR.2Fc-est-quoi-une-belle-femme-temoignages.2Ejpg/1200x1200/quality/80/crop-from/center/c-est-quoi-une-belle-femme-temoignages.jpeg"),
+                                                        backgroundImage: AssetImage("../../assets/images/user.png"),
                                                         ),
                                                         Positioned(
                                                           top: 35,

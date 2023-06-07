@@ -61,7 +61,7 @@ class _MessagesWidgetState extends State<MessagesWidget> {
                 itemCount: messages.length,
                 itemBuilder: (context, index) {
                   final message = messages[index];
-                  return MessageWidget(
+                  return MessageForUserWidget(
                     message: message,
                     isMe: message.idUser == widget.myId,
                   );

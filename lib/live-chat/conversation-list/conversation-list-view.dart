@@ -3,14 +3,14 @@ import '../../index.dart';
 import '../../user-profile/profile-model.dart';
 import 'package:flutter/material.dart';
 
-class chatcopyWidget extends StatefulWidget {
-  const chatcopyWidget({Key key}) : super(key: key);
+class ConversationsAssistantsListWidget extends StatefulWidget {
+  const ConversationsAssistantsListWidget({Key key}) : super(key: key);
 
   @override
-  _chatcopyWidgetState createState() => _chatcopyWidgetState();
+  _ConversationsAssistantsListWidgetState createState() => _ConversationsAssistantsListWidgetState();
 }
 
-class _chatcopyWidgetState extends State<chatcopyWidget> {
+class _ConversationsAssistantsListWidgetState extends State<ConversationsAssistantsListWidget> {
   String searchString = "";
   final scaffoldKey = GlobalKey<ScaffoldState>();
   TextEditingController textController;
@@ -91,8 +91,7 @@ class _chatcopyWidgetState extends State<chatcopyWidget> {
                                                       children: [
                                                         CircleAvatar(
                                                         radius: 25,
-                                                        backgroundImage:
-                                                        NetworkImage(users[index].photoURL),
+                                                        backgroundImage: NetworkImage(users[index].photoURL),
                                                         ),
                                                         Positioned(
                                                           top: 35,

@@ -16,7 +16,7 @@ export 'listing-directory/all-listing-category/all-listing-category-view.dart' s
 export 'listing-directory/all-listings/all-listings-view.dart' show AllListingsWidget;
 export 'listing-directory/single-listing/single-listing-view.dart' show DoctorprofileWidget;
 export 'live-chat/conversation/conversation-view.dart' show ChatPage;
-export 'live-chat/conversation-list/conversation-list-view.dart' show chatcopyWidget;
+export 'live-chat/conversation-list/conversation-list-view.dart' show ConversationsAssistantsListWidget;
 export 'live-chat/shared-widgets/chat-body-widget.dart' show ChatBodyWidget;
 export 'live-chat/shared-widgets/chat-header-widget.dart' show ChatHeaderWidget;
 export 'live-chat/shared-widgets/message-widget.dart' show MessageWidget;
@@ -52,3 +52,4 @@ export 'listing-directory/single-listing-category/single-listing-category-view.d
 export 'themes/password-text-field.dart' show PasswordFormField;
 export 'themes/posts-listing-component.dart' show PostsListingWidget;
 export './live-chat/conversation-list/conversation-list-for-assistants-view.dart' show ConversationListUsersForAssistantWidget;
+export 'live-chat/shared-widgets/message-for-user-widget.dart' show MessageForUserWidget;

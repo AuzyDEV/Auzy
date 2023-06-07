@@ -132,10 +132,10 @@ class _DrawerrState extends State<Drawerr> {
               _createDrawerItem(context,
                 icon: Icons.people_alt_outlined,
                 text: 'User Management',
-                isSelected: selectedIndex == 2, 
+                isSelected: selectedIndex == 1, 
                 onTap: () {
                   setState(() {
-                    selectedIndex = 2;
+                    selectedIndex = 1;
                   });
                   Navigator.push(
                     context,
@@ -149,10 +149,10 @@ class _DrawerrState extends State<Drawerr> {
               _createDrawerItem(context,
                 icon: Icons.send_outlined,
                 text: 'Announcement',
-                isSelected: selectedIndex == 5, 
+                isSelected: selectedIndex == 2, 
                 onTap: () {
                   setState(() {
-                    selectedIndex = 5;
+                    selectedIndex = 2;
                   });
                   Navigator.push(
                     context,
@@ -166,10 +166,10 @@ class _DrawerrState extends State<Drawerr> {
               _createDrawerItem(context,
                 icon: Icons.co_present_outlined,
                 text: 'Post Management',
-                isSelected: selectedIndex == 6, 
+                isSelected: selectedIndex == 3, 
                 onTap: () {
                   setState(() {
-                    selectedIndex = 6;
+                    selectedIndex = 3;
                   });
                   Navigator.push(
                     context,
@@ -183,10 +183,10 @@ class _DrawerrState extends State<Drawerr> {
               _createDrawerItem(context,
                 icon: Icons.co_present_outlined,
                 text: 'Posts',
-                isSelected: selectedIndex == 6, 
+                isSelected: selectedIndex == 4, 
                 onTap: () {
                   setState(() {
-                    selectedIndex = 6;
+                    selectedIndex = 4;
                   });
                   Navigator.push(
                     context,
@@ -196,13 +196,14 @@ class _DrawerrState extends State<Drawerr> {
                   );
                 }
               ),
+            if (_futureStringValue == "user" || _futureStringValue == "admin") 
             _createDrawerItem(context,
                 icon: Icons.person_search_outlined,
                 text: 'Professionals',
-                isSelected: selectedIndex == 8, 
+                isSelected: selectedIndex == 5, 
                 onTap: () {
                   setState(() {
-                    selectedIndex = 8;
+                    selectedIndex = 5;
                   });
                   Navigator.push(
                     context,
@@ -212,18 +213,19 @@ class _DrawerrState extends State<Drawerr> {
                   );
                 }
               ),
+            if (_futureStringValue == "user") 
             _createDrawerItem(context,
-              icon: Icons.message_outlined,
+              icon: Icons.wechat_outlined,
               text: 'Live Assistant',
-              isSelected: selectedIndex == 3, 
+              isSelected: selectedIndex == 6, 
               onTap: () {
                 setState(() {
-                  selectedIndex = 3;
+                  selectedIndex = 6;
                 });
                 Navigator.push(
                   context,
                   MaterialPageRoute(
-                    builder: (context) => chatcopyWidget(),
+                    builder: (context) => ConversationsAssistantsListWidget(),
                   ),
                 );
               }
@@ -232,10 +234,10 @@ class _DrawerrState extends State<Drawerr> {
               _createDrawerItem(context,
                 icon: Icons.email_outlined,
                 text: 'Contact Us',
-                isSelected: selectedIndex == 9, 
+                isSelected: selectedIndex == 7, 
                 onTap: () {
                   setState(() {
-                    selectedIndex = 9;
+                    selectedIndex = 7;
                   });
 
                   Navigator.push(
@@ -250,10 +252,10 @@ class _DrawerrState extends State<Drawerr> {
               _createDrawerItem(context,
                 icon: Icons.list,
                 text: 'Doctor\'s specialities',
-                isSelected: selectedIndex == 10, 
+                isSelected: selectedIndex == 8, 
                 onTap: () {
                   setState(() {
-                    selectedIndex = 10;
+                    selectedIndex = 8;
                   });
                   Navigator.push(
                     context,
@@ -266,10 +268,10 @@ class _DrawerrState extends State<Drawerr> {
             _createDrawerItem(context,
               icon: Icons.account_circle_outlined,
               text: 'Profil',
-              isSelected: selectedIndex == 1, 
+              isSelected: selectedIndex == 9, 
               onTap: () {
                 setState(() {
-                  selectedIndex = 1;
+                  selectedIndex = 9;
                 });
                 Navigator.push(
                   context,
@@ -281,12 +283,12 @@ class _DrawerrState extends State<Drawerr> {
             ),
             if (_futureStringValue == "assistant")
               _createDrawerItem(context,
-                icon: Icons.ac_unit_rounded,
+                icon: Icons.wechat_outlined,
                 text: 'Messages Assistant',
-                isSelected: selectedIndex == 12, 
+                isSelected: selectedIndex == 10, 
                 onTap: () {
                   setState(() {
-                    selectedIndex = 12;
+                    selectedIndex = 10;
                   });
                   Navigator.push(
                     context,
@@ -300,7 +302,7 @@ class _DrawerrState extends State<Drawerr> {
               context,
               icon: Icons.logout_outlined,
               text: 'Logout',
-              isSelected: selectedIndex == 13,
+              isSelected: selectedIndex == 11,
               onTap: () async {
                 bool response = await sapi.LogoutUser();
                 if (response)
@@ -311,7 +313,7 @@ class _DrawerrState extends State<Drawerr> {
                     ),
                   );
                   setState(() {
-                    selectedIndex = 13;
+                    selectedIndex = 11;
                   });
               },
             ),

@@ -27,36 +27,36 @@ class _ChatPageForAssistantState extends State<ChatPageForAssistant> {
   Widget build(BuildContext context) => Scaffold(
     extendBodyBehindAppBar: true,
     body: SafeArea(
-        child: FutureBuilder<User>(
-          future: _futureUser,
-          builder: (context, snapshot) {
-            if (snapshot.hasData) {
-              return Column(
-                mainAxisSize: MainAxisSize.max,
-                children: [
-                  ProfileHeaderWidget(name: widget.user.displayName),
-                  Expanded(
-                    child: Container(
-                      padding: EdgeInsets.all(10),
-                      decoration: BoxDecoration(
-                        borderRadius: BorderRadius.only(
-                          topLeft: Radius.circular(25),
-                          topRight: Radius.circular(25),
-                        ),
+      child: FutureBuilder<User>(
+        future: _futureUser,
+        builder: (context, snapshot) {
+          if (snapshot.hasData) {
+            return Column(
+              mainAxisSize: MainAxisSize.max,
+              children: [
+                ProfileHeaderWidget(name: widget.user.displayName),
+                Expanded(
+                  child: Container(
+                    padding: EdgeInsets.all(10),
+                    decoration: BoxDecoration(
+                      borderRadius: BorderRadius.only(
+                        topLeft: Radius.circular(25),
+                        topRight: Radius.circular(25),
                       ),
-                      child: MessagesForAssistantsWidget(
-                          idUser: widget.user.id, myId: snapshot.data.id),
                     ),
+                    child: MessagesForAssistantsWidget(
+                        idUser: widget.user.id, myId: snapshot.data.id),
                   ),
-                  NewMessageForAssistantWidget(idUser: widget.user.id)
-                ],
-              );
-            } else if (snapshot.hasError) {
-                return Text("${snapshot.error}");
-            }
-            return const CircularProgressIndicatorWidget();
+                ),
+                NewMessageForAssistantWidget(idUser: widget.user.id)
+              ],
+            );
+          } else if (snapshot.hasError) {
+              return Text("${snapshot.error}");
           }
-        )
+          return const CircularProgressIndicatorWidget();
+        }
+      )
     ),
   );
 }
