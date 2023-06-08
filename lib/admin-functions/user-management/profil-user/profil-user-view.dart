@@ -154,7 +154,7 @@ class _ProfillWidgetState extends State<ProfillWidget> {
                                           padding: EdgeInsetsDirectional.fromSTEB(4, 4, 4, 4),
                                           child: Icon(
                                             Icons.delete,
-                                            color: Color.fromARGB(255, 163, 32, 23),
+                                            color: Colors.red,
                                             size: 20,
                                           ),
                                         ),
@@ -179,7 +179,7 @@ class _ProfillWidgetState extends State<ProfillWidget> {
                                           padding: EdgeInsetsDirectional.fromSTEB(4, 4, 4, 4),
                                           child: Icon(
                                             Icons.edit,
-                                            color: Colors.blueAccent,
+                                            color: Colors.green,
                                             size: 20,
                                           ),
                                         ),
@@ -232,7 +232,7 @@ class _ProfillWidgetState extends State<ProfillWidget> {
                                             padding: EdgeInsetsDirectional.fromSTEB(4, 4, 4, 4),
                                             child: Icon(
                                               Icons.block,
-                                              color: Colors.red,
+                                              color: Colors.orange,
                                               size: 20,
                                             ),
                                           ),

@@ -67,7 +67,7 @@ class _ListingCategoryForAdminState extends State<ListingCategoryForAdmin> {
                     children: [
                       Text('Category Management',
                         style: FlutterAppTheme.of(context).bodyText1.override(
-                          color: FlutterAppTheme.of(context).LightDarkTextColor,
+                          color: Colors.black,
                           fontFamily: 'Open Sans',
                           fontSize: 20,
                         ),

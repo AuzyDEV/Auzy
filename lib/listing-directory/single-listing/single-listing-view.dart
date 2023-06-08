@@ -340,45 +340,48 @@ class _DoctorprofileWidgetState extends State<DoctorprofileWidget> {
                         ),
                       ),
                       _futureRoleValue == "admin" ?
-                        CustomButton(
-                          onPressed: () async {
-                            var confirmDialogResponse = await showDialog<bool>(
-                              context: context,
-                              builder: (alertDialogContext) {
-                                return alertDialogWidget(
-                                  title: 'Delete Doctor',
-                                  content:'Are you sure to delete this Doctor ?',
-                                  actions: [
-                                    TextButton(
-                                      onPressed: () => Navigator.pop( alertDialogContext, false),
-                                      child: Text('Cancel'),
-                                    ),
-                                    TextButton(
-                                      onPressed: () => {
-                                        singleListingServices.deleteListing(snapshot.data.id.toString()),
-                                        Navigator.push(context,
-                                          MaterialPageRoute(
-                                            builder: (context) => AllListingsWidget(),
+                        Padding(
+                        padding: EdgeInsetsDirectional.fromSTEB(0, 20, 0, 0),
+                          child: CustomButton(
+                            onPressed: () async {
+                              var confirmDialogResponse = await showDialog<bool>(
+                                context: context,
+                                builder: (alertDialogContext) {
+                                  return alertDialogWidget(
+                                    title: 'Delete Doctor',
+                                    content:'Are you sure to delete this Doctor ?',
+                                    actions: [
+                                      TextButton(
+                                        onPressed: () => Navigator.pop( alertDialogContext, false),
+                                        child: Text('Cancel'),
+                                      ),
+                                      TextButton(
+                                        onPressed: () => {
+                                          singleListingServices.deleteListing(snapshot.data.id.toString()),
+                                          Navigator.push(context,
+                                            MaterialPageRoute(
+                                              builder: (context) => AllListingsWidget(),
+                                            ),
                                           ),
-                                        ),
-                                        ScaffoldMessenger.of(context).showSnackBar(
-                                          SnackbarWidget(
-                                            content: Text('Successfully Doctor deleted!',
+                                          ScaffoldMessenger.of(context).showSnackBar(
+                                            SnackbarWidget(
+                                              content: Text('Successfully Doctor deleted!',
+                                              )
                                             )
-                                          )
-                                        ),
-                                      },
-                                      child: Text('Confirm'),
-                                    ),
-                                  ],
-                                );
-                              },
-                            ) ??
-                          false;
-                          },
-                          text: 'Delete doctor',
+                                          ),
+                                        },
+                                        child: Text('Confirm'),
+                                      ),
+                                    ],
+                                  );
+                                },
+                              ) ??
+                            false;
+                            },
+                            text: 'Delete doctor',
+                          )
                         )
-                      : Container()
+                        : Container()
                     ],
                   );
                 } else if (snapshot.hasError) {

@@ -138,6 +138,9 @@ class _usersnewWidgetState extends State<usersnewWidget> {
                                           padding: EdgeInsetsDirectional.fromSTEB(12, 0, 0, 0),
                                           child: Text(
                                             '${snapshot.data[index].displayName}',
+                                            style: TextStyle(
+                                              fontWeight: FontWeight.w700
+                                            ),
                                           ),
                                         ),
                                         Padding(
