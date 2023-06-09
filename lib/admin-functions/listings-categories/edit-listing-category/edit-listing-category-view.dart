@@ -1,5 +1,5 @@
-import '../../index.dart';
-import '../../../themes/theme.dart';
+import '../../../index.dart';
+import '../../../../themes/theme.dart';
 import 'package:flutter/material.dart';
 import 'edit-listing-category-controller.dart';
 
@@ -35,7 +35,7 @@ class _editListingCategoryWidgetState extends State<editListingCategoryWidget> {
       backgroundColor: FlutterAppTheme.of(context).whiteColor,
       appBar: PreferredSize(
         preferredSize: const Size.fromHeight(60),
-        child: appbar(text: 'Edit Category'),
+        child: appbar(text: 'Edit'),
       ),
       drawer: Drawerr(),
       body: SingleChildScrollView(
@@ -120,7 +120,7 @@ class _editListingCategoryWidgetState extends State<editListingCategoryWidget> {
                                         );
                                     }
                                   },
-                                  text: 'save',
+                                  text: 'Submit',
                                 ),
                               ),
                             ),

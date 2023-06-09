@@ -1,7 +1,7 @@
 import 'dart:convert';
 import 'package:http/http.dart' as http;
 import 'dart:async';
-import '../add-listing-category/add-listing-category-model.dart';
+import '../../../listing-directory/add-listing-category/add-listing-category-model.dart';
 
 class SingleListingCategoryMan {
 

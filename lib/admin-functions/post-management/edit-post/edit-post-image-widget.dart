@@ -140,7 +140,7 @@ class _updateImagePostWidgetState extends State<updateImagePostWidget> {
                                       }
                                     }
                                   },
-                                  text: 'send',
+                                  text: 'Submit',
                                 ),
                               ),
                             ),

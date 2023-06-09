@@ -25,7 +25,6 @@ class _NewMessageForAssistantWidgetState extends State<NewMessageForAssistantWid
 
   void _getFutureStringValue() async {
     String value = await _getCurrentUserId();
-    print("assistant id = "+ value);
     setState(() {
       _CurrentUserId = value;
     });
@@ -35,7 +34,6 @@ class _NewMessageForAssistantWidgetState extends State<NewMessageForAssistantWid
   void initState() {
     super.initState();
     _getFutureStringValue();
-    print(widget.idUser);
     isShowSticker = false;
   }
 
@@ -75,7 +73,7 @@ class _NewMessageForAssistantWidgetState extends State<NewMessageForAssistantWid
                   decoration: InputDecoration(
                     filled: true,
                     fillColor: FlutterAppTheme.of(context).lightGrey,
-                    labelText: 'Type your message',
+                    labelText: 'Type your message ...',
                     border: OutlineInputBorder(
                       borderSide: BorderSide(width: 0),
                       gapPadding: 10,
@@ -91,13 +89,13 @@ class _NewMessageForAssistantWidgetState extends State<NewMessageForAssistantWid
               GestureDetector(
                 onTap: message.trim().isEmpty ? null : sendMessage,
                 child: Container(
-                  padding: EdgeInsets.all(8),
+                  padding: EdgeInsets.all(10),
                   decoration: BoxDecoration(
                     shape: BoxShape.circle,
-                    color: Colors.blue,
+                    color: Colors.black,
                   ),
                   child: Icon(
-                    Icons.send,
+                    Icons.send_outlined,
                     color: FlutterAppTheme.of(context).whiteColor,
                   ),
                 ),

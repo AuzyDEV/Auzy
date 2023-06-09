@@ -106,7 +106,7 @@ class _announcementWidgetState extends State<announcementWidget> {
                                       );
                                   }
                                 },
-                                text: 'send',
+                                text: 'Send',
                               ),
                             ),
                           ),

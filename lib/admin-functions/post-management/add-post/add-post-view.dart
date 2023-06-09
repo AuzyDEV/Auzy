@@ -82,7 +82,7 @@ class _addNewPostWidgetState extends State<addNewPostWidget> {
                           child: Column(
                             children: [
                               HtmlEditor(
-                                controller: controller, //required
+                                controller: controller,
                                 htmlEditorOptions: HtmlEditorOptions(
                                   hint: "Your text here...",
                                   initialText:
@@ -175,7 +175,7 @@ class _addNewPostWidgetState extends State<addNewPostWidget> {
                                             }
                                           }
                                         },
-                                        text: 'send',
+                                        text: 'Submit',
                                       ),
                                     ),
                                   ),

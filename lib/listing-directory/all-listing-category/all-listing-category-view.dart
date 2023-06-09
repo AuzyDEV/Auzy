@@ -1,10 +1,7 @@
-import 'dart:convert';
-
 import 'package:skeleton/listing-directory/add-listing-category/add-listing-category-model.dart';
 import 'package:skeleton/listing-directory/all-listing-category/all-listing-category-controller.dart';
 import '../../../themes/theme.dart';
 import '../../index.dart';
-import 'package:http/http.dart' as http;
 import 'package:flutter/material.dart';
 import '../../user-profile/profile-controller.dart';
 import '../all-listings/all-listings-controller.dart';

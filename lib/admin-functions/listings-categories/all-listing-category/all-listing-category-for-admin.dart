@@ -1,9 +1,9 @@
 import 'package:skeleton/listing-directory/add-listing-category/add-listing-category-model.dart';
 import 'package:skeleton/listing-directory/all-listing-category/all-listing-category-controller.dart';
-import '../../../themes/theme.dart';
-import '../../index.dart';
+import '../../../../themes/theme.dart';
+import '../../../index.dart';
 import 'package:flutter/material.dart';
-import '../../user-profile/profile-controller.dart';
+import '../../../user-profile/profile-controller.dart';
 
 class ListingCategoryForAdmin extends StatefulWidget {
   const ListingCategoryForAdmin({Key key}) : super(key: key);
@@ -65,7 +65,7 @@ class _ListingCategoryForAdminState extends State<ListingCategoryForAdmin> {
                     mainAxisSize: MainAxisSize.max,
                     crossAxisAlignment: CrossAxisAlignment.start,
                     children: [
-                      Text('Category Management',
+                      Text('Speciality Management',
                         style: FlutterAppTheme.of(context).bodyText1.override(
                           color: Colors.black,
                           fontFamily: 'Open Sans',
@@ -120,7 +120,7 @@ class _ListingCategoryForAdminState extends State<ListingCategoryForAdmin> {
                                 await Navigator.push(context,
                                   MaterialPageRoute(
                                     builder: (context) =>
-                                        SingleListingCategoryWidget( id: "${snapshot.data[index].id}",
+                                      SingleListingCategoryWidget( id: "${snapshot.data[index].id}",
                                     ),
                                   ),
                                 );
@@ -182,7 +182,7 @@ class _ListingCategoryForAdminState extends State<ListingCategoryForAdmin> {
                   return Center(child: Text("no data"),);
                 }
                 return Padding(
-                  padding: EdgeInsetsDirectional.fromSTEB(0, 280, 0, 0),
+                  padding: EdgeInsetsDirectional.fromSTEB(0, 270, 0, 0),
                   child: CircularProgressIndicatorWidget(),
                 );
               }

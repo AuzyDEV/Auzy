@@ -195,7 +195,7 @@ class _ProfillWidgetState extends State<ProfillWidget> {
                                             context: context,
                                             builder: (alertDialogContext) {
                                               return alertDialogWidget(
-                                                title: 'block user',
+                                                title: 'Block user',
                                                 content: 'Are you sure to block this user ?',
                                                 actions: [
                                                   TextButton(
@@ -333,7 +333,7 @@ class _ProfillWidgetState extends State<ProfillWidget> {
                                           },
                                         );
                                       },
-                                      text: 'get IP adress',
+                                      text: 'Get IP adress',
                                     ),
                                   ),
                                 ],

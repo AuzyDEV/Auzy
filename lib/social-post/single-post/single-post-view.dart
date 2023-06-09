@@ -142,7 +142,7 @@ class _postDetailsWidgetState extends State<postDetailsWidget> {
                                   ),
                                 );
                               },
-                              text: 'update post\'s photo',
+                              text: 'Update photo',
                             ),
                           ),
                       ],

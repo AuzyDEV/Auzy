@@ -1,7 +1,7 @@
-import '../../../index.dart';
-import '../../../themes/theme.dart';
+import '../../../../index.dart';
+import '../../../../themes/theme.dart';
 import 'package:flutter/material.dart';
-import '../add-listing-category/add-listing-category-model.dart';
+import '../../../listing-directory/add-listing-category/add-listing-category-model.dart';
 import '../edit-listing-category/edit-listing-category-view.dart';
 import 'single-listing-category-controller.dart';
 
@@ -45,7 +45,7 @@ class _SingleListingCategoryWidgetState
       backgroundColor: FlutterAppTheme.of(context).whiteColor,
       appBar: PreferredSize(
         preferredSize: const Size.fromHeight(60),
-        child: appbar(text: 'Speciality details'),
+        child: appbar(text: 'Details'),
       ),
       drawer: Drawerr(),
       body: SingleChildScrollView(
@@ -140,7 +140,7 @@ class _SingleListingCategoryWidgetState
                                               ),
                                             );
                                           },
-                                          text: 'update speciality',
+                                          text: 'Update speciality',
                                         ),
                                       ),
                                     ],

@@ -120,7 +120,7 @@ class _editPostDetailsWidgetState extends State<editPostDetailsWidget> {
                                       );
                                   }
                                 },
-                                text: 'submit',
+                                text: 'Submit',
                               ),
                             ),
                           ),
