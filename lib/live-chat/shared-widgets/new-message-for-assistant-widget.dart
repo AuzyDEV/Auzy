@@ -39,7 +39,7 @@ class _NewMessageForAssistantWidgetState extends State<NewMessageForAssistantWid
 
   void sendMessage() async {
     FocusScope.of(context).unfocus();
-    await MessageMan.uploadMessageForAssistant(widget.idUser, _CurrentUserId, message);
+    await MessageMan.addNewMessage(_CurrentUserId, message, widget.idUser);
     _controller.clear();
   }
 

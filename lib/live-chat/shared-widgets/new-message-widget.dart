@@ -39,7 +39,7 @@ class _NewMessageWidgetState extends State<NewMessageWidget> {
 
   void sendMessage() async {
     FocusScope.of(context).unfocus();
-    await MessageMan.uploadMessage(widget.idUser, message, _CurrentUserId);
+    await MessageMan.addNewMessage(widget.idUser, message, _CurrentUserId);
     _controller.clear();
   }
 

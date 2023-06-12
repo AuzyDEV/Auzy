@@ -41,7 +41,7 @@ class _MessagesForAssistantsWidgetState extends State<MessagesForAssistantsWidge
 
   @override
   Widget build(BuildContext context) => StreamBuilder<List<Message>>(
-    stream: MessageMan.getMessagesForAssistans(widget.idUser, _CurrentUserId),
+    stream: MessageMan.getMessages(_CurrentUserId, widget.idUser),
     builder: (context, snapshot) {
       switch (snapshot.connectionState) {
         case ConnectionState.waiting:

@@ -8,8 +8,14 @@ class ProfileHeaderWidget extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) => Container(
-    color: Colors.black,
     height: 93,
+    decoration: BoxDecoration(
+    color: Colors.black,
+    borderRadius: BorderRadius.only(
+      bottomLeft: Radius.circular(16),
+      bottomRight: Radius.circular(16),
+    ),
+  ),
     padding: EdgeInsets.all(16).copyWith(left: 0),
     child: Column(
       children: [
@@ -18,15 +24,16 @@ class ProfileHeaderWidget extends StatelessWidget {
           children: [
             BackButton(color: FlutterAppTheme.of(context).whiteColor),
             Expanded(
-              child: Text(
-                name,
-                style: TextStyle(
-                  fontSize: 24,
-                  color: FlutterAppTheme.of(context).whiteColor,
-                  fontWeight: FontWeight.bold,
+                child: Text(
+                  name,
+                  style: TextStyle(
+                    fontSize: 20,
+                    color: FlutterAppTheme.of(context).whiteColor,
+                    fontWeight: FontWeight.bold,
+                  ),
+                  overflow: TextOverflow.ellipsis,
                 ),
-                overflow: TextOverflow.ellipsis,
-              ),
+              
             ),
             SizedBox(width: 4),
           ],

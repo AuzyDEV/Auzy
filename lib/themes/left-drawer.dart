@@ -265,6 +265,23 @@ class _DrawerrState extends State<Drawerr> {
                   );
                 }
               ),
+            if (_futureStringValue == "assistant")
+              _createDrawerItem(context,
+                icon: Icons.wechat_outlined,
+                text: 'Chats',
+                isSelected: selectedIndex == 10, 
+                onTap: () {
+                  setState(() {
+                    selectedIndex = 10;
+                  });
+                  Navigator.push(
+                    context,
+                    MaterialPageRoute(
+                      builder: (context) => ConversationListUsersForAssistantWidget(),
+                    ),
+                  );
+                }
+              ),
             _createDrawerItem(context,
               icon: Icons.account_circle_outlined,
               text: 'Profil',
@@ -281,23 +298,6 @@ class _DrawerrState extends State<Drawerr> {
                 );
               }
             ),
-            if (_futureStringValue == "assistant")
-              _createDrawerItem(context,
-                icon: Icons.wechat_outlined,
-                text: 'Messages Assistant',
-                isSelected: selectedIndex == 10, 
-                onTap: () {
-                  setState(() {
-                    selectedIndex = 10;
-                  });
-                  Navigator.push(
-                    context,
-                    MaterialPageRoute(
-                      builder: (context) => ConversationListUsersForAssistantWidget(),
-                    ),
-                  );
-                }
-              ),
             _createDrawerItem(
               context,
               icon: Icons.logout_outlined,
